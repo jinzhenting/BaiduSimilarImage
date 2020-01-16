@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ErrorList>
+  <Error1 en="Unknown error" chs="服务器内部错误，请再次请求， 如果持续出现此类错误，请通过QQ群（630770006）或提交工单联系技术支持团队" ignore="Yes"></Error1>
+  <Error2 en="Service temporarily unavailable" chs="服务暂不可用，请再次请求， 如果持续出现此类错误，请通过QQ群（630770006）或提交工单联系技术支持团队" ignore="No"></Error2>
+  <Error3 en="Unsupported openapi method" chs="调用的API不存在，请检查请求URL后重新尝试，一般为URL中有非英文字符，如“-”，可手动输入重试" ignore="No"></Error3>
+  <Error4 en="Open api request limit reached" chs="集群超限额，请再次请求， 如果持续出现此类错误，请通过QQ群（630770006）或提交工单联系技术支持团队" ignore="No"></Error4>
+  <Error6 en="No permission to access data" chs="无权限访问该用户数据，创建应用时未勾选相关接口，请登录百度云控制台，找到对应的应用，编辑应用，勾选上相关接口，然后重试调用" ignore="No"></Error6>
+  <Error13 en="Get service token failed" chs="获取token失败" ignore="No"></Error13>
+  <Error14 en="IAM Certification failed" chs="IAM 鉴权失败，建议参照文档自查生成sign的方式是否正确，或换用控制台中ak sk的方式调用" ignore="No"></Error14>
+  <Error15 en="app not exsits or create failed" chs="应用不存在或者创建失败" ignore="No"></Error15>
+  <Error17 en="Open api daily request limit reached" chs="每天请求量超限额；未上线计费的接口，可通过QQ群（630770006）联系群管、或提交工单申请提额；已上线计费的接口，可直接在控制台开通计费、或购买次数包，调用量不受限制，按调用次数计费，并保证10qps的并发" ignore="No"></Error17>
+  <Error18 en="Open api qps request limit reached" chs="QPS超限额；未上线计费的接口，可通过QQ群（630770006）联系群管、或提交工单申请提额；已上线计费的接口，可直接在控制台开通计费、或购买次数包，调用量不受限制，按调用次数计费，并保证10qps的并发" ignore="No"></Error18>
+  <Error19 en="Open api total request limit reached" chs="请求总量超限额，请通过QQ群（630770006）联系群管、或提交工单申请提额" ignore="No"></Error19>
+  <Error100 en="Invalid parameter" chs="无效的access_token参数，token拉取失败，可以参考“Access Token获取”重新获取" ignore="No"></Error100>
+  <Error110 en="Access token invalid or no longer valid" chs="access_token无效，token有效期为30天，注意需要定期更换，也可以每次请求都拉取新token" ignore="No"></Error110>
+  <Error111 en="Access token expired" chs="access token过期，token有效期为30天，注意需要定期更换，也可以每次请求都拉取新token" ignore="No"></Error111>
+  <Error282000 en="internal error" chs="服务器内部错误，请再次请求， 如果持续出现此类错误，请通过QQ群（630770006）或提交工单联系技术支持团队" ignore="Yes"></Error282000>
+  <Error216017 en="not initialized" chs="未建库，请先前往百度云控制台，找到对应的应用，在应用详情页 下方申请建库，建库成功后方可正常使用入库、检索、删除、更新接口" ignore="No"></Error216017>
+  <Error216100 en="invalid param" chs="请求中包含非法参数，请检查后重新尝试" ignore="No"></Error216100>
+  <Error216101 en="not enough param" chs="缺少必须的参数，请检查参数是否有遗漏" ignore="No"></Error216101>
+  <Error216102 en="service not support" chs="请求了不支持的服务，请检查调用的url" ignore="No"></Error216102>
+  <Error216103 en="param too long" chs="请求中某些参数过长，请检查后重新尝试" ignore="No"></Error216103>
+  <Error216110 en="appid not exist" chs="appid不存在，请重新核对信息是否为后台应用列表中的appid" ignore="No"></Error216110>
+  <Error216200 en="empty image" chs="图片为空，请检查后重新尝试" ignore="No"></Error216200>
+  <Error216201 en="image format error" chs="上传的图片格式错误，现阶段支持的图片格式为：PNG、JPG、JPEG、BMP，请进行转码或更换图片" ignore="Yes"></Error216201>
+  <Error216202 en="image size error" chs="上传的图片大小错误，现阶段支持的图片大小为：base64编码后小于4M，分辨率不高于4096*4096，请重新上传图片" ignore="Yes"></Error216202>
+  <Error216203 en="input image cannot handle" chs="模型提取不到有效的图片特征，一般有以下几种情况：1）图片尺寸太小，比如小于300px，甚至200px；或者图片长宽比太大，比如细长的长条图、竖条图；2）图片特征过于单一，比如纯色图、只有一根黑色的圆柱体等；3）图片中主体太多，比如一张图里有十几双鞋子、或者多只口红啥的，模型不知道应该以哪一个主体为识别目标，就处理不了了。请更换图片" ignore="Yes"></Error216203>
+  <Error216630 en="recognize error" chs="识别错误，请再次请求，如果持续出现此类错误，请通过QQ群（630770006）或提交工单联系技术支持团队" ignore="No"></Error216630>
+  <Error216680 en="item not exist" chs="item不在库里" ignore="No"></Error216680>
+  <Error216681 en="item exist" chs="item已经在库里，完全相同的图片不能重复入库" ignore="Yes"></Error216681>
+  <Error216634 en="detect error" chs="检测错误，请再次请求，如果持续出现此类错误，请通过QQ群（630770006）或提交工单联系技术支持团队" ignore="No"></Error216634>
+  <Error282003 en="missing parameters: {参数名}" chs="请求参数缺失" ignore="No"></Error282003>
+  <Error282005 en="batch processing error" chs="处理批量任务时发生部分或全部错误，请根据具体错误码排查" ignore="No"></Error282005>
+  <Error282006 en="batch task limit reached" chs="批量任务处理数量超出限制，请将任务数量减少到10或10以下" ignore="No"></Error282006>
+  <Error282111 en="url format illegal" chs="图片url格式非法，建议更换图片地址" ignore="No"></Error282111>
+  <Error282112 en="url download timeout" chs="url下载超时，对应的图床/图片无法下载或链路状况不好，您可以重新尝试一下，如果多次尝试后仍不行，建议更换图片地址" ignore="No"></Error282112>
+  <Error282113 en="url response invalid" chs="URL返回无效参数，一般是图片URL抓图失败，由于图床的差异性，抓图服务无法适配所有的图床，部分URL可能抓不到图，请将图片下载到本地转码后上传" ignore="No"></Error282113>
+  <Error282114 en="url size error" chs="图片URL长度超过1024字节或为0" ignore="No"></Error282114>
+  <Error282808 en="request id: xxxxx not exist" chs="request id xxxxx 不存在" ignore="No"></Error282808>
+  <Error282809 en="result type error" chs="返回结果请求错误（不属于excel或json）" ignore="No"></Error282809 >
+  <Error282810 en="image recognize error" chs="图像识别错误" ignore="No"></Error282810 >
+  <Error283300 en="image recognize error" chs="数据格式有误，可以检查base64编码、代码格式等" ignore="Yes"></Error283300 >
+</ErrorList>

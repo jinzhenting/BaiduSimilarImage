@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FormatList>
+  <JPG extension="*.jpg"></JPG>
+  <JPEG extension="*.jpeg"></JPEG>
+  <BMP extension="*.bmp"></BMP>
+  <PNG extension="*.png"></PNG>
+</FormatList>
