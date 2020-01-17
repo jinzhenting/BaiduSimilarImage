@@ -26,19 +26,19 @@ namespace ImageSearch
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("无权限加载窗口图标图标文件，请尝试使用管理员权限重新运行本程序");
+                MessageBox.Show("无权限加载窗口图标图标文件，请尝试使用管理员权限重新运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Environment.Exit(0);
                 return;
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("窗口图标图标文件不存在，程序将自动退出");
+                MessageBox.Show("窗口图标图标文件不存在，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Environment.Exit(0);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("加载窗口图标图标时发生如下错误，程序将自动退出\r\n" + ex.ToString());
+                MessageBox.Show("加载窗口图标图标时发生如下错误，程序将自动退出，描述如下\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Environment.Exit(0);
                 return;
             }
@@ -59,7 +59,7 @@ namespace ImageSearch
         {
             if (!(File.Exists("ListIcon.jpg")))
             {
-                MessageBox.Show("缩略图缺失图标载入错误，程序将自动退出");
+                MessageBox.Show("缩略图缺失图标载入错误，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Environment.Exit(0);
                 return;
             }
@@ -69,7 +69,7 @@ namespace ImageSearch
         {
             if (icon_background.IsBusy)
             {
-                MessageBox.Show("异步后台被占用");
+                MessageBox.Show("异步后台被占用", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -77,7 +77,7 @@ namespace ImageSearch
             icon[0] = api_list;
             icon[1] = image_path;
             icon_background.RunWorkerAsync(icon);
-            progress_label.Text = "开始处理";
+            progress_label.Text = "% 开始载入缩略图...";
         }
 
         private void icon_background_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)//异步实现
@@ -104,7 +104,7 @@ namespace ImageSearch
                     else imagelist.Images.Add(Image.FromFile("ListIcon.jpg"));//加载缺失缩略图
 
                     //进度
-                    icon_background.ReportProgress(Percents.Get(i + 1, result_list.Count), "");
+                    icon_background.ReportProgress(Percents.Get(i + 1, result_list.Count), result_list[i]);
                 }
 
                 var back = new object[1];//装箱
@@ -113,28 +113,29 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("未知错误如下\r\n" + ex);
+                MessageBox.Show("缩略图载入错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
         private void icon_background_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)//异步进度
         {
             list_progressbar.Value = e.ProgressPercentage;
-            progress_label.Text = "载入缩略图" + e.ProgressPercentage.ToString() + "%";
+            progress_label.Text = list_progressbar.Value + "% 载入缩略图" + e.UserState as string;
         }
 
         private void icon_background_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)//异步完成
         {
             if (e.Error != null)
             {
-                MessageBox.Show("载入缩略图错误如下\r\n" + e.Error.ToString());
+                MessageBox.Show("缩略图载入错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 list_progressbar.Value = 0;
                 return;
             }
 
             if (e.Cancelled)
             {
-                MessageBox.Show("已取消载入缩略图");
+                MessageBox.Show("已取消载入缩略图", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 list_progressbar.Value = 0;
                 return;
             }
@@ -157,14 +158,14 @@ namespace ImageSearch
         private void clear_result_button_Click(object sender, EventArgs e)//异步取消
         {
             if (icon_background.IsBusy) icon_background.CancelAsync();
-            else MessageBox.Show("载入已完成");
+            else MessageBox.Show("载入已完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void online_image_path_button_Click(object sender, EventArgs e)//浏览文件夹按钮
         {
             if (icon_listview.SelectedItems.Count < 1)
             {
-                MessageBox.Show("没有选中图片");
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
@@ -174,14 +175,14 @@ namespace ImageSearch
                 psi.Arguments = "/e,/select," + icon_listview.SelectedItems[0].Text;
                 System.Diagnostics.Process.Start(psi);
             }
-            else MessageBox.Show("图片" + icon_listview.SelectedItems[0].Text + "不存在");
+            else MessageBox.Show("图片" + icon_listview.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void icon_listview_DoubleClick(object sender, EventArgs e)//图片双击打开
         {
             if (icon_listview.SelectedItems.Count < 1) return;
             if (File.Exists(icon_listview.SelectedItems[0].Text)) System.Diagnostics.Process.Start(icon_listview.SelectedItems[0].Text);
-            else MessageBox.Show("图片" + icon_listview.SelectedItems[0].Text + "不存在");
+            else MessageBox.Show("图片" + icon_listview.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ApiResultForm_FormClosing(object sender, FormClosingEventArgs e)//窗口关闭前停止后台
@@ -189,7 +190,7 @@ namespace ImageSearch
             if (icon_background.IsBusy)
             {
                 e.Cancel = true;
-                MessageBox.Show("后台正在载入，请勿关闭窗口");
+                MessageBox.Show("后台正在载入，请勿关闭窗口", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 

@@ -483,10 +483,9 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(500, 555);
             this.Name = "ApiImageUpForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "新建图库";
+            this.Load += new System.EventHandler(this.ApiImageUpForm_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,6 +18,29 @@ namespace ImageSearch
         private void EmptyFolderForm_Load(object sender, EventArgs e)
         {
             EmptyListSettings();
+
+            try
+            {
+                Icon = new Icon(Path.Combine(Application.StartupPath, "EmptyFolder.ico"));
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("无权限加载窗口图标图标文件，请尝试使用管理员权限重新运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return;
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("窗口图标图标文件不存在，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("加载窗口图标图标时发生如下错误，程序将自动退出，描述如下\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return;
+            }
         }
 
         private void EmptyListSettings()//扫描列表样式
@@ -35,13 +59,13 @@ namespace ImageSearch
         {
             if (empty_path_textbox.Text == "")//主目录
             {
-                MessageBox.Show("未选择主目录");
+                MessageBox.Show("未选择主目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!Directory.Exists(empty_path_textbox.Text))
             {
-                MessageBox.Show("主目录不正确");
+                MessageBox.Show("主目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -55,6 +79,8 @@ namespace ImageSearch
             {
                 empty_scan_button.Text = "停止";
                 if (!empty_background.IsBusy) empty_background.RunWorkerAsync(empty_path_textbox.Text);
+                empty_bar.Value = 1;
+                empty_label.Text = "% 开始扫描...";
             }
             else
             {
@@ -67,7 +93,7 @@ namespace ImageSearch
         {
             if (empty_background.IsBusy)//入库运行中
             {
-                MessageBox.Show("请先停止扫描");
+                MessageBox.Show("请先停止扫描", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             this.Close();
@@ -77,7 +103,7 @@ namespace ImageSearch
         {
             if (empty_listview.CheckedItems.Count < 1)
             {
-                MessageBox.Show("没有选中项目");
+                MessageBox.Show("没有选中项目", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -94,17 +120,17 @@ namespace ImageSearch
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    MessageBox.Show("无权限删除" + item.Text + "，请尝试使用管理员权限运行本程序");
-                    return;
+                    if (MessageBox.Show("无权限访问：" + item.Text + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;//警示窗口
+                    else return;
                 }
                 catch (FileNotFoundException)
                 {
-                    MessageBox.Show(item.Text + "不存在");
+                    MessageBox.Show(item.Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("删除" + item.Text + "时发生如下错误\r\n" + ex.ToString());
+                    MessageBox.Show("删除" + item.Text + "时发生如下错误\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -171,14 +197,14 @@ namespace ImageSearch
         {
             if (e.Error != null)
             {
-                MessageBox.Show("扫描文件错误如下\r\n" + e.Error.ToString());
+                MessageBox.Show("扫描文件错误如下\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 empty_label.Text = "扫描文件后台错误";
                 return;
             }
             
             if (e.Cancelled)
             {
-                MessageBox.Show("扫描已取消");
+                MessageBox.Show("扫描已取消", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 empty_label.Text = "扫描已取消";
                 return;
             }
@@ -195,7 +221,7 @@ namespace ImageSearch
             }
             if (list.Count < 1)
             {
-                MessageBox.Show("没有发现空白目录");
+                MessageBox.Show("没有发现空白目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
             

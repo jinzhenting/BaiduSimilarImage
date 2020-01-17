@@ -104,7 +104,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(345, 438);
             this.Name = "ImageUpSubForm";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "选择子目录";

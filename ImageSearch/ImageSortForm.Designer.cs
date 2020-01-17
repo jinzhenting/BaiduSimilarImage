@@ -103,7 +103,7 @@
             this.sort_in_path_textbox.Name = "sort_in_path_textbox";
             this.sort_in_path_textbox.Size = new System.Drawing.Size(455, 23);
             this.sort_in_path_textbox.TabIndex = 1;
-            this.sort_in_path_textbox.Text = "\\\\nrf\\Vector\\Today";
+            this.sort_in_path_textbox.Text = "\\\\nrl\\Vector\\Today";
             // 
             // vector_sort_button
             // 
@@ -135,7 +135,6 @@
             this.depot_list_combobox.Name = "depot_list_combobox";
             this.depot_list_combobox.Size = new System.Drawing.Size(121, 25);
             this.depot_list_combobox.TabIndex = 4;
-            this.depot_list_combobox.SelectedIndexChanged += new System.EventHandler(this.depot_list_combobox_SelectedIndexChanged);
             // 
             // sort_sub_checkbox
             // 
@@ -202,8 +201,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ImageSortForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "本地图片整理";
             this.Load += new System.EventHandler(this.ImageSortForm_Load);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -8,7 +9,11 @@ namespace ImageSearch
 {
     public static class Sql
     {
-        //读取配置文件
+        /// <summary>
+        /// 读取SQL链接配置
+        /// </summary>
+        /// <param name="depot_name">图库名</param>
+        /// <returns>SQL链接配置</returns>
         private static string GetConnection(string depot_name)
         {
             try
@@ -16,40 +21,37 @@ namespace ImageSearch
                 XmlDocument xml = new XmlDocument();
                 xml.Load("ApiList.xml");
                 XmlNode rootNode = xml.DocumentElement;//获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == depot_name) return "Server=" + xmlnode.Attributes["serverip"].Value + "; Initial Catalog=" + xmlnode.Attributes["dataname"].Value + "; User ID=" + xmlnode.Attributes["userid"].Value + "; Password=" + xmlnode.Attributes["password"].Value;//在根节点中寻找节点//找到对应的节点//获取对应节点的值
-                MessageBox.Show("图库配置文件中查找不到" + depot_name + "的内容");
+                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == depot_name) return "Server=" + xmlnode.Attributes["serverip"].Value + "; Initial Catalog=" + xmlnode.Attributes["dataname"].Value + "; User ID=" + xmlnode.Attributes["userid"].Value + "; Password=" + Password.Decrypt(xmlnode.Attributes["password"].Value, "12345678");//在根节点中寻找节点//找到对应的节点//获取对应节点的值
+                MessageBox.Show("图库配置文件中查找不到" + depot_name + "的内容，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                System.Environment.Exit(0);
                 return null;
             }
             catch (UnauthorizedAccessException ex)
             {
-                if (MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                else
-                {
-                    System.Environment.Exit(0);
-                    return null;
-                }
+                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return null;
             }
-            catch (System.IO.FileNotFoundException ex)
+            catch (FileNotFoundException ex)
             {
-                if (MessageBox.Show("图库配置文件不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                else
-                {
-                    System.Environment.Exit(0);
-                    return null;
-                }
+                MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return null;
             }
             catch (Exception ex)
             {
-                if (MessageBox.Show("访问图库配置文件时发生错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                else
-                {
-                    System.Environment.Exit(0);
-                    return null;
-                }
+                MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return null;
             }
         }
 
-        //SELECT = "SELECT * FROM 表 WHERE 列='值'";
+        /// <summary>
+        /// SELECT
+        /// </summary>
+        /// <param name="depot_name">图库名</param>
+        /// <param name="select">SELECT * FROM 表 WHERE 列='值'</param>
+        /// <returns>数据表</returns>
         public static DataTable Select(string depot_name, string select)
         {
             try
@@ -69,56 +71,18 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                if (ex.ToString().ToLower().Contains("error number:102"))
-                {
-                    if (MessageBox.Show("查询语句\r\n\r\n" + select + "\r\n\r\n语法错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                    else
-                    {
-                        System.Environment.Exit(0);
-                        return null;
-                    }
-                }
-                else if (ex.ToString().ToLower().Contains("error number:53"))
-                {
-                    if (MessageBox.Show("查询时无法连接数据库服务，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                    else
-                    {
-                        System.Environment.Exit(0);
-                        return null;
-                    }
-                }
-                else if (ex.ToString().ToLower().Contains("error number:4060"))
-                {
-                    if (MessageBox.Show("查询时数据库名称不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                    else
-                    {
-                        System.Environment.Exit(0);
-                        return null;
-                    }
-                }
-                else if (ex.ToString().ToLower().Contains("error number:18456"))
-                {
-                    if (MessageBox.Show("查询时数据库用户名或密码错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                    else
-                    {
-                        System.Environment.Exit(0);
-                        return null;
-                    }
-                }
-                else
-                {
-                    if (MessageBox.Show("查询时数据库返回错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) return null;
-                    else
-                    {
-                        System.Environment.Exit(0);
-                        return null;
-                    }
-                }
+                MessageBox.Show("数据库操作错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
-        //UPDATE = "UPDATE 表 SET 列='值', 列='值', 列='值' WHERE 列='值'";
-        public static void Up(string depot_name, string up)
+        /// <summary>
+        /// UPDATE
+        /// </summary>
+        /// <param name="depot_name">图库名</param>
+        /// <param name="up">UPDATE 表 SET 列='值', 列='值' WHERE 列='值'</param>
+        /// <returns></returns>
+        public static bool Up(string depot_name, string up)
         {
             try
             {
@@ -129,19 +93,22 @@ namespace ImageSearch
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 sqlconnection.Close();
                 sqlconnection.Dispose();
+                return true;
             }
             catch (Exception ex)
             {
-                if (ex.ToString().ToLower().Contains("error number:102")) if (MessageBox.Show("更新数据语句\r\n\r\n" + up + "\r\n\r\n语法错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:53")) if (MessageBox.Show("更新数据时无法连接数据库服务，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:4060")) if (MessageBox.Show("更新数据时数据库名称不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:18456")) if (MessageBox.Show("更新数据时数据库用户名或密码错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (MessageBox.Show("更新数据时数据库返回错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
+                MessageBox.Show("数据库操作错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        //INSERT = "INSERT INTO 表 (列,列,列) VALUES('值','值','值')";
-        public static void Insert(string depot_name, string insert)
+        /// <summary>
+        /// INSERT
+        /// </summary>
+        /// <param name="depot_name">图库名</param>
+        /// <param name="insert">INSERT INTO 表 (列,列,列) VALUES('值','值','值')</param>
+        /// <returns></returns>
+        public static bool Insert(string depot_name, string insert)
         {
             try
             {
@@ -152,19 +119,22 @@ namespace ImageSearch
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 sqlconnection.Close();
                 sqlconnection.Dispose();
+                return true;
             }
             catch (Exception ex)
             {
-                if (ex.ToString().ToLower().Contains("error number:102")) if (MessageBox.Show("录入数据语句\r\n\r\n" + insert + "\r\n\r\n语法错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:53")) if (MessageBox.Show("录入数据时无法连接数据库服务，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:4060")) if (MessageBox.Show("录入数据时数据库名称不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:18456")) if (MessageBox.Show("录入数据时数据库用户名或密码错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (MessageBox.Show("录入数据时数据库返回错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
+                MessageBox.Show("数据库操作错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        //DELETE FROM 表名称 WHERE 列名称 = 值
-        public static void Delete(string depot_name, string delete)
+        /// <summary>
+        /// DELETE
+        /// </summary>
+        /// <param name="depot_name">图库名</param>
+        /// <param name="delete">DELETE FROM 表名称 WHERE 列名称 = 值</param>
+        /// <returns></returns>
+        public static bool Delete(string depot_name, string delete)
         {
             try
             {
@@ -175,19 +145,22 @@ namespace ImageSearch
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 sqlconnection.Close();
                 sqlconnection.Dispose();
+                return true;
             }
             catch (Exception ex)
             {
-                if (ex.ToString().ToLower().Contains("error number:102")) if (MessageBox.Show("删除数据语句\r\n\r\n" + delete + "\r\n\r\n语法错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:53")) if (MessageBox.Show("删除数据时无法连接数据库服务，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:4060")) if (MessageBox.Show("删除数据时数据库名称不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:18456")) if (MessageBox.Show("删除数据时数据库用户名或密码错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (MessageBox.Show("删除数据时数据库返回错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
+                MessageBox.Show("数据库操作错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        //DROP TABLE 表格名;
-        public static void Dropable(string depot_name, string drop)
+        /// <summary>
+        /// DROP TABLE
+        /// </summary>
+        /// <param name="depot_name">图库名</param>
+        /// <param name="drop">DROP TABLE 表名</param>
+        /// <returns></returns>
+        public static bool Dropable(string depot_name, string drop)
         {
             try
             {
@@ -198,19 +171,22 @@ namespace ImageSearch
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 sqlconnection.Close();
                 sqlconnection.Dispose();
+                return true;
             }
             catch (Exception ex)
             {
-                if (ex.ToString().ToLower().Contains("error number:102")) if (MessageBox.Show("删除表格语句\r\n\r\n" + drop + "\r\n\r\n语法错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:53")) if (MessageBox.Show("删除表格时无法连接数据库服务，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:4060")) if (MessageBox.Show("删除表格时数据库名称不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:18456")) if (MessageBox.Show("删除表格时数据库用户名或密码错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (MessageBox.Show("删除表格时数据库返回错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
+                MessageBox.Show("数据库操作错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        //DROP TABLE 表格名;
-        public static void CreateTable(Api api, string create)
+        /// <summary>
+        /// CREATE TABLE
+        /// </summary>
+        /// <param name="api">API</param>
+        /// <param name="create">CREATE TABLE 表(列 表配置, 列 表配置)</param>
+        /// <returns></returns>
+        public static bool CreateTable(Api api, string create)
         {
             try
             {
@@ -221,17 +197,14 @@ namespace ImageSearch
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 sqlconnection.Close();
                 sqlconnection.Dispose();
+                return true;
             }
             catch (Exception ex)
             {
-                if (ex.ToString().ToLower().Contains("error number:102")) if (MessageBox.Show("创建表格语句\r\n\r\n" + create + "\r\n\r\n语法错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:53")) if (MessageBox.Show("创建表格时无法连接数据库服务，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:4060")) if (MessageBox.Show("创建表格时数据库名称不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (ex.ToString().ToLower().Contains("error number:18456")) if (MessageBox.Show("创建表格时数据库用户名或密码错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
-                if (MessageBox.Show("创建表格时数据库返回错误，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) != DialogResult.OK) System.Environment.Exit(0);
+                MessageBox.Show("数据库操作错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
-
 
     }
 }

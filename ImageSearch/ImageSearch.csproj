@@ -73,6 +73,7 @@
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -91,12 +92,7 @@
     <Compile Include="EmptyFolderForm.Designer.cs">
       <DependentUpon>EmptyFolderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GetFilesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GetFilesForm.Designer.cs">
-      <DependentUpon>GetFilesForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Password.cs" />
     <Compile Include="ImageUpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,7 +120,7 @@
     <Compile Include="ImageDeleteForm.Designer.cs">
       <DependentUpon>ImageDeleteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmbClass.cs" />
+    <Compile Include="Emb.cs" />
     <Compile Include="GetFiless.cs" />
     <Compile Include="ImageUpLog.cs" />
     <Compile Include="ListTable.cs" />
@@ -164,9 +160,6 @@
     </Compile>
     <EmbeddedResource Include="EmptyFolderForm.resx">
       <DependentUpon>EmptyFolderForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GetFilesForm.resx">
-      <DependentUpon>GetFilesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageUpForm.resx">
       <DependentUpon>ImageUpForm.cs</DependentUpon>

@@ -40,7 +40,7 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("数据转换错误\r\n" + ex.ToString());
+                MessageBox.Show("数据转换错误\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -77,7 +77,7 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("数据转换错误\r\n" + ex.ToString());
+                MessageBox.Show("数据转换错误\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

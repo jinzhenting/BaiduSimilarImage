@@ -470,8 +470,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(410, 345);
             this.Name = "ApiSettingsForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "图库配置";
             this.Load += new System.EventHandler(this.ApiSettingsForm_Load);

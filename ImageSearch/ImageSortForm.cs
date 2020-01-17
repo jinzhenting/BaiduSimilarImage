@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -18,13 +19,30 @@ namespace ImageSearch
         private void ImageSortForm_Load(object sender, EventArgs e)
         {
             LotrListSettings();
-            depot_list_combobox.DataSource = ApiFunction.GetDepotList();
-        }
+            if (ApiFunction.GetDepotList() != null) depot_list_combobox.DataSource = ApiFunction.GetDepotList();
 
-        Api api = new Api();
-        private void depot_list_combobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            api = ApiFunction.GetApi(depot_list_combobox.Text);
+            try
+            {
+                Icon = new Icon(Path.Combine(Application.StartupPath, "Sort.ico"));
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("无权限加载窗口图标图标文件，请尝试使用管理员权限重新运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return;
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("窗口图标图标文件不存在，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("加载窗口图标图标时发生如下错误，程序将自动退出，描述如下\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return;
+            }
         }
 
         private void LotrListSettings()//日志列表样式
@@ -38,28 +56,34 @@ namespace ImageSearch
         {
             if (depot_list_combobox.Text != "矢量图")
             {
-                MessageBox.Show("暂时只支持矢量图归类");
+                MessageBox.Show("暂时只支持矢量图归类", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
             if (!Directory.Exists(sort_in_path_textbox.Text))
             {
-                MessageBox.Show("“准备归类的文件位置”错误");
+                MessageBox.Show("“准备归类的文件位置”错误", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (sort_background.IsBusy)
             {
-                MessageBox.Show("后台被占用");
+                MessageBox.Show("请先停止归类", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
-            var back = new object[4];//装箱
-            back[0] = sort_in_path_textbox.Text;
-            back[1] = api;
-            back[2] = sort_sub_checkbox.Checked;
-            back[3] = sort_holdold_checkbox.Checked;
-            sort_background.RunWorkerAsync(back);
+            Api api = ApiFunction.GetApi(depot_list_combobox.Text);
+            if (api != null)
+            {
+                var back = new object[4];//装箱
+                back[0] = sort_in_path_textbox.Text;
+                back[1] = api;
+                back[2] = sort_sub_checkbox.Checked;
+                back[3] = sort_holdold_checkbox.Checked;
+                sort_background.RunWorkerAsync(back);
+                search_bar.Value = 1;
+                progress_label.Text = "% 开始整理...";
+            }
         }
 
         private void sort_background_DoWork(object sender, DoWorkEventArgs e)//异步工作
@@ -102,7 +126,7 @@ namespace ImageSearch
 
                     old_name = Path.GetFileName(old_fullname);//文件名含路径
 
-                    if (EmbClass.Parser(old_name)) new_fullname = yes_path + EmbClass.Year + EmbClass.Month + @"\" + EmbClass.Customer + @"\" + old_name;//根据是否订单相关文件生成不同目标//订单：yes_path\年月\客户\文件名
+                    if (Emb.Parser(old_name)) new_fullname = yes_path + Emb.Year + Emb.Month + @"\" + Emb.Customer + @"\" + old_name;//根据是否订单相关文件生成不同目标//订单：yes_path\年月\客户\文件名
                     else new_fullname = other_path + string.Format("{0:yyyyMM}", new FileInfo(old_fullname).LastWriteTime) + @"\" + old_name; //非订单：其他\文件创建年月\文件名
 
                     if (old_fullname.ToLower() == new_fullname.ToLower()) continue;//扫描到文件本身时跳过
@@ -143,17 +167,17 @@ namespace ImageSearch
                 #region 异常
                 catch (UnauthorizedAccessException ex)
                 {
-                    if (MessageBox.Show("无权限操作，请尝试使用管理员权限运行本程序，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) continue;
+                    if (MessageBox.Show("无权限操作，请尝试使用管理员权限运行本程序，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK) continue;
                     else e.Cancel = true;
                 }
                 catch (FileNotFoundException ex)
                 {
-                    if (MessageBox.Show("文件或文件夹不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) continue;
+                    if (MessageBox.Show("文件或文件夹不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK) continue;
                     else e.Cancel = true;
                 }
                 catch (Exception ex)
                 {
-                    if (MessageBox.Show("发生未知如下错误\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel) == DialogResult.OK) continue;
+                    if (MessageBox.Show("发生未知如下错误\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK) continue;
                     else e.Cancel = true;
                 }
                 #endregion 异常
@@ -197,14 +221,14 @@ namespace ImageSearch
         {
             if (e.Error != null)
             {
-                MessageBox.Show("归类后台错误如下\r\n" + e.Error.ToString());
+                MessageBox.Show("归类后台错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 search_bar.Value = 0;
                 return;
             }
 
             if (e.Cancelled)
             {
-                MessageBox.Show("归类已取消");
+                MessageBox.Show("归类已取消", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 search_bar.Value = 0;
                 return;
             }
@@ -214,7 +238,7 @@ namespace ImageSearch
             if (datatable == null)//空数据
             {
                 search_bar.Value = 100;
-                MessageBox.Show("归类失败，返回了空结果");
+                MessageBox.Show("归类失败，返回了空结果", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 progress_label.Text = "归类失败，返回了空结果";
                 return;
             }
@@ -222,7 +246,7 @@ namespace ImageSearch
             if (datatable.Rows.Count == 0)//0结果
             {
                 search_bar.Value = 100;
-                MessageBox.Show("没有需要归类的文件");
+                MessageBox.Show("没有需要归类的文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 progress_label.Text = "没有需要归类的文件";
                 return;
             }
@@ -247,8 +271,7 @@ namespace ImageSearch
         private void vector_cancel_button_Click(object sender, EventArgs e)
         {
             if (sort_background.IsBusy) sort_background.CancelAsync();
-            else MessageBox.Show("未开始归类图片");
+            else MessageBox.Show("未开始归类图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
-
     }
 }

@@ -166,8 +166,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(600, 500);
             this.Name = "EmptyFolderForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "删除空白目录";
             this.Load += new System.EventHandler(this.EmptyFolderForm_Load);

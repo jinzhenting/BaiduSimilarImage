@@ -61,7 +61,7 @@
             this.clear_result_button.Name = "clear_result_button";
             this.clear_result_button.Size = new System.Drawing.Size(80, 23);
             this.clear_result_button.TabIndex = 2;
-            this.clear_result_button.Text = "停止载入";
+            this.clear_result_button.Text = "取消载入";
             this.clear_result_button.UseVisualStyleBackColor = true;
             this.clear_result_button.Click += new System.EventHandler(this.clear_result_button_Click);
             // 

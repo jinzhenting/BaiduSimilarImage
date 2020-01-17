@@ -31,7 +31,6 @@
             this.scan_listview = new System.Windows.Forms.ListView();
             this.depot_list_combobox = new System.Windows.Forms.ComboBox();
             this.add_start_button = new System.Windows.Forms.Button();
-            this.add_cancel_button = new System.Windows.Forms.Button();
             this.add_statusstrip = new System.Windows.Forms.StatusStrip();
             this.add_bar = new System.Windows.Forms.ToolStripProgressBar();
             this.add_bar_label = new System.Windows.Forms.ToolStripStatusLabel();
@@ -86,7 +85,7 @@
             // add_start_button
             // 
             this.add_start_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.add_start_button.Location = new System.Drawing.Point(630, 307);
+            this.add_start_button.Location = new System.Drawing.Point(610, 166);
             this.add_start_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.add_start_button.Name = "add_start_button";
             this.add_start_button.Size = new System.Drawing.Size(80, 23);
@@ -94,18 +93,6 @@
             this.add_start_button.Text = "开始入库";
             this.add_start_button.UseVisualStyleBackColor = true;
             this.add_start_button.Click += new System.EventHandler(this.add_start_button_Click);
-            // 
-            // add_cancel_button
-            // 
-            this.add_cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.add_cancel_button.Location = new System.Drawing.Point(716, 307);
-            this.add_cancel_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.add_cancel_button.Name = "add_cancel_button";
-            this.add_cancel_button.Size = new System.Drawing.Size(60, 23);
-            this.add_cancel_button.TabIndex = 12;
-            this.add_cancel_button.Text = "停止";
-            this.add_cancel_button.UseVisualStyleBackColor = true;
-            this.add_cancel_button.Click += new System.EventHandler(this.add_cancel_button_Click);
             // 
             // add_statusstrip
             // 
@@ -142,7 +129,7 @@
             // add_scan_button
             // 
             this.add_scan_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.add_scan_button.Location = new System.Drawing.Point(458, 307);
+            this.add_scan_button.Location = new System.Drawing.Point(610, 307);
             this.add_scan_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.add_scan_button.Name = "add_scan_button";
             this.add_scan_button.Size = new System.Drawing.Size(80, 23);
@@ -183,7 +170,7 @@
             // reset_add_image_list_button
             // 
             this.reset_add_image_list_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.reset_add_image_list_button.Location = new System.Drawing.Point(544, 307);
+            this.reset_add_image_list_button.Location = new System.Drawing.Point(696, 307);
             this.reset_add_image_list_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.reset_add_image_list_button.Name = "reset_add_image_list_button";
             this.reset_add_image_list_button.Size = new System.Drawing.Size(80, 23);
@@ -222,8 +209,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.format_combobox);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.add_cancel_button);
-            this.splitContainer1.Panel1.Controls.Add(this.add_start_button);
             this.splitContainer1.Panel1.Controls.Add(this.sub_checkbox);
             this.splitContainer1.Panel1.Controls.Add(this.reset_add_image_list_button);
             this.splitContainer1.Panel1.Controls.Add(this.add_scan_button);
@@ -236,6 +221,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.reset_log_button);
             this.splitContainer1.Panel2.Controls.Add(this.add_log_listview);
+            this.splitContainer1.Panel2.Controls.Add(this.add_start_button);
             this.splitContainer1.Size = new System.Drawing.Size(784, 539);
             this.splitContainer1.SplitterDistance = 338;
             this.splitContainer1.TabIndex = 0;
@@ -321,8 +307,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ImageUpForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "入库";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageUpForm_FormClosing);
@@ -344,7 +328,6 @@
         private System.Windows.Forms.ListView scan_listview;
         private System.Windows.Forms.ComboBox depot_list_combobox;
         private System.Windows.Forms.Button add_start_button;
-        private System.Windows.Forms.Button add_cancel_button;
         private System.Windows.Forms.StatusStrip add_statusstrip;
         private System.Windows.Forms.ToolStripStatusLabel add_bar_label;
         private System.Windows.Forms.ToolStripProgressBar add_bar;

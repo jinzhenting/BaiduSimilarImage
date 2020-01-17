@@ -23,23 +23,24 @@ namespace ImageSearch
                 List<string> list = new List<string>();
                 foreach (XmlNode node in nodelist) list.Add(node.Name);
                 if (list != null && list.Count > 0) return list;
-                MessageBox.Show("未创建图库");
-                return null;
-                //
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序");
                 return null;
             }
-            catch (FileNotFoundException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("图库配置文件不存在");
+                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return null;
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("访问图库配置文件时发生如下错误\r\n" + ex.ToString());
+                MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
         }
@@ -53,8 +54,16 @@ namespace ImageSearch
 
         public static bool AcceptFormat2(string path)//格式支持，以扩展名检测
         {
-            foreach (string str in GetFormatList()) if (Path.GetExtension(path).ToLower() == Path.GetExtension(str).ToLower()) return true;//遍历检测扩展名匹配
-            return false;
+            if (GetFormatList() != null)
+            {
+                foreach (string str in GetFormatList()) if (Path.GetExtension(path).ToLower() == Path.GetExtension(str).ToLower()) return true;//遍历检测扩展名匹配
+                return false;
+            }
+            else
+            {
+                MessageBox.Show("未创建格式列表", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         public static List<string> GetFormatList()//获取格式列表
@@ -67,27 +76,29 @@ namespace ImageSearch
                 List<string> list = new List<string>();
                 foreach (XmlNode node in nodelist) list.Add(node.Attributes["extension"].Value);//遍历字段
                 if (list.Count > 0) return list;
-                MessageBox.Show("格式列表为空");
                 return null;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("无权限访问格式列表配置文件，请尝试使用管理员权限运行本程序");
+                MessageBox.Show("无权限访问格式列表配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("格式列表配置文件不存在");
+                MessageBox.Show("格式列表配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("格式列表配置文件读取错误，信息如下\r\n" + ex);
+                MessageBox.Show("访问格式列表配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
         }
 
-        public static Api GetApi(string depot_name)//获取API配置
+        public static Api GetApi(string depot_name)//获取API配
         {
             try
             {
@@ -110,32 +121,35 @@ namespace ImageSearch
                         api.Serverip = xmlnode.Attributes["serverip"].Value;
                         api.Dataname = xmlnode.Attributes["dataname"].Value;
                         api.Userid = xmlnode.Attributes["userid"].Value;
-                        api.Password = xmlnode.Attributes["password"].Value;
+                        api.Password = Password.Decrypt(xmlnode.Attributes["password"].Value, "12345678");
                         api.Table = xmlnode.Attributes["table"].Value;
                         return api;
                     }
                 }
-                MessageBox.Show("图库配置文件中查找不到" + depot_name + "的内容");
+                MessageBox.Show("图库配置文件中查找不到" + depot_name + "的内容，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return null;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序");
+                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("图库配置文件不存在");
+                MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("访问图库配置文件时发生如下错误\r\n" + ex.ToString());
+                MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
         }
 
-        public static void SaveApi(string depot_name, Api api)//保存API配置
+        public static bool SaveApi(string depot_name, Api api)//保存API配置
         {
             try
             {
@@ -157,27 +171,31 @@ namespace ImageSearch
                         xmlnode.Attributes["serverip"].Value = api.Serverip;
                         xmlnode.Attributes["dataname"].Value = api.Dataname;
                         xmlnode.Attributes["userid"].Value = api.Userid;
-                        xmlnode.Attributes["password"].Value = api.Password;
+                        xmlnode.Attributes["password"].Value = Password.Encrypt(api.Password, "12345678");
                         xmlnode.Attributes["table"].Value = api.Table;
                         xml.Save("ApiList.xml");
-                        MessageBox.Show("保存完成");
+                        return true;
                     }
                 }
+                return false;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序");
-                return;
+                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("图库配置文件不存在");
-                return;
+                MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("访问图库配置文件时发生如下错误\r\n" + ex.ToString());
-                return;
+                MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
         }
 
@@ -195,19 +213,27 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("接口配置错误，信息如下\n\r" + ex);
+                MessageBox.Show("接口配置错误，信息如下\n\r" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
 
         public static string FileToBase64(string fileName)//字节转换，来自路径
         {
-            FileStream filestream = new FileStream(fileName, FileMode.Open);
-            byte[] arr = new byte[filestream.Length];
-            filestream.Read(arr, 0, (int)filestream.Length);
-            string baser64 = Convert.ToBase64String(arr);
-            filestream.Close();
-            return baser64;
+            try
+            {
+                FileStream filestream = new FileStream(fileName, FileMode.Open);
+                byte[] arr = new byte[filestream.Length];
+                filestream.Read(arr, 0, (int)filestream.Length);
+                string baser64 = Convert.ToBase64String(arr);
+                filestream.Close();
+                return baser64;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("字节转换错误，信息如下\n\r" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
 
         public static byte[] ImagetoByte(Image image)//字节转换，来自Image
@@ -230,7 +256,7 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("字节转换错误，信息如下\n\r" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -243,27 +269,31 @@ namespace ImageSearch
                 xml.Load("ApiErrorList.xml");
                 XmlNode xmlnode = xml.DocumentElement;//获得根节点
                 foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["chs"].Value;//在根节点中寻找节点
-                MessageBox.Show("查询不到错误代码" + error_number);
+                MessageBox.Show("查询不到错误代码，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("无权限访问错误代码配置文件，请尝试使用管理员权限运行本程序");
+                MessageBox.Show("无权限访问错误代码配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("错误代码配置文件不存在");
+                MessageBox.Show("错误代码配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("错误代码配置文件读取错误，信息如下\r\n" + e);
+                MessageBox.Show("访问错误代码配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
         }
 
-        public static string UpIgnore(string error_number)//错误代码
+        public static string UpIgnore(string error_number)//Ignore
         {
             try
             {
@@ -271,22 +301,26 @@ namespace ImageSearch
                 xml.Load("ApiErrorList.xml");
                 XmlNode xmlnode = xml.DocumentElement;//获得根节点
                 foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["ignore"].Value;//在根节点中寻找节点
-                MessageBox.Show("查询不到错误代码" + error_number);
+                MessageBox.Show("查询不到错误代码Ignore节点，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("无权限访问错误代码配置文件，请尝试使用管理员权限运行本程序");
+                MessageBox.Show("无权限访问错误代码配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("错误代码配置文件不存在");
+                MessageBox.Show("错误代码配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("错误代码配置文件读取错误，信息如下\r\n" + e);
+                MessageBox.Show("访问错误代码配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return null;
             }
         }
@@ -306,7 +340,7 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("API链接错误如下\r\n" + ex);
+                MessageBox.Show("API链接错误，如果其他图片能正常入库，此错误可能是图片编码错误造成的，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -327,7 +361,7 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("API链接错误如下\r\n" + ex);
+                MessageBox.Show("API链接错误如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -342,18 +376,26 @@ namespace ImageSearch
             }
             catch (Exception ex)
             {
-                MessageBox.Show("API链接错误如下\r\n" + ex);
+                MessageBox.Show("API链接错误如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
 
         public static JObject DeleteBySian(string sign, Baidu.Aip.ImageSearch.ImageSearch client)//删除，以图片签名
         {
-            var result = client.SimilarDeleteBySign(sign);
-            return result;
+            try
+            {
+                var result = client.SimilarDeleteBySign(sign);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("API链接错误如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
 
-        public static void AddDepot(string depot_name, Api api)//创建图库配置
+        public static bool AddDepot(string depot_name, Api api)//创建图库配置
         {
             try
             {
@@ -373,29 +415,33 @@ namespace ImageSearch
                 element.SetAttribute("serverip", api.Serverip);
                 element.SetAttribute("dataname", api.Dataname);
                 element.SetAttribute("userid", api.Userid);
-                element.SetAttribute("password", api.Password);
+                element.SetAttribute("password", Password.Encrypt(api.Password, "12345678"));
                 element.SetAttribute("table", api.Table);
                 xmlnode.AppendChild(element);//追加到结尾
                 xmlDoc.Save("ApiList.xml");
+                return true;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序");
-                return;
+                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("图库配置文件不存在");
-                return;
+                MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("访问图库配置文件时发生如下错误\r\n" + ex.ToString());
-                return;
+                MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
         }
 
-        public static void DeleteDepot(string depot_name)//删除图库配置
+        public static bool DeleteDepot(string depot_name)//删除图库配置
         {
             try
             {
@@ -405,21 +451,25 @@ namespace ImageSearch
                 var element = xmlDoc.SelectSingleNode("//ApiList/" + depot_name);//搜索节点
                 xmlnode.RemoveChild(element);//清除
                 xmlDoc.Save("ApiList.xml");
+                return true;
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序");
-                return;
+                MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("图库配置文件不存在");
-                return;
+                MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("访问图库配置文件时发生如下错误\r\n" + ex.ToString());
-                return;
+                MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
+                return false;
             }
         }
 

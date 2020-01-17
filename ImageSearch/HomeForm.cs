@@ -54,7 +54,7 @@ namespace ImageSearch
                 {
                     SettingsForm settingsform = new SettingsForm();
                     settingsform.ShowDialog();
-                   System.Environment.Exit(0);
+                    System.Environment.Exit(0);
                 }
                 return;
             }
@@ -65,7 +65,7 @@ namespace ImageSearch
                 FileInfo[] files = directorys.GetFiles(@"ImageSearch*.exe", SearchOption.TopDirectoryOnly);//扫描ImageSearch开头命名的exe文件
                 if (files.Length == 0)//没有发现ImageSearch开头命名的exe文件
                 {
-                    if (show_windows) MessageBox.Show("没有发现新版本");
+                    if (show_windows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
                 }
 
@@ -77,25 +77,25 @@ namespace ImageSearch
                     if (int.Parse(version) == int.Parse(Application.ProductVersion.Replace(".", ""))) continue;//本地与服务器版本相同
                     if (MessageBox.Show("发现新版本：" + version + "\r\n当前版本：" + Application.ProductVersion + "\r\n按确定立即更新，请耐心等待后台下载完成安装", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;//新版本更新选择窗口
                     System.Diagnostics.Process.Start(file.FullName);
-                   System.Environment.Exit(0);
+                    System.Environment.Exit(0);
                     return;
                 }
 
-                if (show_windows) MessageBox.Show("没有发现新版本");//存在ImageSearch程序文件，但版本相同或更旧
+                if (show_windows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);//存在ImageSearch程序文件，但版本相同或更旧
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("无权限访问更新地址，请尝试使用管理员权限运行本程序");
+                MessageBox.Show("无权限访问更新地址，请尝试使用管理员权限运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("更新地址不存在");
+                MessageBox.Show("更新地址不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("程序更新时发生如下错误\r\n\r\n" + ex.ToString());
+                MessageBox.Show("程序更新时发生如下错误\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -121,20 +121,20 @@ namespace ImageSearch
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("无权限访问程序配置文件，程序将自动退出，请尝试使用管理员权限重新运行本程序");
-               System.Environment.Exit(0);
+                MessageBox.Show("无权限访问程序配置文件，程序将自动退出，请尝试使用管理员权限重新运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return;
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("程序配置文件不存在，程序将自动退出");
-               System.Environment.Exit(0);
+                MessageBox.Show("程序配置文件不存在，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("访问程序配置文件时发生错误，程序将自动退出，错误描述如下\r\n\r\n" + ex.ToString());
-               System.Environment.Exit(0);
+                MessageBox.Show("访问程序配置文件时发生错误，程序将自动退出，错误描述如下\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return;
             }
 
@@ -145,26 +145,26 @@ namespace ImageSearch
                 image_up_button.Image = Image.FromFile("Up.png");
                 image_delete_button.Image = Image.FromFile("Delete.png");
                 api_settings_button.Image = Image.FromFile("Setting.png");
-                sort_button.Image = Image.FromFile("Vector.png");
+                sort_button.Image = Image.FromFile("Sort.png");
                 help_button.Image = Image.FromFile("Help.png");
                 emptyfolder_button.Image = Image.FromFile("EmptyFolder.png");
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("无权限加载工具栏图标文件，请尝试使用管理员权限重新运行本程序");
-               System.Environment.Exit(0);
+                MessageBox.Show("无权限加载工具栏图标文件，请尝试使用管理员权限重新运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return;
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("工具栏图标文件不存在，程序将自动退出");
-               System.Environment.Exit(0);
+                MessageBox.Show("工具栏图标文件不存在，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("加载工具栏图标时发生如下错误，程序将自动退出\r\n" + ex.ToString());
-               System.Environment.Exit(0);
+                MessageBox.Show("加载工具栏图标时发生如下错误，程序将自动退出，错误描述如下\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Environment.Exit(0);
                 return;
             }
         }
@@ -176,7 +176,7 @@ namespace ImageSearch
             //Control.CheckForIllegalCrossThreadCalls = false;//关闭back访问限制
             Settings();//程序配置
             AppUpdata(false);//程序升级
-            online_depot_combobox.DataSource = local_image_combobox.DataSource = ApiFunction.GetDepotList();//所有图库下拉列表数据源
+            if (ApiFunction.GetDepotList() != null) online_depot_combobox.DataSource = local_image_combobox.DataSource = ApiFunction.GetDepotList();//所有图库下拉列表数据源
             LocalListviewSettings();//本地搜索列表配置
             online_picturebox.AllowDrop = true;//重写AllowDrop使其接受拖放
         }
@@ -188,7 +188,7 @@ namespace ImageSearch
         private void online_depot_combobox_SelectedIndexChanged(object sender, EventArgs e)//在线图库选择时
         {
             online_api = ApiFunction.GetApi(online_depot_combobox.Text);//获取API配置
-            online_quantity_combobox.Text = online_api.Quantity.ToString();//返回数
+            if (online_api != null) online_quantity_combobox.Text = online_api.Quantity.ToString();//返回数
         }
 
         private void online_search_button_Click(object sender, EventArgs e)//在线搜索按钮
@@ -197,38 +197,38 @@ namespace ImageSearch
             {
                 if (online_image_path_textbox.Text == "")//图片未加载 - 路径空
                 {
-                    MessageBox.Show("未选择图片位置");
+                    MessageBox.Show("未选择图片位置", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (!File.Exists(online_image_path_textbox.Text))//图片未加载 - 路径错误
                 {
-                    MessageBox.Show("图片位置不正确");
+                    MessageBox.Show("图片位置不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (!ApiFunction.AcceptFormat2(online_image_path_textbox.Text))//图片未加载 - 格式不支持
                 {
-                    MessageBox.Show(ApiFunction.GetError("216201"));//扩展名不受支持，获取错误提示
+                    MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);//扩展名不受支持，获取错误提示
                     return;
                 }
             }
 
             if (online_depot_combobox.Text == "")
             {
-                MessageBox.Show("未选择图库");
+                MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!Directory.Exists(online_api.Path))
             {
-                MessageBox.Show("本地图片库 " + online_api.Path + "不存在");
+                MessageBox.Show("本地图片库 " + online_api.Path + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (search_background.IsBusy)//在线搜索异步调用
             {
-                MessageBox.Show("后台已在搜索中");
+                MessageBox.Show("请先停止搜索", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
@@ -238,17 +238,28 @@ namespace ImageSearch
             back[1] = bytes;//图片
             back[2] = int.Parse(online_quantity_combobox.Text);//返回数
             search_background.RunWorkerAsync(back);//传入
+            search_bar.Value = 1;
+            progress_label.Text = "准备搜索...";
         }
 
         private void search_background_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)//在线搜索后台
         {
             var back = e.Argument as object[];//拆箱
             Api api = ApiFunction.GetApi((string)back[0]);//获取API配置
-            byte[] bytes = (byte[])back[1];//图片
-            int quantity = (int)back[2];//返回数
-            search_background.ReportProgress(50, "搜索中");//进度
-            Baidu.Aip.ImageSearch.ImageSearch client = ApiFunction.GetClient(api.Appid, api.Apikey, api.Secreykey, api.Timeout);//搜索后台启用
-            e.Result = ApiFunction.Search(client, bytes, api.Tags1, api.Tags2, quantity);//传出
+            if (api != null)
+            {
+                byte[] bytes = (byte[])back[1];//图片
+                int quantity = (int)back[2];//返回数
+                search_background.ReportProgress(50, "搜索中");//进度
+
+                Baidu.Aip.ImageSearch.ImageSearch client = ApiFunction.GetClient(api.Appid, api.Apikey, api.Secreykey, api.Timeout);//搜索后台启用
+                if (client == null) return;
+
+                JObject json = ApiFunction.Search(client, bytes, api.Tags1, api.Tags2, quantity);//入库
+                if (json == null) return;
+
+                e.Result = json;
+            }
         }
 
         private void search_background_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)//在线搜索进度
@@ -261,14 +272,14 @@ namespace ImageSearch
         {
             if (e.Error != null)//错误
             {
-                MessageBox.Show("异步后台错误如下\r\n" + e.Error.ToString());
+                MessageBox.Show("搜索后台错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             JObject json = e.Result as JObject;//接收传出
             if (json == null || json.ToString() == "")
             {
-                MessageBox.Show("API返回了错误，搜索已终止");
+                MessageBox.Show("API返回了错误，搜索已终止", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -278,7 +289,7 @@ namespace ImageSearch
                 int num = json["result_num"].Value<int>();//总数
                 if (num == 0)
                 {
-                    MessageBox.Show("图库返回了0条结果");
+                    MessageBox.Show("图库返回了0条结果", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     search_bar.Value = 100;
                     progress_label.Text = "搜索完成";
                     return;
@@ -304,7 +315,7 @@ namespace ImageSearch
                 search_bar.Value = 0;
                 progress_label.Text = "已选择图片";
             }
-            else MessageBox.Show(ApiFunction.GetError("216201"));//扩展名不受支持，获取错误提示
+            else MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);//扩展名不受支持，获取错误提示
         }
 
         private void online_image_path_textbox_TextChanged(object sender, EventArgs e)//位置输入实时检测
@@ -328,14 +339,14 @@ namespace ImageSearch
                 search_bar.Value = 0;
                 progress_label.Text = "已选择图片";
             }
-            else MessageBox.Show(ApiFunction.GetError("216201"));//扩展名不受支持，获取错误提示
+            else MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);//扩展名不受支持，获取错误提示
         }
 
         private void online_clear_button_Click(object sender, EventArgs e)//清除搜索图片
         {
             if (search_background.IsBusy)//在线搜索异步调用
             {
-                MessageBox.Show("请先停止搜索");
+                MessageBox.Show("请先停止搜索", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
             online_picturebox.Image = null;
@@ -353,7 +364,7 @@ namespace ImageSearch
         private void local_image_combobox_SelectedIndexChanged(object sender, EventArgs e)//本地图库选择时
         {
             outline_api = ApiFunction.GetApi(local_image_combobox.Text);
-            local_image_path = outline_api.Path;
+            if (outline_api != null) local_image_path = outline_api.Path;
         }
 
         private void LocalListviewSettings()//本地搜索结果列表
@@ -367,25 +378,25 @@ namespace ImageSearch
         {
             if (local_type_textbox.Text == "")
             {
-                MessageBox.Show("请输入内容");
+                MessageBox.Show("请输入内容", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (local_image_combobox.Text == "")
             {
-                MessageBox.Show("未选择图库");
+                MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!Directory.Exists(outline_api.Path))
             {
-                MessageBox.Show(outline_api.Path + " 目录不存在");
+                MessageBox.Show(outline_api.Path + " 目录不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (local_image_combobox.Text != "矢量图" && local_image_combobox.Text != "背景墙" && local_image_combobox.Text != "类似带")//不支持
             {
-                MessageBox.Show("该图库不支持匹配查找");
+                MessageBox.Show("该图库不支持匹配查找", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
@@ -403,10 +414,10 @@ namespace ImageSearch
             string classs = "";//图库类型
             string type = "";//订单号
 
-            if (local_image_combobox.Text == "矢量图" && EmbClass.Parser(str))//矢量图
+            if (local_image_combobox.Text == "矢量图" && Emb.Parser(str))//矢量图
             {
-                path = local_image_path + EmbClass.Year + EmbClass.Month + @"\" + EmbClass.Customer;
-                type = EmbClass.Type;
+                path = local_image_path + Emb.Year + Emb.Month + @"\" + Emb.Customer;
+                type = Emb.Type;
                 classs = "矢量图";
             }
 
@@ -417,16 +428,16 @@ namespace ImageSearch
                 classs = "背景墙";
             }
 
-            else if (local_image_combobox.Text == "类似带" && EmbClass.Parser(str))//类似带
+            else if (local_image_combobox.Text == "类似带" && Emb.Parser(str))//类似带
             {
-                path = local_image_path + EmbClass.Year + EmbClass.Month;
-                type = EmbClass.Type;
+                path = local_image_path + Emb.Year + Emb.Month;
+                type = Emb.Type;
                 classs = "类似带";
             }
 
             if (classs == "")//结果数量
             {
-                MessageBox.Show("不是" + local_image_combobox.Text);
+                MessageBox.Show("不是" + local_image_combobox.Text, "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 search_bar.Value = 100;
                 progress_label.Text = "查找完成";
                 return;
@@ -436,7 +447,7 @@ namespace ImageSearch
             if (Directory.Exists(path)) list = GetFiless.Get(path, "*.*", true);//获取文件
             else
             {
-                MessageBox.Show(classs + "订单号正确，但该文件夹" + path + "不存在");
+                MessageBox.Show(classs + "订单号正确，但该文件夹" + path + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 search_bar.Value = 100;
                 progress_label.Text = "查找完成";
                 return;
@@ -452,7 +463,7 @@ namespace ImageSearch
             }
 
             if (local_listview.Items.Count > 0) local_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);//自动列宽
-            else MessageBox.Show(classs + "订单号正确，但该文件夹" + path + "内没有相关文件");
+            else MessageBox.Show(classs + "订单号正确，但该文件夹" + path + "内没有相关文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             search_bar.Value = 100;
             progress_label.Text = "查找完成";
@@ -462,19 +473,19 @@ namespace ImageSearch
         {
             if (local_type_textbox.Text == "")
             {
-                MessageBox.Show("请输入内容");
+                MessageBox.Show("请输入内容", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (local_image_combobox.Text == "")
             {
-                MessageBox.Show("未选择图库");
+                MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!Directory.Exists(outline_api.Path))
             {
-                MessageBox.Show(outline_api.Path + " 目录不存在");
+                MessageBox.Show(outline_api.Path + " 目录不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -494,6 +505,8 @@ namespace ImageSearch
                     back[1] = local_image_combobox.Text;
                     back[2] = local_type_textbox.Text;
                     outline_background.RunWorkerAsync(back);//传入
+                    search_bar.Value = 1;
+                    progress_label.Text = "% 开始查找...";
                 }
             }
             else
@@ -507,11 +520,16 @@ namespace ImageSearch
         {
             var back = e.Argument as object[];//接收
             Api api = (Api)back[0];
-            string depot_name= (string)back[1];
+            string depot_name = (string)back[1];
             string type = (string)back[2];
             string select = "SELECT Names, Path FROM " + api.Table + " WHERE Names LIKE '%" + type.Replace("'", "''") + "%'";
             DataTable datatable = Sql.Select(depot_name, select);
-            
+            if (datatable == null)
+            {
+                MessageBox.Show("数据库操作错误，结束搜索", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             DataTable result = new DataTable();
             result.Columns.Add("文件名", Type.GetType("System.String"));
             result.Columns.Add("位置", Type.GetType("System.String"));
@@ -585,24 +603,24 @@ namespace ImageSearch
 
             if (e.Error != null)
             {
-                MessageBox.Show("查找文件错误如下\r\n" + e.Error.ToString());
+                MessageBox.Show("查找文件错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 progress_label.Text = "查找文件后台错误";
                 return;
             }
 
             if (e.Cancelled)
             {
-                MessageBox.Show("查找已取消");
+                MessageBox.Show("查找已取消", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 progress_label.Text = "查找已取消";
                 return;
             }
 
-            DataTable datatable  = e.Result as DataTable;//接收
-            
+            DataTable datatable = e.Result as DataTable;//接收
+
             if (datatable == null)//空数据
             {
                 search_bar.Value = 100;
-                MessageBox.Show("查找失败，返回了空结果");
+                MessageBox.Show("查找失败，返回了空结果", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 progress_label.Text = "查找失败，返回了空结果";
                 return;
             }
@@ -611,7 +629,7 @@ namespace ImageSearch
             if (datatable.Rows.Count == 0)
             {
                 search_bar.Value = 100;
-                MessageBox.Show("没有找到相关文件");
+                MessageBox.Show("没有找到相关文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 progress_label.Text = "没有找到相关文件";
                 return;
             }
@@ -631,7 +649,7 @@ namespace ImageSearch
         {
             if (local_listview.SelectedItems.Count < 1)//没有选中文件
             {
-                MessageBox.Show("没有选中文件");
+                MessageBox.Show("没有选中文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -641,33 +659,33 @@ namespace ImageSearch
                 psi.Arguments = "/e,/select," + local_listview.SelectedItems[0].SubItems[1].Text;
                 System.Diagnostics.Process.Start(psi);
             }
-            else MessageBox.Show("文件不存在");
+            else MessageBox.Show("文件不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void local_listview_DoubleClick(object sender, EventArgs e)//双击列表
         {
             if (local_listview.SelectedItems.Count < 1) return;//空列表
             if (File.Exists(local_listview.SelectedItems[0].SubItems[1].Text)) System.Diagnostics.Process.Start(local_listview.SelectedItems[0].SubItems[1].Text);//打开
-            else MessageBox.Show("文件不存在");
+            else MessageBox.Show("文件不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion 本地搜索
 
         #region 工具菜单
         private void app_close_menu_Click(object sender, EventArgs e)//程序退出菜单
         {
-           System.Environment.Exit(0);
+            System.Environment.Exit(0);
             return;
         }
 
         private void app_about_menu_Click(object sender, EventArgs e)//程序关于菜单
         {
-            MessageBox.Show("程序名：" + Text + "\r\n版本：" + Application.ProductVersion + "\r\n开发者：Jinzhenting@Aliyun.com\r\n");
+            MessageBox.Show("程序名：" + Text + "\r\n版本：" + Application.ProductVersion + "\r\n开发者：Jinzhenting@Aliyun.com\r\n", "关于", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
-        private void app_updata_menuItem_Click(object sender, EventArgs e)
+        private void app_updata_menuItem_Click(object sender, EventArgs e)//程序更新菜单
         {
             AppUpdata(true);
-        }//程序更新菜单
+        }
 
         private void delete_empty_menuItem_Click(object sender, EventArgs e)//删除空白文件夹菜单
         {
@@ -735,7 +753,7 @@ namespace ImageSearch
         }
         private void ImageUp()//图库更新功能
         {
-            MessageBox.Show("功能未完成");
+            MessageBox.Show("功能未完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void image_delete_menuItem_Click(object sender, EventArgs e)//图库删除菜单
@@ -762,7 +780,7 @@ namespace ImageSearch
         }
         private void Help()//程序帮助功能
         {
-               MessageBox.Show("功能未完成");
+            MessageBox.Show("功能未完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void settings_stripmenu_Click(object sender, EventArgs e)//程序选项菜单
@@ -800,7 +818,7 @@ namespace ImageSearch
                 search_bar.Value = 0;
                 progress_label.Text = "已选择图片";
             }
-            else MessageBox.Show("系统剪贴板没有图像");
+            else MessageBox.Show("系统剪贴板没有图像", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void imagebox_delete_menuitem_Click(object sender, EventArgs e)//图片右键菜单删除

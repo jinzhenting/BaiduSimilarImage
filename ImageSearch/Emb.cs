@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ImageSearch
 {
-    public static class EmbClass
+    public static class Emb
     {
         private static string type;//订单号
         public static string Type
