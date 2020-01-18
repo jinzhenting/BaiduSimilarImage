@@ -18,7 +18,7 @@ namespace ImageSearch
             if (ApiFunction.GetDepotList() != null) depot_list_combobox.DataSource = ApiFunction.GetDepotList();  //图库下拉列表
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Setting.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Setting.ico"));
             }
             catch (UnauthorizedAccessException)
             {

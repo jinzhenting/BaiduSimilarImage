@@ -21,7 +21,7 @@ namespace ImageSearch
 
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "EmptyFolder.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\EmptyFolder.ico"));
             }
             catch (UnauthorizedAccessException)
             {

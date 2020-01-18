@@ -106,7 +106,7 @@ namespace ImageSearch
         {
             try//读取程序图标
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Add.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Add.ico"));
             }
             catch (UnauthorizedAccessException)
             {

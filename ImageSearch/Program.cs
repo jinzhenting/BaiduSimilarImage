@@ -16,13 +16,15 @@ namespace ImageSearch
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //单进程设定
+
+            #region 单进程设定
             Process process = RuningInstance();
             if (process == null) Application.Run(new HomeForm());
             else HandleRunningInstance(process);
+            #endregion 单进程设定
         }
-        
-        #region 单进程设定
+
+        #region 单进程实现
         /// <summary>
         /// 该函数设置由不同线程产生的窗口的显示状态
         /// </summary>
@@ -48,18 +50,9 @@ namespace ImageSearch
         {
             Process currentProcess = Process.GetCurrentProcess();
             Process[] Processes = Process.GetProcessesByName(currentProcess.ProcessName);
-            foreach (Process process in Processes)
-            {
-                if (process.Id != currentProcess.Id)
-                {
-                    if (Assembly.GetExecutingAssembly().Location.Replace("/", "\\") == currentProcess.MainModule.FileName)
-                    {
-                        return process;
-                    }
-                }
-            }
+            foreach (Process process in Processes) if (process.Id != currentProcess.Id) if (Assembly.GetExecutingAssembly().Location.Replace("/", "\\") == currentProcess.MainModule.FileName) return process;
             return null;
         }
-        #endregion 单进程设定
+        #endregion 单进程实现
     }
 }

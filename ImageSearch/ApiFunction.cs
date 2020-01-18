@@ -18,7 +18,7 @@ namespace ImageSearch
             try
             {
                 XmlDocument xml = new XmlDocument();
-                xml.Load("ApiList.xml");
+                xml.Load(@"Documents\ApiList.xml");
                 XmlNodeList nodelist = xml.SelectSingleNode("//ApiList").ChildNodes;
                 List<string> list = new List<string>();
                 foreach (XmlNode node in nodelist) list.Add(node.Name);
@@ -71,7 +71,7 @@ namespace ImageSearch
             try
             {
                 XmlDocument xml = new XmlDocument();//注意XML内容区分大小写
-                xml.Load("FormatList.xml");
+                xml.Load(@"Documents\FormatList.xml");
                 XmlNodeList nodelist = xml.SelectSingleNode("//FormatList").ChildNodes;//搜索定位子节点FormatList
                 List<string> list = new List<string>();
                 foreach (XmlNode node in nodelist) list.Add(node.Attributes["extension"].Value);//遍历字段
@@ -103,7 +103,7 @@ namespace ImageSearch
             try
             {
                 XmlDocument xml = new XmlDocument();
-                xml.Load("ApiList.xml");
+                xml.Load(@"Documents\ApiList.xml");
                 XmlNode rootNode = xml.DocumentElement;//根节点
                 foreach (XmlNode xmlnode in rootNode.ChildNodes)//在根节点中寻找节点
                 {
@@ -154,7 +154,7 @@ namespace ImageSearch
             try
             {
                 XmlDocument xml = new XmlDocument();
-                xml.Load("ApiList.xml");
+                xml.Load(@"Documents\ApiList.xml");
                 XmlNode rootNode = xml.DocumentElement;//获得根节点
                 foreach (XmlNode xmlnode in rootNode.ChildNodes)//在根节点中寻找节点
                 {
@@ -173,7 +173,7 @@ namespace ImageSearch
                         xmlnode.Attributes["userid"].Value = api.Userid;
                         xmlnode.Attributes["password"].Value = Password.Encrypt(api.Password, "12345678");
                         xmlnode.Attributes["table"].Value = api.Table;
-                        xml.Save("ApiList.xml");
+                        xml.Save(@"Documents\ApiList.xml");
                         return true;
                     }
                 }
@@ -266,7 +266,7 @@ namespace ImageSearch
             try
             {
                 XmlDocument xml = new XmlDocument();
-                xml.Load("ApiErrorList.xml");
+                xml.Load(@"Documents\ApiErrorList.xml");
                 XmlNode xmlnode = xml.DocumentElement;//获得根节点
                 foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["chs"].Value;//在根节点中寻找节点
                 MessageBox.Show("查询不到错误代码，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -298,7 +298,7 @@ namespace ImageSearch
             try
             {
                 XmlDocument xml = new XmlDocument();
-                xml.Load("ApiErrorList.xml");
+                xml.Load(@"Documents\ApiErrorList.xml");
                 XmlNode xmlnode = xml.DocumentElement;//获得根节点
                 foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["ignore"].Value;//在根节点中寻找节点
                 MessageBox.Show("查询不到错误代码Ignore节点，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -400,7 +400,7 @@ namespace ImageSearch
             try
             {
                 XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load("ApiList.xml");
+                xmlDoc.Load(@"Documents\ApiList.xml");
                 XmlNode xmlnode = xmlDoc.DocumentElement;//定位根节点，用于追加新节点
                 XmlElement element = xmlDoc.CreateElement(depot_name);//创建节点
                 element.InnerText = "";//空白串联值，不设置不生成一对节点
@@ -418,7 +418,7 @@ namespace ImageSearch
                 element.SetAttribute("password", Password.Encrypt(api.Password, "12345678"));
                 element.SetAttribute("table", api.Table);
                 xmlnode.AppendChild(element);//追加到结尾
-                xmlDoc.Save("ApiList.xml");
+                xmlDoc.Save(@"Documents\ApiList.xml");
                 return true;
             }
             catch (UnauthorizedAccessException ex)
@@ -446,11 +446,11 @@ namespace ImageSearch
             try
             {
                 XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load("ApiList.xml");
+                xmlDoc.Load(@"Documents\ApiList.xml");
                 XmlNode xmlnode = xmlDoc.DocumentElement;//定位根节点
                 var element = xmlDoc.SelectSingleNode("//ApiList/" + depot_name);//搜索节点
                 xmlnode.RemoveChild(element);//清除
-                xmlDoc.Save("ApiList.xml");
+                xmlDoc.Save(@"Documents\ApiList.xml");
                 return true;
             }
             catch (UnauthorizedAccessException ex)

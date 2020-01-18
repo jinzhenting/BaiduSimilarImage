@@ -19,7 +19,7 @@ namespace ImageSearch
 
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Delete.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Delete.ico"));
             }
             catch (UnauthorizedAccessException)
             {

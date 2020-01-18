@@ -9,24 +9,20 @@ using System.Text.RegularExpressions;
 using System.Data;
 
 
-/* 漏洞 - 进度 - 功能
-------------------------------Bug------------------------------
+/*
+------------------------------漏洞------------------------------
 XP下API安全链接出错
 
 ------------------------------进度------------------------------
 本地图片整理增加功能：
 清除数据库中本地没有图片的记录。
 扫描本地图片记录到数据库，初始为Result=local，
-完成上传的Result=end，忽略为Result=Ignore
-记录数据库时改为Message是Error代码
-入库时日志信息一栏改为提取Errlr代码来显示
 
 GetFilesClass改为栈
 增加矢量图库默认整理的文件位置设定
 离线查找优化速度，将来删除匹配查找提高程序通用化
 清空文件夹优化传出时卡顿问题
 软件更新改版，放在单独类中
-删除图库增加删除数据库和图库成功判断
 本地搜索增加3个DATA索引
 更新功能
 帮助功能
@@ -107,7 +103,7 @@ namespace ImageSearch
             try //读取程序配置
             {
                 XmlDocument xmldocument = new XmlDocument();
-                xmldocument.Load("Settings.xml");
+                xmldocument.Load(@"Documents\Settings.xml");
                 XmlNode rootNode = xmldocument.DocumentElement;//定位根节点
                 foreach (XmlNode xmlnode in rootNode.ChildNodes)
                 {
@@ -140,14 +136,14 @@ namespace ImageSearch
 
             try//读取程序图标
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Icon.ico"));
-                image_add_button.Image = Image.FromFile("Add.png");
-                image_up_button.Image = Image.FromFile("Up.png");
-                image_delete_button.Image = Image.FromFile("Delete.png");
-                api_settings_button.Image = Image.FromFile("Setting.png");
-                sort_button.Image = Image.FromFile("Sort.png");
-                help_button.Image = Image.FromFile("Help.png");
-                emptyfolder_button.Image = Image.FromFile("EmptyFolder.png");
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Icon.ico"));
+                image_add_button.Image = Image.FromFile(@"Skin\Add.png");
+                image_up_button.Image = Image.FromFile(@"Skin\Up.png");
+                image_delete_button.Image = Image.FromFile(@"Skin\Delete.png");
+                api_settings_button.Image = Image.FromFile(@"Skin\Setting.png");
+                sort_button.Image = Image.FromFile(@"Skin\Sort.png");
+                help_button.Image = Image.FromFile(@"Skin\Help.png");
+                emptyfolder_button.Image = Image.FromFile(@"Skin\EmptyFolder.png");
             }
             catch (UnauthorizedAccessException)
             {
@@ -545,50 +541,6 @@ namespace ImageSearch
             }
 
             e.Result = result;//传出
-
-            #region 旧方式遍历搜索
-            //Stack<string> nodesStack = new Stack<string>();//栈
-            //List<string> pathList = new List<string>();//文件夹
-            //List<Array> fileList = new List<Array>();//文件
-
-            //string[] dio = Directory.GetDirectories(api.Path, "*.*", SearchOption.TopDirectoryOnly);
-            //foreach (string str in dio)//第一层文件夹遍历
-            //{
-            //    nodesStack.Push(str);//将顶层目录压栈
-            //    while (nodesStack.Count > 0)
-            //    {
-            //        if (outline_background.CancellationPending)//用户取消
-            //        {
-            //            e.Cancel = true;
-            //            return;
-            //        }
-
-            //        string tempPath = nodesStack.Pop();//顶层目录出栈
-            //        pathList.Add(tempPath);//记录出栈目录
-            //        outline_background.ReportProgress(50, tempPath);//进度
-
-            //        try
-            //        {
-            //            Array access = Directory.GetDirectories(tempPath);//权限测试，用户可跳过没有权限的目录
-            //        }
-            //        catch (UnauthorizedAccessException)
-            //        {
-            //            if (MessageBox.Show("无权限访问：" + tempPath + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
-            //            else return;
-            //        }
-
-            //        FileInfo fi = new FileInfo(tempPath);
-            //        if ((fi.Attributes & FileAttributes.Directory) == 0) continue;
-
-            //        Array subDire = null, subFiles = null;// subDire: 子目录组 subFiles: 子文件组
-            //        subDire = Directory.GetDirectories(tempPath);
-            //        subFiles = Directory.GetFiles(tempPath);
-            //        fileList.Add(subFiles);// 记录文件目录不再入栈
-            //        if (subDire != null && subFiles != null) foreach (var ex in subDire) nodesStack.Push(ex.ToString());// 子目录组中每个目录进行遍历再次压入栈
-
-            //    }
-            //}
-            #endregion 旧方式遍历搜索
         }
 
         private void outline_background_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)

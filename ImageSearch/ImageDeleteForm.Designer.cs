@@ -275,8 +275,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(600, 500);
             this.Name = "ImageDeleteForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "在库中删除图片";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageDeleteForm_FormClosing);

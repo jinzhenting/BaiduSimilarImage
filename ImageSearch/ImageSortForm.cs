@@ -23,7 +23,7 @@ namespace ImageSearch
 
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Sort.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Sort.ico"));
             }
             catch (UnauthorizedAccessException)
             {
@@ -98,8 +98,72 @@ namespace ImageSearch
             bool sub = (bool)back[2];
             bool hold_old = (bool)back[3];
             #endregion 拆箱
+
+            #region 获取文件列表
+
+
+
+
+            //优化Stack算法，现在忽略了顶层目录文件，只遍历第一个子目录
+            //优化写成后替换GETFILES类写法
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            List<string> list = new List<string>(); 
+
+            DirectoryInfo root_directoryinfo = new DirectoryInfo(source_path);//一层文件夹
+            FileInfo[] file = root_directoryinfo.GetFiles();
+            foreach (FileInfo fileinfo in file) list.Add(fileinfo.FullName);
             
-            List<string> list = GetFiless.Get(source_path, "*.*", sub);//获取文件列表
+            Stack<string> stack = new Stack<string>();//栈
+            List<string> paths = new List<string>();//文件夹
+            List<Array> files = new List<Array>();//文件
+            string[] dio = Directory.GetDirectories(source_path, "*.*", SearchOption.TopDirectoryOnly);//获取主目录
+            foreach (string str in dio)//遍历主目录
+            {
+                stack.Push(str);//将顶层目录压栈
+                while (stack.Count > 0)//遍历此目录下所有目录
+                {
+                    string tempPath = stack.Pop();//顶层目录出栈
+                    paths.Add(tempPath);//记录出栈目录
+
+                    sort_background.ReportProgress(50, "查找文件夹 " + tempPath);//进度日志
+
+                    try//权限测试，用户可跳过没有权限的目录
+                    {
+                        Array access = Directory.GetDirectories(tempPath);
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        if (MessageBox.Show("无权限访问：" + tempPath + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;//利用出栈，跳过此目录
+                        else return;
+                    }
+
+                    FileInfo fi = new FileInfo(tempPath);
+                    if ((fi.Attributes & FileAttributes.Directory) == 0) continue;
+
+                    Array subDire = null, subFiles = null;// subDire: 子目录组 subFiles: 子文件组
+                    subDire = Directory.GetDirectories(tempPath);
+                    subFiles = Directory.GetFiles(tempPath);
+                    files.Add(subFiles);// 记录文件目录不再入栈
+                    if (subDire != null && subFiles != null) foreach (var ex in subDire) stack.Push(ex.ToString());// 子目录组中每个目录进行遍历再次压入栈
+                }
+            }
+
+            foreach (Array array in files) foreach (string str in array) list.Add(str);//数组遍历到列表
+            #endregion 获取文件列表
 
             #region 元素声明
             string other_path = yes_path + @"Other\";//目标其他文件目录
@@ -135,11 +199,11 @@ namespace ImageSearch
                     {
                         if (!Directory.Exists(Path.GetDirectoryName(new_fullname))) Directory.CreateDirectory(Path.GetDirectoryName(new_fullname));//建立目录
                         File.Copy(old_fullname, new_fullname);//复制
-                        if (hold_old) DataTableAddRows(datatable, new_fullname, "从 " + old_fullname + " 复制到 " + new_fullname);//不保留原文件时
+                        if (hold_old) DataTableAddRows(datatable, new_fullname, "从 " + Path.GetDirectoryName(old_fullname) + " 复制到 " + Path.GetDirectoryName(new_fullname));//不保留原文件时
                         else
                         {
                             File.Delete(old_fullname);
-                            DataTableAddRows(datatable, old_fullname, "从 " + old_fullname + " 移动到 " + new_fullname);
+                            DataTableAddRows(datatable, old_fullname, "从 " + Path.GetDirectoryName(old_fullname) + " 移动到 " + Path.GetDirectoryName(new_fullname));
                         }
                     }
                     else if (DateTime.Compare(new FileInfo(old_fullname).LastWriteTime, new FileInfo(new_fullname).LastWriteTime) == 0)//新文件已存在//创建时间相同
@@ -156,11 +220,11 @@ namespace ImageSearch
                         new_fullname = GetNewPathForDupes(new_fullname);//增加版本后缀
                         if (!Directory.Exists(Path.GetDirectoryName(new_fullname))) Directory.CreateDirectory(Path.GetDirectoryName(new_fullname));//建立目录
                         File.Copy(old_fullname, new_fullname);//复制
-                        if (hold_old) DataTableAddRows(datatable, old_fullname, "从 " + old_fullname + " 复制到 " + new_fullname);//不保留原文件时
+                        if (hold_old) DataTableAddRows(datatable, old_fullname, "从 " + Path.GetDirectoryName(old_fullname) + " 复制到 " + Path.GetDirectoryName(new_fullname));//不保留原文件时
                         else
                         {
                             File.Delete(old_fullname);
-                            DataTableAddRows(datatable, old_fullname, "从 " + old_fullname + " 移动到 " + new_fullname);
+                            DataTableAddRows(datatable, old_fullname, "从 " + Path.GetDirectoryName(old_fullname) + " 移动到 " + Path.GetDirectoryName(new_fullname));
                         }
                     }
                 }

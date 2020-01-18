@@ -43,7 +43,7 @@ namespace ImageSearch
 
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Up.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Up.ico"));
             }
             catch (UnauthorizedAccessException)
             {

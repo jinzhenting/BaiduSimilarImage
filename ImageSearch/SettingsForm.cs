@@ -27,7 +27,7 @@ namespace ImageSearch
 
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Setting.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Setting.ico"));
             }
             catch (UnauthorizedAccessException)
             {
@@ -54,10 +54,10 @@ namespace ImageSearch
             try
             {
                 XmlDocument xml = new XmlDocument();
-                xml.Load("Settings.xml");
+                xml.Load(@"Documents\Settings.xml");
                 XmlNode rootNode = xml.DocumentElement;//获得根节点
                 foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == "Up") xmlnode.Attributes["path"].Value = appup_textbox.Text;//在根节点中寻找节点//找到对应的节点//获取对应节点的值
-                xml.Save("Settings.xml");
+                xml.Save(@"Documents\Settings.xml");
                 MessageBox.Show("保存成功，将在程序重启后生效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             catch (System.UnauthorizedAccessException)

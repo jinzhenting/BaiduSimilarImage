@@ -22,7 +22,7 @@ namespace ImageSearch
         {
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, "Icon.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Icon.ico"));
             }
             catch (UnauthorizedAccessException)
             {
