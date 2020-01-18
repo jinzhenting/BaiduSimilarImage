@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ApiList>
-  <背景墙 appid="18072041" apikey="PH9KqwBw9blIXQLw81t3TNY2" secreykey="urvpvAkM1UKvgcxsGAh8rGqSYtYU70lO" timeout="60" tags1="1" tags2="2" quantity="100" path="\\nrl\EMBDesign\JPG\" serverip="192.168.1.182" dataname="ImageSerch" userid="sa" password="Lwnj3578" table="BackgroundWall">
-  </背景墙>
-  <矢量图 appid="17500511" apikey="dVOMptQlUzbKb8OcvMI0GG8I" secreykey="FezedpL70qeerpflOBIGzbYdbK2mtEys" timeout="60" tags1="1" tags2="2" quantity="50" path="\\nrl\Vector\VcetorData\" serverip="192.168.1.182" dataname="ImageSerch" userid="sa" password="Lwnj3578" table="Vector">
-  </矢量图>
-  <类似带 appid="17817736" apikey="5icNkHjkGdpVIlEoRbfEkf43" secreykey="XgeL22GERNloQpAwHYhkZ7uDcnK3GThg" timeout="60" tags1="1" tags2="2" quantity="100" path="\\nrf\DST\" serverip="192.168.1.182" dataname="ImageSerch" userid="sa" password="Lwnj3578" table="EmbDesign">
-  </类似带>
-</ApiList>
