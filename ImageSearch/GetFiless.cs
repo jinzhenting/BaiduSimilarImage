@@ -37,32 +37,36 @@ namespace ImageSearch
 
         //把递归换成栈，设计中
 
-        public static void TraverseTree(string root)
+        /// <summary>
+        /// 获取目录下文件
+        /// </summary>
+        /// <param name="path">目录</param>
+        /// <param name="extension">指定文件名格式，*.* 表示所有文件</param>
+        /// <param name="sub">是否包含所有子目录</param>
+        public static List<string> getFiles(string path, string extension, bool sub)
         {
+            if (!Directory.Exists(path))
+            {
+                MessageBox.Show("需要获取文件列表的主目录无效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
             List<string> list = new List<string>();//返回的文件列表
+
             Stack<string> stack = new Stack<string>(20);//栈
-            stack.Push(root);//主目录入栈
+            stack.Push(path);//主目录入栈
             while (stack.Count > 0)//栈不为空时遍历
             {
-                string path = stack.Pop();//取栈中第一个目录
-                string[] sub_path = Directory.GetDirectories(path);//栈目录的子目录列表
-                string[] files = Directory.GetFiles(path);//栈目录的文件列表
+                string main_path = stack.Pop();//取栈中第一个目录
+                string[] sub_paths = null;
+                sub_paths = Directory.GetDirectories(main_path);//栈目录的子目录列表
+                string[] files = null;
+                files = Directory.GetFiles(main_path);//栈目录的文件列表
                 foreach (string file in files) list.Add(file);//栈目录的文件遍历到List
-                foreach (string str in sub_path) stack.Push(str);//栈目录的子目录列表入栈
+                foreach (string sub_path in sub_paths) stack.Push(sub_path);//栈目录的子目录列表入栈
             }
+            return list;
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
