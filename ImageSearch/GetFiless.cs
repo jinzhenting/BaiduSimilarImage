@@ -35,83 +35,20 @@ namespace ImageSearch
             return list;
         }
 
-        把递归换成栈
+        //把递归换成栈，设计中
 
         public static void TraverseTree(string root)
         {
-            // Data structure to hold names of subfolders to be
-            // examined for files.
-            Stack<string> dirs = new Stack<string>(20);
-            if (!System.IO.Directory.Exists(root)) throw new ArgumentException();
-            dirs.Push(root);
-            while (dirs.Count > 0)
+            List<string> list = new List<string>();//返回的文件列表
+            Stack<string> stack = new Stack<string>(20);//栈
+            stack.Push(root);//主目录入栈
+            while (stack.Count > 0)//栈不为空时遍历
             {
-                string currentDir = dirs.Pop();
-                string[] subDirs;
-                try
-                {
-                    subDirs = Directory.GetDirectories(currentDir);
-                }
-                // An UnauthorizedAccessException exception will be thrown if we do not have
-                // discovery permission on a folder or file. It may or may not be acceptable 
-                // to ignore the exception and continue enumerating the remaining files and 
-                // folders. It is also possible (but unlikely) that a DirectoryNotFound exception 
-                // will be raised. This will happen if currentDir has been deleted by
-                // another application or thread after our call to Directory.Exists. The 
-                // choice of which exceptions to catch depends entirely on the specific task 
-                // you are intending to perform and also on how much you know with certainty 
-                // about the systems on which this code will run.
-                catch (UnauthorizedAccessException e)
-                {
-                    Console.WriteLine(e.Message);
-                    continue;
-                }
-                catch (DirectoryNotFoundException e)
-                {
-                    Console.WriteLine(e.Message);
-                    continue;
-                }
-
-                string[] files = null;
-                try
-                {
-                    files = Directory.GetFiles(currentDir);
-                }
-                catch (UnauthorizedAccessException e)
-                {
-
-                    Console.WriteLine(e.Message);
-                    continue;
-                }
-                catch (DirectoryNotFoundException e)
-                {
-                    Console.WriteLine(e.Message);
-                    continue;
-                }
-                // Perform the required action on each file here.
-                // Modify this block to perform your required task.
-                foreach (string file in files)
-                {
-                    try
-                    {
-                        // Perform whatever action is required in your scenario.
-                        FileInfo fi = new System.IO.FileInfo(file);
-                        Console.WriteLine("{0}: {1}, {2}", fi.Name, fi.Length, fi.CreationTime);
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        // If file was deleted by a separate application
-                        //  or thread since the call to TraverseTree()
-                        // then just continue.
-                        Console.WriteLine(e.Message);
-                        continue;
-                    }
-                }
-
-                // Push the subdirectories onto the stack for traversal.
-                // This could also be done before handing the files.
-                foreach (string str in subDirs)
-                    dirs.Push(str);
+                string path = stack.Pop();//取栈中第一个目录
+                string[] sub_path = Directory.GetDirectories(path);//栈目录的子目录列表
+                string[] files = Directory.GetFiles(path);//栈目录的文件列表
+                foreach (string file in files) list.Add(file);//栈目录的文件遍历到List
+                foreach (string str in sub_path) stack.Push(str);//栈目录的子目录列表入栈
             }
         }
 
