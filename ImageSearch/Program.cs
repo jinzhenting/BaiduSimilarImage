@@ -43,8 +43,8 @@ namespace ImageSearch
         private const int SW_SHOWNOMAL = 1;
         private static void HandleRunningInstance(Process instance)
         {
-            ShowWindowAsync(instance.MainWindowHandle, SW_SHOWNOMAL);//显示
-            SetForegroundWindow(instance.MainWindowHandle);//当到最前端
+            ShowWindowAsync(instance.MainWindowHandle, SW_SHOWNOMAL);// 显示
+            SetForegroundWindow(instance.MainWindowHandle);// 当到最前端
         }
         private static Process RuningInstance()
         {

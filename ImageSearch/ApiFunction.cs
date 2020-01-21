@@ -13,7 +13,7 @@ namespace ImageSearch
 {
     public static class ApiFunction
     {
-        public static List<string> GetDepotList()//获取图库列表
+        public static List<string> GetDepotList()// 获取图库列表
         {
             try
             {
@@ -45,18 +45,18 @@ namespace ImageSearch
             }
         }
 
-        public static bool AcceptFormat1(string path)//格式支持，以编码检测
+        public static bool AcceptFormat1(string path)// 格式支持，以编码检测
         {
             Image img = Image.FromFile(path);
             if (img.RawFormat.Equals(ImageFormat.Jpeg) || img.RawFormat.Equals(ImageFormat.Bmp) || img.RawFormat.Equals(ImageFormat.Png)) return true;
             else return false;
         }
 
-        public static bool AcceptFormat2(string path)//格式支持，以扩展名检测
+        public static bool AcceptFormat2(string path)// 格式支持，以扩展名检测
         {
             if (GetFormatList() != null)
             {
-                foreach (string str in GetFormatList()) if (Path.GetExtension(path).ToLower() == Path.GetExtension(str).ToLower()) return true;//遍历检测扩展名匹配
+                foreach (string str in GetFormatList()) if (Path.GetExtension(path).ToLower() == Path.GetExtension(str).ToLower()) return true;// 遍历检测扩展名匹配
                 return false;
             }
             else
@@ -66,15 +66,15 @@ namespace ImageSearch
             }
         }
 
-        public static List<string> GetFormatList()//获取格式列表
+        public static List<string> GetFormatList()// 获取格式列表
         {
             try
             {
-                XmlDocument xml = new XmlDocument();//注意XML内容区分大小写
+                XmlDocument xml = new XmlDocument();// 注意XML内容区分大小写
                 xml.Load(@"Documents\FormatList.xml");
-                XmlNodeList nodelist = xml.SelectSingleNode("//FormatList").ChildNodes;//搜索定位子节点FormatList
+                XmlNodeList nodelist = xml.SelectSingleNode("//FormatList").ChildNodes;// 搜索定位子节点FormatList
                 List<string> list = new List<string>();
-                foreach (XmlNode node in nodelist) list.Add(node.Attributes["extension"].Value);//遍历字段
+                foreach (XmlNode node in nodelist) list.Add(node.Attributes["extension"].Value);// 遍历字段
                 if (list.Count > 0) return list;
                 return null;
             }
@@ -98,16 +98,16 @@ namespace ImageSearch
             }
         }
 
-        public static Api GetApi(string depot_name)//获取API配
+        public static Api GetApi(string depot_name)// 获取API配
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiList.xml");
-                XmlNode rootNode = xml.DocumentElement;//根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes)//在根节点中寻找节点
+                XmlNode rootNode = xml.DocumentElement;// 根节点
+                foreach (XmlNode xmlnode in rootNode.ChildNodes)// 在根节点中寻找节点
                 {
-                    if (xmlnode.Name == depot_name)//获取对应节点的值
+                    if (xmlnode.Name == depot_name)// 获取对应节点的值
                     {
                         Api api = new Api();
                         api.Appid = xmlnode.Attributes["appid"].Value;
@@ -149,16 +149,16 @@ namespace ImageSearch
             }
         }
 
-        public static bool SaveApi(string depot_name, Api api)//保存API配置
+        public static bool SaveApi(string depot_name, Api api)// 保存API配置
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiList.xml");
-                XmlNode rootNode = xml.DocumentElement;//获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes)//在根节点中寻找节点
+                XmlNode rootNode = xml.DocumentElement;// 获得根节点
+                foreach (XmlNode xmlnode in rootNode.ChildNodes)// 在根节点中寻找节点
                 {
-                    if (xmlnode.Name == depot_name)//保存对应节点的值
+                    if (xmlnode.Name == depot_name)// 保存对应节点的值
                     {
                         xmlnode.Attributes["appid"].Value = api.Appid;
                         xmlnode.Attributes["apikey"].Value = api.Apikey;
@@ -199,7 +199,7 @@ namespace ImageSearch
             }
         }
 
-        public static Baidu.Aip.ImageSearch.ImageSearch GetClient(string appid, string apikey, string secreykey, int timeout)//获取GetClient
+        public static Baidu.Aip.ImageSearch.ImageSearch GetClient(string appid, string apikey, string secreykey, int timeout)// 获取GetClient
         {
             try
             {
@@ -208,7 +208,7 @@ namespace ImageSearch
                 var api_key = apikey;
                 var secrey_key = secreykey;
                 var clients = new Baidu.Aip.ImageSearch.ImageSearch(api_key, secrey_key);
-                clients.Timeout = timeout * 1000;//超时时间
+                clients.Timeout = timeout * 1000;// 超时时间
                 return clients;
             }
             catch (Exception ex)
@@ -218,7 +218,7 @@ namespace ImageSearch
             }
         }
 
-        public static string FileToBase64(string fileName)//字节转换，来自路径
+        public static string FileToBase64(string fileName)// 字节转换，来自路径
         {
             try
             {
@@ -236,7 +236,7 @@ namespace ImageSearch
             }
         }
 
-        public static byte[] ImagetoByte(Image image)//字节转换，来自Image
+        public static byte[] ImagetoByte(Image image)// 字节转换，来自Image
         {
             try
             {
@@ -249,7 +249,7 @@ namespace ImageSearch
                     else if (imageformat.Equals(ImageFormat.Gif)) image.Save(memorystream, ImageFormat.Gif);
                     else image.Save(memorystream, ImageFormat.Jpeg);
                     byte[] buffer = new byte[memorystream.Length];
-                    memorystream.Seek(0, SeekOrigin.Begin);//Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                    memorystream.Seek(0, SeekOrigin.Begin);// Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
                     memorystream.Read(buffer, 0, buffer.Length);
                     return buffer;
                 }
@@ -261,14 +261,14 @@ namespace ImageSearch
             }
         }
 
-        public static string GetError(string error_number)//错误代码
+        public static string GetError(string error_number)// 错误代码
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiErrorList.xml");
-                XmlNode xmlnode = xml.DocumentElement;//获得根节点
-                foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["chs"].Value;//在根节点中寻找节点
+                XmlNode xmlnode = xml.DocumentElement;// 获得根节点
+                foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["chs"].Value;// 在根节点中寻找节点
                 MessageBox.Show("查询不到错误代码，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 System.Environment.Exit(0);
                 return null;
@@ -293,14 +293,14 @@ namespace ImageSearch
             }
         }
 
-        public static string UpIgnore(string error_number)//Ignore
+        public static string UpIgnore(string error_number)// Ignore
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiErrorList.xml");
-                XmlNode xmlnode = xml.DocumentElement;//获得根节点
-                foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["ignore"].Value;//在根节点中寻找节点
+                XmlNode xmlnode = xml.DocumentElement;// 获得根节点
+                foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["ignore"].Value;// 在根节点中寻找节点
                 MessageBox.Show("查询不到错误代码Ignore节点，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 System.Environment.Exit(0);
                 return null;
@@ -325,7 +325,7 @@ namespace ImageSearch
             }
         }
 
-        public static JObject Up(Baidu.Aip.ImageSearch.ImageSearch imagesearch, string path, string name, int tags1, int tags2)//入库
+        public static JObject Up(Baidu.Aip.ImageSearch.ImageSearch imagesearch, string path, string name, int tags1, int tags2)// 入库
         {
             try
             {
@@ -336,7 +336,7 @@ namespace ImageSearch
                         { "brief", name},
                         { "tags", tags1+","+tags2 }
                     };
-                return result = imagesearch.SimilarAdd(image, options);//带参数调用相似图检索—入库, 图片参数为本地图片
+                return result = imagesearch.SimilarAdd(image, options);// 带参数调用相似图检索—入库, 图片参数为本地图片
             }
             catch (Exception ex)
             {
@@ -345,11 +345,11 @@ namespace ImageSearch
             }
         }
 
-        public static JObject Search(Baidu.Aip.ImageSearch.ImageSearch imagesearch, byte[] bytes, int tags1, int tags2, int quantity)//搜索
+        public static JObject Search(Baidu.Aip.ImageSearch.ImageSearch imagesearch, byte[] bytes, int tags1, int tags2, int quantity)// 搜索
         {
             try
             {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;//安全链接类型，未解决XP问题//ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;                               
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;// 安全链接类型，未解决XP问题//ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;                               
                 var result = imagesearch.SimilarSearch(bytes);
                 var options = new Dictionary<string, object> {
                         { "tags", tags1+","+tags2 },
@@ -366,7 +366,7 @@ namespace ImageSearch
             }
         }
 
-        public static JObject DeleteByImage(string path, Baidu.Aip.ImageSearch.ImageSearch client)//删除，以图片
+        public static JObject DeleteByImage(string path, Baidu.Aip.ImageSearch.ImageSearch client)// 删除，以图片
         {
             try
             {
@@ -381,7 +381,7 @@ namespace ImageSearch
             }
         }
 
-        public static JObject DeleteBySian(string sign, Baidu.Aip.ImageSearch.ImageSearch client)//删除，以图片签名
+        public static JObject DeleteBySian(string sign, Baidu.Aip.ImageSearch.ImageSearch client)// 删除，以图片签名
         {
             try
             {
@@ -395,16 +395,16 @@ namespace ImageSearch
             }
         }
 
-        public static bool AddDepot(string depot_name, Api api)//创建图库配置
+        public static bool AddDepot(string depot_name, Api api)// 创建图库配置
         {
             try
             {
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(@"Documents\ApiList.xml");
-                XmlNode xmlnode = xmlDoc.DocumentElement;//定位根节点，用于追加新节点
-                XmlElement element = xmlDoc.CreateElement(depot_name);//创建节点
-                element.InnerText = "";//空白串联值，不设置不生成一对节点
-                element.SetAttribute("appid", api.Appid);//创建属性
+                XmlNode xmlnode = xmlDoc.DocumentElement;// 定位根节点，用于追加新节点
+                XmlElement element = xmlDoc.CreateElement(depot_name);// 创建节点
+                element.InnerText = "";// 空白串联值，不设置不生成一对节点
+                element.SetAttribute("appid", api.Appid);// 创建属性
                 element.SetAttribute("apikey", api.Apikey);
                 element.SetAttribute("secreykey", api.Secreykey);
                 element.SetAttribute("timeout", api.Timeout.ToString());
@@ -417,7 +417,7 @@ namespace ImageSearch
                 element.SetAttribute("userid", api.Userid);
                 element.SetAttribute("password", Password.Encrypt(api.Password, "12345678"));
                 element.SetAttribute("table", api.Table);
-                xmlnode.AppendChild(element);//追加到结尾
+                xmlnode.AppendChild(element);// 追加到结尾
                 xmlDoc.Save(@"Documents\ApiList.xml");
                 return true;
             }
@@ -441,15 +441,15 @@ namespace ImageSearch
             }
         }
 
-        public static bool DeleteDepot(string depot_name)//删除图库配置
+        public static bool DeleteDepot(string depot_name)// 删除图库配置
         {
             try
             {
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(@"Documents\ApiList.xml");
-                XmlNode xmlnode = xmlDoc.DocumentElement;//定位根节点
-                var element = xmlDoc.SelectSingleNode("//ApiList/" + depot_name);//搜索节点
-                xmlnode.RemoveChild(element);//清除
+                XmlNode xmlnode = xmlDoc.DocumentElement;// 定位根节点
+                var element = xmlDoc.SelectSingleNode("//ApiList/" + depot_name);// 搜索节点
+                xmlnode.RemoveChild(element);// 清除
                 xmlDoc.Save(@"Documents\ApiList.xml");
                 return true;
             }

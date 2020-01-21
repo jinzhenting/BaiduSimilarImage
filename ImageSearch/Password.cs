@@ -20,8 +20,8 @@ namespace ImageSearch
             var returnValue = new StringBuilder();
             var des = new DESCryptoServiceProvider();
             byte[] inputByteArray = Encoding.Default.GetBytes(targetValue);
-            des.Key = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "sha1").Substring(0, 8));//通过两次哈希密码设置对称算法的初始化向量
-            des.IV = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "md5").Substring(0, 8));//通过两次哈希密码设置算法的机密密钥
+            des.Key = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "sha1").Substring(0, 8));// 通过两次哈希密码设置对称算法的初始化向量
+            des.IV = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "md5").Substring(0, 8));// 通过两次哈希密码设置算法的机密密钥
             var ms = new MemoryStream();
             var cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
             cs.Write(inputByteArray, 0, inputByteArray.Length);
@@ -39,7 +39,7 @@ namespace ImageSearch
         public static string Decrypt(string targetValue, string key)
         {
             if (string.IsNullOrEmpty(targetValue)) return string.Empty;
-            var des = new DESCryptoServiceProvider();//定义DES加密对象
+            var des = new DESCryptoServiceProvider();// 定义DES加密对象
             int len = targetValue.Length / 2;
             var inputByteArray = new byte[len];
             int x, i;
@@ -48,10 +48,10 @@ namespace ImageSearch
                 i = Convert.ToInt32(targetValue.Substring(x * 2, 2), 16);
                 inputByteArray[x] = (byte)i;
             }
-            des.Key = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "sha1").Substring(0, 8));//通过两次哈希密码设置对称算法的初始化向量
-            des.IV = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "md5").Substring(0, 8));//通过两次哈希密码设置算法的机密密钥  
-            var ms = new MemoryStream();//定义内存流
-            var cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);//定义加密流
+            des.Key = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "sha1").Substring(0, 8));// 通过两次哈希密码设置对称算法的初始化向量
+            des.IV = Encoding.ASCII.GetBytes(FormsAuthentication.HashPasswordForStoringInConfigFile(FormsAuthentication.HashPasswordForStoringInConfigFile(key, "md5").Substring(0, 8), "md5").Substring(0, 8));// 通过两次哈希密码设置算法的机密密钥  
+            var ms = new MemoryStream();// 定义内存流
+            var cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);// 定义加密流
             cs.Write(inputByteArray, 0, inputByteArray.Length);
             cs.FlushFinalBlock();
             return Encoding.Default.GetString(ms.ToArray());

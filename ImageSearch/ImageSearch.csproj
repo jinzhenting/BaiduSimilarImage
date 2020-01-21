@@ -121,7 +121,7 @@
       <DependentUpon>ImageDeleteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Emb.cs" />
-    <Compile Include="GetFiless.cs" />
+    <Compile Include="GetsFiles.cs" />
     <Compile Include="ImageUpLog.cs" />
     <Compile Include="ListTable.cs" />
     <Compile Include="Percents.cs" />
@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -20,8 +20,8 @@ namespace ImageSearch
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiList.xml");
-                XmlNode rootNode = xml.DocumentElement;//获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == depot_name) return "Server=" + xmlnode.Attributes["serverip"].Value + "; Initial Catalog=" + xmlnode.Attributes["dataname"].Value + "; User ID=" + xmlnode.Attributes["userid"].Value + "; Password=" + Password.Decrypt(xmlnode.Attributes["password"].Value, "12345678");//在根节点中寻找节点//找到对应的节点//获取对应节点的值
+                XmlNode rootNode = xml.DocumentElement;// 获得根节点
+                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == depot_name) return "Server=" + xmlnode.Attributes["serverip"].Value + "; Initial Catalog=" + xmlnode.Attributes["dataname"].Value + "; User ID=" + xmlnode.Attributes["userid"].Value + "; Password=" + Password.Decrypt(xmlnode.Attributes["password"].Value, "12345678");// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
                 MessageBox.Show("图库配置文件中查找不到" + depot_name + "的内容，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 System.Environment.Exit(0);
                 return null;

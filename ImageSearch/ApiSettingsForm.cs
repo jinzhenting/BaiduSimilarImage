@@ -13,9 +13,9 @@ namespace ImageSearch
             InitializeComponent();
         }
 
-        private void ApiSettingsForm_Load(object sender, EventArgs e)//窗口载入时
+        private void ApiSettingsForm_Load(object sender, EventArgs e)// 窗口载入时
         {
-            if (ApiFunction.GetDepotList() != null) depot_list_combobox.DataSource = ApiFunction.GetDepotList();  //图库下拉列表
+            if (ApiFunction.GetDepotList() != null) depot_list_combobox.DataSource = ApiFunction.GetDepotList();// 图库下拉列表
             try
             {
                 Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Setting.ico"));
@@ -41,7 +41,7 @@ namespace ImageSearch
         }
 
         Api api = new Api();
-        private void depot_list_combobox_SelectedIndexChanged(object sender, EventArgs e)//图库列表选择
+        private void depot_list_combobox_SelectedIndexChanged(object sender, EventArgs e)// 图库列表选择
         {
             api = ApiFunction.GetApi(depot_list_combobox.Text);
             if (api != null)
@@ -62,7 +62,7 @@ namespace ImageSearch
             }
         }
 
-        private void save_api_button_Click(object sender, EventArgs e)//保存按钮
+        private void save_api_button_Click(object sender, EventArgs e)// 保存按钮
         {
             if (depot_list_combobox.Text == "")
             {
@@ -118,7 +118,7 @@ namespace ImageSearch
                 return;
             }
 
-            DialogResult result = MessageBox.Show("修改后将无法恢复", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);//保存
+            DialogResult result = MessageBox.Show("修改后将无法恢复", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);// 保存
             if (result == DialogResult.OK)
             {
                 api.Appid = api_appid_textbox.Text;
@@ -139,24 +139,24 @@ namespace ImageSearch
             }
         }
 
-        private void cel_api_button_Click(object sender, EventArgs e)//清空按钮
+        private void cel_api_button_Click(object sender, EventArgs e)// 清空按钮
         {
             api_appid_textbox.Text = api_apikey_textbox.Text = api_secreykey_textbox.Text = api_timeout_textbox.Text = api_quantity_textbox.Text = api_tag1_textbox.Text = api_tag2_textbox.Text = api_path_textbox.Text = sql_serverip_textbox.Text = sql_dataname_textbox.Text = sql_table_textbox.Text = sql_userid_textbox.Text = sql_password_textbox.Text = "";
         }
 
-        private void api_path_button_Click(object sender, EventArgs e)//本地图片目录浏览按钮
+        private void api_path_button_Click(object sender, EventArgs e)// 本地图片目录浏览按钮
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
             if (folder.ShowDialog() == DialogResult.OK) api_path_textbox.Text = (Regex.IsMatch(folder.SelectedPath, @"[\\]$")) ? folder.SelectedPath : folder.SelectedPath + @"\";
         }
 
-        private void api_add_button_Click(object sender, EventArgs e)//新建图库按钮
+        private void api_add_button_Click(object sender, EventArgs e)// 新建图库按钮
         {
             ApiImageUpForm apiaddfrom = new ApiImageUpForm();
             apiaddfrom.ShowDialog();
         }
 
-        private void api_delete_button_Click(object sender, EventArgs e)//删除图库按钮
+        private void api_delete_button_Click(object sender, EventArgs e)// 删除图库按钮
         {
             if (depot_list_combobox.Text == "")
             {
@@ -164,16 +164,16 @@ namespace ImageSearch
                 return;
             }
 
-            if (MessageBox.Show("删除后将无法恢复，请谨慎操作！\r\n\r\n本操作只能删除图库的数据库和程序配置，百度服务器中的图片请登陆百度后台删除，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)//警示窗口
+            if (MessageBox.Show("删除后将无法恢复，请谨慎操作！\r\n\r\n本操作只能删除图库的数据库和程序配置，百度服务器中的图片请登陆百度后台删除，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)// 警示窗口
             {
-                bool deletedepot = ApiFunction.DeleteDepot(depot_list_combobox.Text);//清除配置
+                bool deletedepot = ApiFunction.DeleteDepot(depot_list_combobox.Text);// 清除配置
                 if (!deletedepot)
                 {
                     MessageBox.Show("删除配置失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                bool dropable = Sql.Dropable(depot_list_combobox.Text, "DROP TABLE " + api.Table);//清除数据库
+                bool dropable = Sql.Dropable(depot_list_combobox.Text, "DROP TABLE " + api.Table);// 清除数据库
                 if (!dropable)
                 {
                     MessageBox.Show("删除数据表失败，已成功删除配置文件，请手动删除数据表", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -184,7 +184,7 @@ namespace ImageSearch
             }
         }
 
-        private void cancel_api_button_Click(object sender, EventArgs e)//取消按钮
+        private void cancel_api_button_Click(object sender, EventArgs e)// 取消按钮
         {
             this.Close();
         }

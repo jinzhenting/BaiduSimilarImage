@@ -43,21 +43,21 @@ namespace ImageSearch
             }
         }
 
-        private void EmptyListSettings()//扫描列表样式
+        private void EmptyListSettings()// 扫描列表样式
         {
-            empty_listview.Columns.Add("空白目录列表");//添加列标题
-            empty_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);//自动列宽
+            empty_listview.Columns.Add("空白目录列表");// 添加列标题
+            empty_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
         }
 
-        private void empty_path_button_Click(object sender, EventArgs e)//浏览按钮
+        private void empty_path_button_Click(object sender, EventArgs e)// 浏览按钮
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
             if (folder.ShowDialog() == DialogResult.OK) empty_path_textbox.Text = folder.SelectedPath;
         }
 
-        private void empty_scan_button_Click(object sender, EventArgs e)//扫描按钮
+        private void empty_scan_button_Click(object sender, EventArgs e)// 扫描按钮
         {
-            if (empty_path_textbox.Text == "")//主目录
+            if (empty_path_textbox.Text == "")// 主目录
             {
                 MessageBox.Show("未选择主目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -89,9 +89,9 @@ namespace ImageSearch
             }
         }
 
-        private void empty_cancel_button_Click(object sender, EventArgs e)//取消按钮
+        private void empty_cancel_button_Click(object sender, EventArgs e)// 取消按钮
         {
-            if (empty_background.IsBusy)//入库运行中
+            if (empty_background.IsBusy)// 入库运行中
             {
                 MessageBox.Show("请先停止扫描", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -99,7 +99,7 @@ namespace ImageSearch
             this.Close();
         }
 
-        private void empty_delete_button_Click(object sender, EventArgs e)//删除按钮
+        private void empty_delete_button_Click(object sender, EventArgs e)// 删除按钮
         {
             if (empty_listview.CheckedItems.Count < 1)
             {
@@ -120,7 +120,7 @@ namespace ImageSearch
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    if (MessageBox.Show("无权限访问：" + item.Text + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;//警示窗口
+                    if (MessageBox.Show("无权限访问：" + item.Text + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;// 警示窗口
                     else return;
                 }
                 catch (FileNotFoundException)
@@ -136,30 +136,30 @@ namespace ImageSearch
             }
         }
 
-        private void empty_background_DoWork(object sender, DoWorkEventArgs e)//开始后台
+        private void empty_background_DoWork(object sender, DoWorkEventArgs e)// 开始后台
         {
-            string path = e.Argument as string;//接收
+            string path = e.Argument as string;// 接收
 
-            Stack<string> nodesStack = new Stack<string>();//栈
-            List<string> pathList = new List<string>();//文件夹
-            List<Array> fileList = new List<Array>();//文件
-            List<string> nulllist = new List<string>();//空文件夹
+            Stack<string> nodesStack = new Stack<string>();// 栈
+            List<string> pathList = new List<string>();// 文件夹
+            List<Array> fileList = new List<Array>();// 文件
+            List<string> nulllist = new List<string>();// 空文件夹
 
             string[] dio = Directory.GetDirectories(path, "*.*", SearchOption.TopDirectoryOnly);
             foreach (string str in dio)
             {
-                nodesStack.Push(str);//将顶层目录压栈
+                nodesStack.Push(str);// 将顶层目录压栈
                 while (nodesStack.Count > 0)
                 {
-                    if (empty_background.CancellationPending)//用户取消
+                    if (empty_background.CancellationPending)// 用户取消
                     {
                         e.Cancel = true;
                         return;
                     }
 
-                    string tempPath = nodesStack.Pop();//顶层目录出栈
-                    pathList.Add(tempPath);//记录出栈目录
-                    empty_background.ReportProgress(50, tempPath);//进度
+                    string tempPath = nodesStack.Pop();// 顶层目录出栈
+                    pathList.Add(tempPath);// 记录出栈目录
+                    empty_background.ReportProgress(50, tempPath);// 进度
 
                     try
                     {
@@ -167,7 +167,7 @@ namespace ImageSearch
                     }
                     catch (UnauthorizedAccessException)
                     {
-                        if (MessageBox.Show("无权限访问：" + tempPath + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;//警示窗口
+                        if (MessageBox.Show("无权限访问：" + tempPath + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;// 警示窗口
                         else return;
                     }
 
@@ -179,21 +179,21 @@ namespace ImageSearch
                         subDire = Directory.GetDirectories(tempPath);
                         subFiles = Directory.GetFiles(tempPath);
                         fileList.Add(subFiles);// 记录文件目录不再入栈
-                        if (subDire != null && subFiles != null) foreach (var ex in subDire) nodesStack.Push(ex.ToString());//子目录组中每个目录进行遍历再次压入栈
+                        if (subDire != null && subFiles != null) foreach (var ex in subDire) nodesStack.Push(ex.ToString());// 子目录组中每个目录进行遍历再次压入栈
                     }
                 }
             }
 
-            e.Result = nulllist;//传出
+            e.Result = nulllist;// 传出
         }
 
-        private void empty_background_ProgressChanged(object sender, ProgressChangedEventArgs e)//后台进度
+        private void empty_background_ProgressChanged(object sender, ProgressChangedEventArgs e)// 后台进度
         {
             empty_bar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : empty_bar.Value;
             empty_label.Text = empty_bar.Value.ToString() + "% 正在扫描：" + e.UserState as string;
         }
 
-        private void empty_background_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)//后台完成
+        private void empty_background_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)// 后台完成
         {
             if (e.Error != null)
             {
@@ -213,7 +213,7 @@ namespace ImageSearch
             empty_label.Text = "扫描已完成";
             empty_bar.Value = 100;
             
-            List<string> list = e.Result as List<string>;//接收传出
+            List<string> list = e.Result as List<string>;// 接收传出
             if (list == null)
             {
                 empty_label.Text = "扫描错误";
@@ -228,7 +228,7 @@ namespace ImageSearch
             foreach (string str in list)
             {
                 ListViewItem item = empty_listview.Items.Add(str);
-                empty_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);//自动列宽
+                empty_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
                 empty_listview.Items[empty_listview.Items.Count - 1].EnsureVisible();
             }
         }

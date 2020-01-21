@@ -13,7 +13,7 @@ namespace ImageSearch
             InitializeComponent();
         }
 
-        private void api_add_save_button_Click(object sender, System.EventArgs e)//完成按钮
+        private void api_add_save_button_Click(object sender, System.EventArgs e)// 完成按钮
         {
             if (depot_name_textbox.Text == "" || api_appid_textbox.Text == "" || api_apikey_textbox.Text == "" || api_secreykey_textbox.Text == "" || api_timeout_textbox.Text == "" || api_tag1_textbox.Text == "" || api_tag2_textbox.Text == "" || api_path_textbox.Text == "" || api_quantity_textbox.Text == "" || sql_serverip_textbox.Text == "" || sql_dataname_textbox.Text == "" || sql_table_textbox.Text == "" || sql_userid_textbox.Text == "" || sql_password_textbox.Text == "")
             {
@@ -78,7 +78,7 @@ namespace ImageSearch
             api.Password = sql_password_textbox.Text;
             api.Path = (Regex.IsMatch(api_path_textbox.Text, @"[\\]$")) ? api_path_textbox.Text : api_path_textbox.Text + @"\";
 
-            bool sql = Sql.CreateTable(api, @"CREATE TABLE " + sql_table_textbox.Text + "(ID INT PRIMARY KEY IDENTITY(1, 1), Names VARCHAR(256) not null, Path VARCHAR(256) not null, LogID VARCHAR(256), ContSign VARCHAR(256), Tsgs1 INT, Tsgs2 INT, Result VARCHAR(256) not null, Message  VARCHAR(256) not null, Times DATETIME not null)");//新建表
+            bool sql = Sql.CreateTable(api, @"CREATE TABLE " + sql_table_textbox.Text + "(ID INT PRIMARY KEY IDENTITY(1, 1), Names VARCHAR(256) not null, Path VARCHAR(256) not null, LogID VARCHAR(256), ContSign VARCHAR(256), Tsgs1 INT, Tsgs2 INT, Result VARCHAR(256) not null, Message  VARCHAR(256) not null, Times DATETIME not null)");// 新建表
             if (!sql)
             {
                 MessageBox.Show("建立数据表失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,7 +92,7 @@ namespace ImageSearch
                 return;
             }
 
-            MessageBox.Show("保存完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);//新建配置
+            MessageBox.Show("保存完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);// 新建配置
             this.Close();
         }
 

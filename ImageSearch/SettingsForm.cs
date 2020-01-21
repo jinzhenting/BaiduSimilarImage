@@ -13,7 +13,7 @@ namespace ImageSearch
             InitializeComponent();
         }
 
-        private string appuppath;//AppUpPath
+        private string appuppath;// AppUpPath
         public string AppUpPath
         {
             get { return appuppath; }
@@ -49,14 +49,14 @@ namespace ImageSearch
             }
         }
 
-        private void app_settings_save_button_Click(object sender, System.EventArgs e)//保存按钮
+        private void app_settings_save_button_Click(object sender, System.EventArgs e)// 保存按钮
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\Settings.xml");
-                XmlNode rootNode = xml.DocumentElement;//获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == "Up") xmlnode.Attributes["path"].Value = appup_textbox.Text;//在根节点中寻找节点//找到对应的节点//获取对应节点的值
+                XmlNode rootNode = xml.DocumentElement;// 获得根节点
+                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == "Up") xmlnode.Attributes["path"].Value = appup_textbox.Text;// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
                 xml.Save(@"Documents\Settings.xml");
                 MessageBox.Show("保存成功，将在程序重启后生效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }

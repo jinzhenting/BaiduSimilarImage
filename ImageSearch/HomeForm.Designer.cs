@@ -98,6 +98,7 @@
             this.online_depot_combobox_tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.outline_background = new System.ComponentModel.BackgroundWorker();
             this.emptyfolder_tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.online_picturebox)).BeginInit();
             this.imagebox_menustrip.SuspendLayout();
             this.search_menustrip.SuspendLayout();
@@ -299,28 +300,28 @@
             // sort_menuItem
             // 
             this.sort_menuItem.Name = "sort_menuItem";
-            this.sort_menuItem.Size = new System.Drawing.Size(152, 22);
+            this.sort_menuItem.Size = new System.Drawing.Size(136, 22);
             this.sort_menuItem.Text = "图片整理";
             this.sort_menuItem.Click += new System.EventHandler(this.sort_menuItem_Click);
             // 
             // api_settings_menuItem
             // 
             this.api_settings_menuItem.Name = "api_settings_menuItem";
-            this.api_settings_menuItem.Size = new System.Drawing.Size(152, 22);
+            this.api_settings_menuItem.Size = new System.Drawing.Size(136, 22);
             this.api_settings_menuItem.Text = "图库配置";
             this.api_settings_menuItem.Click += new System.EventHandler(this.api_settings_menuItem_Click);
             // 
             // delete_empty_menuItem
             // 
             this.delete_empty_menuItem.Name = "delete_empty_menuItem";
-            this.delete_empty_menuItem.Size = new System.Drawing.Size(152, 22);
+            this.delete_empty_menuItem.Size = new System.Drawing.Size(136, 22);
             this.delete_empty_menuItem.Text = "清除空目录";
             this.delete_empty_menuItem.Click += new System.EventHandler(this.delete_empty_menuItem_Click);
             // 
             // settings_stripmenu
             // 
             this.settings_stripmenu.Name = "settings_stripmenu";
-            this.settings_stripmenu.Size = new System.Drawing.Size(152, 22);
+            this.settings_stripmenu.Size = new System.Drawing.Size(136, 22);
             this.settings_stripmenu.Text = "选项";
             this.settings_stripmenu.Click += new System.EventHandler(this.settings_stripmenu_Click);
             // 
@@ -649,6 +650,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.emptyfolder_button);
             this.panel1.Controls.Add(this.help_button);
             this.panel1.Controls.Add(this.panel2);
@@ -735,6 +737,16 @@
             this.outline_background.DoWork += new System.ComponentModel.DoWorkEventHandler(this.outline_background_DoWork);
             this.outline_background.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.outline_background_ProgressChanged);
             this.outline_background.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.outline_background_RunWorkerCompleted);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(574, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // HomeForm
             // 
@@ -843,6 +855,7 @@
         private System.ComponentModel.BackgroundWorker outline_background;
         private System.Windows.Forms.Button emptyfolder_button;
         private System.Windows.Forms.ToolTip emptyfolder_tooltip;
+        private System.Windows.Forms.Button button1;
     }
 }
 
