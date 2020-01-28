@@ -113,14 +113,12 @@
     <Compile Include="ApiSettingsForm.Designer.cs">
       <DependentUpon>ApiSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackgroundWall.cs" />
     <Compile Include="ImageDeleteForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImageDeleteForm.Designer.cs">
       <DependentUpon>ImageDeleteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Emb.cs" />
     <Compile Include="GetsFiles.cs" />
     <Compile Include="ImageUpLog.cs" />
     <Compile Include="ListTable.cs" />

@@ -61,6 +61,9 @@
             this.depot_name_textbox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.api_sort_textbox = new System.Windows.Forms.TextBox();
+            this.api_sort_button = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -76,7 +79,7 @@
             // api_add_save_button
             // 
             this.api_add_save_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_add_save_button.Location = new System.Drawing.Point(321, 485);
+            this.api_add_save_button.Location = new System.Drawing.Point(321, 530);
             this.api_add_save_button.Name = "api_add_save_button";
             this.api_add_save_button.Size = new System.Drawing.Size(75, 23);
             this.api_add_save_button.TabIndex = 3;
@@ -88,7 +91,7 @@
             // 
             this.api_add_cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.api_add_cancel_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.api_add_cancel_button.Location = new System.Drawing.Point(402, 485);
+            this.api_add_cancel_button.Location = new System.Drawing.Point(402, 530);
             this.api_add_cancel_button.Name = "api_add_cancel_button";
             this.api_add_cancel_button.Size = new System.Drawing.Size(75, 23);
             this.api_add_cancel_button.TabIndex = 4;
@@ -331,7 +334,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 0;
-            this.label3.Text = "本地图库";
+            this.label3.Text = "图库目录";
             // 
             // label11
             // 
@@ -364,22 +367,57 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Location = new System.Drawing.Point(-2, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(489, 438);
+            this.panel1.Size = new System.Drawing.Size(489, 483);
             this.panel1.TabIndex = 2;
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.api_sort_textbox);
+            this.groupBox3.Controls.Add(this.api_sort_button);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.api_path_textbox);
             this.groupBox3.Controls.Add(this.api_path_button);
             this.groupBox3.Location = new System.Drawing.Point(14, 353);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(462, 75);
+            this.groupBox3.Size = new System.Drawing.Size(462, 110);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "目录";
+            this.groupBox3.Text = "        ";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(8, 64);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 17);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "归类目录";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
+            // 
+            // api_sort_textbox
+            // 
+            this.api_sort_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.api_sort_textbox.Location = new System.Drawing.Point(68, 61);
+            this.api_sort_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.api_sort_textbox.Name = "api_sort_textbox";
+            this.api_sort_textbox.Size = new System.Drawing.Size(302, 23);
+            this.api_sort_textbox.TabIndex = 4;
+            this.api_sort_textbox.TextChanged += new System.EventHandler(this.api_sort_textbox_TextChanged);
+            // 
+            // api_sort_button
+            // 
+            this.api_sort_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.api_sort_button.Location = new System.Drawing.Point(376, 61);
+            this.api_sort_button.Name = "api_sort_button";
+            this.api_sort_button.Size = new System.Drawing.Size(75, 23);
+            this.api_sort_button.TabIndex = 5;
+            this.api_sort_button.Text = "浏览";
+            this.api_sort_button.UseVisualStyleBackColor = true;
+            this.api_sort_button.Click += new System.EventHandler(this.api_sort_button_Click);
             // 
             // groupBox2
             // 
@@ -452,7 +490,7 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel3.Location = new System.Drawing.Point(-2, 437);
+            this.panel3.Location = new System.Drawing.Point(-2, 482);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(489, 1);
             this.panel3.TabIndex = 82;
@@ -472,7 +510,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.api_add_cancel_button;
-            this.ClientSize = new System.Drawing.Size(484, 516);
+            this.ClientSize = new System.Drawing.Size(484, 561);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label11);
@@ -539,5 +577,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox api_sort_textbox;
+        private System.Windows.Forms.Button api_sort_button;
     }
 }

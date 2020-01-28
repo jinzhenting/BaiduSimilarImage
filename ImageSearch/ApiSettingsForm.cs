@@ -53,6 +53,7 @@ namespace ImageSearch
                 api_tag1_textbox.Text = api.Tags1.ToString();
                 api_tag2_textbox.Text = api.Tags2.ToString();
                 api_path_textbox.Text = api.Path;
+                api_sort_textbox.Text = api.SortPath;
                 api_quantity_textbox.Text = api.Quantity.ToString();
                 sql_serverip_textbox.Text = api.Serverip;
                 sql_dataname_textbox.Text = api.Dataname;
@@ -70,7 +71,7 @@ namespace ImageSearch
                 return;
             }
 
-            if (api_appid_textbox.Text == "" || api_apikey_textbox.Text == "" || api_secreykey_textbox.Text == "" || api_timeout_textbox.Text == "" || api_tag1_textbox.Text == "" || api_tag2_textbox.Text == "" || api_path_textbox.Text == "" || api_quantity_textbox.Text == "" || sql_serverip_textbox.Text == "" || sql_dataname_textbox.Text == "" || sql_table_textbox.Text == "" || sql_userid_textbox.Text == "" || sql_password_textbox.Text == "")
+            if (api_appid_textbox.Text == "" || api_apikey_textbox.Text == "" || api_secreykey_textbox.Text == "" || api_timeout_textbox.Text == "" || api_tag1_textbox.Text == "" || api_tag2_textbox.Text == "" || api_path_textbox.Text == "" || api_quantity_textbox.Text == "" || sql_serverip_textbox.Text == "" || sql_dataname_textbox.Text == "" || sql_table_textbox.Text == "" || sql_userid_textbox.Text == "" || sql_password_textbox.Text == "" || api_sort_textbox.Text == "")
             {
                 MessageBox.Show("必需填写所有项目", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -114,7 +115,13 @@ namespace ImageSearch
 
             if (!Directory.Exists(api_path_textbox.Text))
             {
-                MessageBox.Show("图库本地位置无效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("图库目录无效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!Directory.Exists(api_sort_textbox.Text))
+            {
+                MessageBox.Show("归类目录无效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -176,7 +183,7 @@ namespace ImageSearch
                 bool dropable = Sql.Dropable(depot_list_combobox.Text, "DROP TABLE " + api.Table);// 清除数据库
                 if (!dropable)
                 {
-                    MessageBox.Show("删除数据表失败，已成功删除配置文件，请手动删除数据表", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("成功删除配置文件，删除数据表失败，请手动删除", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -187,6 +194,12 @@ namespace ImageSearch
         private void cancel_api_button_Click(object sender, EventArgs e)// 取消按钮
         {
             this.Close();
+        }
+
+        private void api_sort_button_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            if (folder.ShowDialog() == DialogResult.OK) api_sort_textbox.Text = (Regex.IsMatch(folder.SelectedPath, @"[\\]$")) ? folder.SelectedPath : folder.SelectedPath + @"\";
         }
 
         //

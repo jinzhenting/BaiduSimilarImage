@@ -66,6 +66,14 @@
             set { path = value; }
         }
 
+        //SortPath
+        private string sortpath;
+        public string SortPath
+        {
+            get { return sortpath; }
+            set { sortpath = value; }
+        }
+        
         //Serverip
         private string serverip;
         public string Serverip

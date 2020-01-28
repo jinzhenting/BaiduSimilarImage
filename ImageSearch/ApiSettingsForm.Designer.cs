@@ -66,6 +66,9 @@
             this.api_add_button = new System.Windows.Forms.Button();
             this.api_delete_button = new System.Windows.Forms.Button();
             this.cancel_api_button = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.api_sort_textbox = new System.Windows.Forms.TextBox();
+            this.api_sort_button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -213,28 +216,28 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 4);
+            this.label3.Location = new System.Drawing.Point(6, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
+            this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 0;
-            this.label3.Text = "图库本地位置";
+            this.label3.Text = "图库目录";
             // 
             // api_path_textbox
             // 
             this.api_path_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_path_textbox.Location = new System.Drawing.Point(5, 25);
+            this.api_path_textbox.Location = new System.Drawing.Point(9, 33);
             this.api_path_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.api_path_textbox.Name = "api_path_textbox";
-            this.api_path_textbox.Size = new System.Drawing.Size(310, 23);
+            this.api_path_textbox.Size = new System.Drawing.Size(290, 23);
             this.api_path_textbox.TabIndex = 1;
             // 
             // api_path_button
             // 
             this.api_path_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_path_button.Location = new System.Drawing.Point(321, 25);
+            this.api_path_button.Location = new System.Drawing.Point(305, 33);
             this.api_path_button.Name = "api_path_button";
-            this.api_path_button.Size = new System.Drawing.Size(60, 23);
+            this.api_path_button.Size = new System.Drawing.Size(75, 23);
             this.api_path_button.TabIndex = 2;
             this.api_path_button.Text = "浏览";
             this.api_path_button.UseVisualStyleBackColor = true;
@@ -409,6 +412,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label17);
+            this.tabPage3.Controls.Add(this.api_sort_textbox);
+            this.tabPage3.Controls.Add(this.api_sort_button);
             this.tabPage3.Controls.Add(this.api_path_textbox);
             this.tabPage3.Controls.Add(this.api_path_button);
             this.tabPage3.Controls.Add(this.label3);
@@ -451,6 +457,36 @@
             this.cancel_api_button.Text = "取消";
             this.cancel_api_button.UseVisualStyleBackColor = true;
             this.cancel_api_button.Click += new System.EventHandler(this.cancel_api_button_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(9, 62);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 17);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "归类目录";
+            // 
+            // api_sort_textbox
+            // 
+            this.api_sort_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.api_sort_textbox.Location = new System.Drawing.Point(9, 83);
+            this.api_sort_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.api_sort_textbox.Name = "api_sort_textbox";
+            this.api_sort_textbox.Size = new System.Drawing.Size(290, 23);
+            this.api_sort_textbox.TabIndex = 7;
+            // 
+            // api_sort_button
+            // 
+            this.api_sort_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.api_sort_button.Location = new System.Drawing.Point(305, 83);
+            this.api_sort_button.Name = "api_sort_button";
+            this.api_sort_button.Size = new System.Drawing.Size(75, 23);
+            this.api_sort_button.TabIndex = 8;
+            this.api_sort_button.Text = "浏览";
+            this.api_sort_button.UseVisualStyleBackColor = true;
+            this.api_sort_button.Click += new System.EventHandler(this.api_sort_button_Click);
             // 
             // ApiSettingsForm
             // 
@@ -525,5 +561,8 @@
         private System.Windows.Forms.Button api_add_button;
         private System.Windows.Forms.Button api_delete_button;
         private System.Windows.Forms.Button cancel_api_button;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox api_sort_textbox;
+        private System.Windows.Forms.Button api_sort_button;
     }
 }

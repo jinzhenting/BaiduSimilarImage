@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -54,12 +55,6 @@ namespace ImageSearch
 
         private void vector_sort_button_Click(object sender, EventArgs e)// 订单归类按钮
         {
-            if (depot_list_combobox.Text != "矢量图")
-            {
-                MessageBox.Show("暂时只支持矢量图归类", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;
-            }
-
             if (!Directory.Exists(sort_in_path_textbox.Text))
             {
                 MessageBox.Show("“准备归类的文件位置”错误", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -75,6 +70,12 @@ namespace ImageSearch
             Api api = ApiFunction.GetApi(depot_list_combobox.Text);
             if (api != null)
             {
+                if (!File.Exists(@"Sort\" + api.Table + ".cs"))
+                {
+                    MessageBox.Show(@"与图库关联的归类器 Sort\" + api.Table + ".cs 不存在\r\n此图库将不支持匹配查找和文件归类", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    return;
+                }
+
                 var back = new object[4];// 装箱
                 back[0] = sort_in_path_textbox.Text;
                 back[1] = api;
@@ -94,7 +95,6 @@ namespace ImageSearch
             var back = e.Argument as object[];
             string source_path = (Regex.IsMatch((string)back[0], @"[\\]$")) ? (string)back[0] : (string)back[0] + @"\";// 来源目录
             Api api = (Api)back[1];
-            string yes_path = (Regex.IsMatch(api.Path, @"[\\]$")) ? api.Path : api.Path + @"\";// 目标主目录
             bool sub = (bool)back[2];
             bool hold_old = (bool)back[3];
             #endregion 拆箱
@@ -166,8 +166,9 @@ namespace ImageSearch
             #endregion 获取文件列表
 
             #region 元素声明
-            string other_path = yes_path + @"Other\";// 目标其他文件目录
+            string other_path = api.Path + @"Other\";// 目标其他文件目录
             string old_name;// 源文件名含扩展名，不含路径
+            string new_name;// 编译器传回的临时文件名
             string new_fullname;// 目标文件名含路径
             int count = 0;// 进度计算
             DataTable datatable = new DataTable();
@@ -175,6 +176,9 @@ namespace ImageSearch
             datatable.Columns.Add("归类结果", Type.GetType("System.String"));
             #endregion 元素声明
 
+            
+            MethodInfo function = new Reflections().Compiler(api.Table);// 调用实时编译
+            if (function == null) return;
             foreach (string old_fullname in list)// 源文件名含路径old_fullname
             {
                 try
@@ -189,10 +193,11 @@ namespace ImageSearch
                     sort_background.ReportProgress(Percents.Get(count, list.Count), "发现文件" + old_fullname);// 进度日志
 
                     old_name = Path.GetFileName(old_fullname);// 文件名含路径
-
-                    if (Emb.Parser(old_name)) new_fullname = yes_path + Emb.Year + Emb.Month + @"\" + Emb.Customer + @"\" + old_name;// 根据是否订单相关文件生成不同目标//订单：yes_path\年月\客户\文件名
-                    else new_fullname = other_path + string.Format("{0:yyyyMM}", new FileInfo(old_fullname).LastWriteTime) + @"\" + old_name;// 非订单：其他\文件创建年月\文件名
-
+                    new_name = (string)function.Invoke(null, new object[] { old_name });// 调用实时编译函数获取文件新目录
+                    
+                    if (old_name.ToLower() == new_name.ToLower()) new_fullname = other_path + string.Format("{0:yyyyMM}", new FileInfo(old_fullname).LastWriteTime) + @"\" + old_name;// 非订单：其他\文件创建年月\文件名
+                    else new_fullname = api.Path + new_name;// 是订单，生成新位置
+                    
                     if (old_fullname.ToLower() == new_fullname.ToLower()) continue;// 扫描到文件本身时跳过
 
                     if (!File.Exists(new_fullname))// 如果新文件不存在，执行复制

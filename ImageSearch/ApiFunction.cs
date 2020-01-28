@@ -118,6 +118,7 @@ namespace ImageSearch
                         api.Tags2 = int.Parse(xmlnode.Attributes["tags2"].Value);
                         api.Quantity = int.Parse(xmlnode.Attributes["quantity"].Value);
                         api.Path = (Regex.IsMatch(xmlnode.Attributes["path"].Value, @"[\\]$")) ? xmlnode.Attributes["path"].Value : xmlnode.Attributes["path"].Value + @"\";
+                        api.SortPath = (Regex.IsMatch(xmlnode.Attributes["sortpath"].Value, @"[\\]$")) ? xmlnode.Attributes["sortpath"].Value : xmlnode.Attributes["sortpath"].Value + @"\";
                         api.Serverip = xmlnode.Attributes["serverip"].Value;
                         api.Dataname = xmlnode.Attributes["dataname"].Value;
                         api.Userid = xmlnode.Attributes["userid"].Value;
@@ -168,6 +169,7 @@ namespace ImageSearch
                         xmlnode.Attributes["tags2"].Value = api.Tags2.ToString();
                         xmlnode.Attributes["quantity"].Value = api.Quantity.ToString();
                         xmlnode.Attributes["path"].Value = api.Path;
+                        xmlnode.Attributes["sortpath"].Value = api.SortPath;
                         xmlnode.Attributes["serverip"].Value = api.Serverip;
                         xmlnode.Attributes["dataname"].Value = api.Dataname;
                         xmlnode.Attributes["userid"].Value = api.Userid;

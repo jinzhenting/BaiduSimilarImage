@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Data;
+using System.Reflection;
 
 
 /*
@@ -390,9 +391,12 @@ namespace ImageSearch
                 return;
             }
 
-            if (local_image_combobox.Text != "矢量图" && local_image_combobox.Text != "背景墙" && local_image_combobox.Text != "类似带")// 不支持
+            MethodInfo function = new Reflections().Compiler(outline_api.Table);// 传入类名调用实时编译
+            if (function == null) return;
+            string new_type = (string)function.Invoke(null, new object[] { local_type_textbox.Text });// 调用函数获取返回值
+            if (local_type_textbox.Text == new_type)
             {
-                MessageBox.Show("该图库不支持匹配查找", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(local_type_textbox.Text + "不是" + local_image_combobox.Text);
                 return;
             }
 
@@ -402,48 +406,18 @@ namespace ImageSearch
                 LocalListviewSettings();
             }
 
+            string path = Path.GetDirectoryName(outline_api.Path + new_type);// 目录
+            string type = local_type_textbox.Text;// 订单号
+
+
             search_bar.Value = 50;
             progress_label.Text = "查找中...";
-
-            string str = local_type_textbox.Text;// 字符
-            string path = "";// 订单文件夹
-            string classs = "";// 图库类型
-            string type = "";// 订单号
-
-            if (local_image_combobox.Text == "矢量图" && Emb.Parser(str))// 矢量图
-            {
-                path = local_image_path + Emb.Year + Emb.Month + @"\" + Emb.Customer;
-                type = Emb.Type;
-                classs = "矢量图";
-            }
-
-            else if (local_image_combobox.Text == "背景墙" && BackgroundWall.Parser(str))// 背景墙
-            {
-                path = local_image_path + BackgroundWall.Number;
-                type = BackgroundWall.Number;
-                classs = "背景墙";
-            }
-
-            else if (local_image_combobox.Text == "类似带" && Emb.Parser(str))// 类似带
-            {
-                path = local_image_path + Emb.Year + Emb.Month;
-                type = Emb.Type;
-                classs = "类似带";
-            }
-
-            if (classs == "")// 结果数量
-            {
-                MessageBox.Show("不是" + local_image_combobox.Text, "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                search_bar.Value = 100;
-                progress_label.Text = "查找完成";
-                return;
-            }
-
+            
             List<string> list = new List<string>();// 结果列表
             if (Directory.Exists(path)) list = GetsFiles.Get(path, "*.*", true);// 获取文件
             else
             {
-                MessageBox.Show(classs + "订单号正确，但该文件夹" + path + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(type + "订单号正确，但目录 " + path + " 不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 search_bar.Value = 100;
                 progress_label.Text = "查找完成";
                 return;
@@ -459,7 +433,7 @@ namespace ImageSearch
             }
 
             if (local_listview.Items.Count > 0) local_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
-            else MessageBox.Show(classs + "订单号正确，但该文件夹" + path + "内没有相关文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            else MessageBox.Show(type + "订单号正确，但目录 " + path + " 内没有查找到相关文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             search_bar.Value = 100;
             progress_label.Text = "查找完成";
@@ -780,11 +754,7 @@ namespace ImageSearch
             online_image_path_textbox.Text = "";
             progress_label.Text = "等待用户操作";
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Reflection.Compiler("EABZ20101");
-        }
+        
         #endregion 工具菜单
 
         //

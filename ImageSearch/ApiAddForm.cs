@@ -15,7 +15,7 @@ namespace ImageSearch
 
         private void api_add_save_button_Click(object sender, System.EventArgs e)// 完成按钮
         {
-            if (depot_name_textbox.Text == "" || api_appid_textbox.Text == "" || api_apikey_textbox.Text == "" || api_secreykey_textbox.Text == "" || api_timeout_textbox.Text == "" || api_tag1_textbox.Text == "" || api_tag2_textbox.Text == "" || api_path_textbox.Text == "" || api_quantity_textbox.Text == "" || sql_serverip_textbox.Text == "" || sql_dataname_textbox.Text == "" || sql_table_textbox.Text == "" || sql_userid_textbox.Text == "" || sql_password_textbox.Text == "")
+            if (depot_name_textbox.Text == "" || api_appid_textbox.Text == "" || api_apikey_textbox.Text == "" || api_secreykey_textbox.Text == "" || api_timeout_textbox.Text == "" || api_tag1_textbox.Text == "" || api_tag2_textbox.Text == "" || api_path_textbox.Text == "" || api_quantity_textbox.Text == "" || sql_serverip_textbox.Text == "" || sql_dataname_textbox.Text == "" || sql_table_textbox.Text == "" || sql_userid_textbox.Text == "" || sql_password_textbox.Text == "" || api_sort_textbox.Text == "")
             {
                 MessageBox.Show("必需填写所有项目", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -59,7 +59,13 @@ namespace ImageSearch
 
             if (!Directory.Exists(api_path_textbox.Text))
             {
-                MessageBox.Show("图库本地位置无效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("图库目录无效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!Directory.Exists(api_sort_textbox.Text))
+            {
+                MessageBox.Show("归类目录无效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -77,6 +83,7 @@ namespace ImageSearch
             api.Userid = sql_userid_textbox.Text;
             api.Password = sql_password_textbox.Text;
             api.Path = (Regex.IsMatch(api_path_textbox.Text, @"[\\]$")) ? api_path_textbox.Text : api_path_textbox.Text + @"\";
+            api.SortPath = (Regex.IsMatch(api_sort_textbox.Text, @"[\\]$")) ? api_sort_textbox.Text : api_sort_textbox.Text + @"\";
 
             bool sql = Sql.CreateTable(api, @"CREATE TABLE " + sql_table_textbox.Text + "(ID INT PRIMARY KEY IDENTITY(1, 1), Names VARCHAR(256) not null, Path VARCHAR(256) not null, LogID VARCHAR(256), ContSign VARCHAR(256), Tsgs1 INT, Tsgs2 INT, Result VARCHAR(256) not null, Message  VARCHAR(256) not null, Times DATETIME not null)");// 新建表
             if (!sql)
@@ -126,6 +133,22 @@ namespace ImageSearch
                 System.Environment.Exit(0);
                 return;
             }
+        }
+
+        private void api_sort_button_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            if (folder.ShowDialog() == DialogResult.OK) api_sort_textbox.Text = (Regex.IsMatch(folder.SelectedPath, @"[\\]$")) ? folder.SelectedPath : folder.SelectedPath + @"\";
+        }
+
+        private void api_sort_textbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
