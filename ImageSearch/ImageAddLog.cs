@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ImageSearch
 {
-    class ImageUpLog
+    class ImageAddLog
     {
         //ID
         private string id;

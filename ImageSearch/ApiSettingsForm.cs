@@ -159,7 +159,7 @@ namespace ImageSearch
 
         private void api_add_button_Click(object sender, EventArgs e)// 新建图库按钮
         {
-            ApiImageUpForm apiaddfrom = new ApiImageUpForm();
+            ApiImageAddForm apiaddfrom = new ApiImageAddForm();
             apiaddfrom.ShowDialog();
         }
 

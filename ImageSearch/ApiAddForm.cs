@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
-    public partial class ApiImageUpForm : Form
+    public partial class ApiImageAddForm : Form
     {
-        public ApiImageUpForm()
+        public ApiImageAddForm()
         {
             InitializeComponent();
         }
@@ -109,7 +109,7 @@ namespace ImageSearch
             if (folder.ShowDialog() == DialogResult.OK) api_path_textbox.Text = (Regex.IsMatch(folder.SelectedPath, @"[\\]$")) ? folder.SelectedPath : folder.SelectedPath + @"\";
         }
 
-        private void ApiImageUpForm_Load(object sender, System.EventArgs e)
+        private void ApiImageAddForm_Load(object sender, System.EventArgs e)
         {
             try//读取程序图标
             {

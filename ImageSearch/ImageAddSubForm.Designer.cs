@@ -1,6 +1,6 @@
 ﻿namespace ImageSearch
 {
-    partial class ImageUpSubForm
+    partial class ImageAddSubForm
     {
         /// <summary>
         /// Required designer variable.
@@ -90,7 +90,7 @@
             this.sub_clear_button.UseVisualStyleBackColor = true;
             this.sub_clear_button.Click += new System.EventHandler(this.sub_clear_button_Click);
             // 
-            // ImageUpSubForm
+            // ImageAddSubForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,11 +103,11 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(345, 438);
-            this.Name = "ImageUpSubForm";
+            this.Name = "ImageAddSubForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "选择子目录";
-            this.Load += new System.EventHandler(this.ImageUpSubForm_Load);
+            this.Load += new System.EventHandler(this.ImageAddSubForm_Load);
             this.ResumeLayout(false);
 
         }

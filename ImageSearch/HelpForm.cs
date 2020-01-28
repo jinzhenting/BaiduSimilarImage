@@ -10,18 +10,18 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
-    public partial class ImageUpForm : Form
+    public partial class HelpForm : Form
     {
-        public ImageUpForm()
+        public HelpForm()
         {
             InitializeComponent();
         }
 
-        private void ImageUpForm_Load(object sender, EventArgs e)
+        private void HelpForm_Load(object sender, EventArgs e)
         {
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Up.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Help.ico"));
             }
             catch (UnauthorizedAccessException)
             {

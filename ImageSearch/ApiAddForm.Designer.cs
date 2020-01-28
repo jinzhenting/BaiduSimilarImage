@@ -1,6 +1,6 @@
 ﻿namespace ImageSearch
 {
-    partial class ApiImageUpForm
+    partial class ApiImageAddForm
     {
         /// <summary>
         /// Required designer variable.
@@ -505,7 +505,7 @@
             this.panel2.Size = new System.Drawing.Size(489, 1);
             this.panel2.TabIndex = 2;
             // 
-            // ApiImageUpForm
+            // ApiImageAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -520,10 +520,10 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(500, 555);
-            this.Name = "ApiImageUpForm";
+            this.Name = "ApiImageAddForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "新建图库";
-            this.Load += new System.EventHandler(this.ApiImageUpForm_Load);
+            this.Load += new System.EventHandler(this.ApiImageAddForm_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

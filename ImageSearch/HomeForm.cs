@@ -19,9 +19,6 @@ XP下API安全链接出错
 清除数据库中本地没有图片的记录。
 扫描本地图片记录到数据库，初始为Result=local，
 
-GetFilesClass改为栈
-增加矢量图库默认整理的文件位置设定
-离线查找优化速度，将来删除匹配查找提高程序通用化
 清空文件夹优化传出时卡顿问题
 软件更新改版，放在单独类中
 本地搜索增加3个DATA索引
@@ -110,7 +107,7 @@ namespace ImageSearch
                 {
                     if (xmlnode.Name == "Text")
                     {
-                        this.Text = xmlnode.Attributes["name"].Value;// 程序标题
+                        this.Text = xmlnode.Attributes["name"].Value + " " + Application.ProductVersion;// 程序标题
                         app_about_menu.Text = "关于 " + xmlnode.Attributes["name"].Value;// 关于菜单
                     }
                     if (xmlnode.Name == "Up") app_up_path = xmlnode.Attributes["path"].Value;// 程序更新地址
@@ -717,7 +714,7 @@ namespace ImageSearch
         }
         private void ImageAdd()// 图库入库功能
         {
-            ImageUpForm addform = new ImageUpForm();
+            ImageAddForm addform = new ImageAddForm();
             addform.ShowDialog();
         }
 
@@ -731,7 +728,8 @@ namespace ImageSearch
         }
         private void ImageUp()// 图库更新功能
         {
-            MessageBox.Show("功能未完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            ImageUpForm imageupform = new ImageUpForm();
+            imageupform.ShowDialog();
         }
 
         private void image_delete_menuItem_Click(object sender, EventArgs e)// 图库删除菜单
@@ -758,7 +756,8 @@ namespace ImageSearch
         }
         private void Help()// 程序帮助功能
         {
-            MessageBox.Show("功能未完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            HelpForm helpform = new HelpForm();
+            helpform.ShowDialog();
         }
 
         private void settings_stripmenu_Click(object sender, EventArgs e)// 程序选项菜单

@@ -686,7 +686,7 @@
             this.help_button.TabIndex = 6;
             this.help_button.Text = "帮助";
             this.help_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.app_help_tooltip.SetToolTip(this.help_button, "程序使用说明");
+            this.app_help_tooltip.SetToolTip(this.help_button, "系统使用帮助");
             this.help_button.UseVisualStyleBackColor = false;
             this.help_button.Click += new System.EventHandler(this.help_button_Click);
             // 

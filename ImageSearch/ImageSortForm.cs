@@ -182,7 +182,7 @@ namespace ImageSearch
                         list.Add(file);// 栈目录的文件遍历到List
                         sort_background.ReportProgress(1, "发现文件" + file);// 进度日志
                     }
-                if (sub_paths.Length > 0) foreach (string sub_path in sub_paths) stack.Push(sub_path);// 栈目录的子目录列表入栈
+                if (sort_sub_checkbox.Checked) if (sub_paths.Length > 0) foreach (string sub_path in sub_paths) stack.Push(sub_path);// 如果包含子目录，栈目录的子目录列表入栈 
             }
             #endregion 获取文件列表
 

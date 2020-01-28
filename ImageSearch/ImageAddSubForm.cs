@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
-    public partial class ImageUpSubForm : Form
+    public partial class ImageAddSubForm : Form
     {
-        public ImageUpSubForm()
+        public ImageAddSubForm()
         {
             InitializeComponent();
         }
@@ -30,7 +30,7 @@ namespace ImageSearch
         }
 
         //
-        private void ImageUpSubForm_Load(object sender, EventArgs e)
+        private void ImageAddSubForm_Load(object sender, EventArgs e)
         {
             //
             list = new List<string>();
