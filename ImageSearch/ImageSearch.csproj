@@ -119,7 +119,6 @@
     <Compile Include="ImageDeleteForm.Designer.cs">
       <DependentUpon>ImageDeleteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GetsFiles.cs" />
     <Compile Include="ImageUpLog.cs" />
     <Compile Include="ListTable.cs" />
     <Compile Include="Percents.cs" />

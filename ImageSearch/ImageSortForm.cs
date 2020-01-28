@@ -67,7 +67,6 @@ namespace ImageSearch
                 return;
             }
 
-            Api api = ApiFunction.GetApi(depot_list_combobox.Text);
             if (api != null)
             {
                 if (!File.Exists(@"Sort\" + api.Table + ".cs"))
@@ -101,68 +100,90 @@ namespace ImageSearch
 
             #region 获取文件列表
 
-
-
-
-            //优化Stack算法，现在忽略了顶层目录文件，只遍历第一个子目录
-            //优化写成后替换GETFILES类写法
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            List<string> list = new List<string>(); 
-
-            DirectoryInfo root_directoryinfo = new DirectoryInfo(source_path);// 一层文件夹
-            FileInfo[] file = root_directoryinfo.GetFiles();
-            foreach (FileInfo fileinfo in file) list.Add(fileinfo.FullName);
-            
-            Stack<string> stack = new Stack<string>();// 栈
-            List<string> paths = new List<string>();// 文件夹
-            List<Array> files = new List<Array>();// 文件
-            string[] dio = Directory.GetDirectories(source_path, "*.*", SearchOption.TopDirectoryOnly);// 获取主目录
-            foreach (string str in dio)// 遍历主目录
+            List<string> list = new List<string>();// 返回的文件列表
+            Stack<string> stack = new Stack<string>(20);// 栈
+            stack.Push(source_path);// 主目录入栈
+            while (stack.Count > 0)// 栈不为空时遍历
             {
-                stack.Push(str);// 将顶层目录压栈
-                while (stack.Count > 0)// 遍历此目录下所有目录
+                if (sort_background.CancellationPending)// 检测取消
                 {
-                    string tempPath = stack.Pop();// 顶层目录出栈
-                    paths.Add(tempPath);// 记录出栈目录
-
-                    sort_background.ReportProgress(50, "查找文件夹 " + tempPath);// 进度日志
-
-                    try//权限测试，用户可跳过没有权限的目录
-                    {
-                        Array access = Directory.GetDirectories(tempPath);
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                        if (MessageBox.Show("无权限访问：" + tempPath + "请尝试使用管理员权限运行本程序，是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;// 利用出栈，跳过此目录
-                        else return;
-                    }
-
-                    FileInfo fi = new FileInfo(tempPath);
-                    if ((fi.Attributes & FileAttributes.Directory) == 0) continue;
-
-                    Array subDire = null, subFiles = null;// subDire: 子目录组 subFiles: 子文件组
-                    subDire = Directory.GetDirectories(tempPath);
-                    subFiles = Directory.GetFiles(tempPath);
-                    files.Add(subFiles);// 记录文件目录不再入栈
-                    if (subDire != null && subFiles != null) foreach (var ex in subDire) stack.Push(ex.ToString());// 子目录组中每个目录进行遍历再次压入栈
+                    e.Cancel = true;
+                    return;
                 }
-            }
 
-            foreach (Array array in files) foreach (string str in array) list.Add(str);// 数组遍历到列表
+                string main_path = stack.Pop();// 取栈中第一个目录
+
+                string[] sub_paths = null;
+                try { sub_paths = Directory.GetDirectories(main_path); }// 栈目录的子目录列表
+                #region 异常
+                catch (UnauthorizedAccessException ex)
+                {
+                    if (MessageBox.Show("无权限操作，请尝试使用管理员权限运行本程序，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                    else
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                catch (FileNotFoundException ex)
+                {
+                    if (MessageBox.Show("文件或文件夹不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                    else
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (MessageBox.Show("发生未知如下错误\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                    else
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                #endregion 异常
+
+                string[] files = null;
+                try { files = Directory.GetFiles(main_path); }// 栈目录的文件列表
+                #region 异常
+                catch (UnauthorizedAccessException ex)
+                {
+                    if (MessageBox.Show("无权限操作，请尝试使用管理员权限运行本程序，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                    else
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                catch (FileNotFoundException ex)
+                {
+                    if (MessageBox.Show("文件或文件夹不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                    else
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (MessageBox.Show("发生未知如下错误\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                    else
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                #endregion 异常
+
+                if (files.Length > 0) foreach (string file in files)
+                    {
+                        list.Add(file);// 栈目录的文件遍历到List
+                        sort_background.ReportProgress(1, "发现文件" + file);// 进度日志
+                    }
+                if (sub_paths.Length > 0) foreach (string sub_path in sub_paths) stack.Push(sub_path);// 栈目录的子目录列表入栈
+            }
             #endregion 获取文件列表
 
             #region 元素声明
@@ -175,7 +196,6 @@ namespace ImageSearch
             datatable.Columns.Add("文件", Type.GetType("System.String"));
             datatable.Columns.Add("归类结果", Type.GetType("System.String"));
             #endregion 元素声明
-
             
             MethodInfo function = new Reflections().Compiler(api.Table);// 调用实时编译
             if (function == null) return;
@@ -220,7 +240,7 @@ namespace ImageSearch
                             DataTableAddRows(datatable, old_fullname, "已删除" + old_fullname);
                         }
                     }
-                    else//新文件已存在//创建时间不同
+                    else// 新文件已存在// 创建时间不同
                     {
                         new_fullname = GetNewPathForDupes(new_fullname);// 增加版本后缀
                         if (!Directory.Exists(Path.GetDirectoryName(new_fullname))) Directory.CreateDirectory(Path.GetDirectoryName(new_fullname));// 建立目录
@@ -328,19 +348,33 @@ namespace ImageSearch
             progress_label.Text = "完成";
             search_bar.Value = 100;
         }
-
-        //矢量开始位置浏览按钮
-        private void vcetor_source_path_button_Click(object sender, EventArgs e)
+        
+        private void vcetor_source_path_button_Click(object sender, EventArgs e)// 矢量开始位置浏览按钮
         {
             FolderBrowserDialog vcetor_source_folder = new FolderBrowserDialog();
             if (vcetor_source_folder.ShowDialog() == DialogResult.OK) sort_in_path_textbox.Text = (Regex.IsMatch(vcetor_source_folder.SelectedPath, @"[\\]$")) ? vcetor_source_folder.SelectedPath : vcetor_source_folder.SelectedPath + @"\";
         }
-
-        //矢量取消归类按钮
-        private void vector_cancel_button_Click(object sender, EventArgs e)
+        
+        private void vector_cancel_button_Click(object sender, EventArgs e)// 矢量取消归类按钮
         {
             if (sort_background.IsBusy) sort_background.CancelAsync();
             else MessageBox.Show("未开始归类图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        Api api;
+        private void depot_list_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            api = ApiFunction.GetApi(depot_list_combobox.Text);
+            sort_in_path_textbox.Text = api.SortPath;
+        }
+
+        private void ImageSortForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (sort_background.IsBusy)
+            {
+                e.Cancel = true;
+                MessageBox.Show("后台正在归类，请勿关闭窗口", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
         }
     }
 }

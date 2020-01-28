@@ -409,12 +409,64 @@ namespace ImageSearch
             string path = Path.GetDirectoryName(outline_api.Path + new_type);// 目录
             string type = local_type_textbox.Text;// 订单号
 
-
             search_bar.Value = 50;
             progress_label.Text = "查找中...";
-            
-            List<string> list = new List<string>();// 结果列表
-            if (Directory.Exists(path)) list = GetsFiles.Get(path, "*.*", true);// 获取文件
+
+            List<string> list = new List<string>();// 返回的文件列表
+            if (Directory.Exists(path))
+            {
+                #region 获取文件列表
+                Stack<string> stack = new Stack<string>(20);// 栈
+                stack.Push(path);// 主目录入栈
+                while (stack.Count > 0)// 栈不为空时遍历
+                {
+                    string main_path = stack.Pop();// 取栈中第一个目录
+
+                    string[] sub_paths = null;
+                    try { sub_paths = Directory.GetDirectories(main_path); }// 栈目录的子目录列表
+                    #region 异常
+                    catch (UnauthorizedAccessException ex)
+                    {
+                        if (MessageBox.Show("无权限操作，请尝试使用管理员权限运行本程序，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                        else return;
+                    }
+                    catch (FileNotFoundException ex)
+                    {
+                        if (MessageBox.Show("文件或文件夹不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                        else return;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (MessageBox.Show("发生未知如下错误\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                        else return;
+                    }
+                    #endregion 异常
+
+                    string[] files = null;
+                    try { files = Directory.GetFiles(main_path); }// 栈目录的文件列表
+                    #region 异常
+                    catch (UnauthorizedAccessException ex)
+                    {
+                        if (MessageBox.Show("无权限操作，请尝试使用管理员权限运行本程序，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                        else return;
+                    }
+                    catch (FileNotFoundException ex)
+                    {
+                        if (MessageBox.Show("文件或文件夹不存在，描述如下\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                        else return;
+                    }
+                    catch (Exception ex)
+                    {
+                        if (MessageBox.Show("发生未知如下错误\r\n\r\n" + ex + "\r\n\r\n是否继续归类？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
+                        else return;
+                    }
+                    #endregion 异常
+
+                    if (files.Length > 0) foreach (string file in files) list.Add(file);// 栈目录的文件遍历到List
+                    if (sub_paths.Length > 0) foreach (string sub_path in sub_paths) stack.Push(sub_path);// 栈目录的子目录列表入栈
+                }
+                #endregion 获取文件列表
+            }
             else
             {
                 MessageBox.Show(type + "订单号正确，但目录 " + path + " 不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -754,7 +806,7 @@ namespace ImageSearch
             online_image_path_textbox.Text = "";
             progress_label.Text = "等待用户操作";
         }
-        
+
         #endregion 工具菜单
 
         //
