@@ -57,7 +57,7 @@ namespace ImageSearch
 
         private void IconNullBool()// 项目缺失缩略图检测
         {
-            if (!(File.Exists("ListIcon.jpg")))
+            if (!(File.Exists(@"Skin\ListIcon.jpg")))
             {
                 MessageBox.Show("缩略图缺失图标载入错误，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Environment.Exit(0);
@@ -101,7 +101,7 @@ namespace ImageSearch
                     }
 
                     if (File.Exists(image_path + result_list[i])) imagelist.Images.Add(Image.FromFile(image_path + result_list[i]));// 加载缩略图
-                    else imagelist.Images.Add(Image.FromFile("ListIcon.jpg"));// 加载缺失缩略图
+                    else imagelist.Images.Add(Image.FromFile(@"Skin\ListIcon.jpg"));// 加载缺失缩略图
 
                     //进度
                     icon_background.ReportProgress(Percents.Get(i + 1, result_list.Count), result_list[i]);
