@@ -113,54 +113,6 @@ namespace ImageSearch
         private List<string> sub_list = new List<string>();// 包含子目录选项列表
         private void sub_checkbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!sub_checkbox.Checked) return;// 未勾选
-
-            if (sub_list.Count > 0) sub_list.Clear();// 清空子目录选项列表
-
-            if (sub_checkbox.Checked && depot_list_combobox.Text == "")
-            {
-                MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (sub_list.Count > 0) sub_list.Clear();
-                sub_checkbox.Checked = false;
-                return;
-            }
-
-            if (sub_checkbox.Checked && add_path_textbox.Text == "")
-            {
-                MessageBox.Show("未选择图片目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (sub_list.Count > 0) sub_list.Clear();
-                sub_checkbox.Checked = false;
-                return;
-            }
-
-            if (sub_checkbox.Checked && !Directory.Exists(add_path_textbox.Text))
-            {
-                MessageBox.Show("图片目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (sub_list.Count > 0) sub_list.Clear();
-                sub_checkbox.Checked = false;
-                return;
-            }
-
-            ImageAddSubForm subform = new ImageAddSubForm();
-            subform.InPath = api.Path;// 主目录
-            subform.ShowDialog();
-            if (subform.DialogResult == DialogResult.OK)// 返回确定
-            {
-                if (subform.List.Count < 1)// 返回无选中项
-                {
-                    sub_checkbox.Checked = false;
-                    if (sub_list.Count > 0) sub_list.Clear();
-                    return;
-                }
-                sub_list = subform.List;// 获取列表
-                return;
-            }
-            else//返回取消
-            {
-                sub_checkbox.Checked = false;
-                if (sub_list.Count > 0) sub_list.Clear();
-                return;
-            }
         }
 
         private void sql_checkbox_CheckedChanged(object sender, EventArgs e)// 匹配数据库选项
@@ -750,6 +702,72 @@ namespace ImageSearch
             }
         }
 
+        private void sub_checkbox_Click(object sender, EventArgs e)
+        {
+            if (add_background.IsBusy)
+            {
+                MessageBox.Show("后台正在入库，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (sub_checkbox.Checked) sub_checkbox.Checked = false;
+                else sub_checkbox.Checked = true;
+                return;
+            }
 
+            if (scan_background.IsBusy)
+            {
+                MessageBox.Show("后台正在扫描文件，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (sub_checkbox.Checked) sub_checkbox.Checked = false;
+                else sub_checkbox.Checked = true;
+                return;
+            }
+
+            if (!sub_checkbox.Checked) return;// 未勾选
+
+            if (sub_list.Count > 0) sub_list.Clear();// 清空子目录选项列表
+
+            if (sub_checkbox.Checked && depot_list_combobox.Text == "")
+            {
+                MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (sub_list.Count > 0) sub_list.Clear();
+                sub_checkbox.Checked = false;
+                return;
+            }
+
+            if (sub_checkbox.Checked && add_path_textbox.Text == "")
+            {
+                MessageBox.Show("未选择图片目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (sub_list.Count > 0) sub_list.Clear();
+                sub_checkbox.Checked = false;
+                return;
+            }
+
+            if (sub_checkbox.Checked && !Directory.Exists(add_path_textbox.Text))
+            {
+                MessageBox.Show("图片目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (sub_list.Count > 0) sub_list.Clear();
+                sub_checkbox.Checked = false;
+                return;
+            }
+
+            ImageAddSubForm subform = new ImageAddSubForm();
+            subform.InPath = api.Path;// 主目录
+            subform.ShowDialog();
+            if (subform.DialogResult == DialogResult.OK)// 返回确定
+            {
+                if (subform.List.Count < 1)// 返回无选中项
+                {
+                    sub_checkbox.Checked = false;
+                    if (sub_list.Count > 0) sub_list.Clear();
+                    return;
+                }
+                sub_list = subform.List;// 获取列表
+                return;
+            }
+            else//返回取消
+            {
+                sub_checkbox.Checked = false;
+                if (sub_list.Count > 0) sub_list.Clear();
+                return;
+            }
+        }
     }
 }

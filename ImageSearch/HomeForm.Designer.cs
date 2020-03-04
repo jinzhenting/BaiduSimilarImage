@@ -50,7 +50,6 @@
             this.search_menustrip = new System.Windows.Forms.MenuStrip();
             this.tool_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
             this.sort_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.api_settings_menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.delete_empty_menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settings_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
             this.search_tabontrol = new System.Windows.Forms.TabControl();
@@ -98,6 +97,7 @@
             this.online_depot_combobox_tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.outline_background = new System.ComponentModel.BackgroundWorker();
             this.emptyfolder_tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.api_settings_menuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.online_picturebox)).BeginInit();
             this.imagebox_menustrip.SuspendLayout();
             this.search_menustrip.SuspendLayout();
@@ -213,7 +213,8 @@
             this.image_stripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.image_add_menuItem,
             this.image_up_menuItem,
-            this.image_delete_menuItem});
+            this.image_delete_menuItem,
+            this.api_settings_menuItem});
             this.image_stripmenu.Name = "image_stripmenu";
             this.image_stripmenu.Size = new System.Drawing.Size(44, 21);
             this.image_stripmenu.Text = "图库";
@@ -221,21 +222,21 @@
             // image_add_menuItem
             // 
             this.image_add_menuItem.Name = "image_add_menuItem";
-            this.image_add_menuItem.Size = new System.Drawing.Size(100, 22);
+            this.image_add_menuItem.Size = new System.Drawing.Size(152, 22);
             this.image_add_menuItem.Text = "入库";
             this.image_add_menuItem.Click += new System.EventHandler(this.image_add_menuItem_Click);
             // 
             // image_up_menuItem
             // 
             this.image_up_menuItem.Name = "image_up_menuItem";
-            this.image_up_menuItem.Size = new System.Drawing.Size(100, 22);
+            this.image_up_menuItem.Size = new System.Drawing.Size(152, 22);
             this.image_up_menuItem.Text = "更新";
             this.image_up_menuItem.Click += new System.EventHandler(this.image_up_menuItem_Click);
             // 
             // image_delete_menuItem
             // 
             this.image_delete_menuItem.Name = "image_delete_menuItem";
-            this.image_delete_menuItem.Size = new System.Drawing.Size(100, 22);
+            this.image_delete_menuItem.Size = new System.Drawing.Size(152, 22);
             this.image_delete_menuItem.Text = "删除";
             this.image_delete_menuItem.Click += new System.EventHandler(this.image_delete_menuItem_Click);
             // 
@@ -252,21 +253,21 @@
             // app_about_menu
             // 
             this.app_about_menu.Name = "app_about_menu";
-            this.app_about_menu.Size = new System.Drawing.Size(136, 22);
+            this.app_about_menu.Size = new System.Drawing.Size(152, 22);
             this.app_about_menu.Text = "关于";
             this.app_about_menu.Click += new System.EventHandler(this.app_about_menu_Click);
             // 
             // app_updata_menuItem
             // 
             this.app_updata_menuItem.Name = "app_updata_menuItem";
-            this.app_updata_menuItem.Size = new System.Drawing.Size(136, 22);
+            this.app_updata_menuItem.Size = new System.Drawing.Size(152, 22);
             this.app_updata_menuItem.Text = "获取新版本";
             this.app_updata_menuItem.Click += new System.EventHandler(this.app_updata_menuItem_Click);
             // 
             // help_stripmenu
             // 
             this.help_stripmenu.Name = "help_stripmenu";
-            this.help_stripmenu.Size = new System.Drawing.Size(136, 22);
+            this.help_stripmenu.Size = new System.Drawing.Size(152, 22);
             this.help_stripmenu.Text = "帮助";
             this.help_stripmenu.Click += new System.EventHandler(this.help_stripmenu_Click);
             // 
@@ -289,7 +290,6 @@
             // 
             this.tool_stripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sort_menuItem,
-            this.api_settings_menuItem,
             this.delete_empty_menuItem,
             this.settings_stripmenu});
             this.tool_stripmenu.Name = "tool_stripmenu";
@@ -299,28 +299,21 @@
             // sort_menuItem
             // 
             this.sort_menuItem.Name = "sort_menuItem";
-            this.sort_menuItem.Size = new System.Drawing.Size(136, 22);
+            this.sort_menuItem.Size = new System.Drawing.Size(152, 22);
             this.sort_menuItem.Text = "图片整理";
             this.sort_menuItem.Click += new System.EventHandler(this.sort_menuItem_Click);
-            // 
-            // api_settings_menuItem
-            // 
-            this.api_settings_menuItem.Name = "api_settings_menuItem";
-            this.api_settings_menuItem.Size = new System.Drawing.Size(136, 22);
-            this.api_settings_menuItem.Text = "图库配置";
-            this.api_settings_menuItem.Click += new System.EventHandler(this.api_settings_menuItem_Click);
             // 
             // delete_empty_menuItem
             // 
             this.delete_empty_menuItem.Name = "delete_empty_menuItem";
-            this.delete_empty_menuItem.Size = new System.Drawing.Size(136, 22);
+            this.delete_empty_menuItem.Size = new System.Drawing.Size(152, 22);
             this.delete_empty_menuItem.Text = "清除空目录";
             this.delete_empty_menuItem.Click += new System.EventHandler(this.delete_empty_menuItem_Click);
             // 
             // settings_stripmenu
             // 
             this.settings_stripmenu.Name = "settings_stripmenu";
-            this.settings_stripmenu.Size = new System.Drawing.Size(136, 22);
+            this.settings_stripmenu.Size = new System.Drawing.Size(152, 22);
             this.settings_stripmenu.Text = "选项";
             this.settings_stripmenu.Click += new System.EventHandler(this.settings_stripmenu_Click);
             // 
@@ -575,6 +568,7 @@
             // 
             // sort_button
             // 
+            this.sort_button.FlatAppearance.BorderSize = 0;
             this.sort_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.sort_button.Location = new System.Drawing.Point(312, 7);
             this.sort_button.Name = "sort_button";
@@ -589,6 +583,7 @@
             // image_add_button
             // 
             this.image_add_button.BackColor = System.Drawing.Color.Transparent;
+            this.image_add_button.FlatAppearance.BorderSize = 0;
             this.image_add_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.image_add_button.Location = new System.Drawing.Point(8, 7);
             this.image_add_button.Name = "image_add_button";
@@ -633,6 +628,7 @@
             // image_up_button
             // 
             this.image_up_button.BackColor = System.Drawing.Color.Transparent;
+            this.image_up_button.FlatAppearance.BorderSize = 0;
             this.image_up_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.image_up_button.Location = new System.Drawing.Point(84, 7);
             this.image_up_button.Name = "image_up_button";
@@ -665,6 +661,7 @@
             // emptyfolder_button
             // 
             this.emptyfolder_button.BackColor = System.Drawing.Color.Transparent;
+            this.emptyfolder_button.FlatAppearance.BorderSize = 0;
             this.emptyfolder_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.emptyfolder_button.Location = new System.Drawing.Point(388, 7);
             this.emptyfolder_button.Name = "emptyfolder_button";
@@ -679,6 +676,7 @@
             // help_button
             // 
             this.help_button.BackColor = System.Drawing.Color.Transparent;
+            this.help_button.FlatAppearance.BorderSize = 0;
             this.help_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.help_button.Location = new System.Drawing.Point(474, 7);
             this.help_button.Name = "help_button";
@@ -703,6 +701,7 @@
             // image_delete_button
             // 
             this.image_delete_button.BackColor = System.Drawing.Color.Transparent;
+            this.image_delete_button.FlatAppearance.BorderSize = 0;
             this.image_delete_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.image_delete_button.Location = new System.Drawing.Point(160, 7);
             this.image_delete_button.Name = "image_delete_button";
@@ -717,6 +716,7 @@
             // api_settings_button
             // 
             this.api_settings_button.BackColor = System.Drawing.Color.Transparent;
+            this.api_settings_button.FlatAppearance.BorderSize = 0;
             this.api_settings_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.api_settings_button.Location = new System.Drawing.Point(236, 7);
             this.api_settings_button.Name = "api_settings_button";
@@ -735,6 +735,13 @@
             this.outline_background.DoWork += new System.ComponentModel.DoWorkEventHandler(this.outline_background_DoWork);
             this.outline_background.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.outline_background_ProgressChanged);
             this.outline_background.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.outline_background_RunWorkerCompleted);
+            // 
+            // api_settings_menuItem
+            // 
+            this.api_settings_menuItem.Name = "api_settings_menuItem";
+            this.api_settings_menuItem.Size = new System.Drawing.Size(152, 22);
+            this.api_settings_menuItem.Text = "配置管理";
+            this.api_settings_menuItem.Click += new System.EventHandler(this.配置管理ToolStripMenuItem_Click);
             // 
             // HomeForm
             // 
@@ -817,7 +824,6 @@
         private System.Windows.Forms.Button local_search_button;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem sort_menuItem;
-        private System.Windows.Forms.ToolStripMenuItem api_settings_menuItem;
         private System.Windows.Forms.ToolStripMenuItem app_updata_menuItem;
         private System.Windows.Forms.ToolStripMenuItem help_stripmenu;
         private System.Windows.Forms.Button help_button;
@@ -843,6 +849,7 @@
         private System.ComponentModel.BackgroundWorker outline_background;
         private System.Windows.Forms.Button emptyfolder_button;
         private System.Windows.Forms.ToolTip emptyfolder_tooltip;
+        private System.Windows.Forms.ToolStripMenuItem api_settings_menuItem;
     }
 }
 

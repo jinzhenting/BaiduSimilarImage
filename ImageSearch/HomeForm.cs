@@ -5,22 +5,15 @@ using System.Windows.Forms;
 using System.Xml;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Data;
 using System.Reflection;
 
 
 /*
-------------------------------漏洞------------------------------
+////////////////////////////////////////////// 问题
 XP下API安全链接出错
 
-------------------------------进度------------------------------
-本地图片整理增加功能：
-清除数据库中本地没有图片的记录。
-扫描本地图片记录到数据库，初始为Result=local，
-
-清空文件夹优化传出时卡顿问题
-软件更新改版，放在单独类中
+////////////////////////////////////////////// 进度
 本地搜索增加3个DATA索引
 更新功能
 帮助功能
@@ -35,65 +28,9 @@ namespace ImageSearch
         {
             InitializeComponent();
         }
-
-        #region 程序更新
-        private string app_up_path;// 地址
-
-        private void AppUpdata(bool show_windows)
-        {
-            if (!Directory.Exists(app_up_path))// 地址检测
-            {
-                if (MessageBox.Show("程序更新地址 " + app_up_path + " 无效，是否重新设置？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;// 新版本更新选择窗口
-                else
-                {
-                    SettingsForm settingsform = new SettingsForm();
-                    settingsform.ShowDialog();
-                    System.Environment.Exit(0);
-                }
-                return;
-            }
-
-            try
-            {
-                DirectoryInfo directorys = new DirectoryInfo(app_up_path);
-                FileInfo[] files = directorys.GetFiles(@"ImageSearch*.exe", SearchOption.TopDirectoryOnly);// 扫描ImageSearch开头命名的exe文件
-                if (files.Length == 0)// 没有发现ImageSearch开头命名的exe文件
-                {
-                    if (show_windows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    return;
-                }
-
-                foreach (FileInfo file in files)// 遍历1或多个ImageSearch程序文件
-                {
-                    string version = Regex.Match(file.Name, @"[1-9]+[.][0-9]+[.][0-9]+[.][0-9]+").Groups[0].Value.Replace(".", "");// 获取版本号
-                    if (version == "" || version == null) continue;// 在exe文件名中没有找到版本号
-                    if (int.Parse(version) < int.Parse(Application.ProductVersion.Replace(".", ""))) continue;// 本地比服务器版本高
-                    if (int.Parse(version) == int.Parse(Application.ProductVersion.Replace(".", ""))) continue;// 本地与服务器版本相同
-                    if (MessageBox.Show("发现新版本：" + version + "\r\n当前版本：" + Application.ProductVersion + "\r\n按确定立即更新，请耐心等待后台下载完成安装", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;// 新版本更新选择窗口
-                    System.Diagnostics.Process.Start(file.FullName);
-                    System.Environment.Exit(0);
-                    return;
-                }
-
-                if (show_windows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);// 存在ImageSearch程序文件，但版本相同或更旧
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show("无权限访问更新地址，请尝试使用管理员权限运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show("更新地址不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("程序更新时发生如下错误\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-        #endregion 程序更新
+        
+        private string app_up_path;// 更新地址
+        
 
         #region 程序配置
         private void Settings()
@@ -109,8 +46,13 @@ namespace ImageSearch
                     {
                         this.Text = xmlnode.Attributes["name"].Value + " " + Application.ProductVersion;// 程序标题
                         app_about_menu.Text = "关于 " + xmlnode.Attributes["name"].Value;// 关于菜单
+                        continue;
                     }
-                    if (xmlnode.Name == "Up") app_up_path = xmlnode.Attributes["path"].Value;// 程序更新地址
+                    if (xmlnode.Name == "Up")
+                    {
+                        app_up_path = xmlnode.Attributes["path"].Value;// 程序更新地址
+                        continue;
+                    }
                 }
             }
             catch (UnauthorizedAccessException)
@@ -132,7 +74,7 @@ namespace ImageSearch
                 return;
             }
 
-            try//读取程序图标
+            try// 读取程序图标
             {
                 Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Icon.ico"));
                 image_add_button.Image = Image.FromFile(@"Skin\Add.png");
@@ -167,9 +109,9 @@ namespace ImageSearch
         #region 初始化
         private void HomeForm_Load(object sender, EventArgs e)// 窗体体载入时
         {
-            //Control.CheckForIllegalCrossThreadCalls = false;// 关闭back访问限制
+            // Control.CheckForIllegalCrossThreadCalls = false;// 关闭back访问限制
             Settings();// 程序配置
-            AppUpdata(false);// 程序升级
+            AppUpdata.Updata(app_up_path, false);// 程序升级
             if (ApiFunction.GetDepotList() != null) online_depot_combobox.DataSource = local_image_combobox.DataSource = ApiFunction.GetDepotList();// 所有图库下拉列表数据源
             LocalListviewSettings();// 本地搜索列表配置
             online_picturebox.AllowDrop = true;// 重写AllowDrop使其接受拖放
@@ -659,7 +601,7 @@ namespace ImageSearch
 
         private void app_updata_menuItem_Click(object sender, EventArgs e)// 程序更新菜单
         {
-            AppUpdata(true);
+            AppUpdata.Updata(app_up_path, true);
         }
 
         private void delete_empty_menuItem_Click(object sender, EventArgs e)// 删除空白文件夹菜单
@@ -689,8 +631,13 @@ namespace ImageSearch
             ImageSortForm sortform = new ImageSortForm();
             sortform.ShowDialog();
         }
+        
+        private void 配置管理ToolStripMenuItem_Click(object sender, EventArgs e)// 接口配置菜单
+        {
+            ApiSettings();
+        }
 
-        private void api_settings_menuItem_Click(object sender, EventArgs e)// 接口配置菜单
+        private void api_settings_menuItem_Click(object sender, EventArgs e)
         {
             ApiSettings();
         }

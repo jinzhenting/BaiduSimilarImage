@@ -157,7 +157,7 @@
             this.sub_checkbox.TabIndex = 6;
             this.sub_checkbox.Text = "包含子目录";
             this.sub_checkbox.UseVisualStyleBackColor = true;
-            this.sub_checkbox.CheckedChanged += new System.EventHandler(this.sub_checkbox_CheckedChanged);
+            this.sub_checkbox.Click += new System.EventHandler(this.sub_checkbox_Click);
             // 
             // add_background
             // 
