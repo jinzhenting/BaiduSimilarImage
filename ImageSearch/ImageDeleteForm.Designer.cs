@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label11 = new System.Windows.Forms.Label();
-            this.depot_list_combobox = new System.Windows.Forms.ComboBox();
+            this.depotListCombobox = new System.Windows.Forms.ComboBox();
             this.delete_path_textbox = new System.Windows.Forms.TextBox();
             this.delete_path_button = new System.Windows.Forms.Button();
             this.delete_button = new System.Windows.Forms.Button();
@@ -62,14 +62,14 @@
             this.label11.TabIndex = 1;
             this.label11.Text = "选择图库";
             // 
-            // depot_list_combobox
+            // depotListCombobox
             // 
-            this.depot_list_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.depot_list_combobox.FormattingEnabled = true;
-            this.depot_list_combobox.Location = new System.Drawing.Point(68, 8);
-            this.depot_list_combobox.Name = "depot_list_combobox";
-            this.depot_list_combobox.Size = new System.Drawing.Size(121, 25);
-            this.depot_list_combobox.TabIndex = 2;
+            this.depotListCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.depotListCombobox.FormattingEnabled = true;
+            this.depotListCombobox.Location = new System.Drawing.Point(68, 8);
+            this.depotListCombobox.Name = "depotListCombobox";
+            this.depotListCombobox.Size = new System.Drawing.Size(121, 25);
+            this.depotListCombobox.TabIndex = 2;
             // 
             // delete_path_textbox
             // 
@@ -269,7 +269,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.delete_cancel_button);
             this.Controls.Add(this.delete_button);
-            this.Controls.Add(this.depot_list_combobox);
+            this.Controls.Add(this.depotListCombobox);
             this.Controls.Add(this.label11);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -292,7 +292,7 @@
         #endregion
 
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox depot_list_combobox;
+        private System.Windows.Forms.ComboBox depotListCombobox;
         private System.Windows.Forms.TextBox delete_path_textbox;
         private System.Windows.Forms.Button delete_path_button;
         private System.Windows.Forms.Button delete_button;

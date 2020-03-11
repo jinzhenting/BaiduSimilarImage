@@ -29,350 +29,357 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.online_image_path_textbox = new System.Windows.Forms.TextBox();
-            this.online_image_path_button = new System.Windows.Forms.Button();
-            this.online_search_button = new System.Windows.Forms.Button();
-            this.online_picturebox = new System.Windows.Forms.PictureBox();
-            this.imagebox_menustrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.imagebox_paste_menuitem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imagebox_delete_menuitem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imagebox_copy_menuitem = new System.Windows.Forms.ToolStripMenuItem();
-            this.app_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.app_close_menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.image_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.image_add_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.image_up_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.image_delete_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.other_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.app_about_menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.app_updata_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.help_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.search_menustrip = new System.Windows.Forms.MenuStrip();
-            this.tool_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.sort_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.delete_empty_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settings_stripmenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.search_tabontrol = new System.Windows.Forms.TabControl();
-            this.online_tabpage = new System.Windows.Forms.TabPage();
-            this.online_clear_button = new System.Windows.Forms.Button();
-            this.online_depot_combobox = new System.Windows.Forms.ComboBox();
+            this.onlineImagePathTextbox = new System.Windows.Forms.TextBox();
+            this.openPath = new System.Windows.Forms.Button();
+            this.onlineSearchButton = new System.Windows.Forms.Button();
+            this.onlinePicturebox = new System.Windows.Forms.PictureBox();
+            this.imageBoxMenustrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.imageBoxPasteMenustrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageBoxDeleteMenustrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageBoxCopyMenustrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.appStripmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAppMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageAddMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageUpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageDeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.apiSettingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otherStripmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutAppMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.updataAppMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpStripmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchMenustrip = new System.Windows.Forms.MenuStrip();
+            this.toolsStripmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageSortMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteEmptyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsStripmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchTtabontrol = new System.Windows.Forms.TabControl();
+            this.onlineTabpage = new System.Windows.Forms.TabPage();
+            this.onlineClearButton = new System.Windows.Forms.Button();
+            this.onlineDepotCombobox = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.online_quantity_combobox = new System.Windows.Forms.ComboBox();
+            this.onlineQuantityCombobox = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.local_tabpage = new System.Windows.Forms.TabPage();
-            this.local_search2_button = new System.Windows.Forms.Button();
-            this.local_listview = new System.Windows.Forms.ListView();
+            this.localTabpage = new System.Windows.Forms.TabPage();
+            this.localSearch2Button = new System.Windows.Forms.Button();
+            this.localListview = new System.Windows.Forms.ListView();
             this.label4 = new System.Windows.Forms.Label();
-            this.local_image_combobox = new System.Windows.Forms.ComboBox();
+            this.localImageCombobox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.local_open_button = new System.Windows.Forms.Button();
-            this.local_type_textbox = new System.Windows.Forms.TextBox();
-            this.local_search_button = new System.Windows.Forms.Button();
+            this.localOpenButton = new System.Windows.Forms.Button();
+            this.localTypeTextbox = new System.Windows.Forms.TextBox();
+            this.localSearchButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.sort_button = new System.Windows.Forms.Button();
-            this.image_add_button = new System.Windows.Forms.Button();
-            this.search_background = new System.ComponentModel.BackgroundWorker();
-            this.search_statusstrip = new System.Windows.Forms.StatusStrip();
-            this.search_bar = new System.Windows.Forms.ToolStripProgressBar();
-            this.progress_label = new System.Windows.Forms.ToolStripStatusLabel();
-            this.image_up_button = new System.Windows.Forms.Button();
+            this.imageSortButton = new System.Windows.Forms.Button();
+            this.imageAddButton = new System.Windows.Forms.Button();
+            this.searchBack = new System.ComponentModel.BackgroundWorker();
+            this.searchStatusstrip = new System.Windows.Forms.StatusStrip();
+            this.searchBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.imageUpButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.emptyfolder_button = new System.Windows.Forms.Button();
-            this.help_button = new System.Windows.Forms.Button();
+            this.emptyFolderButton = new System.Windows.Forms.Button();
+            this.helpButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.image_delete_button = new System.Windows.Forms.Button();
-            this.api_settings_button = new System.Windows.Forms.Button();
-            this.image_add_tootip = new System.Windows.Forms.ToolTip(this.components);
-            this.image_up_tootip = new System.Windows.Forms.ToolTip(this.components);
-            this.image_delete_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.image_sort_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.api_settings_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.app_help_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.online_picturebox_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.online_quantity_combobox_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.online_depot_combobox_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.outline_background = new System.ComponentModel.BackgroundWorker();
-            this.emptyfolder_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.api_settings_menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.online_picturebox)).BeginInit();
-            this.imagebox_menustrip.SuspendLayout();
-            this.search_menustrip.SuspendLayout();
-            this.search_tabontrol.SuspendLayout();
-            this.online_tabpage.SuspendLayout();
+            this.imageDeleteButton = new System.Windows.Forms.Button();
+            this.apiSettingsButton = new System.Windows.Forms.Button();
+            this.imageAddTootip = new System.Windows.Forms.ToolTip(this.components);
+            this.imageUpTootip = new System.Windows.Forms.ToolTip(this.components);
+            this.imageDeleteTootip = new System.Windows.Forms.ToolTip(this.components);
+            this.imageSortTootip = new System.Windows.Forms.ToolTip(this.components);
+            this.apiSettingsTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.appHelpTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.onlinePicturebox_tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.onlineQuantityCombobox_tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.onlineDepotComboboxTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.outlineBack = new System.ComponentModel.BackgroundWorker();
+            this.emptyFolderTooltip = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.onlinePicturebox)).BeginInit();
+            this.imageBoxMenustrip.SuspendLayout();
+            this.searchMenustrip.SuspendLayout();
+            this.searchTtabontrol.SuspendLayout();
+            this.onlineTabpage.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.local_tabpage.SuspendLayout();
-            this.search_statusstrip.SuspendLayout();
+            this.localTabpage.SuspendLayout();
+            this.searchStatusstrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // online_image_path_textbox
+            // onlineImagePathTextbox
             // 
-            this.online_image_path_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.onlineImagePathTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.online_image_path_textbox.Location = new System.Drawing.Point(41, 379);
-            this.online_image_path_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.online_image_path_textbox.Name = "online_image_path_textbox";
-            this.online_image_path_textbox.Size = new System.Drawing.Size(387, 23);
-            this.online_image_path_textbox.TabIndex = 8;
-            this.online_image_path_textbox.TextChanged += new System.EventHandler(this.online_image_path_textbox_TextChanged);
+            this.onlineImagePathTextbox.Location = new System.Drawing.Point(41, 379);
+            this.onlineImagePathTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.onlineImagePathTextbox.Name = "onlineImagePathTextbox";
+            this.onlineImagePathTextbox.Size = new System.Drawing.Size(387, 23);
+            this.onlineImagePathTextbox.TabIndex = 8;
+            this.onlineImagePathTextbox.TextChanged += new System.EventHandler(this.onlineImagePathTextbox_TextChanged);
             // 
-            // online_image_path_button
+            // openPath
             // 
-            this.online_image_path_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.online_image_path_button.Location = new System.Drawing.Point(434, 379);
-            this.online_image_path_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.online_image_path_button.Name = "online_image_path_button";
-            this.online_image_path_button.Size = new System.Drawing.Size(75, 23);
-            this.online_image_path_button.TabIndex = 9;
-            this.online_image_path_button.Text = "打开";
-            this.online_image_path_button.UseVisualStyleBackColor = true;
-            this.online_image_path_button.Click += new System.EventHandler(this.online_image_path_button_Click);
+            this.openPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.openPath.Location = new System.Drawing.Point(434, 379);
+            this.openPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.openPath.Name = "openPath";
+            this.openPath.Size = new System.Drawing.Size(75, 23);
+            this.openPath.TabIndex = 9;
+            this.openPath.Text = "打开";
+            this.openPath.UseVisualStyleBackColor = true;
+            this.openPath.Click += new System.EventHandler(this.openPath_Click);
             // 
-            // online_search_button
+            // onlineSearchButton
             // 
-            this.online_search_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.online_search_button.Location = new System.Drawing.Point(596, 379);
-            this.online_search_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.online_search_button.Name = "online_search_button";
-            this.online_search_button.Size = new System.Drawing.Size(75, 23);
-            this.online_search_button.TabIndex = 11;
-            this.online_search_button.Text = "开始";
-            this.online_search_button.UseVisualStyleBackColor = true;
-            this.online_search_button.Click += new System.EventHandler(this.online_search_button_Click);
+            this.onlineSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.onlineSearchButton.Location = new System.Drawing.Point(596, 379);
+            this.onlineSearchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.onlineSearchButton.Name = "onlineSearchButton";
+            this.onlineSearchButton.Size = new System.Drawing.Size(75, 23);
+            this.onlineSearchButton.TabIndex = 11;
+            this.onlineSearchButton.Text = "开始";
+            this.onlineSearchButton.UseVisualStyleBackColor = true;
+            this.onlineSearchButton.Click += new System.EventHandler(this.onlineSearchButton_Click);
             // 
-            // online_picturebox
+            // onlinePicturebox
             // 
-            this.online_picturebox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.onlinePicturebox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.online_picturebox.BackColor = System.Drawing.SystemColors.Window;
-            this.online_picturebox.ContextMenuStrip = this.imagebox_menustrip;
-            this.online_picturebox.Location = new System.Drawing.Point(10, 18);
-            this.online_picturebox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.online_picturebox.Name = "online_picturebox";
-            this.online_picturebox.Size = new System.Drawing.Size(611, 312);
-            this.online_picturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.online_picturebox.TabIndex = 7;
-            this.online_picturebox.TabStop = false;
-            this.online_picturebox_tooltip.SetToolTip(this.online_picturebox, "将图片拖放或右击粘贴到此处，也可以浏览或输入图片位置进行搜索");
-            this.online_picturebox.DragDrop += new System.Windows.Forms.DragEventHandler(this.online_picturebox_DragDrop);
-            this.online_picturebox.DragEnter += new System.Windows.Forms.DragEventHandler(this.online_picturebox_DragEnter);
+            this.onlinePicturebox.BackColor = System.Drawing.SystemColors.Window;
+            this.onlinePicturebox.ContextMenuStrip = this.imageBoxMenustrip;
+            this.onlinePicturebox.Location = new System.Drawing.Point(10, 18);
+            this.onlinePicturebox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.onlinePicturebox.Name = "onlinePicturebox";
+            this.onlinePicturebox.Size = new System.Drawing.Size(611, 312);
+            this.onlinePicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.onlinePicturebox.TabIndex = 7;
+            this.onlinePicturebox.TabStop = false;
+            this.onlinePicturebox_tooltip.SetToolTip(this.onlinePicturebox, "将图片拖放或右击粘贴到此处，也可以浏览或输入图片位置进行搜索");
+            this.onlinePicturebox.DragDrop += new System.Windows.Forms.DragEventHandler(this.onlinePicturebox_DragDrop);
+            this.onlinePicturebox.DragEnter += new System.Windows.Forms.DragEventHandler(this.onlinePicturebox_DragEnter);
             // 
-            // imagebox_menustrip
+            // imageBoxMenustrip
             // 
-            this.imagebox_menustrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.imagebox_paste_menuitem,
-            this.imagebox_delete_menuitem,
-            this.imagebox_copy_menuitem});
-            this.imagebox_menustrip.Name = "imagebox_menustrip";
-            this.imagebox_menustrip.Size = new System.Drawing.Size(101, 70);
-            this.imagebox_menustrip.Opening += new System.ComponentModel.CancelEventHandler(this.imagebox_menustrip_Opening);
+            this.imageBoxMenustrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageBoxPasteMenustrip,
+            this.imageBoxDeleteMenustrip,
+            this.imageBoxCopyMenustrip});
+            this.imageBoxMenustrip.Name = "imageBoxMenustrip";
+            this.imageBoxMenustrip.Size = new System.Drawing.Size(101, 70);
+            this.imageBoxMenustrip.Opening += new System.ComponentModel.CancelEventHandler(this.imageBoxMenustrip_Opening);
             // 
-            // imagebox_paste_menuitem
+            // imageBoxPasteMenustrip
             // 
-            this.imagebox_paste_menuitem.Name = "imagebox_paste_menuitem";
-            this.imagebox_paste_menuitem.Size = new System.Drawing.Size(100, 22);
-            this.imagebox_paste_menuitem.Text = "粘贴";
-            this.imagebox_paste_menuitem.Click += new System.EventHandler(this.imagebox_paste_menuitem_Click);
+            this.imageBoxPasteMenustrip.Name = "imageBoxPasteMenustrip";
+            this.imageBoxPasteMenustrip.Size = new System.Drawing.Size(100, 22);
+            this.imageBoxPasteMenustrip.Text = "粘贴";
+            this.imageBoxPasteMenustrip.Click += new System.EventHandler(this.imageBoxPasteMenustrip_Click);
             // 
-            // imagebox_delete_menuitem
+            // imageBoxDeleteMenustrip
             // 
-            this.imagebox_delete_menuitem.Name = "imagebox_delete_menuitem";
-            this.imagebox_delete_menuitem.Size = new System.Drawing.Size(100, 22);
-            this.imagebox_delete_menuitem.Text = "删除";
-            this.imagebox_delete_menuitem.Click += new System.EventHandler(this.imagebox_delete_menuitem_Click);
+            this.imageBoxDeleteMenustrip.Name = "imageBoxDeleteMenustrip";
+            this.imageBoxDeleteMenustrip.Size = new System.Drawing.Size(100, 22);
+            this.imageBoxDeleteMenustrip.Text = "删除";
+            this.imageBoxDeleteMenustrip.Click += new System.EventHandler(this.imageBoxDeleteMenustrip_Click);
             // 
-            // imagebox_copy_menuitem
+            // imageBoxCopyMenustrip
             // 
-            this.imagebox_copy_menuitem.Name = "imagebox_copy_menuitem";
-            this.imagebox_copy_menuitem.Size = new System.Drawing.Size(100, 22);
-            this.imagebox_copy_menuitem.Text = "复制";
-            this.imagebox_copy_menuitem.Click += new System.EventHandler(this.imagebox_copy_menuitem_Click);
+            this.imageBoxCopyMenustrip.Name = "imageBoxCopyMenustrip";
+            this.imageBoxCopyMenustrip.Size = new System.Drawing.Size(100, 22);
+            this.imageBoxCopyMenustrip.Text = "复制";
+            this.imageBoxCopyMenustrip.Click += new System.EventHandler(this.imageBoxCopyMenustrip_Click);
             // 
-            // app_stripmenu
+            // appStripmenu
             // 
-            this.app_stripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.app_close_menu});
-            this.app_stripmenu.Name = "app_stripmenu";
-            this.app_stripmenu.Size = new System.Drawing.Size(44, 21);
-            this.app_stripmenu.Text = "程序";
+            this.appStripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeAppMenu});
+            this.appStripmenu.Name = "appStripmenu";
+            this.appStripmenu.Size = new System.Drawing.Size(44, 21);
+            this.appStripmenu.Text = "程序";
             // 
-            // app_close_menu
+            // closeAppMenu
             // 
-            this.app_close_menu.Name = "app_close_menu";
-            this.app_close_menu.Size = new System.Drawing.Size(100, 22);
-            this.app_close_menu.Text = "退出";
-            this.app_close_menu.Click += new System.EventHandler(this.app_close_menu_Click);
+            this.closeAppMenu.Name = "closeAppMenu";
+            this.closeAppMenu.Size = new System.Drawing.Size(100, 22);
+            this.closeAppMenu.Text = "退出";
+            this.closeAppMenu.Click += new System.EventHandler(this.closeAppMenu_Click);
             // 
-            // image_stripmenu
+            // imageStripMenu
             // 
-            this.image_stripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.image_add_menuItem,
-            this.image_up_menuItem,
-            this.image_delete_menuItem,
-            this.api_settings_menuItem});
-            this.image_stripmenu.Name = "image_stripmenu";
-            this.image_stripmenu.Size = new System.Drawing.Size(44, 21);
-            this.image_stripmenu.Text = "图库";
+            this.imageStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageAddMenuItem,
+            this.imageUpMenuItem,
+            this.imageDeleteMenuItem,
+            this.apiSettingsMenuItem});
+            this.imageStripMenu.Name = "imageStripMenu";
+            this.imageStripMenu.Size = new System.Drawing.Size(44, 21);
+            this.imageStripMenu.Text = "图库";
             // 
-            // image_add_menuItem
+            // imageAddMenuItem
             // 
-            this.image_add_menuItem.Name = "image_add_menuItem";
-            this.image_add_menuItem.Size = new System.Drawing.Size(152, 22);
-            this.image_add_menuItem.Text = "入库";
-            this.image_add_menuItem.Click += new System.EventHandler(this.image_add_menuItem_Click);
+            this.imageAddMenuItem.Name = "imageAddMenuItem";
+            this.imageAddMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.imageAddMenuItem.Text = "入库";
+            this.imageAddMenuItem.Click += new System.EventHandler(this.imageAddMenuItem_Click);
             // 
-            // image_up_menuItem
+            // imageUpMenuItem
             // 
-            this.image_up_menuItem.Name = "image_up_menuItem";
-            this.image_up_menuItem.Size = new System.Drawing.Size(152, 22);
-            this.image_up_menuItem.Text = "更新";
-            this.image_up_menuItem.Click += new System.EventHandler(this.image_up_menuItem_Click);
+            this.imageUpMenuItem.Name = "imageUpMenuItem";
+            this.imageUpMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.imageUpMenuItem.Text = "更新";
+            this.imageUpMenuItem.Click += new System.EventHandler(this.imageUpMenuItem_Click);
             // 
-            // image_delete_menuItem
+            // imageDeleteMenuItem
             // 
-            this.image_delete_menuItem.Name = "image_delete_menuItem";
-            this.image_delete_menuItem.Size = new System.Drawing.Size(152, 22);
-            this.image_delete_menuItem.Text = "删除";
-            this.image_delete_menuItem.Click += new System.EventHandler(this.image_delete_menuItem_Click);
+            this.imageDeleteMenuItem.Name = "imageDeleteMenuItem";
+            this.imageDeleteMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.imageDeleteMenuItem.Text = "删除";
+            this.imageDeleteMenuItem.Click += new System.EventHandler(this.imageDeleteMenuItem_Click);
             // 
-            // other_stripmenu
+            // apiSettingsMenuItem
             // 
-            this.other_stripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.app_about_menu,
-            this.app_updata_menuItem,
-            this.help_stripmenu});
-            this.other_stripmenu.Name = "other_stripmenu";
-            this.other_stripmenu.Size = new System.Drawing.Size(44, 21);
-            this.other_stripmenu.Text = "其他";
+            this.apiSettingsMenuItem.Name = "apiSettingsMenuItem";
+            this.apiSettingsMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.apiSettingsMenuItem.Text = "配置管理";
+            this.apiSettingsMenuItem.Click += new System.EventHandler(this.apiSettingsMenuItem_Click);
             // 
-            // app_about_menu
+            // otherStripmenu
             // 
-            this.app_about_menu.Name = "app_about_menu";
-            this.app_about_menu.Size = new System.Drawing.Size(152, 22);
-            this.app_about_menu.Text = "关于";
-            this.app_about_menu.Click += new System.EventHandler(this.app_about_menu_Click);
+            this.otherStripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutAppMenu,
+            this.updataAppMenuItem,
+            this.helpStripmenu});
+            this.otherStripmenu.Name = "otherStripmenu";
+            this.otherStripmenu.Size = new System.Drawing.Size(44, 21);
+            this.otherStripmenu.Text = "其他";
             // 
-            // app_updata_menuItem
+            // aboutAppMenu
             // 
-            this.app_updata_menuItem.Name = "app_updata_menuItem";
-            this.app_updata_menuItem.Size = new System.Drawing.Size(152, 22);
-            this.app_updata_menuItem.Text = "获取新版本";
-            this.app_updata_menuItem.Click += new System.EventHandler(this.app_updata_menuItem_Click);
+            this.aboutAppMenu.Name = "aboutAppMenu";
+            this.aboutAppMenu.Size = new System.Drawing.Size(136, 22);
+            this.aboutAppMenu.Text = "关于";
+            this.aboutAppMenu.Click += new System.EventHandler(this.aboutAppMenu_Click);
             // 
-            // help_stripmenu
+            // updataAppMenuItem
             // 
-            this.help_stripmenu.Name = "help_stripmenu";
-            this.help_stripmenu.Size = new System.Drawing.Size(152, 22);
-            this.help_stripmenu.Text = "帮助";
-            this.help_stripmenu.Click += new System.EventHandler(this.help_stripmenu_Click);
+            this.updataAppMenuItem.Name = "updataAppMenuItem";
+            this.updataAppMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.updataAppMenuItem.Text = "获取新版本";
+            this.updataAppMenuItem.Click += new System.EventHandler(this.updataAppMenuItem_Click);
             // 
-            // search_menustrip
+            // helpStripmenu
             // 
-            this.search_menustrip.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.search_menustrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
-            this.search_menustrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.app_stripmenu,
-            this.image_stripmenu,
-            this.tool_stripmenu,
-            this.other_stripmenu});
-            this.search_menustrip.Location = new System.Drawing.Point(0, 0);
-            this.search_menustrip.Name = "search_menustrip";
-            this.search_menustrip.Size = new System.Drawing.Size(684, 25);
-            this.search_menustrip.TabIndex = 0;
-            this.search_menustrip.Text = "search_menustrip";
+            this.helpStripmenu.Name = "helpStripmenu";
+            this.helpStripmenu.Size = new System.Drawing.Size(136, 22);
+            this.helpStripmenu.Text = "帮助";
+            this.helpStripmenu.Click += new System.EventHandler(this.helpStripmenu_Click);
             // 
-            // tool_stripmenu
+            // searchMenustrip
             // 
-            this.tool_stripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sort_menuItem,
-            this.delete_empty_menuItem,
-            this.settings_stripmenu});
-            this.tool_stripmenu.Name = "tool_stripmenu";
-            this.tool_stripmenu.Size = new System.Drawing.Size(44, 21);
-            this.tool_stripmenu.Text = "工具";
+            this.searchMenustrip.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.searchMenustrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.searchMenustrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.appStripmenu,
+            this.imageStripMenu,
+            this.toolsStripmenu,
+            this.otherStripmenu});
+            this.searchMenustrip.Location = new System.Drawing.Point(0, 0);
+            this.searchMenustrip.Name = "searchMenustrip";
+            this.searchMenustrip.Size = new System.Drawing.Size(684, 25);
+            this.searchMenustrip.TabIndex = 0;
+            this.searchMenustrip.Text = "searchMenustrip";
             // 
-            // sort_menuItem
+            // toolsStripmenu
             // 
-            this.sort_menuItem.Name = "sort_menuItem";
-            this.sort_menuItem.Size = new System.Drawing.Size(152, 22);
-            this.sort_menuItem.Text = "图片整理";
-            this.sort_menuItem.Click += new System.EventHandler(this.sort_menuItem_Click);
+            this.toolsStripmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageSortMenuItem,
+            this.deleteEmptyMenuItem,
+            this.settingsStripmenu});
+            this.toolsStripmenu.Name = "toolsStripmenu";
+            this.toolsStripmenu.Size = new System.Drawing.Size(44, 21);
+            this.toolsStripmenu.Text = "工具";
             // 
-            // delete_empty_menuItem
+            // imageSortMenuItem
             // 
-            this.delete_empty_menuItem.Name = "delete_empty_menuItem";
-            this.delete_empty_menuItem.Size = new System.Drawing.Size(152, 22);
-            this.delete_empty_menuItem.Text = "清除空目录";
-            this.delete_empty_menuItem.Click += new System.EventHandler(this.delete_empty_menuItem_Click);
+            this.imageSortMenuItem.Name = "imageSortMenuItem";
+            this.imageSortMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.imageSortMenuItem.Text = "图片整理";
+            this.imageSortMenuItem.Click += new System.EventHandler(this.imageSortMenuItem_Click);
             // 
-            // settings_stripmenu
+            // deleteEmptyMenuItem
             // 
-            this.settings_stripmenu.Name = "settings_stripmenu";
-            this.settings_stripmenu.Size = new System.Drawing.Size(152, 22);
-            this.settings_stripmenu.Text = "选项";
-            this.settings_stripmenu.Click += new System.EventHandler(this.settings_stripmenu_Click);
+            this.deleteEmptyMenuItem.Name = "deleteEmptyMenuItem";
+            this.deleteEmptyMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.deleteEmptyMenuItem.Text = "清除空目录";
+            this.deleteEmptyMenuItem.Click += new System.EventHandler(this.deleteEmptyMenuItem_Click);
             // 
-            // search_tabontrol
+            // settingsStripmenu
             // 
-            this.search_tabontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.settingsStripmenu.Name = "settingsStripmenu";
+            this.settingsStripmenu.Size = new System.Drawing.Size(136, 22);
+            this.settingsStripmenu.Text = "选项";
+            this.settingsStripmenu.Click += new System.EventHandler(this.settingsStripmenu_Click);
+            // 
+            // searchTtabontrol
+            // 
+            this.searchTtabontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.search_tabontrol.Controls.Add(this.online_tabpage);
-            this.search_tabontrol.Controls.Add(this.local_tabpage);
-            this.search_tabontrol.Location = new System.Drawing.Point(0, 99);
-            this.search_tabontrol.Name = "search_tabontrol";
-            this.search_tabontrol.SelectedIndex = 0;
-            this.search_tabontrol.Size = new System.Drawing.Size(686, 441);
-            this.search_tabontrol.TabIndex = 0;
+            this.searchTtabontrol.Controls.Add(this.onlineTabpage);
+            this.searchTtabontrol.Controls.Add(this.localTabpage);
+            this.searchTtabontrol.Location = new System.Drawing.Point(0, 99);
+            this.searchTtabontrol.Name = "searchTtabontrol";
+            this.searchTtabontrol.SelectedIndex = 0;
+            this.searchTtabontrol.Size = new System.Drawing.Size(686, 441);
+            this.searchTtabontrol.TabIndex = 0;
             // 
-            // online_tabpage
+            // onlineTabpage
             // 
-            this.online_tabpage.Controls.Add(this.online_clear_button);
-            this.online_tabpage.Controls.Add(this.online_depot_combobox);
-            this.online_tabpage.Controls.Add(this.label14);
-            this.online_tabpage.Controls.Add(this.label12);
-            this.online_tabpage.Controls.Add(this.label11);
-            this.online_tabpage.Controls.Add(this.label2);
-            this.online_tabpage.Controls.Add(this.online_quantity_combobox);
-            this.online_tabpage.Controls.Add(this.label13);
-            this.online_tabpage.Controls.Add(this.online_image_path_textbox);
-            this.online_tabpage.Controls.Add(this.online_search_button);
-            this.online_tabpage.Controls.Add(this.online_image_path_button);
-            this.online_tabpage.Controls.Add(this.groupBox1);
-            this.online_tabpage.Location = new System.Drawing.Point(4, 26);
-            this.online_tabpage.Name = "online_tabpage";
-            this.online_tabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.online_tabpage.Size = new System.Drawing.Size(678, 411);
-            this.online_tabpage.TabIndex = 0;
-            this.online_tabpage.Text = " 在线搜索相似图片 ";
-            this.online_tabpage.UseVisualStyleBackColor = true;
+            this.onlineTabpage.Controls.Add(this.onlineClearButton);
+            this.onlineTabpage.Controls.Add(this.onlineDepotCombobox);
+            this.onlineTabpage.Controls.Add(this.label14);
+            this.onlineTabpage.Controls.Add(this.label12);
+            this.onlineTabpage.Controls.Add(this.label11);
+            this.onlineTabpage.Controls.Add(this.label2);
+            this.onlineTabpage.Controls.Add(this.onlineQuantityCombobox);
+            this.onlineTabpage.Controls.Add(this.label13);
+            this.onlineTabpage.Controls.Add(this.onlineImagePathTextbox);
+            this.onlineTabpage.Controls.Add(this.onlineSearchButton);
+            this.onlineTabpage.Controls.Add(this.openPath);
+            this.onlineTabpage.Controls.Add(this.groupBox1);
+            this.onlineTabpage.Location = new System.Drawing.Point(4, 26);
+            this.onlineTabpage.Name = "onlineTabpage";
+            this.onlineTabpage.Padding = new System.Windows.Forms.Padding(3);
+            this.onlineTabpage.Size = new System.Drawing.Size(678, 411);
+            this.onlineTabpage.TabIndex = 0;
+            this.onlineTabpage.Text = " 在线搜索相似图片 ";
+            this.onlineTabpage.UseVisualStyleBackColor = true;
             // 
-            // online_clear_button
+            // onlineClearButton
             // 
-            this.online_clear_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.online_clear_button.Location = new System.Drawing.Point(515, 379);
-            this.online_clear_button.Name = "online_clear_button";
-            this.online_clear_button.Size = new System.Drawing.Size(75, 23);
-            this.online_clear_button.TabIndex = 10;
-            this.online_clear_button.Text = "清除";
-            this.online_clear_button.UseVisualStyleBackColor = true;
-            this.online_clear_button.Click += new System.EventHandler(this.online_clear_button_Click);
+            this.onlineClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.onlineClearButton.Location = new System.Drawing.Point(515, 379);
+            this.onlineClearButton.Name = "onlineClearButton";
+            this.onlineClearButton.Size = new System.Drawing.Size(75, 23);
+            this.onlineClearButton.TabIndex = 10;
+            this.onlineClearButton.Text = "清除";
+            this.onlineClearButton.UseVisualStyleBackColor = true;
+            this.onlineClearButton.Click += new System.EventHandler(this.onlineClearButton_Click);
             // 
-            // online_depot_combobox
+            // onlineDepotCombobox
             // 
-            this.online_depot_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.online_depot_combobox.FormattingEnabled = true;
-            this.online_depot_combobox.Location = new System.Drawing.Point(41, 7);
-            this.online_depot_combobox.Name = "online_depot_combobox";
-            this.online_depot_combobox.Size = new System.Drawing.Size(100, 25);
-            this.online_depot_combobox.TabIndex = 1;
-            this.online_depot_combobox_tooltip.SetToolTip(this.online_depot_combobox, "在图库配置中增加、删除和修改多个图库");
-            this.online_depot_combobox.SelectedIndexChanged += new System.EventHandler(this.online_depot_combobox_SelectedIndexChanged);
+            this.onlineDepotCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.onlineDepotCombobox.FormattingEnabled = true;
+            this.onlineDepotCombobox.Location = new System.Drawing.Point(41, 7);
+            this.onlineDepotCombobox.Name = "onlineDepotCombobox";
+            this.onlineDepotCombobox.Size = new System.Drawing.Size(100, 25);
+            this.onlineDepotCombobox.TabIndex = 1;
+            this.onlineDepotComboboxTooltip.SetToolTip(this.onlineDepotCombobox, "在图库配置中增加、删除和修改多个图库");
+            this.onlineDepotCombobox.SelectedIndexChanged += new System.EventHandler(this.onlineDepotCombobox_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -410,21 +417,21 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "图片";
             // 
-            // online_quantity_combobox
+            // onlineQuantityCombobox
             // 
-            this.online_quantity_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.online_quantity_combobox.FormattingEnabled = true;
-            this.online_quantity_combobox.Items.AddRange(new object[] {
+            this.onlineQuantityCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.onlineQuantityCombobox.FormattingEnabled = true;
+            this.onlineQuantityCombobox.Items.AddRange(new object[] {
             "50",
             "100",
             "200",
             "500",
             "1000"});
-            this.online_quantity_combobox.Location = new System.Drawing.Point(183, 7);
-            this.online_quantity_combobox.Name = "online_quantity_combobox";
-            this.online_quantity_combobox.Size = new System.Drawing.Size(60, 25);
-            this.online_quantity_combobox.TabIndex = 3;
-            this.online_quantity_combobox_tooltip.SetToolTip(this.online_quantity_combobox, "在图库配置中设定默认数量，最多支持返回1000条");
+            this.onlineQuantityCombobox.Location = new System.Drawing.Point(183, 7);
+            this.onlineQuantityCombobox.Name = "onlineQuantityCombobox";
+            this.onlineQuantityCombobox.Size = new System.Drawing.Size(60, 25);
+            this.onlineQuantityCombobox.TabIndex = 3;
+            this.onlineQuantityCombobox_tooltip.SetToolTip(this.onlineQuantityCombobox, "在图库配置中设定默认数量，最多支持返回1000条");
             // 
             // label13
             // 
@@ -441,58 +448,58 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.online_picturebox);
+            this.groupBox1.Controls.Add(this.onlinePicturebox);
             this.groupBox1.Location = new System.Drawing.Point(41, 32);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(630, 340);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
-            // local_tabpage
+            // localTabpage
             // 
-            this.local_tabpage.Controls.Add(this.local_search2_button);
-            this.local_tabpage.Controls.Add(this.local_listview);
-            this.local_tabpage.Controls.Add(this.label4);
-            this.local_tabpage.Controls.Add(this.local_image_combobox);
-            this.local_tabpage.Controls.Add(this.label1);
-            this.local_tabpage.Controls.Add(this.local_open_button);
-            this.local_tabpage.Controls.Add(this.local_type_textbox);
-            this.local_tabpage.Controls.Add(this.local_search_button);
-            this.local_tabpage.Controls.Add(this.label3);
-            this.local_tabpage.Location = new System.Drawing.Point(4, 26);
-            this.local_tabpage.Name = "local_tabpage";
-            this.local_tabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.local_tabpage.Size = new System.Drawing.Size(678, 411);
-            this.local_tabpage.TabIndex = 6;
-            this.local_tabpage.Text = "本地图片查找 ";
-            this.local_tabpage.UseVisualStyleBackColor = true;
+            this.localTabpage.Controls.Add(this.localSearch2Button);
+            this.localTabpage.Controls.Add(this.localListview);
+            this.localTabpage.Controls.Add(this.label4);
+            this.localTabpage.Controls.Add(this.localImageCombobox);
+            this.localTabpage.Controls.Add(this.label1);
+            this.localTabpage.Controls.Add(this.localOpenButton);
+            this.localTabpage.Controls.Add(this.localTypeTextbox);
+            this.localTabpage.Controls.Add(this.localSearchButton);
+            this.localTabpage.Controls.Add(this.label3);
+            this.localTabpage.Location = new System.Drawing.Point(4, 26);
+            this.localTabpage.Name = "localTabpage";
+            this.localTabpage.Padding = new System.Windows.Forms.Padding(3);
+            this.localTabpage.Size = new System.Drawing.Size(678, 411);
+            this.localTabpage.TabIndex = 6;
+            this.localTabpage.Text = "本地图片查找 ";
+            this.localTabpage.UseVisualStyleBackColor = true;
             // 
-            // local_search2_button
+            // localSearch2Button
             // 
-            this.local_search2_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.local_search2_button.Location = new System.Drawing.Point(542, 9);
-            this.local_search2_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.local_search2_button.Name = "local_search2_button";
-            this.local_search2_button.Size = new System.Drawing.Size(85, 23);
-            this.local_search2_button.TabIndex = 8;
-            this.local_search2_button.Text = "数据库查找";
-            this.local_search2_button.UseVisualStyleBackColor = true;
-            this.local_search2_button.Click += new System.EventHandler(this.local_search2_button_Click);
+            this.localSearch2Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.localSearch2Button.Location = new System.Drawing.Point(542, 9);
+            this.localSearch2Button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.localSearch2Button.Name = "localSearch2Button";
+            this.localSearch2Button.Size = new System.Drawing.Size(85, 23);
+            this.localSearch2Button.TabIndex = 8;
+            this.localSearch2Button.Text = "数据库查找";
+            this.localSearch2Button.UseVisualStyleBackColor = true;
+            this.localSearch2Button.Click += new System.EventHandler(this.localSearch2Button_Click);
             // 
-            // local_listview
+            // localListview
             // 
-            this.local_listview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.localListview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.local_listview.FullRowSelect = true;
-            this.local_listview.GridLines = true;
-            this.local_listview.Location = new System.Drawing.Point(41, 41);
-            this.local_listview.Name = "local_listview";
-            this.local_listview.Size = new System.Drawing.Size(629, 332);
-            this.local_listview.TabIndex = 7;
-            this.local_listview.UseCompatibleStateImageBehavior = false;
-            this.local_listview.View = System.Windows.Forms.View.Details;
-            this.local_listview.DoubleClick += new System.EventHandler(this.local_listview_DoubleClick);
+            this.localListview.FullRowSelect = true;
+            this.localListview.GridLines = true;
+            this.localListview.Location = new System.Drawing.Point(41, 41);
+            this.localListview.Name = "localListview";
+            this.localListview.Size = new System.Drawing.Size(629, 332);
+            this.localListview.TabIndex = 7;
+            this.localListview.UseCompatibleStateImageBehavior = false;
+            this.localListview.View = System.Windows.Forms.View.Details;
+            this.localListview.DoubleClick += new System.EventHandler(this.localListview_DoubleClick);
             // 
             // label4
             // 
@@ -503,16 +510,16 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "文件名";
             // 
-            // local_image_combobox
+            // localImageCombobox
             // 
-            this.local_image_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.local_image_combobox.FormattingEnabled = true;
-            this.local_image_combobox.Location = new System.Drawing.Point(41, 7);
-            this.local_image_combobox.Name = "local_image_combobox";
-            this.local_image_combobox.Size = new System.Drawing.Size(100, 25);
-            this.local_image_combobox.TabIndex = 1;
-            this.online_depot_combobox_tooltip.SetToolTip(this.local_image_combobox, "在图库配置中增加、删除和修改多个图库");
-            this.local_image_combobox.SelectedIndexChanged += new System.EventHandler(this.local_image_combobox_SelectedIndexChanged);
+            this.localImageCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.localImageCombobox.FormattingEnabled = true;
+            this.localImageCombobox.Location = new System.Drawing.Point(41, 7);
+            this.localImageCombobox.Name = "localImageCombobox";
+            this.localImageCombobox.Size = new System.Drawing.Size(100, 25);
+            this.localImageCombobox.TabIndex = 1;
+            this.onlineDepotComboboxTooltip.SetToolTip(this.localImageCombobox, "在图库配置中增加、删除和修改多个图库");
+            this.localImageCombobox.SelectedIndexChanged += new System.EventHandler(this.localImageCombobox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -523,39 +530,39 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "图库";
             // 
-            // local_open_button
+            // localOpenButton
             // 
-            this.local_open_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.local_open_button.Location = new System.Drawing.Point(591, 380);
-            this.local_open_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.local_open_button.Name = "local_open_button";
-            this.local_open_button.Size = new System.Drawing.Size(80, 23);
-            this.local_open_button.TabIndex = 0;
-            this.local_open_button.Text = "打开文件夹";
-            this.local_open_button.UseVisualStyleBackColor = true;
-            this.local_open_button.Click += new System.EventHandler(this.local_open_button_Click);
+            this.localOpenButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.localOpenButton.Location = new System.Drawing.Point(591, 380);
+            this.localOpenButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.localOpenButton.Name = "localOpenButton";
+            this.localOpenButton.Size = new System.Drawing.Size(80, 23);
+            this.localOpenButton.TabIndex = 0;
+            this.localOpenButton.Text = "打开文件夹";
+            this.localOpenButton.UseVisualStyleBackColor = true;
+            this.localOpenButton.Click += new System.EventHandler(this.localOpenButton_Click);
             // 
-            // local_type_textbox
+            // localTypeTextbox
             // 
-            this.local_type_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.localTypeTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.local_type_textbox.Location = new System.Drawing.Point(196, 8);
-            this.local_type_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.local_type_textbox.Name = "local_type_textbox";
-            this.local_type_textbox.Size = new System.Drawing.Size(259, 23);
-            this.local_type_textbox.TabIndex = 3;
+            this.localTypeTextbox.Location = new System.Drawing.Point(196, 8);
+            this.localTypeTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.localTypeTextbox.Name = "localTypeTextbox";
+            this.localTypeTextbox.Size = new System.Drawing.Size(259, 23);
+            this.localTypeTextbox.TabIndex = 3;
             // 
-            // local_search_button
+            // localSearchButton
             // 
-            this.local_search_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.local_search_button.Location = new System.Drawing.Point(461, 9);
-            this.local_search_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.local_search_button.Name = "local_search_button";
-            this.local_search_button.Size = new System.Drawing.Size(75, 23);
-            this.local_search_button.TabIndex = 5;
-            this.local_search_button.Text = "匹配查找";
-            this.local_search_button.UseVisualStyleBackColor = true;
-            this.local_search_button.Click += new System.EventHandler(this.local_search_button_Click);
+            this.localSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.localSearchButton.Location = new System.Drawing.Point(461, 9);
+            this.localSearchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.localSearchButton.Name = "localSearchButton";
+            this.localSearchButton.Size = new System.Drawing.Size(75, 23);
+            this.localSearchButton.TabIndex = 5;
+            this.localSearchButton.Text = "匹配查找";
+            this.localSearchButton.UseVisualStyleBackColor = true;
+            this.localSearchButton.Click += new System.EventHandler(this.localSearchButton_Click);
             // 
             // label3
             // 
@@ -566,127 +573,127 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "结果";
             // 
-            // sort_button
+            // imageSortButton
             // 
-            this.sort_button.FlatAppearance.BorderSize = 0;
-            this.sort_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.sort_button.Location = new System.Drawing.Point(312, 7);
-            this.sort_button.Name = "sort_button";
-            this.sort_button.Size = new System.Drawing.Size(70, 60);
-            this.sort_button.TabIndex = 4;
-            this.sort_button.Text = "图片整理";
-            this.sort_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.image_sort_tooltip.SetToolTip(this.sort_button, "整理归类磁盘中的文件");
-            this.sort_button.UseVisualStyleBackColor = true;
-            this.sort_button.Click += new System.EventHandler(this.sort_button_Click);
+            this.imageSortButton.FlatAppearance.BorderSize = 0;
+            this.imageSortButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.imageSortButton.Location = new System.Drawing.Point(312, 7);
+            this.imageSortButton.Name = "imageSortButton";
+            this.imageSortButton.Size = new System.Drawing.Size(70, 60);
+            this.imageSortButton.TabIndex = 4;
+            this.imageSortButton.Text = "图片整理";
+            this.imageSortButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.imageSortTootip.SetToolTip(this.imageSortButton, "整理归类磁盘中的文件");
+            this.imageSortButton.UseVisualStyleBackColor = true;
+            this.imageSortButton.Click += new System.EventHandler(this.imageSortButton_Click);
             // 
-            // image_add_button
+            // imageAddButton
             // 
-            this.image_add_button.BackColor = System.Drawing.Color.Transparent;
-            this.image_add_button.FlatAppearance.BorderSize = 0;
-            this.image_add_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.image_add_button.Location = new System.Drawing.Point(8, 7);
-            this.image_add_button.Name = "image_add_button";
-            this.image_add_button.Size = new System.Drawing.Size(70, 60);
-            this.image_add_button.TabIndex = 1;
-            this.image_add_button.Text = "图片入库";
-            this.image_add_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.image_add_tootip.SetToolTip(this.image_add_button, "上传图片到百度图库");
-            this.image_add_button.UseVisualStyleBackColor = false;
-            this.image_add_button.Click += new System.EventHandler(this.image_add_button_Click);
+            this.imageAddButton.BackColor = System.Drawing.Color.Transparent;
+            this.imageAddButton.FlatAppearance.BorderSize = 0;
+            this.imageAddButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.imageAddButton.Location = new System.Drawing.Point(8, 7);
+            this.imageAddButton.Name = "imageAddButton";
+            this.imageAddButton.Size = new System.Drawing.Size(70, 60);
+            this.imageAddButton.TabIndex = 1;
+            this.imageAddButton.Text = "图片入库";
+            this.imageAddButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.imageAddTootip.SetToolTip(this.imageAddButton, "上传图片到百度图库");
+            this.imageAddButton.UseVisualStyleBackColor = false;
+            this.imageAddButton.Click += new System.EventHandler(this.imageAddButton_Click);
             // 
-            // search_background
+            // searchBack
             // 
-            this.search_background.WorkerReportsProgress = true;
-            this.search_background.WorkerSupportsCancellation = true;
-            this.search_background.DoWork += new System.ComponentModel.DoWorkEventHandler(this.search_background_DoWork);
-            this.search_background.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.search_background_ProgressChanged);
-            this.search_background.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.search_background_RunWorkerCompleted);
+            this.searchBack.WorkerReportsProgress = true;
+            this.searchBack.WorkerSupportsCancellation = true;
+            this.searchBack.DoWork += new System.ComponentModel.DoWorkEventHandler(this.searchBack_DoWork);
+            this.searchBack.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.searchBack_ProgressChanged);
+            this.searchBack.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.searchBack_RunWorkerCompleted);
             // 
-            // search_statusstrip
+            // searchStatusstrip
             // 
-            this.search_statusstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.search_bar,
-            this.progress_label});
-            this.search_statusstrip.Location = new System.Drawing.Point(0, 539);
-            this.search_statusstrip.Name = "search_statusstrip";
-            this.search_statusstrip.Size = new System.Drawing.Size(684, 22);
-            this.search_statusstrip.TabIndex = 0;
-            this.search_statusstrip.Text = "search_statusstrip";
+            this.searchStatusstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchBar,
+            this.progressLabel});
+            this.searchStatusstrip.Location = new System.Drawing.Point(0, 539);
+            this.searchStatusstrip.Name = "searchStatusstrip";
+            this.searchStatusstrip.Size = new System.Drawing.Size(684, 22);
+            this.searchStatusstrip.TabIndex = 0;
+            this.searchStatusstrip.Text = "searchStatusstrip";
             // 
-            // search_bar
+            // searchBar
             // 
-            this.search_bar.Name = "search_bar";
-            this.search_bar.Size = new System.Drawing.Size(100, 16);
+            this.searchBar.Name = "searchBar";
+            this.searchBar.Size = new System.Drawing.Size(100, 16);
             // 
-            // progress_label
+            // progressLabel
             // 
-            this.progress_label.Name = "progress_label";
-            this.progress_label.Size = new System.Drawing.Size(80, 17);
-            this.progress_label.Text = "等待用户操作";
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(80, 17);
+            this.progressLabel.Text = "等待用户操作";
             // 
-            // image_up_button
+            // imageUpButton
             // 
-            this.image_up_button.BackColor = System.Drawing.Color.Transparent;
-            this.image_up_button.FlatAppearance.BorderSize = 0;
-            this.image_up_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.image_up_button.Location = new System.Drawing.Point(84, 7);
-            this.image_up_button.Name = "image_up_button";
-            this.image_up_button.Size = new System.Drawing.Size(70, 60);
-            this.image_up_button.TabIndex = 2;
-            this.image_up_button.Text = "更新图片";
-            this.image_up_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.image_up_tootip.SetToolTip(this.image_up_button, "上传新的图片替换图库中的图片");
-            this.image_up_button.UseVisualStyleBackColor = false;
-            this.image_up_button.Click += new System.EventHandler(this.image_up_button_Click);
+            this.imageUpButton.BackColor = System.Drawing.Color.Transparent;
+            this.imageUpButton.FlatAppearance.BorderSize = 0;
+            this.imageUpButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.imageUpButton.Location = new System.Drawing.Point(84, 7);
+            this.imageUpButton.Name = "imageUpButton";
+            this.imageUpButton.Size = new System.Drawing.Size(70, 60);
+            this.imageUpButton.TabIndex = 2;
+            this.imageUpButton.Text = "更新图片";
+            this.imageUpButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.imageUpTootip.SetToolTip(this.imageUpButton, "上传新的图片替换图库中的图片");
+            this.imageUpButton.UseVisualStyleBackColor = false;
+            this.imageUpButton.Click += new System.EventHandler(this.imageUpButton_Click);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.emptyfolder_button);
-            this.panel1.Controls.Add(this.help_button);
+            this.panel1.Controls.Add(this.emptyFolderButton);
+            this.panel1.Controls.Add(this.helpButton);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.image_delete_button);
-            this.panel1.Controls.Add(this.api_settings_button);
-            this.panel1.Controls.Add(this.image_add_button);
-            this.panel1.Controls.Add(this.image_up_button);
-            this.panel1.Controls.Add(this.sort_button);
+            this.panel1.Controls.Add(this.imageDeleteButton);
+            this.panel1.Controls.Add(this.apiSettingsButton);
+            this.panel1.Controls.Add(this.imageAddButton);
+            this.panel1.Controls.Add(this.imageUpButton);
+            this.panel1.Controls.Add(this.imageSortButton);
             this.panel1.Location = new System.Drawing.Point(-2, 26);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(688, 75);
             this.panel1.TabIndex = 1;
             // 
-            // emptyfolder_button
+            // emptyFolderButton
             // 
-            this.emptyfolder_button.BackColor = System.Drawing.Color.Transparent;
-            this.emptyfolder_button.FlatAppearance.BorderSize = 0;
-            this.emptyfolder_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.emptyfolder_button.Location = new System.Drawing.Point(388, 7);
-            this.emptyfolder_button.Name = "emptyfolder_button";
-            this.emptyfolder_button.Size = new System.Drawing.Size(80, 60);
-            this.emptyfolder_button.TabIndex = 7;
-            this.emptyfolder_button.Text = "清除空目录";
-            this.emptyfolder_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.emptyfolder_tooltip.SetToolTip(this.emptyfolder_button, "查找并删除空白的文件夹");
-            this.emptyfolder_button.UseVisualStyleBackColor = false;
-            this.emptyfolder_button.Click += new System.EventHandler(this.emptyfolder_button_Click);
+            this.emptyFolderButton.BackColor = System.Drawing.Color.Transparent;
+            this.emptyFolderButton.FlatAppearance.BorderSize = 0;
+            this.emptyFolderButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.emptyFolderButton.Location = new System.Drawing.Point(388, 7);
+            this.emptyFolderButton.Name = "emptyFolderButton";
+            this.emptyFolderButton.Size = new System.Drawing.Size(80, 60);
+            this.emptyFolderButton.TabIndex = 7;
+            this.emptyFolderButton.Text = "清除空目录";
+            this.emptyFolderButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.emptyFolderTooltip.SetToolTip(this.emptyFolderButton, "查找并删除空白的文件夹");
+            this.emptyFolderButton.UseVisualStyleBackColor = false;
+            this.emptyFolderButton.Click += new System.EventHandler(this.emptyFolderButton_Click);
             // 
-            // help_button
+            // helpButton
             // 
-            this.help_button.BackColor = System.Drawing.Color.Transparent;
-            this.help_button.FlatAppearance.BorderSize = 0;
-            this.help_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.help_button.Location = new System.Drawing.Point(474, 7);
-            this.help_button.Name = "help_button";
-            this.help_button.Size = new System.Drawing.Size(60, 60);
-            this.help_button.TabIndex = 6;
-            this.help_button.Text = "帮助";
-            this.help_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.app_help_tooltip.SetToolTip(this.help_button, "系统使用帮助");
-            this.help_button.UseVisualStyleBackColor = false;
-            this.help_button.Click += new System.EventHandler(this.help_button_Click);
+            this.helpButton.BackColor = System.Drawing.Color.Transparent;
+            this.helpButton.FlatAppearance.BorderSize = 0;
+            this.helpButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.helpButton.Location = new System.Drawing.Point(474, 7);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(60, 60);
+            this.helpButton.TabIndex = 6;
+            this.helpButton.Text = "帮助";
+            this.helpButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.appHelpTooltip.SetToolTip(this.helpButton, "系统使用帮助");
+            this.helpButton.UseVisualStyleBackColor = false;
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
             // 
             // panel2
             // 
@@ -698,50 +705,43 @@
             this.panel2.Size = new System.Drawing.Size(699, 1);
             this.panel2.TabIndex = 0;
             // 
-            // image_delete_button
+            // imageDeleteButton
             // 
-            this.image_delete_button.BackColor = System.Drawing.Color.Transparent;
-            this.image_delete_button.FlatAppearance.BorderSize = 0;
-            this.image_delete_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.image_delete_button.Location = new System.Drawing.Point(160, 7);
-            this.image_delete_button.Name = "image_delete_button";
-            this.image_delete_button.Size = new System.Drawing.Size(70, 60);
-            this.image_delete_button.TabIndex = 3;
-            this.image_delete_button.Text = "删除图片";
-            this.image_delete_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.image_delete_tooltip.SetToolTip(this.image_delete_button, "删除图库中指定的图片");
-            this.image_delete_button.UseVisualStyleBackColor = false;
-            this.image_delete_button.Click += new System.EventHandler(this.image_delete_button_Click);
+            this.imageDeleteButton.BackColor = System.Drawing.Color.Transparent;
+            this.imageDeleteButton.FlatAppearance.BorderSize = 0;
+            this.imageDeleteButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.imageDeleteButton.Location = new System.Drawing.Point(160, 7);
+            this.imageDeleteButton.Name = "imageDeleteButton";
+            this.imageDeleteButton.Size = new System.Drawing.Size(70, 60);
+            this.imageDeleteButton.TabIndex = 3;
+            this.imageDeleteButton.Text = "删除图片";
+            this.imageDeleteButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.imageDeleteTootip.SetToolTip(this.imageDeleteButton, "删除图库中指定的图片");
+            this.imageDeleteButton.UseVisualStyleBackColor = false;
+            this.imageDeleteButton.Click += new System.EventHandler(this.imageDeleteButton_Click);
             // 
-            // api_settings_button
+            // apiSettingsButton
             // 
-            this.api_settings_button.BackColor = System.Drawing.Color.Transparent;
-            this.api_settings_button.FlatAppearance.BorderSize = 0;
-            this.api_settings_button.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.api_settings_button.Location = new System.Drawing.Point(236, 7);
-            this.api_settings_button.Name = "api_settings_button";
-            this.api_settings_button.Size = new System.Drawing.Size(70, 60);
-            this.api_settings_button.TabIndex = 5;
-            this.api_settings_button.Text = "图库配置";
-            this.api_settings_button.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.api_settings_tooltip.SetToolTip(this.api_settings_button, "图库接口、数据库、目录等设定");
-            this.api_settings_button.UseVisualStyleBackColor = false;
-            this.api_settings_button.Click += new System.EventHandler(this.api_setting_button_Click);
+            this.apiSettingsButton.BackColor = System.Drawing.Color.Transparent;
+            this.apiSettingsButton.FlatAppearance.BorderSize = 0;
+            this.apiSettingsButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.apiSettingsButton.Location = new System.Drawing.Point(236, 7);
+            this.apiSettingsButton.Name = "apiSettingsButton";
+            this.apiSettingsButton.Size = new System.Drawing.Size(70, 60);
+            this.apiSettingsButton.TabIndex = 5;
+            this.apiSettingsButton.Text = "图库配置";
+            this.apiSettingsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.apiSettingsTooltip.SetToolTip(this.apiSettingsButton, "图库接口、数据库、目录等设定");
+            this.apiSettingsButton.UseVisualStyleBackColor = false;
+            this.apiSettingsButton.Click += new System.EventHandler(this.apiSettingsButton_Click);
             // 
-            // outline_background
+            // outlineBack
             // 
-            this.outline_background.WorkerReportsProgress = true;
-            this.outline_background.WorkerSupportsCancellation = true;
-            this.outline_background.DoWork += new System.ComponentModel.DoWorkEventHandler(this.outline_background_DoWork);
-            this.outline_background.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.outline_background_ProgressChanged);
-            this.outline_background.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.outline_background_RunWorkerCompleted);
-            // 
-            // api_settings_menuItem
-            // 
-            this.api_settings_menuItem.Name = "api_settings_menuItem";
-            this.api_settings_menuItem.Size = new System.Drawing.Size(152, 22);
-            this.api_settings_menuItem.Text = "配置管理";
-            this.api_settings_menuItem.Click += new System.EventHandler(this.配置管理ToolStripMenuItem_Click);
+            this.outlineBack.WorkerReportsProgress = true;
+            this.outlineBack.WorkerSupportsCancellation = true;
+            this.outlineBack.DoWork += new System.ComponentModel.DoWorkEventHandler(this.outlineBack_DoWork);
+            this.outlineBack.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.outlineBack_ProgressChanged);
+            this.outlineBack.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.outlineBack_RunWorkerCompleted);
             // 
             // HomeForm
             // 
@@ -750,30 +750,30 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(684, 561);
-            this.Controls.Add(this.search_tabontrol);
+            this.Controls.Add(this.searchTtabontrol);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.search_menustrip);
-            this.Controls.Add(this.search_statusstrip);
+            this.Controls.Add(this.searchMenustrip);
+            this.Controls.Add(this.searchStatusstrip);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.MainMenuStrip = this.search_menustrip;
+            this.MainMenuStrip = this.searchMenustrip;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(700, 600);
             this.Name = "HomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "图片搜索系统";
+            this.Text = "图库搜索系统";
             this.Load += new System.EventHandler(this.HomeForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.online_picturebox)).EndInit();
-            this.imagebox_menustrip.ResumeLayout(false);
-            this.search_menustrip.ResumeLayout(false);
-            this.search_menustrip.PerformLayout();
-            this.search_tabontrol.ResumeLayout(false);
-            this.online_tabpage.ResumeLayout(false);
-            this.online_tabpage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.onlinePicturebox)).EndInit();
+            this.imageBoxMenustrip.ResumeLayout(false);
+            this.searchMenustrip.ResumeLayout(false);
+            this.searchMenustrip.PerformLayout();
+            this.searchTtabontrol.ResumeLayout(false);
+            this.onlineTabpage.ResumeLayout(false);
+            this.onlineTabpage.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.local_tabpage.ResumeLayout(false);
-            this.local_tabpage.PerformLayout();
-            this.search_statusstrip.ResumeLayout(false);
-            this.search_statusstrip.PerformLayout();
+            this.localTabpage.ResumeLayout(false);
+            this.localTabpage.PerformLayout();
+            this.searchStatusstrip.ResumeLayout(false);
+            this.searchStatusstrip.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -781,75 +781,75 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox online_image_path_textbox;
-        private System.Windows.Forms.Button online_image_path_button;
-        private System.Windows.Forms.Button online_search_button;
-        private System.Windows.Forms.PictureBox online_picturebox;
-        private System.Windows.Forms.ToolStripMenuItem app_stripmenu;
-        private System.Windows.Forms.ToolStripMenuItem app_close_menu;
-        private System.Windows.Forms.ToolStripMenuItem image_stripmenu;
-        private System.Windows.Forms.ToolStripMenuItem other_stripmenu;
-        private System.Windows.Forms.ToolStripMenuItem app_about_menu;
-        private System.Windows.Forms.MenuStrip search_menustrip;
-        private System.Windows.Forms.TabControl search_tabontrol;
-        private System.Windows.Forms.TabPage online_tabpage;
-        private System.Windows.Forms.Button image_add_button;
-        private System.ComponentModel.BackgroundWorker search_background;
-        private System.Windows.Forms.Button sort_button;
-        private System.Windows.Forms.StatusStrip search_statusstrip;
-        private System.Windows.Forms.ToolStripStatusLabel progress_label;
-        private System.Windows.Forms.ToolStripProgressBar search_bar;
-        private System.Windows.Forms.Button image_up_button;
+        private System.Windows.Forms.TextBox onlineImagePathTextbox;
+        private System.Windows.Forms.Button openPath;
+        private System.Windows.Forms.Button onlineSearchButton;
+        private System.Windows.Forms.PictureBox onlinePicturebox;
+        private System.Windows.Forms.ToolStripMenuItem appStripmenu;
+        private System.Windows.Forms.ToolStripMenuItem closeAppMenu;
+        private System.Windows.Forms.ToolStripMenuItem imageStripMenu;
+        private System.Windows.Forms.ToolStripMenuItem otherStripmenu;
+        private System.Windows.Forms.ToolStripMenuItem aboutAppMenu;
+        private System.Windows.Forms.MenuStrip searchMenustrip;
+        private System.Windows.Forms.TabControl searchTtabontrol;
+        private System.Windows.Forms.TabPage onlineTabpage;
+        private System.Windows.Forms.Button imageAddButton;
+        private System.ComponentModel.BackgroundWorker searchBack;
+        private System.Windows.Forms.Button imageSortButton;
+        private System.Windows.Forms.StatusStrip searchStatusstrip;
+        private System.Windows.Forms.ToolStripStatusLabel progressLabel;
+        private System.Windows.Forms.ToolStripProgressBar searchBar;
+        private System.Windows.Forms.Button imageUpButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button api_settings_button;
-        private System.Windows.Forms.Button image_delete_button;
-        private System.Windows.Forms.ToolStripMenuItem tool_stripmenu;
+        private System.Windows.Forms.Button apiSettingsButton;
+        private System.Windows.Forms.Button imageDeleteButton;
+        private System.Windows.Forms.ToolStripMenuItem toolsStripmenu;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox online_quantity_combobox;
+        private System.Windows.Forms.ComboBox onlineQuantityCombobox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox online_depot_combobox;
-        private System.Windows.Forms.Button online_clear_button;
-        private System.Windows.Forms.TabPage local_tabpage;
-        private System.Windows.Forms.ListView local_listview;
+        private System.Windows.Forms.ComboBox onlineDepotCombobox;
+        private System.Windows.Forms.Button onlineClearButton;
+        private System.Windows.Forms.TabPage localTabpage;
+        private System.Windows.Forms.ListView localListview;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox local_image_combobox;
+        private System.Windows.Forms.ComboBox localImageCombobox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button local_open_button;
-        private System.Windows.Forms.TextBox local_type_textbox;
-        private System.Windows.Forms.Button local_search_button;
+        private System.Windows.Forms.Button localOpenButton;
+        private System.Windows.Forms.TextBox localTypeTextbox;
+        private System.Windows.Forms.Button localSearchButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolStripMenuItem sort_menuItem;
-        private System.Windows.Forms.ToolStripMenuItem app_updata_menuItem;
-        private System.Windows.Forms.ToolStripMenuItem help_stripmenu;
-        private System.Windows.Forms.Button help_button;
-        private System.Windows.Forms.ToolStripMenuItem image_add_menuItem;
-        private System.Windows.Forms.ToolStripMenuItem image_up_menuItem;
-        private System.Windows.Forms.ToolStripMenuItem image_delete_menuItem;
-        private System.Windows.Forms.ToolStripMenuItem delete_empty_menuItem;
-        private System.Windows.Forms.ToolStripMenuItem settings_stripmenu;
-        private System.Windows.Forms.ContextMenuStrip imagebox_menustrip;
-        private System.Windows.Forms.ToolStripMenuItem imagebox_paste_menuitem;
-        private System.Windows.Forms.ToolStripMenuItem imagebox_delete_menuitem;
-        private System.Windows.Forms.ToolStripMenuItem imagebox_copy_menuitem;
-        private System.Windows.Forms.ToolTip image_add_tootip;
-        private System.Windows.Forms.ToolTip image_up_tootip;
-        private System.Windows.Forms.ToolTip image_delete_tooltip;
-        private System.Windows.Forms.ToolTip image_sort_tooltip;
-        private System.Windows.Forms.ToolTip api_settings_tooltip;
-        private System.Windows.Forms.ToolTip app_help_tooltip;
-        private System.Windows.Forms.ToolTip online_picturebox_tooltip;
-        private System.Windows.Forms.ToolTip online_quantity_combobox_tooltip;
-        private System.Windows.Forms.ToolTip online_depot_combobox_tooltip;
-        private System.Windows.Forms.Button local_search2_button;
-        private System.ComponentModel.BackgroundWorker outline_background;
-        private System.Windows.Forms.Button emptyfolder_button;
-        private System.Windows.Forms.ToolTip emptyfolder_tooltip;
-        private System.Windows.Forms.ToolStripMenuItem api_settings_menuItem;
+        private System.Windows.Forms.ToolStripMenuItem imageSortMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updataAppMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpStripmenu;
+        private System.Windows.Forms.Button helpButton;
+        private System.Windows.Forms.ToolStripMenuItem imageAddMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imageUpMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imageDeleteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteEmptyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsStripmenu;
+        private System.Windows.Forms.ContextMenuStrip imageBoxMenustrip;
+        private System.Windows.Forms.ToolStripMenuItem imageBoxPasteMenustrip;
+        private System.Windows.Forms.ToolStripMenuItem imageBoxDeleteMenustrip;
+        private System.Windows.Forms.ToolStripMenuItem imageBoxCopyMenustrip;
+        private System.Windows.Forms.ToolTip imageAddTootip;
+        private System.Windows.Forms.ToolTip imageUpTootip;
+        private System.Windows.Forms.ToolTip imageDeleteTootip;
+        private System.Windows.Forms.ToolTip imageSortTootip;
+        private System.Windows.Forms.ToolTip apiSettingsTooltip;
+        private System.Windows.Forms.ToolTip appHelpTooltip;
+        private System.Windows.Forms.ToolTip onlinePicturebox_tooltip;
+        private System.Windows.Forms.ToolTip onlineQuantityCombobox_tooltip;
+        private System.Windows.Forms.ToolTip onlineDepotComboboxTooltip;
+        private System.Windows.Forms.Button localSearch2Button;
+        private System.ComponentModel.BackgroundWorker outlineBack;
+        private System.Windows.Forms.Button emptyFolderButton;
+        private System.Windows.Forms.ToolTip emptyFolderTooltip;
+        private System.Windows.Forms.ToolStripMenuItem apiSettingsMenuItem;
     }
 }
 

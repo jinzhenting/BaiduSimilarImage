@@ -30,24 +30,24 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.api_timeout_textbox = new System.Windows.Forms.TextBox();
-            this.api_appid_textbox = new System.Windows.Forms.TextBox();
+            this.timeoutTextbox = new System.Windows.Forms.TextBox();
+            this.appidTextbox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.api_apikey_textbox = new System.Windows.Forms.TextBox();
-            this.api_secreykey_textbox = new System.Windows.Forms.TextBox();
+            this.apikeyTextbox = new System.Windows.Forms.TextBox();
+            this.secreykeyTextbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.depot_list_combobox = new System.Windows.Forms.ComboBox();
-            this.save_api_button = new System.Windows.Forms.Button();
-            this.cel_api_button = new System.Windows.Forms.Button();
+            this.depotListCombobox = new System.Windows.Forms.ComboBox();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.api_tag1_textbox = new System.Windows.Forms.TextBox();
+            this.tag1Textbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.api_tag2_textbox = new System.Windows.Forms.TextBox();
+            this.tag2Textbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.api_path_textbox = new System.Windows.Forms.TextBox();
-            this.api_path_button = new System.Windows.Forms.Button();
+            this.depotPathTextbox = new System.Windows.Forms.TextBox();
+            this.apiPathButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.api_quantity_textbox = new System.Windows.Forms.TextBox();
+            this.quantityTextbox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -57,18 +57,18 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.sql_table_textbox = new System.Windows.Forms.TextBox();
-            this.sql_password_textbox = new System.Windows.Forms.TextBox();
-            this.sql_userid_textbox = new System.Windows.Forms.TextBox();
-            this.sql_dataname_textbox = new System.Windows.Forms.TextBox();
-            this.sql_serverip_textbox = new System.Windows.Forms.TextBox();
+            this.sqlTableTextbox = new System.Windows.Forms.TextBox();
+            this.sqlPasswordTextbox = new System.Windows.Forms.TextBox();
+            this.sqlUserTextbox = new System.Windows.Forms.TextBox();
+            this.sqlDataTextbox = new System.Windows.Forms.TextBox();
+            this.sqlIPTextbox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.api_add_button = new System.Windows.Forms.Button();
-            this.api_delete_button = new System.Windows.Forms.Button();
-            this.cancel_api_button = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
-            this.api_sort_textbox = new System.Windows.Forms.TextBox();
-            this.api_sort_button = new System.Windows.Forms.Button();
+            this.sortTextbox = new System.Windows.Forms.TextBox();
+            this.apiSortButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -93,21 +93,21 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "查询超时（秒）";
             // 
-            // api_timeout_textbox
+            // timeoutTextbox
             // 
-            this.api_timeout_textbox.Location = new System.Drawing.Point(5, 121);
-            this.api_timeout_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_timeout_textbox.Name = "api_timeout_textbox";
-            this.api_timeout_textbox.Size = new System.Drawing.Size(120, 23);
-            this.api_timeout_textbox.TabIndex = 7;
+            this.timeoutTextbox.Location = new System.Drawing.Point(5, 121);
+            this.timeoutTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.timeoutTextbox.Name = "timeoutTextbox";
+            this.timeoutTextbox.Size = new System.Drawing.Size(120, 23);
+            this.timeoutTextbox.TabIndex = 7;
             // 
-            // api_appid_textbox
+            // appidTextbox
             // 
-            this.api_appid_textbox.Location = new System.Drawing.Point(5, 25);
-            this.api_appid_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_appid_textbox.Name = "api_appid_textbox";
-            this.api_appid_textbox.Size = new System.Drawing.Size(120, 23);
-            this.api_appid_textbox.TabIndex = 2;
+            this.appidTextbox.Location = new System.Drawing.Point(5, 25);
+            this.appidTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.appidTextbox.Name = "appidTextbox";
+            this.appidTextbox.Size = new System.Drawing.Size(120, 23);
+            this.appidTextbox.TabIndex = 2;
             // 
             // label6
             // 
@@ -118,25 +118,25 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "服务密钥";
             // 
-            // api_apikey_textbox
+            // apikeyTextbox
             // 
-            this.api_apikey_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.apikeyTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_apikey_textbox.Location = new System.Drawing.Point(131, 25);
-            this.api_apikey_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_apikey_textbox.Name = "api_apikey_textbox";
-            this.api_apikey_textbox.Size = new System.Drawing.Size(250, 23);
-            this.api_apikey_textbox.TabIndex = 3;
+            this.apikeyTextbox.Location = new System.Drawing.Point(131, 25);
+            this.apikeyTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.apikeyTextbox.Name = "apikeyTextbox";
+            this.apikeyTextbox.Size = new System.Drawing.Size(250, 23);
+            this.apikeyTextbox.TabIndex = 3;
             // 
-            // api_secreykey_textbox
+            // secreykeyTextbox
             // 
-            this.api_secreykey_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.secreykeyTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_secreykey_textbox.Location = new System.Drawing.Point(5, 73);
-            this.api_secreykey_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_secreykey_textbox.Name = "api_secreykey_textbox";
-            this.api_secreykey_textbox.Size = new System.Drawing.Size(376, 23);
-            this.api_secreykey_textbox.TabIndex = 5;
+            this.secreykeyTextbox.Location = new System.Drawing.Point(5, 73);
+            this.secreykeyTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.secreykeyTextbox.Name = "secreykeyTextbox";
+            this.secreykeyTextbox.Size = new System.Drawing.Size(376, 23);
+            this.secreykeyTextbox.TabIndex = 5;
             // 
             // label5
             // 
@@ -147,37 +147,37 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "接口密钥";
             // 
-            // depot_list_combobox
+            // depotListCombobox
             // 
-            this.depot_list_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.depot_list_combobox.FormattingEnabled = true;
-            this.depot_list_combobox.Location = new System.Drawing.Point(69, 8);
-            this.depot_list_combobox.Name = "depot_list_combobox";
-            this.depot_list_combobox.Size = new System.Drawing.Size(109, 25);
-            this.depot_list_combobox.TabIndex = 1;
-            this.depot_list_combobox.SelectedIndexChanged += new System.EventHandler(this.depot_list_combobox_SelectedIndexChanged);
+            this.depotListCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.depotListCombobox.FormattingEnabled = true;
+            this.depotListCombobox.Location = new System.Drawing.Point(69, 8);
+            this.depotListCombobox.Name = "depotListCombobox";
+            this.depotListCombobox.Size = new System.Drawing.Size(109, 25);
+            this.depotListCombobox.TabIndex = 1;
+            this.depotListCombobox.SelectedIndexChanged += new System.EventHandler(this.depotListCombobox_SelectedIndexChanged);
             // 
-            // save_api_button
+            // saveButton
             // 
-            this.save_api_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.save_api_button.Location = new System.Drawing.Point(8, 276);
-            this.save_api_button.Name = "save_api_button";
-            this.save_api_button.Size = new System.Drawing.Size(75, 23);
-            this.save_api_button.TabIndex = 5;
-            this.save_api_button.Text = "保存";
-            this.save_api_button.UseVisualStyleBackColor = true;
-            this.save_api_button.Click += new System.EventHandler(this.save_api_button_Click);
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveButton.Location = new System.Drawing.Point(8, 276);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 5;
+            this.saveButton.Text = "保存";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // cel_api_button
+            // clearButton
             // 
-            this.cel_api_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cel_api_button.Location = new System.Drawing.Point(89, 276);
-            this.cel_api_button.Name = "cel_api_button";
-            this.cel_api_button.Size = new System.Drawing.Size(75, 23);
-            this.cel_api_button.TabIndex = 6;
-            this.cel_api_button.Text = "清空";
-            this.cel_api_button.UseVisualStyleBackColor = true;
-            this.cel_api_button.Click += new System.EventHandler(this.cel_api_button_Click);
+            this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.clearButton.Location = new System.Drawing.Point(89, 276);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(75, 23);
+            this.clearButton.TabIndex = 6;
+            this.clearButton.Text = "清空";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // label1
             // 
@@ -188,13 +188,13 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "标签一";
             // 
-            // api_tag1_textbox
+            // tag1Textbox
             // 
-            this.api_tag1_textbox.Location = new System.Drawing.Point(5, 169);
-            this.api_tag1_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_tag1_textbox.Name = "api_tag1_textbox";
-            this.api_tag1_textbox.Size = new System.Drawing.Size(60, 23);
-            this.api_tag1_textbox.TabIndex = 11;
+            this.tag1Textbox.Location = new System.Drawing.Point(5, 169);
+            this.tag1Textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tag1Textbox.Name = "tag1Textbox";
+            this.tag1Textbox.Size = new System.Drawing.Size(60, 23);
+            this.tag1Textbox.TabIndex = 11;
             // 
             // label2
             // 
@@ -205,13 +205,13 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "标签二";
             // 
-            // api_tag2_textbox
+            // tag2Textbox
             // 
-            this.api_tag2_textbox.Location = new System.Drawing.Point(71, 169);
-            this.api_tag2_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_tag2_textbox.Name = "api_tag2_textbox";
-            this.api_tag2_textbox.Size = new System.Drawing.Size(60, 23);
-            this.api_tag2_textbox.TabIndex = 13;
+            this.tag2Textbox.Location = new System.Drawing.Point(71, 169);
+            this.tag2Textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tag2Textbox.Name = "tag2Textbox";
+            this.tag2Textbox.Size = new System.Drawing.Size(60, 23);
+            this.tag2Textbox.TabIndex = 13;
             // 
             // label3
             // 
@@ -222,26 +222,26 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "图库目录";
             // 
-            // api_path_textbox
+            // depotPathTextbox
             // 
-            this.api_path_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.depotPathTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_path_textbox.Location = new System.Drawing.Point(9, 33);
-            this.api_path_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_path_textbox.Name = "api_path_textbox";
-            this.api_path_textbox.Size = new System.Drawing.Size(290, 23);
-            this.api_path_textbox.TabIndex = 1;
+            this.depotPathTextbox.Location = new System.Drawing.Point(9, 33);
+            this.depotPathTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.depotPathTextbox.Name = "depotPathTextbox";
+            this.depotPathTextbox.Size = new System.Drawing.Size(290, 23);
+            this.depotPathTextbox.TabIndex = 1;
             // 
-            // api_path_button
+            // apiPathButton
             // 
-            this.api_path_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_path_button.Location = new System.Drawing.Point(305, 33);
-            this.api_path_button.Name = "api_path_button";
-            this.api_path_button.Size = new System.Drawing.Size(75, 23);
-            this.api_path_button.TabIndex = 2;
-            this.api_path_button.Text = "浏览";
-            this.api_path_button.UseVisualStyleBackColor = true;
-            this.api_path_button.Click += new System.EventHandler(this.api_path_button_Click);
+            this.apiPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.apiPathButton.Location = new System.Drawing.Point(305, 33);
+            this.apiPathButton.Name = "apiPathButton";
+            this.apiPathButton.Size = new System.Drawing.Size(75, 23);
+            this.apiPathButton.TabIndex = 2;
+            this.apiPathButton.Text = "浏览";
+            this.apiPathButton.UseVisualStyleBackColor = true;
+            this.apiPathButton.Click += new System.EventHandler(this.apiPathButton_Click);
             // 
             // label8
             // 
@@ -252,13 +252,13 @@
             this.label8.TabIndex = 8;
             this.label8.Text = "结果数";
             // 
-            // api_quantity_textbox
+            // quantityTextbox
             // 
-            this.api_quantity_textbox.Location = new System.Drawing.Point(131, 121);
-            this.api_quantity_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_quantity_textbox.Name = "api_quantity_textbox";
-            this.api_quantity_textbox.Size = new System.Drawing.Size(60, 23);
-            this.api_quantity_textbox.TabIndex = 9;
+            this.quantityTextbox.Location = new System.Drawing.Point(131, 121);
+            this.quantityTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.quantityTextbox.Name = "quantityTextbox";
+            this.quantityTextbox.Size = new System.Drawing.Size(60, 23);
+            this.quantityTextbox.TabIndex = 9;
             // 
             // label11
             // 
@@ -288,17 +288,17 @@
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.api_secreykey_textbox);
-            this.tabPage1.Controls.Add(this.api_quantity_textbox);
-            this.tabPage1.Controls.Add(this.api_apikey_textbox);
+            this.tabPage1.Controls.Add(this.secreykeyTextbox);
+            this.tabPage1.Controls.Add(this.quantityTextbox);
+            this.tabPage1.Controls.Add(this.apikeyTextbox);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.api_appid_textbox);
-            this.tabPage1.Controls.Add(this.api_timeout_textbox);
+            this.tabPage1.Controls.Add(this.appidTextbox);
+            this.tabPage1.Controls.Add(this.timeoutTextbox);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.api_tag2_textbox);
+            this.tabPage1.Controls.Add(this.tag2Textbox);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.api_tag1_textbox);
+            this.tabPage1.Controls.Add(this.tag1Textbox);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -314,11 +314,11 @@
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.sql_table_textbox);
-            this.tabPage2.Controls.Add(this.sql_password_textbox);
-            this.tabPage2.Controls.Add(this.sql_userid_textbox);
-            this.tabPage2.Controls.Add(this.sql_dataname_textbox);
-            this.tabPage2.Controls.Add(this.sql_serverip_textbox);
+            this.tabPage2.Controls.Add(this.sqlTableTextbox);
+            this.tabPage2.Controls.Add(this.sqlPasswordTextbox);
+            this.tabPage2.Controls.Add(this.sqlUserTextbox);
+            this.tabPage2.Controls.Add(this.sqlDataTextbox);
+            this.tabPage2.Controls.Add(this.sqlIPTextbox);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -372,51 +372,51 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "服务器";
             // 
-            // sql_table_textbox
+            // sqlTableTextbox
             // 
-            this.sql_table_textbox.Location = new System.Drawing.Point(111, 73);
-            this.sql_table_textbox.Name = "sql_table_textbox";
-            this.sql_table_textbox.Size = new System.Drawing.Size(150, 23);
-            this.sql_table_textbox.TabIndex = 5;
+            this.sqlTableTextbox.Location = new System.Drawing.Point(111, 73);
+            this.sqlTableTextbox.Name = "sqlTableTextbox";
+            this.sqlTableTextbox.Size = new System.Drawing.Size(150, 23);
+            this.sqlTableTextbox.TabIndex = 5;
             // 
-            // sql_password_textbox
+            // sqlPasswordTextbox
             // 
-            this.sql_password_textbox.Location = new System.Drawing.Point(111, 121);
-            this.sql_password_textbox.Name = "sql_password_textbox";
-            this.sql_password_textbox.Size = new System.Drawing.Size(100, 23);
-            this.sql_password_textbox.TabIndex = 9;
-            this.sql_password_textbox.UseSystemPasswordChar = true;
+            this.sqlPasswordTextbox.Location = new System.Drawing.Point(111, 121);
+            this.sqlPasswordTextbox.Name = "sqlPasswordTextbox";
+            this.sqlPasswordTextbox.Size = new System.Drawing.Size(100, 23);
+            this.sqlPasswordTextbox.TabIndex = 9;
+            this.sqlPasswordTextbox.UseSystemPasswordChar = true;
             // 
-            // sql_userid_textbox
+            // sqlUserTextbox
             // 
-            this.sql_userid_textbox.Location = new System.Drawing.Point(5, 121);
-            this.sql_userid_textbox.Name = "sql_userid_textbox";
-            this.sql_userid_textbox.Size = new System.Drawing.Size(100, 23);
-            this.sql_userid_textbox.TabIndex = 7;
+            this.sqlUserTextbox.Location = new System.Drawing.Point(5, 121);
+            this.sqlUserTextbox.Name = "sqlUserTextbox";
+            this.sqlUserTextbox.Size = new System.Drawing.Size(100, 23);
+            this.sqlUserTextbox.TabIndex = 7;
             // 
-            // sql_dataname_textbox
+            // sqlDataTextbox
             // 
-            this.sql_dataname_textbox.Location = new System.Drawing.Point(5, 73);
-            this.sql_dataname_textbox.Name = "sql_dataname_textbox";
-            this.sql_dataname_textbox.Size = new System.Drawing.Size(100, 23);
-            this.sql_dataname_textbox.TabIndex = 3;
+            this.sqlDataTextbox.Location = new System.Drawing.Point(5, 73);
+            this.sqlDataTextbox.Name = "sqlDataTextbox";
+            this.sqlDataTextbox.Size = new System.Drawing.Size(100, 23);
+            this.sqlDataTextbox.TabIndex = 3;
             // 
-            // sql_serverip_textbox
+            // sqlIPTextbox
             // 
-            this.sql_serverip_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.sqlIPTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sql_serverip_textbox.Location = new System.Drawing.Point(5, 25);
-            this.sql_serverip_textbox.Name = "sql_serverip_textbox";
-            this.sql_serverip_textbox.Size = new System.Drawing.Size(375, 23);
-            this.sql_serverip_textbox.TabIndex = 1;
+            this.sqlIPTextbox.Location = new System.Drawing.Point(5, 25);
+            this.sqlIPTextbox.Name = "sqlIPTextbox";
+            this.sqlIPTextbox.Size = new System.Drawing.Size(375, 23);
+            this.sqlIPTextbox.TabIndex = 1;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.api_sort_textbox);
-            this.tabPage3.Controls.Add(this.api_sort_button);
-            this.tabPage3.Controls.Add(this.api_path_textbox);
-            this.tabPage3.Controls.Add(this.api_path_button);
+            this.tabPage3.Controls.Add(this.sortTextbox);
+            this.tabPage3.Controls.Add(this.apiSortButton);
+            this.tabPage3.Controls.Add(this.depotPathTextbox);
+            this.tabPage3.Controls.Add(this.apiPathButton);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
@@ -426,37 +426,37 @@
             this.tabPage3.Text = " 目录 ";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // api_add_button
+            // addButton
             // 
-            this.api_add_button.Location = new System.Drawing.Point(184, 10);
-            this.api_add_button.Name = "api_add_button";
-            this.api_add_button.Size = new System.Drawing.Size(75, 23);
-            this.api_add_button.TabIndex = 2;
-            this.api_add_button.Text = "新建";
-            this.api_add_button.UseVisualStyleBackColor = true;
-            this.api_add_button.Click += new System.EventHandler(this.api_add_button_Click);
+            this.addButton.Location = new System.Drawing.Point(184, 10);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.TabIndex = 2;
+            this.addButton.Text = "新建";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // api_delete_button
+            // deleteButton
             // 
-            this.api_delete_button.Location = new System.Drawing.Point(265, 10);
-            this.api_delete_button.Name = "api_delete_button";
-            this.api_delete_button.Size = new System.Drawing.Size(75, 23);
-            this.api_delete_button.TabIndex = 3;
-            this.api_delete_button.Text = "删除";
-            this.api_delete_button.UseVisualStyleBackColor = true;
-            this.api_delete_button.Click += new System.EventHandler(this.api_delete_button_Click);
+            this.deleteButton.Location = new System.Drawing.Point(265, 10);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 3;
+            this.deleteButton.Text = "删除";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // cancel_api_button
+            // cancelButton
             // 
-            this.cancel_api_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancel_api_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel_api_button.Location = new System.Drawing.Point(309, 276);
-            this.cancel_api_button.Name = "cancel_api_button";
-            this.cancel_api_button.Size = new System.Drawing.Size(75, 23);
-            this.cancel_api_button.TabIndex = 7;
-            this.cancel_api_button.Text = "取消";
-            this.cancel_api_button.UseVisualStyleBackColor = true;
-            this.cancel_api_button.Click += new System.EventHandler(this.cancel_api_button_Click);
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(309, 276);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 7;
+            this.cancelButton.Text = "取消";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // label17
             // 
@@ -467,41 +467,41 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "归类目录";
             // 
-            // api_sort_textbox
+            // sortTextbox
             // 
-            this.api_sort_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.sortTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_sort_textbox.Location = new System.Drawing.Point(9, 83);
-            this.api_sort_textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.api_sort_textbox.Name = "api_sort_textbox";
-            this.api_sort_textbox.Size = new System.Drawing.Size(290, 23);
-            this.api_sort_textbox.TabIndex = 7;
+            this.sortTextbox.Location = new System.Drawing.Point(9, 83);
+            this.sortTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.sortTextbox.Name = "sortTextbox";
+            this.sortTextbox.Size = new System.Drawing.Size(290, 23);
+            this.sortTextbox.TabIndex = 7;
             // 
-            // api_sort_button
+            // apiSortButton
             // 
-            this.api_sort_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.api_sort_button.Location = new System.Drawing.Point(305, 83);
-            this.api_sort_button.Name = "api_sort_button";
-            this.api_sort_button.Size = new System.Drawing.Size(75, 23);
-            this.api_sort_button.TabIndex = 8;
-            this.api_sort_button.Text = "浏览";
-            this.api_sort_button.UseVisualStyleBackColor = true;
-            this.api_sort_button.Click += new System.EventHandler(this.api_sort_button_Click);
+            this.apiSortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.apiSortButton.Location = new System.Drawing.Point(305, 83);
+            this.apiSortButton.Name = "apiSortButton";
+            this.apiSortButton.Size = new System.Drawing.Size(75, 23);
+            this.apiSortButton.TabIndex = 8;
+            this.apiSortButton.Text = "浏览";
+            this.apiSortButton.UseVisualStyleBackColor = true;
+            this.apiSortButton.Click += new System.EventHandler(this.apiSortButton_Click);
             // 
             // ApiSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancel_api_button;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(394, 306);
-            this.Controls.Add(this.cancel_api_button);
-            this.Controls.Add(this.api_delete_button);
-            this.Controls.Add(this.api_add_button);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.depot_list_combobox);
-            this.Controls.Add(this.cel_api_button);
-            this.Controls.Add(this.save_api_button);
+            this.Controls.Add(this.depotListCombobox);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.saveButton);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(410, 345);
@@ -525,44 +525,44 @@
 
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox api_timeout_textbox;
-        private System.Windows.Forms.TextBox api_appid_textbox;
+        private System.Windows.Forms.TextBox timeoutTextbox;
+        private System.Windows.Forms.TextBox appidTextbox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox api_apikey_textbox;
-        private System.Windows.Forms.TextBox api_secreykey_textbox;
+        private System.Windows.Forms.TextBox apikeyTextbox;
+        private System.Windows.Forms.TextBox secreykeyTextbox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox depot_list_combobox;
-        private System.Windows.Forms.Button save_api_button;
-        private System.Windows.Forms.Button cel_api_button;
+        private System.Windows.Forms.ComboBox depotListCombobox;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox api_tag1_textbox;
+        private System.Windows.Forms.TextBox tag1Textbox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox api_tag2_textbox;
+        private System.Windows.Forms.TextBox tag2Textbox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox api_path_textbox;
-        private System.Windows.Forms.Button api_path_button;
+        private System.Windows.Forms.TextBox depotPathTextbox;
+        private System.Windows.Forms.Button apiPathButton;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox api_quantity_textbox;
+        private System.Windows.Forms.TextBox quantityTextbox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox sql_table_textbox;
-        private System.Windows.Forms.TextBox sql_password_textbox;
-        private System.Windows.Forms.TextBox sql_userid_textbox;
-        private System.Windows.Forms.TextBox sql_dataname_textbox;
-        private System.Windows.Forms.TextBox sql_serverip_textbox;
+        private System.Windows.Forms.TextBox sqlTableTextbox;
+        private System.Windows.Forms.TextBox sqlPasswordTextbox;
+        private System.Windows.Forms.TextBox sqlUserTextbox;
+        private System.Windows.Forms.TextBox sqlDataTextbox;
+        private System.Windows.Forms.TextBox sqlIPTextbox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button api_add_button;
-        private System.Windows.Forms.Button api_delete_button;
-        private System.Windows.Forms.Button cancel_api_button;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox api_sort_textbox;
-        private System.Windows.Forms.Button api_sort_button;
+        private System.Windows.Forms.TextBox sortTextbox;
+        private System.Windows.Forms.Button apiSortButton;
     }
 }

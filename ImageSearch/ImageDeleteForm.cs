@@ -15,7 +15,7 @@ namespace ImageSearch
 
         private void ImageDeleteForm_Load(object sender, EventArgs e)// 窗口载入时
         {
-            if (ApiFunction.GetDepotList() != null) depot_list_combobox.DataSource = ApiFunction.GetDepotList();// 图库下拉列表数据源
+            if (ApiFunction.GetDepotList() != null) depotListCombobox.DataSource = ApiFunction.GetDepotList();// 图库下拉列表数据源
 
             try
             {
@@ -24,19 +24,19 @@ namespace ImageSearch
             catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("无权限加载窗口图标图标文件，请尝试使用管理员权限重新运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return;
             }
             catch (FileNotFoundException)
             {
                 MessageBox.Show("窗口图标图标文件不存在，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("加载窗口图标图标时发生如下错误，程序将自动退出，描述如下\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return;
             }
         }
@@ -100,7 +100,7 @@ namespace ImageSearch
             if (File.Exists(delete_path_textbox.Text) || delete_sign_textbox.Text != "")
             {
                 var back = new object[4];// 装箱
-                back[0] = depot_list_combobox.Text;
+                back[0] = depotListCombobox.Text;
                 back[1] = delete_image_checkbox.Checked;
                 back[2] = delete_path_textbox.Text;
                 back[3] = delete_sign_textbox.Text;
@@ -118,17 +118,17 @@ namespace ImageSearch
         private void delete_background_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             var back = e.Argument as object[];// 拆箱
-            string depot_name = (string)back[0];
+            string depot = (string)back[0];
             bool mode = (bool)back[1];
             string path = (string)back[2];
             string sign = (string)back[3];
-            Api api = ApiFunction.GetApi(depot_name);
+            Api api = ApiFunction.GetApi(depot);
             if (api != null)
             {
                 if (mode)// 上传图片进行删除
                 {
                     Baidu.Aip.ImageSearch.ImageSearch client = ApiFunction.GetClient(api.Appid, api.Apikey, api.Secreykey, api.Timeout);
-                    bool delete = Sql.Delete(depot_name, "DELETE FROM " + api.Table + " WHERE Path = '" + path.Replace(api.Path, "").Replace("'", "''") + "'");// 删除数据记录
+                    bool delete = Sql.Delete(depot, "DELETE FROM " + api.Table + " WHERE Path = '" + path.Replace(api.Path, "").Replace("'", "''") + "'");// 删除数据记录
                     if (client != null && delete) e.Result = ApiFunction.DeleteByImage(path, client);// 申请删除
                     else return;
                 }
@@ -136,7 +136,7 @@ namespace ImageSearch
                 else//输入图片签名进行删除
                 {
                     Baidu.Aip.ImageSearch.ImageSearch client = ApiFunction.GetClient(api.Appid, api.Apikey, api.Secreykey, api.Timeout);
-                    bool delete = Sql.Delete(depot_name, "DELETE FROM " + api.Table + " WHERE ContSign = '" + sign + "'");// 删除数据记录
+                    bool delete = Sql.Delete(depot, "DELETE FROM " + api.Table + " WHERE ContSign = '" + sign + "'");// 删除数据记录
                     if (client != null && delete) e.Result = ApiFunction.DeleteBySian(sign, client);// 申请删除
                     else return;
                 }

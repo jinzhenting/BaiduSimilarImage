@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.sort_background = new System.ComponentModel.BackgroundWorker();
-            this.search_statusstrip = new System.Windows.Forms.StatusStrip();
-            this.search_bar = new System.Windows.Forms.ToolStripProgressBar();
-            this.progress_label = new System.Windows.Forms.ToolStripStatusLabel();
+            this.searchStatusstrip = new System.Windows.Forms.StatusStrip();
+            this.searchBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.label13 = new System.Windows.Forms.Label();
             this.vcetor_source_path_button = new System.Windows.Forms.Button();
             this.sort_in_path_textbox = new System.Windows.Forms.TextBox();
-            this.vector_sort_button = new System.Windows.Forms.Button();
+            this.vector_imageSortButton = new System.Windows.Forms.Button();
             this.vector_cancel_button = new System.Windows.Forms.Button();
-            this.depot_list_combobox = new System.Windows.Forms.ComboBox();
-            this.sort_sub_checkbox = new System.Windows.Forms.CheckBox();
+            this.depotListCombobox = new System.Windows.Forms.ComboBox();
+            this.sort_subCheckbox = new System.Windows.Forms.CheckBox();
             this.sort_holdold_checkbox = new System.Windows.Forms.CheckBox();
             this.sort_listview = new System.Windows.Forms.ListView();
             this.label11 = new System.Windows.Forms.Label();
-            this.search_statusstrip.SuspendLayout();
+            this.searchStatusstrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // sort_background
@@ -53,27 +53,27 @@
             this.sort_background.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.sort_background_ProgressChanged);
             this.sort_background.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sort_background_RunWorkerCompleted);
             // 
-            // search_statusstrip
+            // searchStatusstrip
             // 
-            this.search_statusstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.search_bar,
-            this.progress_label});
-            this.search_statusstrip.Location = new System.Drawing.Point(0, 539);
-            this.search_statusstrip.Name = "search_statusstrip";
-            this.search_statusstrip.Size = new System.Drawing.Size(784, 22);
-            this.search_statusstrip.TabIndex = 3;
-            this.search_statusstrip.Text = "search_statusstrip";
+            this.searchStatusstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchBar,
+            this.progressLabel});
+            this.searchStatusstrip.Location = new System.Drawing.Point(0, 539);
+            this.searchStatusstrip.Name = "searchStatusstrip";
+            this.searchStatusstrip.Size = new System.Drawing.Size(784, 22);
+            this.searchStatusstrip.TabIndex = 3;
+            this.searchStatusstrip.Text = "searchStatusstrip";
             // 
-            // search_bar
+            // searchBar
             // 
-            this.search_bar.Name = "search_bar";
-            this.search_bar.Size = new System.Drawing.Size(100, 16);
+            this.searchBar.Name = "searchBar";
+            this.searchBar.Size = new System.Drawing.Size(100, 16);
             // 
-            // progress_label
+            // progressLabel
             // 
-            this.progress_label.Name = "progress_label";
-            this.progress_label.Size = new System.Drawing.Size(80, 17);
-            this.progress_label.Text = "等待用户操作";
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(80, 17);
+            this.progressLabel.Text = "等待用户操作";
             // 
             // label13
             // 
@@ -104,16 +104,16 @@
             this.sort_in_path_textbox.Size = new System.Drawing.Size(455, 23);
             this.sort_in_path_textbox.TabIndex = 1;
             // 
-            // vector_sort_button
+            // vector_imageSortButton
             // 
-            this.vector_sort_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.vector_sort_button.Location = new System.Drawing.Point(621, 509);
-            this.vector_sort_button.Name = "vector_sort_button";
-            this.vector_sort_button.Size = new System.Drawing.Size(75, 23);
-            this.vector_sort_button.TabIndex = 1;
-            this.vector_sort_button.Text = "开始";
-            this.vector_sort_button.UseVisualStyleBackColor = true;
-            this.vector_sort_button.Click += new System.EventHandler(this.vector_sort_button_Click);
+            this.vector_imageSortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.vector_imageSortButton.Location = new System.Drawing.Point(621, 509);
+            this.vector_imageSortButton.Name = "vector_imageSortButton";
+            this.vector_imageSortButton.Size = new System.Drawing.Size(75, 23);
+            this.vector_imageSortButton.TabIndex = 1;
+            this.vector_imageSortButton.Text = "开始";
+            this.vector_imageSortButton.UseVisualStyleBackColor = true;
+            this.vector_imageSortButton.Click += new System.EventHandler(this.vector_imageSortButton_Click);
             // 
             // vector_cancel_button
             // 
@@ -126,26 +126,26 @@
             this.vector_cancel_button.UseVisualStyleBackColor = true;
             this.vector_cancel_button.Click += new System.EventHandler(this.vector_cancel_button_Click);
             // 
-            // depot_list_combobox
+            // depotListCombobox
             // 
-            this.depot_list_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.depot_list_combobox.FormattingEnabled = true;
-            this.depot_list_combobox.Location = new System.Drawing.Point(43, 8);
-            this.depot_list_combobox.Name = "depot_list_combobox";
-            this.depot_list_combobox.Size = new System.Drawing.Size(121, 25);
-            this.depot_list_combobox.TabIndex = 4;
-            this.depot_list_combobox.SelectedIndexChanged += new System.EventHandler(this.depot_list_combobox_SelectedIndexChanged);
+            this.depotListCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.depotListCombobox.FormattingEnabled = true;
+            this.depotListCombobox.Location = new System.Drawing.Point(43, 8);
+            this.depotListCombobox.Name = "depotListCombobox";
+            this.depotListCombobox.Size = new System.Drawing.Size(121, 25);
+            this.depotListCombobox.TabIndex = 4;
+            this.depotListCombobox.SelectedIndexChanged += new System.EventHandler(this.depotListCombobox_SelectedIndexChanged);
             // 
-            // sort_sub_checkbox
+            // sort_subCheckbox
             // 
-            this.sort_sub_checkbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sort_sub_checkbox.AutoSize = true;
-            this.sort_sub_checkbox.Location = new System.Drawing.Point(586, 42);
-            this.sort_sub_checkbox.Name = "sort_sub_checkbox";
-            this.sort_sub_checkbox.Size = new System.Drawing.Size(99, 21);
-            this.sort_sub_checkbox.TabIndex = 9;
-            this.sort_sub_checkbox.Text = "包含子文件夹";
-            this.sort_sub_checkbox.UseVisualStyleBackColor = true;
+            this.sort_subCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sort_subCheckbox.AutoSize = true;
+            this.sort_subCheckbox.Location = new System.Drawing.Point(586, 42);
+            this.sort_subCheckbox.Name = "sort_subCheckbox";
+            this.sort_subCheckbox.Size = new System.Drawing.Size(99, 21);
+            this.sort_subCheckbox.TabIndex = 9;
+            this.sort_subCheckbox.Text = "包含子文件夹";
+            this.sort_subCheckbox.UseVisualStyleBackColor = true;
             // 
             // sort_holdold_checkbox
             // 
@@ -190,11 +190,11 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.sort_in_path_textbox);
             this.Controls.Add(this.sort_holdold_checkbox);
-            this.Controls.Add(this.sort_sub_checkbox);
+            this.Controls.Add(this.sort_subCheckbox);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.depot_list_combobox);
-            this.Controls.Add(this.vector_sort_button);
-            this.Controls.Add(this.search_statusstrip);
+            this.Controls.Add(this.depotListCombobox);
+            this.Controls.Add(this.vector_imageSortButton);
+            this.Controls.Add(this.searchStatusstrip);
             this.Controls.Add(this.vector_cancel_button);
             this.Controls.Add(this.sort_listview);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -205,8 +205,8 @@
             this.Text = "本地图片整理";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageSortForm_FormClosing);
             this.Load += new System.EventHandler(this.ImageSortForm_Load);
-            this.search_statusstrip.ResumeLayout(false);
-            this.search_statusstrip.PerformLayout();
+            this.searchStatusstrip.ResumeLayout(false);
+            this.searchStatusstrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,16 +214,16 @@
 
         #endregion
         private System.ComponentModel.BackgroundWorker sort_background;
-        private System.Windows.Forms.StatusStrip search_statusstrip;
-        private System.Windows.Forms.ToolStripStatusLabel progress_label;
-        private System.Windows.Forms.ToolStripProgressBar search_bar;
-        private System.Windows.Forms.Button vector_sort_button;
+        private System.Windows.Forms.StatusStrip searchStatusstrip;
+        private System.Windows.Forms.ToolStripStatusLabel progressLabel;
+        private System.Windows.Forms.ToolStripProgressBar searchBar;
+        private System.Windows.Forms.Button vector_imageSortButton;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button vector_cancel_button;
         private System.Windows.Forms.Button vcetor_source_path_button;
         private System.Windows.Forms.TextBox sort_in_path_textbox;
-        private System.Windows.Forms.ComboBox depot_list_combobox;
-        private System.Windows.Forms.CheckBox sort_sub_checkbox;
+        private System.Windows.Forms.ComboBox depotListCombobox;
+        private System.Windows.Forms.CheckBox sort_subCheckbox;
         private System.Windows.Forms.CheckBox sort_holdold_checkbox;
         private System.Windows.Forms.ListView sort_listview;
         private System.Windows.Forms.Label label11;

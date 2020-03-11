@@ -2,7 +2,7 @@
 {
     public class Api
     {
-        //Appid
+        // Appid
         private string appid;
         public string Appid
         {
@@ -10,7 +10,7 @@
             set { appid = value; }
         }
 
-        //Apikey
+        // Apikey
         private string apikey;
         public string Apikey
         {
@@ -18,7 +18,7 @@
             set { apikey = value; }
         }
 
-        //Secreykey
+        // Secreykey
         private string secreykey;
         public string Secreykey
         {
@@ -26,7 +26,7 @@
             set { secreykey = value; }
         }
 
-        //Timeout
+        // Timeout
         private int timeout;
         public int Timeout
         {
@@ -34,7 +34,7 @@
             set { timeout = value; }
         }
 
-        //Tags1
+        // Tags1
         private int tags1;
         public int Tags1
         {
@@ -42,7 +42,7 @@
             set { tags1 = value; }
         }
 
-        //Tags2
+        // Tags2
         private int tags2;
         public int Tags2
         {
@@ -50,7 +50,7 @@
             set { tags2 = value; }
         }
 
-        //Quantity
+        // Quantity
         private int quantity;
         public int Quantity
         {
@@ -58,7 +58,7 @@
             set { quantity = value; }
         }
 
-        //Path
+        // Path
         private string path;
         public string Path
         {
@@ -66,7 +66,7 @@
             set { path = value; }
         }
 
-        //SortPath
+        // SortPath
         private string sortpath;
         public string SortPath
         {
@@ -74,7 +74,7 @@
             set { sortpath = value; }
         }
         
-        //Serverip
+        // Serverip
         private string serverip;
         public string Serverip
         {
@@ -82,7 +82,7 @@
             set { serverip = value; }
         }
 
-        //Dataname
+        // Dataname
         private string dataname;
         public string Dataname
         {
@@ -90,7 +90,7 @@
             set { dataname = value; }
         }
 
-        //Userid
+        // Userid
         private string userid;
         public string Userid
         {
@@ -98,7 +98,7 @@
             set { userid = value; }
         }
 
-        //Password
+        // Password
         private string password;
         public string Password
         {
@@ -106,7 +106,7 @@
             set { password = value; }
         }
 
-        //Table
+        // Table
         private string table;
         public string Table
         {

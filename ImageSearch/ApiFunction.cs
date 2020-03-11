@@ -13,7 +13,11 @@ namespace ImageSearch
 {
     public static class ApiFunction
     {
-        public static List<string> GetDepotList()// 获取图库列表
+        /// <summary>
+        /// 获取图库列表
+        /// </summary>
+        /// <returns>返回图库列表</returns>
+        public static List<string> GetDepotList()
         {
             try
             {
@@ -28,31 +32,41 @@ namespace ImageSearch
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
         }
 
-        public static bool AcceptFormat1(string path)// 格式支持，以编码检测
+        /// <summary>
+        /// 支持入库的格式列表，以编码检测
+        /// </summary>
+        /// <param name="path">文件名全称</param>
+        /// <returns>检测结果</returns>
+        public static bool AcceptFormat1(string path)
         {
             Image img = Image.FromFile(path);
             if (img.RawFormat.Equals(ImageFormat.Jpeg) || img.RawFormat.Equals(ImageFormat.Bmp) || img.RawFormat.Equals(ImageFormat.Png)) return true;
             else return false;
         }
 
-        public static bool AcceptFormat2(string path)// 格式支持，以扩展名检测
+        /// <summary>
+        /// 支持入库的格式列表，以扩展名检测
+        /// </summary>
+        /// <param name="path">文件名全称</param>
+        /// <returns>检测结果</returns>
+        public static bool AcceptFormat2(string path)
         {
             if (GetFormatList() != null)
             {
@@ -66,7 +80,11 @@ namespace ImageSearch
             }
         }
 
-        public static List<string> GetFormatList()// 获取格式列表
+        /// <summary>
+        /// 获取格式列表
+        /// </summary>
+        /// <returns>格式列表</returns>
+        public static List<string> GetFormatList()
         {
             try
             {
@@ -81,24 +99,29 @@ namespace ImageSearch
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问格式列表配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("格式列表配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问格式列表配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
         }
 
-        public static Api GetApi(string depot_name)// 获取API配
+        /// <summary>
+        /// 获取API配置
+        /// </summary>
+        /// <param name="depot">图库</param>
+        /// <returns>API实例</returns>
+        public static Api GetApi(string depot)
         {
             try
             {
@@ -107,7 +130,7 @@ namespace ImageSearch
                 XmlNode rootNode = xml.DocumentElement;// 根节点
                 foreach (XmlNode xmlnode in rootNode.ChildNodes)// 在根节点中寻找节点
                 {
-                    if (xmlnode.Name == depot_name)// 获取对应节点的值
+                    if (xmlnode.Name == depot)// 获取对应节点的值
                     {
                         Api api = new Api();
                         api.Appid = xmlnode.Attributes["appid"].Value;
@@ -127,30 +150,36 @@ namespace ImageSearch
                         return api;
                     }
                 }
-                MessageBox.Show("图库配置文件中查找不到" + depot_name + "的内容，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("图库配置文件中查找不到" + depot + "的内容，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return null;
             }
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
         }
 
-        public static bool SaveApi(string depot_name, Api api)// 保存API配置
+        /// <summary>
+        /// 保存API配置
+        /// </summary>
+        /// <param name="depot">图库</param>
+        /// <param name="api">API实例</param>
+        /// <returns>保存结果</returns>
+        public static bool SaveApi(string depot, Api api)
         {
             try
             {
@@ -159,7 +188,7 @@ namespace ImageSearch
                 XmlNode rootNode = xml.DocumentElement;// 获得根节点
                 foreach (XmlNode xmlnode in rootNode.ChildNodes)// 在根节点中寻找节点
                 {
-                    if (xmlnode.Name == depot_name)// 保存对应节点的值
+                    if (xmlnode.Name == depot)// 保存对应节点的值
                     {
                         xmlnode.Attributes["appid"].Value = api.Appid;
                         xmlnode.Attributes["apikey"].Value = api.Apikey;
@@ -184,32 +213,40 @@ namespace ImageSearch
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
         }
 
-        public static Baidu.Aip.ImageSearch.ImageSearch GetClient(string appid, string apikey, string secreykey, int timeout)// 获取GetClient
+        /// <summary>
+        /// 获取GetClient
+        /// </summary>
+        /// <param name="appid">appid</param>
+        /// <param name="apikey">apikey</param>
+        /// <param name="secreykey">secreykey</param>
+        /// <param name="timeout">timeout</param>
+        /// <returns>GetClient</returns>
+        public static Baidu.Aip.ImageSearch.ImageSearch GetClient(string appid, string apikey, string secreykey, int timeout)
         {
             try
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-                var app_id = appid;
-                var api_key = apikey;
-                var secrey_key = secreykey;
-                var clients = new Baidu.Aip.ImageSearch.ImageSearch(api_key, secrey_key);
+                var id = appid;
+                var key = apikey;
+                var secrey = secreykey;
+                var clients = new Baidu.Aip.ImageSearch.ImageSearch(key, secrey);
                 clients.Timeout = timeout * 1000;// 超时时间
                 return clients;
             }
@@ -220,11 +257,16 @@ namespace ImageSearch
             }
         }
 
-        public static string FileToBase64(string fileName)// 字节转换，来自路径
+        /// <summary>
+        /// 字节转换
+        /// </summary>
+        /// <param name="filePath">文件位置</param>
+        /// <returns>字节字符串</returns>
+        public static string FileToBase64(string filePath)
         {
             try
             {
-                FileStream filestream = new FileStream(fileName, FileMode.Open);
+                FileStream filestream = new FileStream(filePath, FileMode.Open);
                 byte[] arr = new byte[filestream.Length];
                 filestream.Read(arr, 0, (int)filestream.Length);
                 string baser64 = Convert.ToBase64String(arr);
@@ -238,7 +280,12 @@ namespace ImageSearch
             }
         }
 
-        public static byte[] ImagetoByte(Image image)// 字节转换，来自Image
+        /// <summary>
+        /// 字节转换
+        /// </summary>
+        /// <param name="image">Image实例</param>
+        /// <returns>字节字符串</returns>
+        public static byte[] ImagetoByte(Image image)
         {
             try
             {
@@ -263,7 +310,12 @@ namespace ImageSearch
             }
         }
 
-        public static string GetError(string error_number)// 错误代码
+        /// <summary>
+        /// 错误代码
+        /// </summary>
+        /// <param name="error_number">错误代码</param>
+        /// <returns></returns>
+        public static string GetError(string error_number)
         {
             try
             {
@@ -272,30 +324,35 @@ namespace ImageSearch
                 XmlNode xmlnode = xml.DocumentElement;// 获得根节点
                 foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["chs"].Value;// 在根节点中寻找节点
                 MessageBox.Show("查询不到错误代码，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问错误代码配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("错误代码配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问错误代码配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
         }
 
-        public static string UpIgnore(string error_number)// Ignore
+        /// <summary>
+        /// 通过错误代码判断是否忽略入库
+        /// </summary>
+        /// <param name="error_number">错误代码</param>
+        /// <returns>结果</returns>
+        public static string UpIgnore(string error_number)
         {
             try
             {
@@ -304,30 +361,39 @@ namespace ImageSearch
                 XmlNode xmlnode = xml.DocumentElement;// 获得根节点
                 foreach (XmlNode node in xmlnode.ChildNodes) if (node.Name == "Error" + error_number) return node.Attributes["ignore"].Value;// 在根节点中寻找节点
                 MessageBox.Show("查询不到错误代码Ignore节点，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问错误代码配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("错误代码配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问错误代码配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
         }
 
-        public static JObject Up(Baidu.Aip.ImageSearch.ImageSearch imagesearch, string path, string name, int tags1, int tags2)// 入库
+        /// <summary>
+        /// 入库
+        /// </summary>
+        /// <param name="imagesearch">ImageSearch</param>
+        /// <param name="path">图片位置</param>
+        /// <param name="name">图片名</param>
+        /// <param name="tags1">tags1</param>
+        /// <param name="tags2">tags2</param>
+        /// <returns></returns>
+        public static JObject Up(Baidu.Aip.ImageSearch.ImageSearch imagesearch, string path, string name, int tags1, int tags2)
         {
             try
             {
@@ -347,7 +413,16 @@ namespace ImageSearch
             }
         }
 
-        public static JObject Search(Baidu.Aip.ImageSearch.ImageSearch imagesearch, byte[] bytes, int tags1, int tags2, int quantity)// 搜索
+        /// <summary>
+        /// 搜索
+        /// </summary>
+        /// <param name="imagesearch">ImageSearch</param>
+        /// <param name="bytes">图片字节</param>
+        /// <param name="tags1">tags1</param>
+        /// <param name="tags2">tags2</param>
+        /// <param name="quantity">返回结果数</param>
+        /// <returns></returns>
+        public static JObject Search(Baidu.Aip.ImageSearch.ImageSearch imagesearch, byte[] bytes, int tags1, int tags2, int quantity)
         {
             try
             {
@@ -368,7 +443,13 @@ namespace ImageSearch
             }
         }
 
-        public static JObject DeleteByImage(string path, Baidu.Aip.ImageSearch.ImageSearch client)// 删除，以图片
+        /// <summary>
+        /// 通过图片在库中删除图片
+        /// </summary>
+        /// <param name="path">图片位置</param>
+        /// <param name="client">ImageSearch</param>
+        /// <returns></returns>
+        public static JObject DeleteByImage(string path, Baidu.Aip.ImageSearch.ImageSearch client)
         {
             try
             {
@@ -383,7 +464,13 @@ namespace ImageSearch
             }
         }
 
-        public static JObject DeleteBySian(string sign, Baidu.Aip.ImageSearch.ImageSearch client)// 删除，以图片签名
+        /// <summary>
+        /// 通过图片签名在库中删除图片
+        /// </summary>
+        /// <param name="sign">图片签名</param>
+        /// <param name="client">ImageSearch</param>
+        /// <returns></returns>
+        public static JObject DeleteBySian(string sign, Baidu.Aip.ImageSearch.ImageSearch client)
         {
             try
             {
@@ -397,14 +484,20 @@ namespace ImageSearch
             }
         }
 
-        public static bool AddDepot(string depot_name, Api api)// 创建图库配置
+        /// <summary>
+        /// 创建图库配置
+        /// </summary>
+        /// <param name="depot">图库</param>
+        /// <param name="api">Api</param>
+        /// <returns>结果</returns>
+        public static bool AddDepot(string depot, Api api)
         {
             try
             {
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(@"Documents\ApiList.xml");
                 XmlNode xmlnode = xmlDoc.DocumentElement;// 定位根节点，用于追加新节点
-                XmlElement element = xmlDoc.CreateElement(depot_name);// 创建节点
+                XmlElement element = xmlDoc.CreateElement(depot);// 创建节点
                 element.InnerText = "";// 空白串联值，不设置不生成一对节点
                 element.SetAttribute("appid", api.Appid);// 创建属性
                 element.SetAttribute("apikey", api.Apikey);
@@ -426,51 +519,56 @@ namespace ImageSearch
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
         }
 
-        public static bool DeleteDepot(string depot_name)// 删除图库配置
+        /// <summary>
+        /// 删除图库配置
+        /// </summary>
+        /// <param name="depot">图库</param>
+        /// <returns>结果</returns>
+        public static bool DeleteDepot(string depot)
         {
             try
             {
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(@"Documents\ApiList.xml");
-                XmlNode xmlnode = xmlDoc.DocumentElement;// 定位根节点
-                var element = xmlDoc.SelectSingleNode("//ApiList/" + depot_name);// 搜索节点
+                XmlDocument xml = new XmlDocument();
+                xml.Load(@"Documents\ApiList.xml");
+                XmlNode xmlnode = xml.DocumentElement;// 定位根节点
+                var element = xml.SelectSingleNode("//ApiList/" + depot);// 搜索节点
                 xmlnode.RemoveChild(element);// 清除
-                xmlDoc.Save(@"Documents\ApiList.xml");
+                xml.Save(@"Documents\ApiList.xml");
                 return true;
             }
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return false;
             }
         }

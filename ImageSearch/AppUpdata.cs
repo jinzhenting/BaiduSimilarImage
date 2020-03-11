@@ -8,27 +8,32 @@ namespace ImageSearch
 {
     static class AppUpdata
     {
-        public static void Updata(string up_path, bool show_windows)
+        /// <summary>
+        /// 程序更新
+        /// </summary>
+        /// <param name="upURL">更新地址</param>
+        /// <param name="showWindows">结果是否弹窗</param>
+        public static void Updata(string upURL, bool showWindows)
         {
-            if (!Directory.Exists(up_path))// 地址检测
+            if (!Directory.Exists(upURL))// 地址检测
             {
-                if (MessageBox.Show("程序更新地址 " + up_path + " 无效，是否重新设置？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;// 新版本更新选择窗口
+                if (MessageBox.Show("程序更新地址 " + upURL + " 无效，是否重新设置？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;// 新版本更新选择窗口
                 else
                 {
-                    SettingsForm settingsform = new SettingsForm();
-                    settingsform.ShowDialog();
-                    System.Environment.Exit(0);
+                    SettingsForm settingsForm = new SettingsForm();
+                    settingsForm.ShowDialog();
+                    Environment.Exit(0);
                 }
                 return;
             }
 
             try
             {
-                DirectoryInfo directorys = new DirectoryInfo(up_path);
-                FileInfo[] files = directorys.GetFiles(@"ImageSearch*.exe", SearchOption.TopDirectoryOnly);// 扫描ImageSearch开头命名的exe文件
+                DirectoryInfo directoryInfo = new DirectoryInfo(upURL);
+                FileInfo[] files = directoryInfo.GetFiles(@"ImageSearch*.exe", SearchOption.TopDirectoryOnly);// 扫描ImageSearch开头命名的exe文件
                 if (files.Length == 0)// 没有发现ImageSearch开头命名的exe文件
                 {
-                    if (show_windows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    if (showWindows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
                 }
 
@@ -46,7 +51,7 @@ namespace ImageSearch
                     return;
                 }
 
-                if (show_windows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                if (showWindows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             catch (UnauthorizedAccessException)
             {

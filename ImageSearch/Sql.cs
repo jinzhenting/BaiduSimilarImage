@@ -12,36 +12,36 @@ namespace ImageSearch
         /// <summary>
         /// 读取SQL链接配置
         /// </summary>
-        /// <param name="depot_name">图库名</param>
+        /// <param name="depot">图库名</param>
         /// <returns>SQL链接配置</returns>
-        private static string GetConnection(string depot_name)
+        private static string GetConnection(string depot)
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiList.xml");
                 XmlNode rootNode = xml.DocumentElement;// 获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == depot_name) return "Server=" + xmlnode.Attributes["serverip"].Value + "; Initial Catalog=" + xmlnode.Attributes["dataname"].Value + "; User ID=" + xmlnode.Attributes["userid"].Value + "; Password=" + Password.Decrypt(xmlnode.Attributes["password"].Value, "12345678");// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
-                MessageBox.Show("图库配置文件中查找不到" + depot_name + "的内容，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                System.Environment.Exit(0);
+                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == depot) return "Server=" + xmlnode.Attributes["serverip"].Value + "; Initial Catalog=" + xmlnode.Attributes["dataname"].Value + "; User ID=" + xmlnode.Attributes["userid"].Value + "; Password=" + Password.Decrypt(xmlnode.Attributes["password"].Value, "12345678");// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
+                MessageBox.Show("图库配置文件中查找不到" + depot + "的内容，程序将自动退出，请检查", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                Environment.Exit(0);
                 return null;
             }
             catch (UnauthorizedAccessException ex)
             {
                 MessageBox.Show("无权限访问图库配置文件，请尝试使用管理员权限运行本程序，程序将自动退出，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("图库配置文件不存在，程序将自动退出，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("访问图库配置文件时发生错误，程序将自动退出，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return null;
             }
         }
@@ -49,14 +49,14 @@ namespace ImageSearch
         /// <summary>
         /// SELECT
         /// </summary>
-        /// <param name="depot_name">图库名</param>
+        /// <param name="depot">图库名</param>
         /// <param name="select">SELECT * FROM 表 WHERE 列='值'</param>
         /// <returns>数据表</returns>
-        public static DataTable Select(string depot_name, string select)
+        public static DataTable Select(string depot, string select)
         {
             try
             {
-                string server = GetConnection(depot_name);
+                string server = GetConnection(depot);
                 SqlDataAdapter sqldataadapter = new SqlDataAdapter();
                 SqlConnection sqlconnection = new SqlConnection(server);
                 SqlCommand sqlcommand = new SqlCommand(select, sqlconnection);
@@ -79,14 +79,14 @@ namespace ImageSearch
         /// <summary>
         /// UPDATE
         /// </summary>
-        /// <param name="depot_name">图库名</param>
+        /// <param name="depot">图库名</param>
         /// <param name="up">UPDATE 表 SET 列='值', 列='值' WHERE 列='值'</param>
         /// <returns></returns>
-        public static bool Up(string depot_name, string up)
+        public static bool Up(string depot, string up)
         {
             try
             {
-                string server = GetConnection(depot_name);
+                string server = GetConnection(depot);
                 SqlConnection sqlconnection = new SqlConnection(server);
                 sqlconnection.Open();
                 SqlCommand sqlCommand = new SqlCommand(up, sqlconnection);
@@ -105,14 +105,14 @@ namespace ImageSearch
         /// <summary>
         /// INSERT
         /// </summary>
-        /// <param name="depot_name">图库名</param>
+        /// <param name="depot">图库名</param>
         /// <param name="insert">INSERT INTO 表 (列,列,列) VALUES('值','值','值')</param>
         /// <returns></returns>
-        public static bool Insert(string depot_name, string insert)
+        public static bool Insert(string depot, string insert)
         {
             try
             {
-                string server = GetConnection(depot_name);
+                string server = GetConnection(depot);
                 SqlConnection sqlconnection = new SqlConnection(server);
                 sqlconnection.Open();
                 SqlCommand sqlCommand = new SqlCommand(insert, sqlconnection);
@@ -131,14 +131,14 @@ namespace ImageSearch
         /// <summary>
         /// DELETE
         /// </summary>
-        /// <param name="depot_name">图库名</param>
+        /// <param name="depot">图库名</param>
         /// <param name="delete">DELETE FROM 表名称 WHERE 列名称 = 值</param>
         /// <returns></returns>
-        public static bool Delete(string depot_name, string delete)
+        public static bool Delete(string depot, string delete)
         {
             try
             {
-                string server = GetConnection(depot_name);
+                string server = GetConnection(depot);
                 SqlConnection sqlconnection = new SqlConnection(server);
                 sqlconnection.Open();
                 SqlCommand sqlCommand = new SqlCommand(delete, sqlconnection);
@@ -157,14 +157,14 @@ namespace ImageSearch
         /// <summary>
         /// DROP TABLE
         /// </summary>
-        /// <param name="depot_name">图库名</param>
+        /// <param name="depot">图库名</param>
         /// <param name="drop">DROP TABLE 表名</param>
         /// <returns></returns>
-        public static bool Dropable(string depot_name, string drop)
+        public static bool Dropable(string depot, string drop)
         {
             try
             {
-                string server = GetConnection(depot_name);
+                string server = GetConnection(depot);
                 SqlConnection sqlconnection = new SqlConnection(server);
                 sqlconnection.Open();
                 SqlCommand sqlCommand = new SqlCommand(drop, sqlconnection);

@@ -20,7 +20,7 @@ namespace ImageSearch
         private void ImageSortForm_Load(object sender, EventArgs e)
         {
             LotrListSettings();
-            if (ApiFunction.GetDepotList() != null) depot_list_combobox.DataSource = ApiFunction.GetDepotList();
+            if (ApiFunction.GetDepotList() != null) depotListCombobox.DataSource = ApiFunction.GetDepotList();
 
             try
             {
@@ -29,19 +29,19 @@ namespace ImageSearch
             catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("无权限加载窗口图标图标文件，请尝试使用管理员权限重新运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return;
             }
             catch (FileNotFoundException)
             {
                 MessageBox.Show("窗口图标图标文件不存在，程序将自动退出", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("加载窗口图标图标时发生如下错误，程序将自动退出，描述如下\r\n\r\n" + ex.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Environment.Exit(0);
+                Environment.Exit(0);
                 return;
             }
         }
@@ -53,7 +53,7 @@ namespace ImageSearch
             sort_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
         }
 
-        private void vector_sort_button_Click(object sender, EventArgs e)// 订单归类按钮
+        private void vector_imageSortButton_Click(object sender, EventArgs e)// 订单归类按钮
         {
             if (!Directory.Exists(sort_in_path_textbox.Text))
             {
@@ -78,11 +78,11 @@ namespace ImageSearch
                 var back = new object[4];// 装箱
                 back[0] = sort_in_path_textbox.Text;
                 back[1] = api;
-                back[2] = sort_sub_checkbox.Checked;
+                back[2] = sort_subCheckbox.Checked;
                 back[3] = sort_holdold_checkbox.Checked;
                 sort_background.RunWorkerAsync(back);
-                search_bar.Value = 1;
-                progress_label.Text = "% 开始整理...";
+                searchBar.Value = 1;
+                progressLabel.Text = "% 开始整理...";
             }
         }
 
@@ -182,7 +182,7 @@ namespace ImageSearch
                         list.Add(file);// 栈目录的文件遍历到List
                         sort_background.ReportProgress(1, "发现文件" + file);// 进度日志
                     }
-                if (sort_sub_checkbox.Checked) if (sub_paths.Length > 0) foreach (string sub_path in sub_paths) stack.Push(sub_path);// 如果包含子目录，栈目录的子目录列表入栈 
+                if (sort_subCheckbox.Checked) if (sub_paths.Length > 0) foreach (string sub_path in sub_paths) stack.Push(sub_path);// 如果包含子目录，栈目录的子目录列表入栈 
             }
             #endregion 获取文件列表
 
@@ -302,8 +302,8 @@ namespace ImageSearch
 
         private void sort_background_ProgressChanged(object sender, ProgressChangedEventArgs e)// 异步进度
         {
-            search_bar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : search_bar.Value;
-            progress_label.Text = search_bar.Value.ToString() + "% " + e.UserState as string;
+            searchBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : searchBar.Value;
+            progressLabel.Text = searchBar.Value.ToString() + "% " + e.UserState as string;
         }
 
         private void sort_background_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)// 异步完成
@@ -311,14 +311,14 @@ namespace ImageSearch
             if (e.Error != null)
             {
                 MessageBox.Show("归类后台错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                search_bar.Value = 0;
+                searchBar.Value = 0;
                 return;
             }
 
             if (e.Cancelled)
             {
                 MessageBox.Show("归类已取消", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                search_bar.Value = 0;
+                searchBar.Value = 0;
                 return;
             }
 
@@ -326,17 +326,17 @@ namespace ImageSearch
 
             if (datatable == null)// 空数据
             {
-                search_bar.Value = 100;
+                searchBar.Value = 100;
                 MessageBox.Show("归类失败，返回了空结果", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                progress_label.Text = "归类失败，返回了空结果";
+                progressLabel.Text = "归类失败，返回了空结果";
                 return;
             }
 
             if (datatable.Rows.Count == 0)// 0结果
             {
-                search_bar.Value = 100;
+                searchBar.Value = 100;
                 MessageBox.Show("没有需要归类的文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                progress_label.Text = "没有需要归类的文件";
+                progressLabel.Text = "没有需要归类的文件";
                 return;
             }
 
@@ -345,8 +345,8 @@ namespace ImageSearch
             sort_listview.EndUpdate();// 绘制UI。
             sort_listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
             sort_listview.Items[sort_listview.Items.Count - 1].EnsureVisible();// 定位尾部
-            progress_label.Text = "完成";
-            search_bar.Value = 100;
+            progressLabel.Text = "完成";
+            searchBar.Value = 100;
         }
         
         private void vcetor_source_path_button_Click(object sender, EventArgs e)// 矢量开始位置浏览按钮
@@ -362,9 +362,9 @@ namespace ImageSearch
         }
 
         Api api;
-        private void depot_list_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void depotListCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            api = ApiFunction.GetApi(depot_list_combobox.Text);
+            api = ApiFunction.GetApi(depotListCombobox.Text);
             sort_in_path_textbox.Text = api.SortPath;
         }
 
