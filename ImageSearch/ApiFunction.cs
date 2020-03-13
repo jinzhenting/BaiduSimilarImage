@@ -11,6 +11,9 @@ using System.Xml;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// API功能
+    /// </summary>
     public static class ApiFunction
     {
         /// <summary>
@@ -140,8 +143,8 @@ namespace ImageSearch
                         api.Tags1 = int.Parse(xmlnode.Attributes["tags1"].Value);
                         api.Tags2 = int.Parse(xmlnode.Attributes["tags2"].Value);
                         api.Quantity = int.Parse(xmlnode.Attributes["quantity"].Value);
-                        api.Path = (Regex.IsMatch(xmlnode.Attributes["path"].Value, @"[\\]$")) ? xmlnode.Attributes["path"].Value : xmlnode.Attributes["path"].Value + @"\";
-                        api.SortPath = (Regex.IsMatch(xmlnode.Attributes["sortpath"].Value, @"[\\]$")) ? xmlnode.Attributes["sortpath"].Value : xmlnode.Attributes["sortpath"].Value + @"\";
+                        api.Path =xmlnode.Attributes["path"].Value;
+                        api.SortPath =xmlnode.Attributes["sortpath"].Value;
                         api.Serverip = xmlnode.Attributes["serverip"].Value;
                         api.Dataname = xmlnode.Attributes["dataname"].Value;
                         api.Userid = xmlnode.Attributes["userid"].Value;

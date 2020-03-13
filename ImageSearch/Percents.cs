@@ -2,6 +2,9 @@
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 百分比
+    /// </summary>
     public static class Percents
     {
         /// <summary>

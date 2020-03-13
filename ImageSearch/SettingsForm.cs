@@ -6,6 +6,9 @@ using System.Xml;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 程序设置窗口
+    /// </summary>
     public partial class SettingsForm : Form
     {
         public SettingsForm()
@@ -13,18 +16,26 @@ namespace ImageSearch
             InitializeComponent();
         }
 
-        private string appuppath;// AppUpPath
+        /// <summary>
+        /// 程序升级地址
+        /// </summary>
+        private string appuppath;
+        /// <summary>
+        /// 程序升级地址
+        /// </summary>
         public string AppUpPath
         {
             get { return appuppath; }
             set { appuppath = value; }
         }
 
+        /// <summary>
+        /// 窗口载入时
+        /// </summary>
         private void SettingsForm_Load(object sender, System.EventArgs e)
         {
             upTextBox.Text = appuppath;
-
-
+            
             try
             {
                 Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Setting.ico"));
@@ -49,7 +60,10 @@ namespace ImageSearch
             }
         }
 
-        private void saveButton_Click(object sender, System.EventArgs e)// 保存按钮
+        /// <summary>
+        /// 保存按钮
+        /// </summary>
+        private void saveButton_Click(object sender, System.EventArgs e)
         {
             try
             {
@@ -60,11 +74,11 @@ namespace ImageSearch
                 xml.Save(@"Documents\Settings.xml");
                 MessageBox.Show("保存成功，将在程序重启后生效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            catch (System.UnauthorizedAccessException)
+            catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("无权限访问程序配置文件，请尝试使用管理员权限运行本程序", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (System.IO.FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 MessageBox.Show("程序配置文件不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -74,7 +88,9 @@ namespace ImageSearch
             }
         }
 
-        //取消按钮
+        /// <summary>
+        /// 取消按钮
+        /// </summary>
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();

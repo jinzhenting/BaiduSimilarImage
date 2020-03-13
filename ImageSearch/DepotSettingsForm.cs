@@ -6,9 +6,12 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
-    public partial class ApiSettingsForm : Form
+    /// <summary>
+    /// API配置窗口
+    /// </summary>
+    public partial class DepotSettingsForm : Form
     {
-        public ApiSettingsForm()
+        public DepotSettingsForm()
         {
             InitializeComponent();
         }
@@ -143,7 +146,7 @@ namespace ImageSearch
                 api.Timeout = int.Parse(timeoutTextBox.Text);
                 api.Tags1 = int.Parse(tag1TextBox.Text);
                 api.Tags2 = int.Parse(tag2TextBox.Text);
-                api.Path = (Regex.IsMatch(depotPathTextBox.Text, @"[\\]$")) ? depotPathTextBox.Text : depotPathTextBox.Text + @"\";
+                api.Path = depotPathTextBox.Text;
                 api.Quantity = int.Parse(quantityTextBox.Text);
                 api.Serverip = sqlIPTextBox.Text;
                 api.Dataname = sqlDataTextBox.Text;
@@ -169,7 +172,7 @@ namespace ImageSearch
         private void depotPathButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) depotPathTextBox.Text = (Regex.IsMatch(folderBrowserDialog.SelectedPath, @"[\\]$")) ? folderBrowserDialog.SelectedPath : folderBrowserDialog.SelectedPath + @"\";
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) depotPathTextBox.Text =folderBrowserDialog.SelectedPath;
         }
 
         /// <summary>
@@ -177,7 +180,7 @@ namespace ImageSearch
         /// </summary>
         private void addButton_Click(object sender, EventArgs e)
         {
-            ApiImageAddForm apiImageAddForm = new ApiImageAddForm();
+            DepotAddForm apiImageAddForm = new DepotAddForm();
             apiImageAddForm.ShowDialog();
         }
 
@@ -226,7 +229,7 @@ namespace ImageSearch
         private void sortPathButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) sortPathTextBox.Text = (Regex.IsMatch(folderBrowserDialog.SelectedPath, @"[\\]$")) ? folderBrowserDialog.SelectedPath : folderBrowserDialog.SelectedPath + @"\";
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) sortPathTextBox.Text = folderBrowserDialog.SelectedPath;
         }
 
         //

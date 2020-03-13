@@ -7,10 +7,13 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 文件归类器，
+    /// </summary>
     public class Reflections
     {
         /// <summary>
-        /// 文件归类器，把输入的文件位置生成归类后的新位置
+        /// 把输入的文件位置生成归类后的新位置
         /// </summary>
         /// <param name="sort">归类器名称</param>
         /// <returns>归类后的新位置</returns>

@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 入库扫描子目录窗口
+    /// </summary>
     public partial class ImageAddSubForm : Form
     {
         public ImageAddSubForm()
@@ -13,33 +16,41 @@ namespace ImageSearch
             InitializeComponent();
         }
 
-        //InPath
+        /// <summary>
+        /// 主目录
+        /// </summary>
         private string inpath;
+        /// <summary>
+        /// 主目录
+        /// </summary>
         public string InPath
         {
             get { return inpath; }
             set { inpath = value; }
         }
 
-        //List
+        /// <summary>
+        /// 选中目录列表
+        /// </summary>
         private List<string> list;
+        /// <summary>
+        /// 选中目录列表
+        /// </summary>
         public List<string> List
         {
             get { return list; }
             set { list = value; }
         }
 
-        //
+        /// <summary>
+        /// 窗口载入时
+        /// </summary>
         private void ImageAddSubForm_Load(object sender, EventArgs e)
         {
-            //
             list = new List<string>();
             DirectoryInfo directoryinfo = new DirectoryInfo(inpath);
             DirectoryInfo[] directoryinfos = directoryinfo.GetDirectories();
-            for (int i = 0; i < directoryinfos.Length; i++)
-            {
-                checkedListBox.Items.Add(directoryinfos[i].FullName);
-            }
+            for (int i = 0; i < directoryinfos.Length; i++) checkedListBox.Items.Add(directoryinfos[i].FullName);
 
             try
             {
@@ -65,49 +76,40 @@ namespace ImageSearch
             }
         }
 
-        //确定按钮
+        /// <summary>
+        /// 确定按钮
+        /// </summary>
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (list.Count > 0)
-            {
-                list.Clear();
-            }
-
-            //选中
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                if (checkedListBox.GetItemChecked(i))
-                {
-                    list.Add(checkedListBox.GetItemText(checkedListBox.Items[i]));
-                }
-            }
+            if (list.Count > 0) list.Clear();
+            for (int i = 0; i < checkedListBox.Items.Count; i++) if (checkedListBox.GetItemChecked(i)) list.Add(checkedListBox.GetItemText(checkedListBox.Items[i]));
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        //取消按钮
+        /// <summary>
+        /// 取消按钮
+        /// </summary>
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        //全不选
+        /// <summary>
+        /// 全不勾选
+        /// </summary>
         private void clearButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                checkedListBox.SetItemChecked(i, false);
-            }
+            for (int i = 0; i < checkedListBox.Items.Count; i++) checkedListBox.SetItemChecked(i, false);
         }
 
-        //全选
+        /// <summary>
+        /// 全勾选
+        /// </summary>
         private void allButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < checkedListBox.Items.Count; i++)
-            {
-                checkedListBox.SetItemChecked(i, true);
-            }
+            for (int i = 0; i < checkedListBox.Items.Count; i++) checkedListBox.SetItemChecked(i, true);
         }
 
         //

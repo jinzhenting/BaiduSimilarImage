@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
-    public partial class ApiResultForm : Form
+    public partial class SearchResultForm : Form
     {
         /// <summary>
         /// 结果列表
@@ -32,7 +32,7 @@ namespace ImageSearch
         /// <param name="inBriefList">API结果列表Json["brief"]</param>
         /// <param name="inDepot">图库</param>
         /// <param name="inPath">图库位置</param>
-        public ApiResultForm(List<string> inBriefList, string inDepot, string inPath)
+        public SearchResultForm(List<string> inBriefList, string inDepot, string inPath)
         {
             InitializeComponent();
             briefList = inBriefList;
@@ -72,7 +72,7 @@ namespace ImageSearch
         /// <summary>
         /// 窗口载入时
         /// </summary>
-        private void ApiResultForm_Load(object sender, EventArgs e)
+        private void SearchBEForm_Load(object sender, EventArgs e)
         {
             IconSetting();
             IconNullBool();
@@ -81,7 +81,7 @@ namespace ImageSearch
         /// <summary>
         /// 窗口显示时
         /// </summary>
-        private void ApiResultForm_Shown(object sender, EventArgs e)
+        private void SearchBEForm_Shown(object sender, EventArgs e)
         {
             iconBackStartr();
         }
@@ -133,8 +133,8 @@ namespace ImageSearch
                         e.Cancel = true;
                         return;
                     }
-
-                    if (File.Exists(imagePath + briefList[i])) imagelist.Images.Add(ZoomImage(Image.FromFile(imagePath + briefList[i]), 256, 256));// 等比缩放图片// 加载缩略图
+                    string imagepath = Path.Combine(this.imagePath, briefList[i]);
+                    if (File.Exists(imagepath)) imagelist.Images.Add(ZoomImage(Image.FromFile(imagepath), 256, 256));// 等比缩放图片// 加载缩略图
                     else imagelist.Images.Add(Image.FromFile(@"Skin\ListIcon.jpg"));// 加载缺失缩略图
                     //进度
                     iconBack.ReportProgress(Percents.Get(i + 1, briefList.Count), briefList[i]);
@@ -185,7 +185,7 @@ namespace ImageSearch
             {
                 ListViewItem ListViewitem = new ListViewItem();// 定义单个项目
                 ListViewitem.ImageIndex = i;
-                ListViewitem.Text = imagePath + briefList[i];
+                ListViewitem.Text = Path.Combine(imagePath, briefList[i]);
                 listView.Items.Add(ListViewitem);
             }
             listView.LargeImageList = imagelist;
@@ -254,7 +254,7 @@ namespace ImageSearch
         /// <summary>
         /// 窗口关闭检测
         /// </summary>
-        private void ApiResultForm_FormClosing(object sender, FormClosingEventArgs e)// 窗口关闭前停止后台
+        private void SearchBEForm_FormClosing(object sender, FormClosingEventArgs e)// 窗口关闭前停止后台
         {
             if (iconBack.IsBusy)
             {

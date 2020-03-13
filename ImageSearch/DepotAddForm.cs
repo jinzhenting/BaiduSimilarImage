@@ -6,9 +6,12 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
-    public partial class ApiImageAddForm : Form
+    /// <summary>
+    /// 新建图库窗口
+    /// </summary>
+    public partial class DepotAddForm : Form
     {
-        public ApiImageAddForm()
+        public DepotAddForm()
         {
             InitializeComponent();
         }
@@ -16,7 +19,7 @@ namespace ImageSearch
         /// <summary>
         /// 读取程序图标
         /// </summary>
-        private void ApiImageAddForm_Load(object sender, EventArgs e)
+        private void DepotAddForm_Load(object sender, EventArgs e)
         {
             try
             {
@@ -114,8 +117,8 @@ namespace ImageSearch
             api.Table = sqlTableTextBox.Text;
             api.Userid = sqlUserTextBox.Text;
             api.Password = sqlPasswordTextBox.Text;
-            api.Path = (Regex.IsMatch(depotPathTextBox.Text, @"[\\]$")) ? depotPathTextBox.Text : depotPathTextBox.Text + @"\";
-            api.SortPath = (Regex.IsMatch(sortPathTextBox.Text, @"[\\]$")) ? sortPathTextBox.Text : sortPathTextBox.Text + @"\";
+            api.Path = depotPathTextBox.Text;
+            api.SortPath = sortPathTextBox.Text;
 
             bool sql = Sql.CreateTable(api, @"CREATE TABLE " + sqlTableTextBox.Text + "(ID INT PRIMARY KEY IDENTITY(1, 1), Names VARCHAR(256) not null, Path VARCHAR(256) not null, LogID VARCHAR(256), ContSign VARCHAR(256), Tsgs1 INT, Tsgs2 INT, Result VARCHAR(256) not null, Message  VARCHAR(256) not null, Times DATETIME not null)");// 新建表
             if (!sql)
@@ -141,7 +144,7 @@ namespace ImageSearch
         private void depotPathButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) depotPathTextBox.Text = (Regex.IsMatch(folderBrowserDialog.SelectedPath, @"[\\]$")) ? folderBrowserDialog.SelectedPath : folderBrowserDialog.SelectedPath + @"\";
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) depotPathTextBox.Text = folderBrowserDialog.SelectedPath;
         }
 
         /// <summary>
@@ -150,7 +153,7 @@ namespace ImageSearch
         private void sortPathButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) sortPathTextBox.Text = (Regex.IsMatch(folderBrowserDialog.SelectedPath, @"[\\]$")) ? folderBrowserDialog.SelectedPath : folderBrowserDialog.SelectedPath + @"\";
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) sortPathTextBox.Text =folderBrowserDialog.SelectedPath;
         }
     }
 }

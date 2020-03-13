@@ -5,13 +5,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 入库窗口
+    /// </summary>
     public partial class ImageAddForm : Form
     {
-        public ImageAddForm(){InitializeComponent(); }
+        public ImageAddForm() { InitializeComponent(); }
 
         /// <summary>
         /// 格式列表载入
@@ -56,7 +60,10 @@ namespace ImageSearch
         }
 
         #region 日志
-        private void LogListSettings()// 日志列表样式
+        /// <summary>
+        /// 日志列表样式
+        /// </summary>
+        private void LogListSettings()
         {
             addLogListView.Columns.Add("序号");// 添加列标题
             addLogListView.Columns.Add("图片");
@@ -65,8 +72,11 @@ namespace ImageSearch
             addLogListView.Columns.Add("描述");
             addLogListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
         }
-        
-        private void LogWrite(ImageAddLog log)// 写日志
+
+        /// <summary>
+        /// 写日志
+        /// </summary>
+        private void LogWrite(ImageAddLog log)
         {
             addLogListView.BeginUpdate();// 挂起UI，避免闪烁并提速
             ListViewItem item = addLogListView.Items.Add(log.ID);// 序号
@@ -79,7 +89,12 @@ namespace ImageSearch
             addLogListView.Items[addLogListView.Items.Count - 1].EnsureVisible();// 定位尾部
         }
 
-        private void resetLogButton_Click(object sender, EventArgs e)// 清空日志按钮
+        /// <summary>
+        /// 清空日志按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void resetLogButton_Click(object sender, EventArgs e)
         {
             if (addBack.IsBusy)
             {
@@ -95,7 +110,11 @@ namespace ImageSearch
         /// API
         /// </summary>
         private Api api;
-        private void depotListCombobox_SelectedIndexChanged(object sender, EventArgs e)// 图库列表选择动作
+
+        /// <summary>
+        /// 图库列表选择动作
+        /// </summary>
+        private void depotListCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
             subCheckBox.Checked = false;// 复原选项
             api = ApiFunction.GetApi(depotListCombobox.Text);// 获取API元素
@@ -107,7 +126,10 @@ namespace ImageSearch
             }
         }
 
-        private void resetAddImageListButton_Click(object sender, EventArgs e)// 清空图片列表按钮
+        /// <summary>
+        /// 清空图片列表按钮
+        /// </summary>
+        private void resetAddImageListButton_Click(object sender, EventArgs e)
         {
             if (addBack.IsBusy)
             {
@@ -119,17 +141,94 @@ namespace ImageSearch
         }
 
         #region 扫描
-        private List<string> subList = new List<string>();// 包含子目录选项列表
-        private void subCheckBox_CheckedChanged(object sender, EventArgs e)
+        /// <summary>
+        /// 包含子目录列表
+        /// </summary>
+        private List<string> subList = new List<string>();
+
+        /// <summary>
+        /// 包含子目录勾选
+        /// </summary>
+        private void subCheckBox_Click(object sender, EventArgs e)
         {
+            if (addBack.IsBusy)
+            {
+                MessageBox.Show("后台正在入库，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (subCheckBox.Checked) subCheckBox.Checked = false;
+                else subCheckBox.Checked = true;
+                return;
+            }
+
+            if (scanBack.IsBusy)
+            {
+                MessageBox.Show("后台正在扫描文件，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (subCheckBox.Checked) subCheckBox.Checked = false;
+                else subCheckBox.Checked = true;
+                return;
+            }
+
+            if (!subCheckBox.Checked) return;// 未勾选
+
+            if (subList.Count > 0) subList.Clear();// 清空子目录选项列表
+
+            if (subCheckBox.Checked && depotListCombobox.Text == "")
+            {
+                MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (subList.Count > 0) subList.Clear();
+                subCheckBox.Checked = false;
+                return;
+            }
+
+            if (subCheckBox.Checked && addPathTextBox.Text == "")
+            {
+                MessageBox.Show("未选择图片目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (subList.Count > 0) subList.Clear();
+                subCheckBox.Checked = false;
+                return;
+            }
+
+            if (subCheckBox.Checked && !Directory.Exists(addPathTextBox.Text))
+            {
+                MessageBox.Show("图片目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (subList.Count > 0) subList.Clear();
+                subCheckBox.Checked = false;
+                return;
+            }
+
+            ImageAddSubForm subform = new ImageAddSubForm();
+            subform.InPath = api.Path;// 主目录
+            subform.ShowDialog();
+            if (subform.DialogResult == DialogResult.OK)// 返回确定
+            {
+                if (subform.List.Count < 1)// 返回无选中项
+                {
+                    subCheckBox.Checked = false;
+                    if (subList.Count > 0) subList.Clear();
+                    return;
+                }
+                subList = subform.List;// 获取列表
+                return;
+            }
+            else//返回取消
+            {
+                subCheckBox.Checked = false;
+                if (subList.Count > 0) subList.Clear();
+                return;
+            }
         }
 
-        private void sqlCheckBox_CheckedChanged(object sender, EventArgs e)// 匹配数据库选项
+        /// <summary>
+        /// 匹配数据库勾选
+        /// </summary>
+        private void sqlCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (sqlCheckBox.Checked) if (MessageBox.Show("如果文件数量大，匹配数据库将十分缓慢，并加大服务器负担。\r\n是否继续勾选", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) sqlCheckBox.Checked = false;
         }
 
-        private void ScanListSettings()// 扫描列表样式
+        /// <summary>
+        /// 扫描列表样式
+        /// </summary>
+        private void ScanListSettings()
         {
             scanListView.Columns.Add("序号");// 添加列标题
             scanListView.Columns.Add("图片");
@@ -137,7 +236,10 @@ namespace ImageSearch
             scanListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
         }
 
-        private void addScanButton_Click(object sender, EventArgs e)// 扫描按钮
+        /// <summary>
+        /// 扫描按钮
+        /// </summary>
+        private void addScanButton_Click(object sender, EventArgs e)
         {
             if (addScanButton.Text == "扫描图片")
             {
@@ -201,7 +303,10 @@ namespace ImageSearch
             }
         }
 
-        private void scanBack_DoWork(object sender, DoWorkEventArgs e)// 异步扫描工作
+        /// <summary>
+        /// 异步扫描开始
+        /// </summary>
+        private void scanBack_DoWork(object sender, DoWorkEventArgs e)
         {
             var scan = e.Argument as object[];// 拆箱
             string extension = (string)scan[0];
@@ -216,9 +321,9 @@ namespace ImageSearch
             datatable.Columns.Add("序号", Type.GetType("System.String"));
             datatable.Columns.Add("图片", Type.GetType("System.String"));
             datatable.Columns.Add("位置", Type.GetType("System.String"));
-            
+
             int index = 0;// 序号
-            
+
             DirectoryInfo directorys = new DirectoryInfo(api.Path);// 遍历文件夹
             FileInfo[] files = directorys.GetFiles(extension, SearchOption.TopDirectoryOnly);
             int count = 0;// 文件数
@@ -229,7 +334,7 @@ namespace ImageSearch
                     e.Cancel = true;
                     return;
                 }
-                
+
                 if (sqlCheck)// 是否匹配数据库
                 {
                     DataTable datatable1 = Sql.Select(depot, "SELECT Names, Path, Result, Message FROM " + api.Table + " WHERE Names='" + file.Name.Replace("'", "''") + "' AND Path='" + file.FullName.Replace(api.Path, "").Replace("'", "''") + "'");// 数据库查询
@@ -240,7 +345,7 @@ namespace ImageSearch
                     }
                     if (datatable1.Rows.Count > 0) if (datatable1.Rows[0]["Result"].ToString() == "End" || datatable1.Rows[0]["Result"].ToString() == "Ignore") continue;// 如果查询到记录将跳过
                 }
-                
+
                 index++;// 序号计数
                 DataRow datarow;
                 datarow = datatable.NewRow();
@@ -265,7 +370,7 @@ namespace ImageSearch
 
                     DirectoryInfo allDirectory = new DirectoryInfo(str);
                     int countAll = 0;// 文件数
-                    try//访问权限捕捉
+                    try// 访问权限捕捉
                     {
                         FileInfo[] allFile = allDirectory.GetFiles(extension, SearchOption.AllDirectories);
                         foreach (FileInfo allfiles in allFile)
@@ -278,7 +383,7 @@ namespace ImageSearch
 
                             if (sqlCheck)// 是否匹配数据库
                             {
-                                DataTable datatable2 = Sql.Select(depot, "SELECT Names, Path, Result, Message FROM " + api.Table + " WHERE Names='" + allfiles.Name.Replace("'", "''") + "' AND Path='" + allfiles.FullName.Replace(api.Path, "").Replace("'", "''") + "'");// 获取数据库配置
+                                DataTable datatable2 = Sql.Select(depot, "SELECT Names, Path, Result, Message FROM " + api.Table + " WHERE Names='" + allfiles.Name.Replace("'", "''") + "' AND Path='" + Regex.Replace(allfiles.FullName.Replace(api.Path, "").Replace("'", "''"), @"^[\\]", "") + "'");// 获取数据库配置
                                 if (datatable2 == null)
                                 {
                                     MessageBox.Show("数据库操作错误，结束扫描", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -333,13 +438,19 @@ namespace ImageSearch
             e.Result = datatable;// 结果传出
         }
 
-        private void scanBack_ProgressChanged(object sender, ProgressChangedEventArgs e)// 异步扫描进度
+        /// <summary>
+        /// 异步扫描进度
+        /// </summary>
+        private void scanBack_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : progressBar.Value;
             progressLabel.Text = progressBar.Value.ToString() + "% 发现文件" + e.UserState as string;
         }
-        
-        private void scanBack_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)// 异步扫描完成
+
+        /// <summary>
+        /// 异步扫描完成
+        /// </summary>
+        private void scanBack_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             addScanButton.Text = "扫描图片";
 
@@ -358,7 +469,7 @@ namespace ImageSearch
             }
 
             DataTable datatable = e.Result as DataTable;// 接收传出
-            
+
             if (datatable == null)// 空数据
             {
                 progressBar.Value = 100;
@@ -366,7 +477,7 @@ namespace ImageSearch
                 progressLabel.Text = "扫描失败，返回了空结果";
                 return;
             }
-            
+
             if (datatable.Rows.Count == 0)// 0结果
             {
                 progressBar.Value = 100;
@@ -374,20 +485,23 @@ namespace ImageSearch
                 progressLabel.Text = "没有扫描到文件";
                 return;
             }
-            
+
             scanListView.BeginUpdate();// 挂起UI，避免闪烁并提速
             ListTable.ToView(datatable, scanListView);// 数据转换
             scanListView.EndUpdate();// 绘制UI
             scanListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
             scanListView.Items[scanListView.Items.Count - 1].EnsureVisible();// 定位尾部
-            
+
             progressBar.Value = 100;
             progressLabel.Text = "完成扫描";
         }
         #endregion 扫描
 
         #region 入库
-        private void addStartButton_Click(object sender, EventArgs e)// 入库按钮
+        /// <summary>
+        /// 入库按钮
+        /// </summary>
+        private void addStartButton_Click(object sender, EventArgs e)
         {
             if (addStartButton.Text == "开始入库")
             {
@@ -436,12 +550,15 @@ namespace ImageSearch
             }
             else
             {
-                if (addBack.IsBusy)addBack.CancelAsync();
+                if (addBack.IsBusy) addBack.CancelAsync();
                 addStartButton.Text = "开始入库";
             }
         }
 
-        private void addBack_DoWork(object sender, DoWorkEventArgs e)// 异步入库工作
+        /// <summary>
+        /// 异步入库开始
+        /// </summary>
+        private void addBack_DoWork(object sender, DoWorkEventArgs e)
         {
             #region 拆箱
             var scan = e.Argument as object[];
@@ -457,15 +574,15 @@ namespace ImageSearch
 
                 #region 定义元素
                 string name = datatable.Rows[i]["图片"].ToString();// 文件名
-                string fullpath = datatable.Rows[i]["位置"].ToString();// 文件路径
-                string uppath = fullpath.Replace(api.Path, "");// 记录时清除主目录，后面SQL转义
+                string fullPath = datatable.Rows[i]["位置"].ToString();// 文件路径
+                string upPath = fullPath.Replace(api.Path, "");// 记录时清除主目录，后面SQL转义
                 ImageAddLog log = new ImageAddLog();// 日志
                 log.ID = (i + 1).ToString();
-                log.Nname = fullpath;
+                log.Nname = fullPath;
                 log.Time = DateTime.Now.ToString();
                 #endregion 定义元素
 
-                DataTable selectDataTable = Sql.Select(depot, @"SELECT Names, Path, Result, Message, Times FROM " + api.Table + " WHERE Names='" + name.Replace("'", "''") + "' AND Path='" + uppath.Replace("'", "''") + "'");// 数据库查询
+                DataTable selectDataTable = Sql.Select(depot, @"SELECT Names, Path, Result, Message, Times FROM " + api.Table + " WHERE Names='" + name.Replace("'", "''") + "' AND Path='" + Regex.Replace(upPath.Replace(api.Path, "").Replace("'", "''"), @"^[\\]", "") + "'");// 数据库查询
                 if (selectDataTable == null)
                 {
                     MessageBox.Show("数据库操作错误，结束入库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -514,7 +631,7 @@ namespace ImageSearch
                             }
                         }
 
-                        JObject localJson = ApiFunction.Up(client, fullpath, fullpath.Replace(api.Path, ""), api.Tags1, api.Tags2);// 入库
+                        JObject localJson = ApiFunction.Up(client, fullPath, fullPath.Replace(api.Path, ""), api.Tags1, api.Tags2);// 入库
                         if (localJson == null || localJson.ToString() == "")
                         {
                             if (MessageBox.Show("API连接错误，是否继续入库？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
@@ -600,7 +717,7 @@ namespace ImageSearch
                         }
                     }
 
-                    JObject json = ApiFunction.Up(client, fullpath, fullpath.Replace(api.Path, ""), api.Tags1, api.Tags2);// 入库
+                    JObject json = ApiFunction.Up(client, fullPath, fullPath.Replace(api.Path, ""), api.Tags1, api.Tags2);// 入库
                     if (json == null || json.ToString() == "")
                     {
                         if (MessageBox.Show("API连接错误，是否继续入库？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) continue;
@@ -613,7 +730,7 @@ namespace ImageSearch
 
                     if (json.Property("error_code") == null)// 入库成功
                     {
-                        bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + " (Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + uppath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");// 记录数据库
+                        bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + " (Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");// 记录数据库
                         if (insert)
                         {
                             log.Result = "完成";// 日志
@@ -632,7 +749,7 @@ namespace ImageSearch
                         string errorCode = json["error_code"].ToString();// 错误代码
                         if (json.Property("cont_sign") != null && json.Property("cont_sign").ToString() != "")// 错误里包含cont_sign，即已入过库，此错误是重复入库造成
                         {
-                            bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + uppath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");
+                            bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");
                             if (insert)
                             {
                                 log.Result = "错误";// 日志
@@ -649,7 +766,7 @@ namespace ImageSearch
                         else//错误里没有log_id，且无数据记录，即其他错误执行错误结果记录
                         {
                             string ignore = (ApiFunction.UpIgnore(errorCode) == "Yes") ? "Ignore" : "Local";// 以后是否忽略入库
-                            bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + uppath.Replace("'", "''") + "', '" + ignore + "', 'Error" + errorCode + "', '" + DateTime.Now.ToString() + "')");
+                            bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + ignore + "', 'Error" + errorCode + "', '" + DateTime.Now.ToString() + "')");
                             if (insert)
                             {
                                 log.Result = "错误";// 日志
@@ -669,15 +786,21 @@ namespace ImageSearch
             }
         }
 
-        private void addBack_ProgressChanged(object sender, ProgressChangedEventArgs e)// 异步入库进度
+        /// <summary>
+        /// 异步入库进度
+        /// </summary>
+        private void addBack_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
             ImageAddLog log = e.UserState as ImageAddLog;// 传出解封
             progressLabel.Text = progressBar.Value.ToString() + "% 正在入库 " + log.Nname;
             LogWrite(log);
         }
-        
-        private void addBack_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)// 异步入库完成
+
+        /// <summary>
+        /// 异步入库完成
+        /// </summary>
+        private void addBack_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             addStartButton.Text = "开始入库";
             if (e.Error != null)
@@ -696,8 +819,11 @@ namespace ImageSearch
             progressLabel.Text = "完成入库";
         }
         #endregion 入库
-        
-        private void ImageAddForm_FormClosing(object sender, FormClosingEventArgs e)// 窗口关闭检测
+
+        /// <summary>
+        /// 窗口关闭检测
+        /// </summary>
+        private void ImageAddForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (addBack.IsBusy)
             {
@@ -711,72 +837,5 @@ namespace ImageSearch
             }
         }
 
-        private void subCheckBox_Click(object sender, EventArgs e)
-        {
-            if (addBack.IsBusy)
-            {
-                MessageBox.Show("后台正在入库，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subCheckBox.Checked) subCheckBox.Checked = false;
-                else subCheckBox.Checked = true;
-                return;
-            }
-
-            if (scanBack.IsBusy)
-            {
-                MessageBox.Show("后台正在扫描文件，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subCheckBox.Checked) subCheckBox.Checked = false;
-                else subCheckBox.Checked = true;
-                return;
-            }
-
-            if (!subCheckBox.Checked) return;// 未勾选
-
-            if (subList.Count > 0) subList.Clear();// 清空子目录选项列表
-
-            if (subCheckBox.Checked && depotListCombobox.Text == "")
-            {
-                MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subList.Count > 0) subList.Clear();
-                subCheckBox.Checked = false;
-                return;
-            }
-
-            if (subCheckBox.Checked && addPathTextBox.Text == "")
-            {
-                MessageBox.Show("未选择图片目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subList.Count > 0) subList.Clear();
-                subCheckBox.Checked = false;
-                return;
-            }
-
-            if (subCheckBox.Checked && !Directory.Exists(addPathTextBox.Text))
-            {
-                MessageBox.Show("图片目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (subList.Count > 0) subList.Clear();
-                subCheckBox.Checked = false;
-                return;
-            }
-
-            ImageAddSubForm subform = new ImageAddSubForm();
-            subform.InPath = api.Path;// 主目录
-            subform.ShowDialog();
-            if (subform.DialogResult == DialogResult.OK)// 返回确定
-            {
-                if (subform.List.Count < 1)// 返回无选中项
-                {
-                    subCheckBox.Checked = false;
-                    if (subList.Count > 0) subList.Clear();
-                    return;
-                }
-                subList = subform.List;// 获取列表
-                return;
-            }
-            else//返回取消
-            {
-                subCheckBox.Checked = false;
-                if (subList.Count > 0) subList.Clear();
-                return;
-            }
-        }
     }
 }

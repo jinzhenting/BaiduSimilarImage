@@ -6,10 +6,13 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 程序更新
+    /// </summary>
     static class AppUpdata
     {
         /// <summary>
-        /// 程序更新
+        /// 更新
         /// </summary>
         /// <param name="upURL">更新地址</param>
         /// <param name="showWindows">结果是否弹窗</param>

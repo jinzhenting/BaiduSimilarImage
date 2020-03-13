@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -111,18 +111,18 @@
       <DependentUpon>ImageAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Api.cs" />
-    <Compile Include="ApiAddForm.cs">
+    <Compile Include="DepotAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApiAddForm.Designer.cs">
-      <DependentUpon>ApiAddForm.cs</DependentUpon>
+    <Compile Include="DepotAddForm.Designer.cs">
+      <DependentUpon>DepotAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ApiFunction.cs" />
-    <Compile Include="ApiSettingsForm.cs">
+    <Compile Include="DepotSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApiSettingsForm.Designer.cs">
-      <DependentUpon>ApiSettingsForm.cs</DependentUpon>
+    <Compile Include="DepotSettingsForm.Designer.cs">
+      <DependentUpon>DepotSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageDeleteForm.cs">
       <SubType>Form</SubType>
@@ -133,11 +133,11 @@
     <Compile Include="ImageAddLog.cs" />
     <Compile Include="ListTable.cs" />
     <Compile Include="Percents.cs" />
-    <Compile Include="ApiResultForm.cs">
+    <Compile Include="SearchResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApiResultForm.Designer.cs">
-      <DependentUpon>ApiResultForm.cs</DependentUpon>
+    <Compile Include="SearchResultForm.Designer.cs">
+      <DependentUpon>SearchResultForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
@@ -177,17 +177,17 @@
       <DependentUpon>ImageAddForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApiAddForm.resx">
-      <DependentUpon>ApiAddForm.cs</DependentUpon>
+    <EmbeddedResource Include="DepotAddForm.resx">
+      <DependentUpon>DepotAddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApiSettingsForm.resx">
-      <DependentUpon>ApiSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="DepotSettingsForm.resx">
+      <DependentUpon>DepotSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageDeleteForm.resx">
       <DependentUpon>ImageDeleteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApiResultForm.resx">
-      <DependentUpon>ApiResultForm.cs</DependentUpon>
+    <EmbeddedResource Include="SearchResultForm.resx">
+      <DependentUpon>SearchResultForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">

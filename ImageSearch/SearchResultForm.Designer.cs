@@ -1,6 +1,6 @@
 ﻿namespace ImageSearch
 {
-    partial class ApiResultForm
+    partial class SearchResultForm
     {
         /// <summary>
         /// Required designer variable.
@@ -126,7 +126,7 @@
             this.openPictrueButton.UseVisualStyleBackColor = true;
             this.openPictrueButton.Click += new System.EventHandler(this.openPictrueButton_Click);
             // 
-            // ApiResultForm
+            // SearchBEForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -139,13 +139,13 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(697, 664);
-            this.Name = "ApiResultForm";
+            this.Name = "SearchBEForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "结果列表 - 双击查看原图";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ApiResultForm_FormClosing);
-            this.Load += new System.EventHandler(this.ApiResultForm_Load);
-            this.Shown += new System.EventHandler(this.ApiResultForm_Shown);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SearchBEForm_FormClosing);
+            this.Load += new System.EventHandler(this.SearchBEForm_Load);
+            this.Shown += new System.EventHandler(this.SearchBEForm_Shown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

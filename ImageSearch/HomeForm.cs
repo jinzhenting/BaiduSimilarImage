@@ -22,14 +22,20 @@ XP下API安全链接出错
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 程序主窗口
+    /// </summary>
     public partial class HomeForm : Form
     {
         public HomeForm()
         {
             InitializeComponent();
         }
-        
-        private string appUpURL;// 更新地址
+
+        /// <summary>
+        /// 更新地址
+        /// </summary>
+        private string appUpURL;
 
 
         #region 程序配置
@@ -110,7 +116,10 @@ namespace ImageSearch
         #endregion 程序配置
 
         #region 初始化
-        private void HomeForm_Load(object sender, EventArgs e)// 窗体体载入时
+        /// <summary>
+        /// 窗口载入时
+        /// </summary>
+        private void HomeForm_Load(object sender, EventArgs e)
         {
             // Control.CheckForIllegalCrossThreadCalls = false;// 关闭back访问限制
             Settings();// 程序配置
@@ -136,7 +145,10 @@ namespace ImageSearch
             if (onlineApi != null) onlineQuantityCombobox.Text = onlineApi.Quantity.ToString();// 返回数
         }
 
-        private void onlineSearchButton_Click(object sender, EventArgs e)// 在线搜索按钮
+        /// <summary>
+        /// 在线搜索按钮
+        /// </summary>
+        private void onlineSearchButton_Click(object sender, EventArgs e)
         {
             if (onlinePicturebox.Image == null)
             {
@@ -253,10 +265,11 @@ namespace ImageSearch
                 for (int i = 0; i < num; i++) list.Add(result[i]["brief"].ToString());
                 progressBar.Value = 100;
                 progressLabel.Text = "搜索完成";
-                ApiResultForm ApiResultForm = new ApiResultForm(list, onlineDepotCombobox.Text, onlineApi.Path);
-                ApiResultForm.ShowDialog();
+                SearchResultForm SearchBEForm = new SearchResultForm(list, onlineDepotCombobox.Text, onlineApi.Path);
+                SearchBEForm.ShowDialog();
             }
         }
+
         /// <summary>
         /// 浏览图片按钮
         /// </summary>
@@ -392,7 +405,7 @@ namespace ImageSearch
                 LocalListViewSettings();
             }
 
-            string path = Path.GetDirectoryName(outlineApi.Path + newType);// 目录
+            string path = Path.GetDirectoryName(Path.Combine(outlineApi.Path, newType));// 目录
             string type = localTypeTextBox.Text;// 订单号
 
             progressBar.Value = 50;
@@ -449,7 +462,7 @@ namespace ImageSearch
                     #endregion 异常
 
                     if (files.Length > 0) foreach (string file in files) list.Add(file);// 栈目录的文件遍历到List
-                    if (subPaths.Length > 0) foreach (string sub_path in subPaths) stack.Push(sub_path);// 栈目录的子目录列表入栈
+                    if (subPaths.Length > 0) foreach (string subPath in subPaths) stack.Push(subPath);// 栈目录的子目录列表入栈
                 }
                 #endregion 获取文件列表
             }
@@ -601,7 +614,7 @@ namespace ImageSearch
                 return;
             }
 
-            //0结果
+            // 0结果
             if (datatable.Rows.Count == 0)
             {
                 progressBar.Value = 100;
@@ -610,7 +623,7 @@ namespace ImageSearch
                 return;
             }
 
-            //遍历
+            // 遍历
             localListView.BeginUpdate();// 挂起UI，避免闪烁并提速
             ListTable.ToView(datatable, localListView);
             localListView.EndUpdate();// 绘制UI。
@@ -744,7 +757,7 @@ namespace ImageSearch
         /// </summary>
         private void ApiSettings()
         {
-            ApiSettingsForm apiform = new ApiSettingsForm();
+            DepotSettingsForm apiform = new DepotSettingsForm();
             apiform.ShowDialog();
         }
 
@@ -794,42 +807,66 @@ namespace ImageSearch
             imageupform.ShowDialog();
         }
 
-        private void imageDeleteMenuItem_Click(object sender, EventArgs e)// 图库删除菜单
+        /// <summary>
+        /// 图库删除菜单
+        /// </summary>
+        private void imageDeleteMenuItem_Click(object sender, EventArgs e)
         {
             ImageDelete();
         }
-        private void imageDeleteButton_Click(object sender, EventArgs e)// 图库删除按钮
+        /// <summary>
+        /// 图库删除按钮
+        /// </summary>
+        private void imageDeleteButton_Click(object sender, EventArgs e)
         {
             ImageDelete();
         }
-        private void ImageDelete()// 图库删除功能
+        /// <summary>
+        /// 图库删除功能
+        /// </summary>
+        private void ImageDelete()
         {
             ImageDeleteForm deleteform = new ImageDeleteForm();
             deleteform.ShowDialog();
         }
 
-        private void helpStripmenu_Click(object sender, EventArgs e)// 程序帮助菜单
+        /// <summary>
+        /// 程序帮助菜单
+        /// </summary>
+        private void helpStripmenu_Click(object sender, EventArgs e)
         {
             Help();
         }
-        private void helpButton_Click(object sender, EventArgs e)// 程序帮助按钮
+        /// <summary>
+        /// 程序帮助按钮
+        /// </summary>
+        private void helpButton_Click(object sender, EventArgs e)
         {
             Help();
         }
-        private void Help()// 程序帮助功能
+        /// <summary>
+        /// 程序帮助功能
+        /// </summary>
+        private void Help()
         {
             HelpForm helpform = new HelpForm();
             helpform.ShowDialog();
         }
 
-        private void settingsStripmenu_Click(object sender, EventArgs e)// 程序选项菜单
+        /// <summary>
+        /// 程序选项菜单
+        /// </summary>
+        private void settingsStripmenu_Click(object sender, EventArgs e)
         {
             SettingsForm SettingsForm = new SettingsForm();
             SettingsForm.AppUpPath = appUpURL;
             SettingsForm.ShowDialog();
         }
 
-        private void imageBoxMenustrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)// 图片右键菜单定义
+        /// <summary>
+        /// 图片右键菜单定义
+        /// </summary>
+        private void imageBoxMenustrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (onlinePicturebox.Image == null) imageBoxCopyMenustrip.Enabled = false;// 复制
             else imageBoxCopyMenustrip.Enabled = true;
@@ -842,12 +879,18 @@ namespace ImageSearch
             else imageBoxDeleteMenustrip.Enabled = true;
         }
 
-        private void imageBoxCopyMenustrip_Click(object sender, EventArgs e)// 图片右键菜单复制
+        /// <summary>
+        /// 图片右键菜单复制
+        /// </summary>
+        private void imageBoxCopyMenustrip_Click(object sender, EventArgs e)
         {
             Clipboard.SetImage(onlinePicturebox.Image);
         }
 
-        private void imageBoxPasteMenustrip_Click(object sender, EventArgs e)// 图片右键菜单粘贴
+        /// <summary>
+        /// 图片右键菜单粘贴
+        /// </summary>
+        private void imageBoxPasteMenustrip_Click(object sender, EventArgs e)
         {
             Image img = Clipboard.GetImage();
             if (img != null)
@@ -860,7 +903,10 @@ namespace ImageSearch
             else MessageBox.Show("系统剪贴板没有图像", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
-        private void imageBoxDeleteMenustrip_Click(object sender, EventArgs e)// 图片右键菜单删除
+        /// <summary>
+        /// 图片右键菜单删除
+        /// </summary>
+        private void imageBoxDeleteMenustrip_Click(object sender, EventArgs e)
         {
             onlinePicturebox.Image = null;
             progressBar.Value = 0;

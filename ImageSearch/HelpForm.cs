@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 程序使用帮助窗口
+    /// </summary>
     public partial class HelpForm : Form
     {
         public HelpForm()

@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 在API图库中删除图片窗口
+    /// </summary>
     public partial class ImageDeleteForm : Form
     {
         public ImageDeleteForm()
@@ -13,7 +16,10 @@ namespace ImageSearch
             InitializeComponent();
         }
 
-        private void ImageDeleteForm_Load(object sender, EventArgs e)// 窗口载入时
+        /// <summary>
+        /// 窗口载入时
+        /// </summary>
+        private void ImageDeleteForm_Load(object sender, EventArgs e)
         {
             if (ApiFunction.GetDepotList() != null) depotListCombobox.DataSource = ApiFunction.GetDepotList();// 图库下拉列表数据源
 
@@ -41,6 +47,9 @@ namespace ImageSearch
             }
         }
 
+        /// <summary>
+        /// 浏览图片位置按钮
+        /// </summary>
         private void deletePathButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openfiledialog = new OpenFileDialog();
@@ -55,7 +64,10 @@ namespace ImageSearch
             else MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);// 扩展名不受支持，获取错误提示
         }
 
-        private void deleteImageCheckBox_CheckedChanged(object sender, EventArgs e)// 复选框
+        /// <summary>
+        /// 上传图片进行删除复选框
+        /// </summary>
+        private void deleteImageCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (deleteImageCheckBox.Checked)
             {
@@ -74,7 +86,10 @@ namespace ImageSearch
             }
         }
 
-        private void deleteSignCheckBox_CheckedChanged(object sender, EventArgs e)// 复选框
+        /// <summary>
+        /// 输入图片签名进行删除复选框
+        /// </summary>
+        private void deleteSignCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (deleteSignCheckBox.Checked)
             {
@@ -95,7 +110,10 @@ namespace ImageSearch
             }
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)// 删除按钮
+        /// <summary>
+        /// 删除按钮
+        /// </summary>
+        private void deleteButton_Click(object sender, EventArgs e)
         {
             if (File.Exists(deletePathTextBox.Text) || deleteSignTextBox.Text != "")
             {
@@ -115,6 +133,9 @@ namespace ImageSearch
             }
         }
 
+        /// <summary>
+        /// 异步删除后台开始
+        /// </summary>
         private void deleteBack_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             var back = e.Argument as object[];// 拆箱
@@ -143,7 +164,10 @@ namespace ImageSearch
             }
         }
 
-        private void deleteBack_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)// 后台完成
+        /// <summary>
+        /// 异步删除后台完成
+        /// </summary>
+        private void deleteBack_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)// 错误
             {
@@ -176,7 +200,10 @@ namespace ImageSearch
 
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)// 取消按钮
+        /// <summary>
+        /// 取消按钮
+        /// </summary>
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             if (deleteBack.IsBusy)
             {
@@ -187,7 +214,10 @@ namespace ImageSearch
             this.Close();
         }
 
-        private void ImageDeleteForm_FormClosing(object sender, FormClosingEventArgs e)// 窗口关闭检测
+        /// <summary>
+        /// 窗口关闭检测
+        /// </summary>
+        private void ImageDeleteForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (deleteBack.IsBusy)
             {

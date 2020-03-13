@@ -6,6 +6,9 @@ using System.Web.Security;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 数据加密保存
+    /// </summary>
     class Password
     {
         /// <summary>

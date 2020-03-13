@@ -7,6 +7,9 @@ using System.Xml;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// SQL数据库操作
+    /// </summary>
     public static class Sql
     {
         /// <summary>

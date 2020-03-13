@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 百度图库图片更新窗口
+    /// </summary>
     public partial class ImageUpForm : Form
     {
         public ImageUpForm()
@@ -17,6 +20,9 @@ namespace ImageSearch
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 窗口载入时
+        /// </summary>
         private void ImageUpForm_Load(object sender, EventArgs e)
         {
             try

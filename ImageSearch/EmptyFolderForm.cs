@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace ImageSearch
 {
+    /// <summary>
+    /// 删除空白目录窗口
+    /// </summary>
     public partial class EmptyFolderForm : Form
     {
         public EmptyFolderForm()

@@ -34,7 +34,7 @@
             this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.label13 = new System.Windows.Forms.Label();
             this.sourcePathButton = new System.Windows.Forms.Button();
-            this.inPathTextBox = new System.Windows.Forms.TextBox();
+            this.sourcePathTextBox = new System.Windows.Forms.TextBox();
             this.sortButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.depotListCombobox = new System.Windows.Forms.ComboBox();
@@ -95,14 +95,14 @@
             this.sourcePathButton.UseVisualStyleBackColor = true;
             this.sourcePathButton.Click += new System.EventHandler(this.sourcePathButton_Click);
             // 
-            // inPathTextBox
+            // sourcePathTextBox
             // 
-            this.inPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.sourcePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inPathTextBox.Location = new System.Drawing.Point(43, 41);
-            this.inPathTextBox.Name = "inPathTextBox";
-            this.inPathTextBox.Size = new System.Drawing.Size(455, 23);
-            this.inPathTextBox.TabIndex = 1;
+            this.sourcePathTextBox.Location = new System.Drawing.Point(43, 41);
+            this.sourcePathTextBox.Name = "sourcePathTextBox";
+            this.sourcePathTextBox.Size = new System.Drawing.Size(455, 23);
+            this.sourcePathTextBox.TabIndex = 1;
             // 
             // sortButton
             // 
@@ -188,7 +188,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.sourcePathButton);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.inPathTextBox);
+            this.Controls.Add(this.sourcePathTextBox);
             this.Controls.Add(this.sortHoldOldCheckBox);
             this.Controls.Add(this.sortSubCheckBox);
             this.Controls.Add(this.label11);
@@ -221,7 +221,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button sourcePathButton;
-        private System.Windows.Forms.TextBox inPathTextBox;
+        private System.Windows.Forms.TextBox sourcePathTextBox;
         private System.Windows.Forms.ComboBox depotListCombobox;
         private System.Windows.Forms.CheckBox sortSubCheckBox;
         private System.Windows.Forms.CheckBox sortHoldOldCheckBox;
