@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.emptyListview = new System.Windows.Forms.ListView();
+            this.listView = new System.Windows.Forms.ListView();
             this.openButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pathTextbox = new System.Windows.Forms.TextBox();
+            this.pathTextBox = new System.Windows.Forms.TextBox();
             this.scanButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.cancelBbutton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.emptyBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.emptyLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.emptyBack = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // emptyListview
+            // listView
             // 
-            this.emptyListview.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.emptyListview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.emptyListview.CheckBoxes = true;
-            this.emptyListview.GridLines = true;
-            this.emptyListview.Location = new System.Drawing.Point(-2, 43);
-            this.emptyListview.Name = "emptyListview";
-            this.emptyListview.Size = new System.Drawing.Size(588, 361);
-            this.emptyListview.TabIndex = 0;
-            this.emptyListview.UseCompatibleStateImageBehavior = false;
-            this.emptyListview.View = System.Windows.Forms.View.Details;
+            this.listView.CheckBoxes = true;
+            this.listView.GridLines = true;
+            this.listView.Location = new System.Drawing.Point(-2, 43);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(588, 361);
+            this.listView.TabIndex = 0;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
             // 
             // openButton
             // 
@@ -77,14 +77,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "主目录";
             // 
-            // pathTextbox
+            // pathTextBox
             // 
-            this.pathTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pathTextbox.Location = new System.Drawing.Point(57, 10);
-            this.pathTextbox.Name = "pathTextbox";
-            this.pathTextbox.Size = new System.Drawing.Size(257, 23);
-            this.pathTextbox.TabIndex = 3;
+            this.pathTextBox.Location = new System.Drawing.Point(57, 10);
+            this.pathTextBox.Name = "pathTextBox";
+            this.pathTextBox.Size = new System.Drawing.Size(257, 23);
+            this.pathTextBox.TabIndex = 3;
             // 
             // scanButton
             // 
@@ -122,24 +122,24 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.emptyBar,
-            this.emptyLabel});
+            this.progressBar,
+            this.progressLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 439);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(584, 22);
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // emptyBar
+            // progressBar
             // 
-            this.emptyBar.Name = "emptyBar";
-            this.emptyBar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
             // 
-            // emptyLabel
+            // progressLabel
             // 
-            this.emptyLabel.Name = "emptyLabel";
-            this.emptyLabel.Size = new System.Drawing.Size(80, 17);
-            this.emptyLabel.Text = "等待用户操作";
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(80, 17);
+            this.progressLabel.Text = "等待用户操作";
             // 
             // emptyBack
             // 
@@ -158,10 +158,10 @@
             this.Controls.Add(this.cancelBbutton);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.scanButton);
-            this.Controls.Add(this.pathTextbox);
+            this.Controls.Add(this.pathTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.openButton);
-            this.Controls.Add(this.emptyListview);
+            this.Controls.Add(this.listView);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(600, 500);
@@ -178,16 +178,16 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView emptyListview;
+        private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.Button openButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox pathTextbox;
+        private System.Windows.Forms.TextBox pathTextBox;
         private System.Windows.Forms.Button scanButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button cancelBbutton;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar emptyBar;
-        private System.Windows.Forms.ToolStripStatusLabel emptyLabel;
+        private System.Windows.Forms.ToolStripProgressBar progressBar;
+        private System.Windows.Forms.ToolStripStatusLabel progressLabel;
         private System.ComponentModel.BackgroundWorker emptyBack;
     }
 }

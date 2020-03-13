@@ -38,7 +38,7 @@ namespace ImageSearch
             DirectoryInfo[] directoryinfos = directoryinfo.GetDirectories();
             for (int i = 0; i < directoryinfos.Length; i++)
             {
-                sub_checkedlistbox.Items.Add(directoryinfos[i].FullName);
+                checkedListBox.Items.Add(directoryinfos[i].FullName);
             }
 
             try
@@ -66,7 +66,7 @@ namespace ImageSearch
         }
 
         //确定按钮
-        private void sub_ok_button_Click(object sender, EventArgs e)
+        private void okButton_Click(object sender, EventArgs e)
         {
             if (list.Count > 0)
             {
@@ -74,11 +74,11 @@ namespace ImageSearch
             }
 
             //选中
-            for (int i = 0; i < sub_checkedlistbox.Items.Count; i++)
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
-                if (sub_checkedlistbox.GetItemChecked(i))
+                if (checkedListBox.GetItemChecked(i))
                 {
-                    list.Add(sub_checkedlistbox.GetItemText(sub_checkedlistbox.Items[i]));
+                    list.Add(checkedListBox.GetItemText(checkedListBox.Items[i]));
                 }
             }
             this.DialogResult = DialogResult.OK;
@@ -86,27 +86,27 @@ namespace ImageSearch
         }
 
         //取消按钮
-        private void sub_cancel_button_Click(object sender, EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         //全不选
-        private void sub_clear_button_Click(object sender, EventArgs e)
+        private void clearButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < sub_checkedlistbox.Items.Count; i++)
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
-                sub_checkedlistbox.SetItemChecked(i, false);
+                checkedListBox.SetItemChecked(i, false);
             }
         }
 
         //全选
-        private void sub_all_button_Click(object sender, EventArgs e)
+        private void allButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < sub_checkedlistbox.Items.Count; i++)
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
-                sub_checkedlistbox.SetItemChecked(i, true);
+                checkedListBox.SetItemChecked(i, true);
             }
         }
 

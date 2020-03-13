@@ -115,8 +115,8 @@ namespace ImageSearch
             // Control.CheckForIllegalCrossThreadCalls = false;// 关闭back访问限制
             Settings();// 程序配置
             AppUpdata.Updata(appUpURL, false);// 程序升级
-            if (ApiFunction.GetDepotList() != null) onlineDepotCombobox.DataSource = localImageCombobox.DataSource = ApiFunction.GetDepotList();// 所有图库下拉列表数据源
-            LocalListviewSettings();// 本地搜索列表配置
+            if (ApiFunction.GetDepotList() != null) onlineDepotCombobox.DataSource = localDepotCombobox.DataSource = ApiFunction.GetDepotList();// 所有图库下拉列表数据源
+            LocalListViewSettings();// 本地搜索列表配置
             onlinePicturebox.AllowDrop = true;// 重写AllowDrop使其接受拖放
         }
         #endregion 初始化
@@ -140,19 +140,19 @@ namespace ImageSearch
         {
             if (onlinePicturebox.Image == null)
             {
-                if (onlineImagePathTextbox.Text == "")// 图片未加载 - 路径空
+                if (onlinePathTextBox.Text == "")// 图片未加载 - 路径空
                 {
                     MessageBox.Show("未选择图片位置", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!File.Exists(onlineImagePathTextbox.Text))// 图片未加载 - 路径错误
+                if (!File.Exists(onlinePathTextBox.Text))// 图片未加载 - 路径错误
                 {
                     MessageBox.Show("图片位置不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!ApiFunction.AcceptFormat2(onlineImagePathTextbox.Text))// 图片未加载 - 格式不支持
+                if (!ApiFunction.AcceptFormatByExtension(onlinePathTextBox.Text))// 图片未加载 - 格式不支持
                 {
                     MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);// 扩展名不受支持，获取错误提示
                     return;
@@ -183,7 +183,7 @@ namespace ImageSearch
             back[1] = bytes;// 图片
             back[2] = int.Parse(onlineQuantityCombobox.Text);// 返回数
             searchBack.RunWorkerAsync(back);// 传入
-            searchBar.Value = 1;
+            progressBar.Value = 1;
             progressLabel.Text = "准备搜索...";
         }
 
@@ -215,8 +215,8 @@ namespace ImageSearch
         /// </summary>
         private void searchBack_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            searchBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : searchBar.Value;
-            progressLabel.Text = searchBar.Value.ToString() + "% " + e.UserState as string;
+            progressBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : progressBar.Value;
+            progressLabel.Text = progressBar.Value.ToString() + "% " + e.UserState as string;
         }
 
         /// <summary>
@@ -244,32 +244,31 @@ namespace ImageSearch
                 if (num == 0)
                 {
                     MessageBox.Show("图库返回了0条结果", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    searchBar.Value = 100;
+                    progressBar.Value = 100;
                     progressLabel.Text = "搜索完成";
                     return;
                 }
                 JToken result = json["result"];
                 List<string> list = new List<string>();
                 for (int i = 0; i < num; i++) list.Add(result[i]["brief"].ToString());
-                searchBar.Value = 100;
+                progressBar.Value = 100;
                 progressLabel.Text = "搜索完成";
                 ApiResultForm ApiResultForm = new ApiResultForm(list, onlineDepotCombobox.Text, onlineApi.Path);
                 ApiResultForm.ShowDialog();
             }
         }
-
         /// <summary>
         /// 浏览图片按钮
         /// </summary>
-        private void openPath_Click(object sender, EventArgs e)
+        private void onlineOpenPath_Click(object sender, EventArgs e)
         {
             OpenFileDialog openfiledialog = new OpenFileDialog();
             if (openfiledialog.ShowDialog() != DialogResult.OK) return;
-            if (ApiFunction.AcceptFormat2(openfiledialog.FileName))
+            if (ApiFunction.AcceptFormatByExtension(openfiledialog.FileName))
             {
                 onlinePicturebox.ImageLocation = openfiledialog.FileName;
-                onlineImagePathTextbox.Text = openfiledialog.FileName;
-                searchBar.Value = 0;
+                onlinePathTextBox.Text = openfiledialog.FileName;
+                progressBar.Value = 0;
                 progressLabel.Text = "已选择图片";
             }
             else MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);// 扩展名不受支持，获取错误提示
@@ -278,9 +277,9 @@ namespace ImageSearch
         /// <summary>
         /// 位置输入实时检测
         /// </summary>
-        private void onlineImagePathTextbox_TextChanged(object sender, EventArgs e)
+        private void onlinePathTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (File.Exists(onlineImagePathTextbox.Text) && ApiFunction.AcceptFormat2(onlineImagePathTextbox.Text)) onlinePicturebox.ImageLocation = onlineImagePathTextbox.Text;// 路径与格式同时检测
+            if (File.Exists(onlinePathTextBox.Text) && ApiFunction.AcceptFormatByExtension(onlinePathTextBox.Text)) onlinePicturebox.ImageLocation = onlinePathTextBox.Text;// 路径与格式同时检测
         }
 
         /// <summary>
@@ -298,11 +297,11 @@ namespace ImageSearch
         private void onlinePicturebox_DragDrop(object sender, DragEventArgs e)
         {
             string imageName = (e.Data.GetData(DataFormats.FileDrop, false) as string[])[0];// 获取第一个文件名
-            if (ApiFunction.AcceptFormat2(imageName))
+            if (ApiFunction.AcceptFormatByExtension(imageName))
             {
                 onlinePicturebox.ImageLocation = imageName;
-                onlineImagePathTextbox.Text = imageName;
-                searchBar.Value = 0;
+                onlinePathTextBox.Text = imageName;
+                progressBar.Value = 0;
                 progressLabel.Text = "已选择图片";
             }
             else MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);// 扩展名不受支持，获取错误提示
@@ -319,8 +318,8 @@ namespace ImageSearch
                 return;
             }
             onlinePicturebox.Image = null;
-            searchBar.Value = 0;
-            onlineImagePathTextbox.Text = "";
+            progressBar.Value = 0;
+            onlinePathTextBox.Text = "";
             progressLabel.Text = "等待用户操作";
         }
         #endregion 在线搜索
@@ -339,20 +338,20 @@ namespace ImageSearch
         /// <summary>
         /// 本地图库选择时
         /// </summary>
-        private void localImageCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void localDepotCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            outlineApi = ApiFunction.GetApi(localImageCombobox.Text);
+            outlineApi = ApiFunction.GetApi(localDepotCombobox.Text);
             if (outlineApi != null) localImagePath = outlineApi.Path;
         }
 
         /// <summary>
         /// 本地搜索结果列表
         /// </summary>
-        private void LocalListviewSettings()
+        private void LocalListViewSettings()
         {
-            localListview.Columns.Add("文件名");
-            localListview.Columns.Add("位置");
-            localListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            localListView.Columns.Add("文件名");
+            localListView.Columns.Add("位置");
+            localListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         /// <summary>
@@ -360,13 +359,13 @@ namespace ImageSearch
         /// </summary>
         private void localSearchButton_Click(object sender, EventArgs e)
         {
-            if (localTypeTextbox.Text == "")
+            if (localTypeTextBox.Text == "")
             {
                 MessageBox.Show("请输入内容", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (localImageCombobox.Text == "")
+            if (localDepotCombobox.Text == "")
             {
                 MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -380,23 +379,23 @@ namespace ImageSearch
 
             MethodInfo function = new Reflections().Compiler(outlineApi.Table);// 传入类名调用实时编译
             if (function == null) return;
-            string newType = (string)function.Invoke(null, new object[] { localTypeTextbox.Text });// 调用函数获取返回值
-            if (localTypeTextbox.Text == newType)
+            string newType = (string)function.Invoke(null, new object[] { localTypeTextBox.Text });// 调用函数获取返回值
+            if (localTypeTextBox.Text == newType)
             {
-                MessageBox.Show(localTypeTextbox.Text + "不是" + localImageCombobox.Text);
+                MessageBox.Show(localTypeTextBox.Text + "不是" + localDepotCombobox.Text);
                 return;
             }
 
-            if (localListview.Items.Count > 0)// 清空列表
+            if (localListView.Items.Count > 0)// 清空列表
             {
-                localListview.Clear();
-                LocalListviewSettings();
+                localListView.Clear();
+                LocalListViewSettings();
             }
 
             string path = Path.GetDirectoryName(outlineApi.Path + newType);// 目录
-            string type = localTypeTextbox.Text;// 订单号
+            string type = localTypeTextBox.Text;// 订单号
 
-            searchBar.Value = 50;
+            progressBar.Value = 50;
             progressLabel.Text = "查找中...";
 
             List<string> list = new List<string>();// 返回的文件列表
@@ -457,7 +456,7 @@ namespace ImageSearch
             else
             {
                 MessageBox.Show(type + "订单号正确，但目录 " + path + " 不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                searchBar.Value = 100;
+                progressBar.Value = 100;
                 progressLabel.Text = "查找完成";
                 return;
             }
@@ -466,15 +465,15 @@ namespace ImageSearch
             {
                 if (Path.GetFileName(s).Contains(type))// 只获取包含订单号的文件
                 {
-                    ListViewItem item = localListview.Items.Add(Path.GetFileName(s));// 文件名
+                    ListViewItem item = localListView.Items.Add(Path.GetFileName(s));// 文件名
                     item.SubItems.Add(s);// 位置
                 }
             }
 
-            if (localListview.Items.Count > 0) localListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+            if (localListView.Items.Count > 0) localListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
             else MessageBox.Show(type + "订单号正确，但目录 " + path + " 内没有查找到相关文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-            searchBar.Value = 100;
+            progressBar.Value = 100;
             progressLabel.Text = "查找完成";
         }
 
@@ -483,13 +482,13 @@ namespace ImageSearch
         /// </summary>
         private void localSearch2Button_Click(object sender, EventArgs e)
         {
-            if (localTypeTextbox.Text == "")
+            if (localTypeTextBox.Text == "")
             {
                 MessageBox.Show("请输入内容", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (localImageCombobox.Text == "")
+            if (localDepotCombobox.Text == "")
             {
                 MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -501,10 +500,10 @@ namespace ImageSearch
                 return;
             }
 
-            if (localListview.Items.Count > 0)// 清空结果
+            if (localListView.Items.Count > 0)// 清空结果
             {
-                localListview.Clear();
-                LocalListviewSettings();
+                localListView.Clear();
+                LocalListViewSettings();
             }
 
             if (localSearch2Button.Text == "数据库查找")
@@ -514,10 +513,10 @@ namespace ImageSearch
                 {
                     var back = new object[3];
                     back[0] = outlineApi;
-                    back[1] = localImageCombobox.Text;
-                    back[2] = localTypeTextbox.Text;
+                    back[1] = localDepotCombobox.Text;
+                    back[2] = localTypeTextBox.Text;
                     outlineBack.RunWorkerAsync(back);// 传入
-                    searchBar.Value = 1;
+                    progressBar.Value = 1;
                     progressLabel.Text = "% 开始查找...";
                 }
             }
@@ -567,8 +566,8 @@ namespace ImageSearch
         /// </summary>
         private void outlineBack_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            searchBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : searchBar.Value;
-            progressLabel.Text = searchBar.Value.ToString() + "% 正在查找：" + e.UserState as string;
+            progressBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : progressBar.Value;
+            progressLabel.Text = progressBar.Value.ToString() + "% 正在查找：" + e.UserState as string;
         }
 
         /// <summary>
@@ -596,7 +595,7 @@ namespace ImageSearch
 
             if (datatable == null)// 空数据
             {
-                searchBar.Value = 100;
+                progressBar.Value = 100;
                 MessageBox.Show("查找失败，返回了空结果", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 progressLabel.Text = "查找失败，返回了空结果";
                 return;
@@ -605,38 +604,38 @@ namespace ImageSearch
             //0结果
             if (datatable.Rows.Count == 0)
             {
-                searchBar.Value = 100;
+                progressBar.Value = 100;
                 MessageBox.Show("没有找到相关文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 progressLabel.Text = "没有找到相关文件";
                 return;
             }
 
             //遍历
-            localListview.BeginUpdate();// 挂起UI，避免闪烁并提速
-            ListTable.ToView(datatable, localListview);
-            localListview.EndUpdate();// 绘制UI。
-            localListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
-            localListview.Items[localListview.Items.Count - 1].EnsureVisible();// 定位尾部
+            localListView.BeginUpdate();// 挂起UI，避免闪烁并提速
+            ListTable.ToView(datatable, localListView);
+            localListView.EndUpdate();// 绘制UI。
+            localListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+            localListView.Items[localListView.Items.Count - 1].EnsureVisible();// 定位尾部
 
-            searchBar.Value = 100;
+            progressBar.Value = 100;
             progressLabel.Text = "查找完成";
         }
 
         /// <summary>
         /// 从列表打开按钮
         /// </summary>
-        private void localOpenButton_Click(object sender, EventArgs e)
+        private void localOpenPathButton_Click(object sender, EventArgs e)
         {
-            if (localListview.SelectedItems.Count < 1)// 没有选中文件
+            if (localListView.SelectedItems.Count < 1)// 没有选中文件
             {
                 MessageBox.Show("没有选中文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (File.Exists(localListview.SelectedItems[0].SubItems[1].Text))// 打开
+            if (File.Exists(localListView.SelectedItems[0].SubItems[1].Text))// 打开
             {
                 System.Diagnostics.ProcessStartInfo processStartInfo = new System.Diagnostics.ProcessStartInfo("Explorer.exe");
-                processStartInfo.Arguments = "/e,/select," + localListview.SelectedItems[0].SubItems[1].Text;
+                processStartInfo.Arguments = "/e,/select," + localListView.SelectedItems[0].SubItems[1].Text;
                 System.Diagnostics.Process.Start(processStartInfo);
             }
             else MessageBox.Show("文件不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -645,10 +644,10 @@ namespace ImageSearch
         /// <summary>
         /// 双击列表
         /// </summary>
-        private void localListview_DoubleClick(object sender, EventArgs e)
+        private void localListView_DoubleClick(object sender, EventArgs e)
         {
-            if (localListview.SelectedItems.Count < 1) return;// 空列表
-            if (File.Exists(localListview.SelectedItems[0].SubItems[1].Text)) System.Diagnostics.Process.Start(localListview.SelectedItems[0].SubItems[1].Text);// 打开
+            if (localListView.SelectedItems.Count < 1) return;// 空列表
+            if (File.Exists(localListView.SelectedItems[0].SubItems[1].Text)) System.Diagnostics.Process.Start(localListView.SelectedItems[0].SubItems[1].Text);// 打开
             else MessageBox.Show("文件不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion 本地搜索
@@ -854,8 +853,8 @@ namespace ImageSearch
             if (img != null)
             {
                 onlinePicturebox.Image = img;
-                onlineImagePathTextbox.Text = "系统剪贴板";
-                searchBar.Value = 0;
+                onlinePathTextBox.Text = "系统剪贴板";
+                progressBar.Value = 0;
                 progressLabel.Text = "已选择图片";
             }
             else MessageBox.Show("系统剪贴板没有图像", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -864,8 +863,8 @@ namespace ImageSearch
         private void imageBoxDeleteMenustrip_Click(object sender, EventArgs e)// 图片右键菜单删除
         {
             onlinePicturebox.Image = null;
-            searchBar.Value = 0;
-            onlineImagePathTextbox.Text = "";
+            progressBar.Value = 0;
+            onlinePathTextBox.Text = "";
             progressLabel.Text = "等待用户操作";
         }
 

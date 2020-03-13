@@ -21,11 +21,11 @@ namespace ImageSearch
         {
             try
             {
-                XmlDocument xml = new XmlDocument();
-                xml.Load(@"Documents\ApiList.xml");
-                XmlNodeList nodelist = xml.SelectSingleNode("//ApiList").ChildNodes;
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(@"Documents\ApiList.xml");
+                XmlNodeList xmlNodeList = xmlDocument.SelectSingleNode("//ApiList").ChildNodes;
                 List<string> list = new List<string>();
-                foreach (XmlNode node in nodelist) list.Add(node.Name);
+                foreach (XmlNode node in xmlNodeList) list.Add(node.Name);
                 if (list != null && list.Count > 0) return list;
                 return null;
             }
@@ -54,7 +54,7 @@ namespace ImageSearch
         /// </summary>
         /// <param name="path">文件名全称</param>
         /// <returns>检测结果</returns>
-        public static bool AcceptFormat1(string path)
+        public static bool AcceptFormatByImage(string path)
         {
             Image img = Image.FromFile(path);
             if (img.RawFormat.Equals(ImageFormat.Jpeg) || img.RawFormat.Equals(ImageFormat.Bmp) || img.RawFormat.Equals(ImageFormat.Png)) return true;
@@ -66,7 +66,7 @@ namespace ImageSearch
         /// </summary>
         /// <param name="path">文件名全称</param>
         /// <returns>检测结果</returns>
-        public static bool AcceptFormat2(string path)
+        public static bool AcceptFormatByExtension(string path)
         {
             if (GetFormatList() != null)
             {
@@ -90,9 +90,9 @@ namespace ImageSearch
             {
                 XmlDocument xml = new XmlDocument();// 注意XML内容区分大小写
                 xml.Load(@"Documents\FormatList.xml");
-                XmlNodeList nodelist = xml.SelectSingleNode("//FormatList").ChildNodes;// 搜索定位子节点FormatList
+                XmlNodeList xmlNodeList = xml.SelectSingleNode("//FormatList").ChildNodes;// 搜索定位子节点FormatList
                 List<string> list = new List<string>();
-                foreach (XmlNode node in nodelist) list.Add(node.Attributes["extension"].Value);// 遍历字段
+                foreach (XmlNode node in xmlNodeList) list.Add(node.Attributes["extension"].Value);// 遍历字段
                 if (list.Count > 0) return list;
                 return null;
             }
@@ -127,8 +127,8 @@ namespace ImageSearch
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiList.xml");
-                XmlNode rootNode = xml.DocumentElement;// 根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes)// 在根节点中寻找节点
+                XmlNode xmlNode = xml.DocumentElement;// 根节点
+                foreach (XmlNode xmlnode in xmlNode.ChildNodes)// 在根节点中寻找节点
                 {
                     if (xmlnode.Name == depot)// 获取对应节点的值
                     {
@@ -185,8 +185,8 @@ namespace ImageSearch
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\ApiList.xml");
-                XmlNode rootNode = xml.DocumentElement;// 获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes)// 在根节点中寻找节点
+                XmlNode xmlNode = xml.DocumentElement;// 获得根节点
+                foreach (XmlNode xmlnode in xmlNode.ChildNodes)// 在根节点中寻找节点
                 {
                     if (xmlnode.Name == depot)// 保存对应节点的值
                     {

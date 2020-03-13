@@ -30,26 +30,26 @@
         {
             this.label11 = new System.Windows.Forms.Label();
             this.depotListCombobox = new System.Windows.Forms.ComboBox();
-            this.delete_path_textbox = new System.Windows.Forms.TextBox();
-            this.delete_path_button = new System.Windows.Forms.Button();
-            this.delete_button = new System.Windows.Forms.Button();
-            this.delete_cancel_button = new System.Windows.Forms.Button();
-            this.delete_image_checkbox = new System.Windows.Forms.CheckBox();
-            this.delete_sign_checkbox = new System.Windows.Forms.CheckBox();
+            this.deletePathTextBox = new System.Windows.Forms.TextBox();
+            this.deletePathButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.deleteImageCheckBox = new System.Windows.Forms.CheckBox();
+            this.deleteSignCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.delete_picturebox = new System.Windows.Forms.PictureBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.delete_sign_textbox = new System.Windows.Forms.TextBox();
+            this.deleteSignTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.delete_bar = new System.Windows.Forms.ToolStripProgressBar();
-            this.delete_label = new System.Windows.Forms.ToolStripStatusLabel();
-            this.delete_background = new System.ComponentModel.BackgroundWorker();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.deleteBack = new System.ComponentModel.BackgroundWorker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.delete_picturebox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,72 +71,72 @@
             this.depotListCombobox.Size = new System.Drawing.Size(121, 25);
             this.depotListCombobox.TabIndex = 2;
             // 
-            // delete_path_textbox
+            // deletePathTextBox
             // 
-            this.delete_path_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.deletePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.delete_path_textbox.Location = new System.Drawing.Point(69, 40);
-            this.delete_path_textbox.Name = "delete_path_textbox";
-            this.delete_path_textbox.Size = new System.Drawing.Size(429, 23);
-            this.delete_path_textbox.TabIndex = 2;
+            this.deletePathTextBox.Location = new System.Drawing.Point(69, 40);
+            this.deletePathTextBox.Name = "deletePathTextBox";
+            this.deletePathTextBox.Size = new System.Drawing.Size(429, 23);
+            this.deletePathTextBox.TabIndex = 2;
             // 
-            // delete_path_button
+            // deletePathButton
             // 
-            this.delete_path_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.delete_path_button.Location = new System.Drawing.Point(504, 40);
-            this.delete_path_button.Name = "delete_path_button";
-            this.delete_path_button.Size = new System.Drawing.Size(75, 23);
-            this.delete_path_button.TabIndex = 3;
-            this.delete_path_button.Text = "浏览";
-            this.delete_path_button.UseVisualStyleBackColor = true;
-            this.delete_path_button.Click += new System.EventHandler(this.delete_path_button_Click);
+            this.deletePathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.deletePathButton.Location = new System.Drawing.Point(504, 40);
+            this.deletePathButton.Name = "deletePathButton";
+            this.deletePathButton.Size = new System.Drawing.Size(75, 23);
+            this.deletePathButton.TabIndex = 3;
+            this.deletePathButton.Text = "浏览";
+            this.deletePathButton.UseVisualStyleBackColor = true;
+            this.deletePathButton.Click += new System.EventHandler(this.deletePathButton_Click);
             // 
-            // delete_button
+            // deleteButton
             // 
-            this.delete_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.delete_button.Location = new System.Drawing.Point(421, 409);
-            this.delete_button.Name = "delete_button";
-            this.delete_button.Size = new System.Drawing.Size(75, 23);
-            this.delete_button.TabIndex = 6;
-            this.delete_button.Text = "提交申请";
-            this.delete_button.UseVisualStyleBackColor = true;
-            this.delete_button.Click += new System.EventHandler(this.delete_button_Click);
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.Location = new System.Drawing.Point(421, 409);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 6;
+            this.deleteButton.Text = "提交申请";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // delete_cancel_button
+            // cancelButton
             // 
-            this.delete_cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.delete_cancel_button.Location = new System.Drawing.Point(502, 409);
-            this.delete_cancel_button.Name = "delete_cancel_button";
-            this.delete_cancel_button.Size = new System.Drawing.Size(75, 23);
-            this.delete_cancel_button.TabIndex = 7;
-            this.delete_cancel_button.Text = "取消";
-            this.delete_cancel_button.UseVisualStyleBackColor = true;
-            this.delete_cancel_button.Click += new System.EventHandler(this.delete_cancel_button_Click);
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.Location = new System.Drawing.Point(502, 409);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 7;
+            this.cancelButton.Text = "取消";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // delete_image_checkbox
+            // deleteImageCheckBox
             // 
-            this.delete_image_checkbox.AutoSize = true;
-            this.delete_image_checkbox.Checked = true;
-            this.delete_image_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.delete_image_checkbox.Location = new System.Drawing.Point(12, 13);
-            this.delete_image_checkbox.Name = "delete_image_checkbox";
-            this.delete_image_checkbox.Size = new System.Drawing.Size(123, 21);
-            this.delete_image_checkbox.TabIndex = 0;
-            this.delete_image_checkbox.Text = "上传图片进行删除";
-            this.delete_image_checkbox.UseVisualStyleBackColor = true;
-            this.delete_image_checkbox.CheckedChanged += new System.EventHandler(this.delete_image_checkbox_CheckedChanged);
+            this.deleteImageCheckBox.AutoSize = true;
+            this.deleteImageCheckBox.Checked = true;
+            this.deleteImageCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.deleteImageCheckBox.Location = new System.Drawing.Point(12, 13);
+            this.deleteImageCheckBox.Name = "deleteImageCheckBox";
+            this.deleteImageCheckBox.Size = new System.Drawing.Size(123, 21);
+            this.deleteImageCheckBox.TabIndex = 0;
+            this.deleteImageCheckBox.Text = "上传图片进行删除";
+            this.deleteImageCheckBox.UseVisualStyleBackColor = true;
+            this.deleteImageCheckBox.CheckedChanged += new System.EventHandler(this.deleteImageCheckBox_CheckedChanged);
             // 
-            // delete_sign_checkbox
+            // deleteSignCheckBox
             // 
-            this.delete_sign_checkbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.delete_sign_checkbox.AutoSize = true;
-            this.delete_sign_checkbox.Location = new System.Drawing.Point(12, 303);
-            this.delete_sign_checkbox.Name = "delete_sign_checkbox";
-            this.delete_sign_checkbox.Size = new System.Drawing.Size(147, 21);
-            this.delete_sign_checkbox.TabIndex = 4;
-            this.delete_sign_checkbox.Text = "输入图片签名进行删除";
-            this.delete_sign_checkbox.UseVisualStyleBackColor = true;
-            this.delete_sign_checkbox.CheckedChanged += new System.EventHandler(this.delete_sign_checkbox_CheckedChanged);
+            this.deleteSignCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteSignCheckBox.AutoSize = true;
+            this.deleteSignCheckBox.Location = new System.Drawing.Point(12, 303);
+            this.deleteSignCheckBox.Name = "deleteSignCheckBox";
+            this.deleteSignCheckBox.Size = new System.Drawing.Size(147, 21);
+            this.deleteSignCheckBox.TabIndex = 4;
+            this.deleteSignCheckBox.Text = "输入图片签名进行删除";
+            this.deleteSignCheckBox.UseVisualStyleBackColor = true;
+            this.deleteSignCheckBox.CheckedChanged += new System.EventHandler(this.deleteSignCheckBox_CheckedChanged);
             // 
             // panel1
             // 
@@ -144,31 +144,31 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Controls.Add(this.delete_picturebox);
+            this.panel1.Controls.Add(this.pictureBox);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.delete_sign_checkbox);
-            this.panel1.Controls.Add(this.delete_sign_textbox);
-            this.panel1.Controls.Add(this.delete_image_checkbox);
-            this.panel1.Controls.Add(this.delete_path_button);
-            this.panel1.Controls.Add(this.delete_path_textbox);
+            this.panel1.Controls.Add(this.deleteSignCheckBox);
+            this.panel1.Controls.Add(this.deleteSignTextBox);
+            this.panel1.Controls.Add(this.deleteImageCheckBox);
+            this.panel1.Controls.Add(this.deletePathButton);
+            this.panel1.Controls.Add(this.deletePathTextBox);
             this.panel1.Location = new System.Drawing.Point(-2, 41);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(588, 362);
             this.panel1.TabIndex = 4;
             // 
-            // delete_picturebox
+            // pictureBox
             // 
-            this.delete_picturebox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.delete_picturebox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.delete_picturebox.Location = new System.Drawing.Point(69, 69);
-            this.delete_picturebox.Name = "delete_picturebox";
-            this.delete_picturebox.Size = new System.Drawing.Size(429, 228);
-            this.delete_picturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.delete_picturebox.TabIndex = 62;
-            this.delete_picturebox.TabStop = false;
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(69, 69);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(429, 228);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 62;
+            this.pictureBox.TabStop = false;
             // 
             // label2
             // 
@@ -189,14 +189,14 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "图片编号";
             // 
-            // delete_sign_textbox
+            // deleteSignTextBox
             // 
-            this.delete_sign_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.delete_sign_textbox.Location = new System.Drawing.Point(69, 330);
-            this.delete_sign_textbox.Name = "delete_sign_textbox";
-            this.delete_sign_textbox.ReadOnly = true;
-            this.delete_sign_textbox.Size = new System.Drawing.Size(193, 23);
-            this.delete_sign_textbox.TabIndex = 6;
+            this.deleteSignTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteSignTextBox.Location = new System.Drawing.Point(69, 330);
+            this.deleteSignTextBox.Name = "deleteSignTextBox";
+            this.deleteSignTextBox.ReadOnly = true;
+            this.deleteSignTextBox.Size = new System.Drawing.Size(193, 23);
+            this.deleteSignTextBox.TabIndex = 6;
             // 
             // label3
             // 
@@ -222,30 +222,30 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.delete_bar,
-            this.delete_label});
+            this.progressBar,
+            this.progressLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 439);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(584, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // delete_bar
+            // progressBar
             // 
-            this.delete_bar.Name = "delete_bar";
-            this.delete_bar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
             // 
-            // delete_label
+            // progressLabel
             // 
-            this.delete_label.Name = "delete_label";
-            this.delete_label.Size = new System.Drawing.Size(80, 17);
-            this.delete_label.Text = "等待用户操作";
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(80, 17);
+            this.progressLabel.Text = "等待用户操作";
             // 
-            // delete_background
+            // deleteBack
             // 
-            this.delete_background.WorkerSupportsCancellation = true;
-            this.delete_background.DoWork += new System.ComponentModel.DoWorkEventHandler(this.delete_background_DoWork);
-            this.delete_background.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.delete_background_RunWorkerCompleted);
+            this.deleteBack.WorkerSupportsCancellation = true;
+            this.deleteBack.DoWork += new System.ComponentModel.DoWorkEventHandler(this.deleteBack_DoWork);
+            this.deleteBack.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.deleteBack_RunWorkerCompleted);
             // 
             // panel3
             // 
@@ -267,8 +267,8 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.delete_cancel_button);
-            this.Controls.Add(this.delete_button);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.depotListCombobox);
             this.Controls.Add(this.label11);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -281,7 +281,7 @@
             this.Load += new System.EventHandler(this.ImageDeleteForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.delete_picturebox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -293,23 +293,23 @@
 
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox depotListCombobox;
-        private System.Windows.Forms.TextBox delete_path_textbox;
-        private System.Windows.Forms.Button delete_path_button;
-        private System.Windows.Forms.Button delete_button;
-        private System.Windows.Forms.Button delete_cancel_button;
-        private System.Windows.Forms.CheckBox delete_sign_checkbox;
-        private System.Windows.Forms.CheckBox delete_image_checkbox;
+        private System.Windows.Forms.TextBox deletePathTextBox;
+        private System.Windows.Forms.Button deletePathButton;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.CheckBox deleteSignCheckBox;
+        private System.Windows.Forms.CheckBox deleteImageCheckBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox delete_sign_textbox;
+        private System.Windows.Forms.TextBox deleteSignTextBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar delete_bar;
-        private System.Windows.Forms.ToolStripStatusLabel delete_label;
-        private System.ComponentModel.BackgroundWorker delete_background;
+        private System.Windows.Forms.ToolStripProgressBar progressBar;
+        private System.Windows.Forms.ToolStripStatusLabel progressLabel;
+        private System.ComponentModel.BackgroundWorker deleteBack;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox delete_picturebox;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

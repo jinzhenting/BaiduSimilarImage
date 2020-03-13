@@ -154,8 +154,8 @@ namespace ImageSearch
         /// </summary>
         private void iconBack_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            listProgressbar.Value = e.ProgressPercentage;
-            progressLabel.Text = listProgressbar.Value + "% 载入缩略图" + e.UserState as string;
+            progressBar.Value = e.ProgressPercentage;
+            progressLabel.Text = progressBar.Value + "% 载入缩略图" + e.UserState as string;
         }
 
         /// <summary>
@@ -166,29 +166,29 @@ namespace ImageSearch
             if (e.Error != null)
             {
                 MessageBox.Show("缩略图载入错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                listProgressbar.Value = 0;
+                progressBar.Value = 0;
                 return;
             }
 
             if (e.Cancelled)
             {
                 MessageBox.Show("已取消载入缩略图", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                listProgressbar.Value = 0;
+                progressBar.Value = 0;
                 return;
             }
 
             progressLabel.Text = "列表载入完成";
-            listProgressbar.Value = 100;
+            progressBar.Value = 100;
             
             ImageList imagelist = (ImageList)e.Result;
             for (int i = 0; i < briefList.Count; i++)// 把项目名遍历到ListView
             {
-                ListViewItem listviewitem = new ListViewItem();// 定义单个项目
-                listviewitem.ImageIndex = i;
-                listviewitem.Text = imagePath + briefList[i];
-                iconListview.Items.Add(listviewitem);
+                ListViewItem ListViewitem = new ListViewItem();// 定义单个项目
+                ListViewitem.ImageIndex = i;
+                ListViewitem.Text = imagePath + briefList[i];
+                listView.Items.Add(ListViewitem);
             }
-            iconListview.LargeImageList = imagelist;
+            listView.LargeImageList = imagelist;
             clearLoadButton.Enabled = false;
         }
 
@@ -206,25 +206,25 @@ namespace ImageSearch
         /// </summary>
         private void openPath_Click(object sender, EventArgs e)
         {
-            if (iconListview.SelectedItems.Count < 1)
+            if (listView.SelectedItems.Count < 1)
             {
                 MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
-            if (File.Exists(iconListview.SelectedItems[0].Text))
+            if (File.Exists(listView.SelectedItems[0].Text))
             {
                 ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe");
-                psi.Arguments = "/e,/select," + iconListview.SelectedItems[0].Text;
+                psi.Arguments = "/e,/select," + listView.SelectedItems[0].Text;
                 Process.Start(psi);
             }
-            else MessageBox.Show("图片" + iconListview.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else MessageBox.Show("图片" + listView.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         /// <summary>
         /// 双击图片打开
         /// </summary>
-        private void iconListview_DoubleClick(object sender, EventArgs e)
+        private void listView_DoubleClick(object sender, EventArgs e)
         {
             OpenFile();
         }
@@ -234,7 +234,7 @@ namespace ImageSearch
         /// </summary>
         private void openPictrueButton_Click(object sender, EventArgs e)
         {
-            if (iconListview.SelectedItems.Count < 1)
+            if (listView.SelectedItems.Count < 1)
             {
                 MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
@@ -246,9 +246,9 @@ namespace ImageSearch
         /// 打开图片
         /// </summary>
         private void OpenFile() {
-            if (iconListview.SelectedItems.Count < 1) return;
-            if (File.Exists(iconListview.SelectedItems[0].Text)) Process.Start(iconListview.SelectedItems[0].Text);
-            else MessageBox.Show("图片" + iconListview.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (listView.SelectedItems.Count < 1) return;
+            if (File.Exists(listView.SelectedItems[0].Text)) Process.Start(listView.SelectedItems[0].Text);
+            else MessageBox.Show("图片" + listView.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         /// <summary>

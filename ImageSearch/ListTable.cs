@@ -7,36 +7,36 @@ namespace ImageSearch
     public static class ListTable
     {
         //
-        public static void ToView(DataTable datatable, ListView listview)
+        public static void ToView(DataTable dataTable, ListView listView)
         {
             try
             {
                 //清空
-                if (datatable != null)
+                if (dataTable != null)
                 {
-                    listview.Items.Clear();
-                    listview.Columns.Clear();
+                    listView.Items.Clear();
+                    listView.Columns.Clear();
                 }
 
                 //表头
-                for (int i = 0; i < datatable.Columns.Count; i++)
+                for (int i = 0; i < dataTable.Columns.Count; i++)
                 {
-                    listview.Columns.Add(datatable.Columns[i].Caption.ToString());
+                    listView.Columns.Add(dataTable.Columns[i].Caption.ToString());
                 }
 
                 //行
-                foreach (DataRow datarow in datatable.Rows)
+                foreach (DataRow datarow in dataTable.Rows)
                 {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.SubItems[0].Text = datarow[0].ToString();
-                    for (int i = 1; i < datatable.Columns.Count; i++)
+                    ListViewItem listViewItem = new ListViewItem();
+                    listViewItem.SubItems[0].Text = datarow[0].ToString();
+                    for (int i = 1; i < dataTable.Columns.Count; i++)
                     {
-                        lvi.SubItems.Add(datarow[i].ToString());
+                        listViewItem.SubItems.Add(datarow[i].ToString());
                     }
-                    listview.Items.Add(lvi);
+                    listView.Items.Add(listViewItem);
                 }
 
-                //自动宽listview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                //自动宽ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace ImageSearch
         }
 
         //
-        public static void ToTable(ListView listview, DataTable datatable)
+        public static void ToTable(ListView ListView, DataTable datatable)
         {
             try
             {
@@ -58,19 +58,19 @@ namespace ImageSearch
 
                 int x, y;
                 //表头
-                for (x = 0; x < listview.Columns.Count; x++)
+                for (x = 0; x < ListView.Columns.Count; x++)
                 {
-                    datatable.Columns.Add(listview.Columns[x].Text.Trim(), typeof(string));
+                    datatable.Columns.Add(ListView.Columns[x].Text.Trim(), typeof(string));
                 }
 
                 //行
                 DataRow datarow;
-                for (x = 0; x < listview.Items.Count; x++)
+                for (x = 0; x < ListView.Items.Count; x++)
                 {
                     datarow = datatable.NewRow();
-                    for (y = 0; y < listview.Columns.Count; y++)
+                    for (y = 0; y < ListView.Columns.Count; y++)
                     {
-                        datarow[y] = listview.Items[x].SubItems[y].Text.Trim();
+                        datarow[y] = ListView.Items[x].SubItems[y].Text.Trim();
                     }
                     datatable.Rows.Add(datarow);
                 }

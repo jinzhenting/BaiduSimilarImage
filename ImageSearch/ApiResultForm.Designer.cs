@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.iconListview = new System.Windows.Forms.ListView();
+            this.listView = new System.Windows.Forms.ListView();
             this.clearLoadButton = new System.Windows.Forms.Button();
             this.openPathButton = new System.Windows.Forms.Button();
             this.iconBack = new System.ComponentModel.BackgroundWorker();
-            this.listStatusstrip = new System.Windows.Forms.StatusStrip();
-            this.listProgressbar = new System.Windows.Forms.ToolStripProgressBar();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openPictrueButton = new System.Windows.Forms.Button();
-            this.listStatusstrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // iconListview
+            // listView
             // 
-            this.iconListview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconListview.FullRowSelect = true;
-            this.iconListview.GridLines = true;
-            this.iconListview.Location = new System.Drawing.Point(9, 10);
-            this.iconListview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.iconListview.Name = "iconListview";
-            this.iconListview.Size = new System.Drawing.Size(919, 591);
-            this.iconListview.TabIndex = 0;
-            this.iconListview.UseCompatibleStateImageBehavior = false;
-            this.iconListview.DoubleClick += new System.EventHandler(this.iconListview_DoubleClick);
+            this.listView.FullRowSelect = true;
+            this.listView.GridLines = true;
+            this.listView.Location = new System.Drawing.Point(9, 10);
+            this.listView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(919, 591);
+            this.listView.TabIndex = 0;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
             // 
             // clearLoadButton
             // 
@@ -88,21 +88,21 @@
             this.iconBack.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.iconBack_ProgressChanged);
             this.iconBack.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.iconBack_RunWorkerCompleted);
             // 
-            // listStatusstrip
+            // statusStrip1
             // 
-            this.listStatusstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listProgressbar,
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.progressBar,
             this.progressLabel});
-            this.listStatusstrip.Location = new System.Drawing.Point(0, 639);
-            this.listStatusstrip.Name = "listStatusstrip";
-            this.listStatusstrip.Size = new System.Drawing.Size(934, 22);
-            this.listStatusstrip.TabIndex = 3;
-            this.listStatusstrip.Text = "listStatusstrip";
+            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(934, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // listProgressbar
+            // progressBar
             // 
-            this.listProgressbar.Name = "listProgressbar";
-            this.listProgressbar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // progressLabel
             // 
@@ -132,10 +132,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 661);
             this.Controls.Add(this.openPictrueButton);
-            this.Controls.Add(this.listStatusstrip);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.openPathButton);
             this.Controls.Add(this.clearLoadButton);
-            this.Controls.Add(this.iconListview);
+            this.Controls.Add(this.listView);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(697, 664);
@@ -146,8 +146,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ApiResultForm_FormClosing);
             this.Load += new System.EventHandler(this.ApiResultForm_Load);
             this.Shown += new System.EventHandler(this.ApiResultForm_Shown);
-            this.listStatusstrip.ResumeLayout(false);
-            this.listStatusstrip.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,13 +155,13 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView iconListview;
+        private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.Button clearLoadButton;
         private System.Windows.Forms.Button openPathButton;
         private System.ComponentModel.BackgroundWorker iconBack;
-        private System.Windows.Forms.StatusStrip listStatusstrip;
+        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel progressLabel;
-        private System.Windows.Forms.ToolStripProgressBar listProgressbar;
+        private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button openPictrueButton;
     }

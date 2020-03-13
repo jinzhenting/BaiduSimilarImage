@@ -58,25 +58,25 @@ namespace ImageSearch
         #region 日志
         private void LogListSettings()// 日志列表样式
         {
-            addLogListview.Columns.Add("序号");// 添加列标题
-            addLogListview.Columns.Add("图片");
-            addLogListview.Columns.Add("入库时间");
-            addLogListview.Columns.Add("入库结果");
-            addLogListview.Columns.Add("描述");
-            addLogListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+            addLogListView.Columns.Add("序号");// 添加列标题
+            addLogListView.Columns.Add("图片");
+            addLogListView.Columns.Add("入库时间");
+            addLogListView.Columns.Add("入库结果");
+            addLogListView.Columns.Add("描述");
+            addLogListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
         }
         
         private void LogWrite(ImageAddLog log)// 写日志
         {
-            addLogListview.BeginUpdate();// 挂起UI，避免闪烁并提速
-            ListViewItem item = addLogListview.Items.Add(log.ID);// 序号
+            addLogListView.BeginUpdate();// 挂起UI，避免闪烁并提速
+            ListViewItem item = addLogListView.Items.Add(log.ID);// 序号
             item.SubItems.Add(log.Nname);// 图片
             item.SubItems.Add(log.Time);// 入库时间
             item.SubItems.Add(log.Result);// 入库结果
             item.SubItems.Add(log.Message);// 描述
-            addLogListview.EndUpdate();// 绘制UI
-            addLogListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
-            addLogListview.Items[addLogListview.Items.Count - 1].EnsureVisible();// 定位尾部
+            addLogListView.EndUpdate();// 绘制UI
+            addLogListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+            addLogListView.Items[addLogListView.Items.Count - 1].EnsureVisible();// 定位尾部
         }
 
         private void resetLogButton_Click(object sender, EventArgs e)// 清空日志按钮
@@ -86,7 +86,7 @@ namespace ImageSearch
                 MessageBox.Show("请先停止入库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            addLogListview.Clear();
+            addLogListView.Clear();
             LogListSettings();
         }
         #endregion 日志
@@ -97,12 +97,12 @@ namespace ImageSearch
         private Api api;
         private void depotListCombobox_SelectedIndexChanged(object sender, EventArgs e)// 图库列表选择动作
         {
-            subCheckbox.Checked = false;// 复原选项
+            subCheckBox.Checked = false;// 复原选项
             api = ApiFunction.GetApi(depotListCombobox.Text);// 获取API元素
-            if (api != null) addPathTextbox.Text = api.Path;
-            if (scanListview.Items.Count > 0)// 清空列表
+            if (api != null) addPathTextBox.Text = api.Path;
+            if (scanListView.Items.Count > 0)// 清空列表
             {
-                scanListview.Clear();
+                scanListView.Clear();
                 ScanListSettings();
             }
         }
@@ -114,27 +114,27 @@ namespace ImageSearch
                 MessageBox.Show("请先停止入库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            scanListview.Clear();
+            scanListView.Clear();
             ScanListSettings();
         }
 
         #region 扫描
         private List<string> subList = new List<string>();// 包含子目录选项列表
-        private void subCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void subCheckBox_CheckedChanged(object sender, EventArgs e)
         {
         }
 
-        private void sqlCheckbox_CheckedChanged(object sender, EventArgs e)// 匹配数据库选项
+        private void sqlCheckBox_CheckedChanged(object sender, EventArgs e)// 匹配数据库选项
         {
-            if (sqlCheckbox.Checked) if (MessageBox.Show("如果文件数量大，匹配数据库将十分缓慢，并加大服务器负担。\r\n是否继续勾选", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) sqlCheckbox.Checked = false;
+            if (sqlCheckBox.Checked) if (MessageBox.Show("如果文件数量大，匹配数据库将十分缓慢，并加大服务器负担。\r\n是否继续勾选", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) sqlCheckBox.Checked = false;
         }
 
         private void ScanListSettings()// 扫描列表样式
         {
-            scanListview.Columns.Add("序号");// 添加列标题
-            scanListview.Columns.Add("图片");
-            scanListview.Columns.Add("位置");
-            scanListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+            scanListView.Columns.Add("序号");// 添加列标题
+            scanListView.Columns.Add("图片");
+            scanListView.Columns.Add("位置");
+            scanListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
         }
 
         private void addScanButton_Click(object sender, EventArgs e)// 扫描按钮
@@ -166,33 +166,33 @@ namespace ImageSearch
                     return;
                 }
 
-                if (addPathTextbox.Text == "")
+                if (addPathTextBox.Text == "")
                 {
                     MessageBox.Show("未选择图片目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!Directory.Exists(addPathTextbox.Text))
+                if (!Directory.Exists(addPathTextBox.Text))
                 {
                     MessageBox.Show("图片目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (scanListview.Items.Count > 0)// 清空列表
+                if (scanListView.Items.Count > 0)// 清空列表
                 {
-                    scanListview.Clear();
+                    scanListView.Clear();
                     ScanListSettings();
                 }
 
                 var scan = new object[4];// 装箱
                 scan[0] = formatCombobox.Text;
                 scan[1] = subList;
-                scan[2] = sqlCheckbox.Checked;
+                scan[2] = sqlCheckBox.Checked;
                 scan[3] = depotListCombobox.Text;
                 scanBack.RunWorkerAsync(scan);
                 addScanButton.Text = "停止扫描";
-                addBar.Value = 1;
-                addLabel.Text = "% 开始扫描...";
+                progressBar.Value = 1;
+                progressLabel.Text = "% 开始扫描...";
             }
             else
             {
@@ -335,8 +335,8 @@ namespace ImageSearch
 
         private void scanBack_ProgressChanged(object sender, ProgressChangedEventArgs e)// 异步扫描进度
         {
-            addBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : addBar.Value;
-            addLabel.Text = addBar.Value.ToString() + "% 发现文件" + e.UserState as string;
+            progressBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : progressBar.Value;
+            progressLabel.Text = progressBar.Value.ToString() + "% 发现文件" + e.UserState as string;
         }
         
         private void scanBack_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)// 异步扫描完成
@@ -346,14 +346,14 @@ namespace ImageSearch
             if (e.Error != null)
             {
                 MessageBox.Show("扫描文件错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                addLabel.Text = "扫描文件后台错误";
+                progressLabel.Text = "扫描文件后台错误";
                 return;
             }
 
             if (e.Cancelled)
             {
                 MessageBox.Show("扫描已取消", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                addLabel.Text = "扫描已取消";
+                progressLabel.Text = "扫描已取消";
                 return;
             }
 
@@ -361,28 +361,28 @@ namespace ImageSearch
             
             if (datatable == null)// 空数据
             {
-                addBar.Value = 100;
+                progressBar.Value = 100;
                 MessageBox.Show("扫描失败，返回了空结果", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                addLabel.Text = "扫描失败，返回了空结果";
+                progressLabel.Text = "扫描失败，返回了空结果";
                 return;
             }
             
             if (datatable.Rows.Count == 0)// 0结果
             {
-                addBar.Value = 100;
+                progressBar.Value = 100;
                 MessageBox.Show("没有扫描到文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                addLabel.Text = "没有扫描到文件";
+                progressLabel.Text = "没有扫描到文件";
                 return;
             }
             
-            scanListview.BeginUpdate();// 挂起UI，避免闪烁并提速
-            ListTable.ToView(datatable, scanListview);// 数据转换
-            scanListview.EndUpdate();// 绘制UI
-            scanListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
-            scanListview.Items[scanListview.Items.Count - 1].EnsureVisible();// 定位尾部
+            scanListView.BeginUpdate();// 挂起UI，避免闪烁并提速
+            ListTable.ToView(datatable, scanListView);// 数据转换
+            scanListView.EndUpdate();// 绘制UI
+            scanListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+            scanListView.Items[scanListView.Items.Count - 1].EnsureVisible();// 定位尾部
             
-            addBar.Value = 100;
-            addLabel.Text = "完成扫描";
+            progressBar.Value = 100;
+            progressLabel.Text = "完成扫描";
         }
         #endregion 扫描
 
@@ -415,24 +415,24 @@ namespace ImageSearch
                     return;
                 }
 
-                if (scanListview.Items.Count < 1)
+                if (scanListView.Items.Count < 1)
                 {
                     MessageBox.Show("请先扫描图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                addLogListview.Clear();// 清空日志
+                addLogListView.Clear();// 清空日志
                 LogListSettings();
 
                 var add = new object[2];// 装箱
                 DataTable datatable = new DataTable();
-                ListTable.ToTable(scanListview, datatable);
+                ListTable.ToTable(scanListView, datatable);
                 add[0] = datatable;
                 add[1] = depotListCombobox.Text;
                 addBack.RunWorkerAsync(add);
                 addStartButton.Text = "停止入库";
-                addBar.Value = 1;
-                addLabel.Text = "% 开始入库...";
+                progressBar.Value = 1;
+                progressLabel.Text = "% 开始入库...";
             }
             else
             {
@@ -671,9 +671,9 @@ namespace ImageSearch
 
         private void addBack_ProgressChanged(object sender, ProgressChangedEventArgs e)// 异步入库进度
         {
-            addBar.Value = e.ProgressPercentage;
+            progressBar.Value = e.ProgressPercentage;
             ImageAddLog log = e.UserState as ImageAddLog;// 传出解封
-            addLabel.Text = addBar.Value.ToString() + "% 正在入库 " + log.Nname;
+            progressLabel.Text = progressBar.Value.ToString() + "% 正在入库 " + log.Nname;
             LogWrite(log);
         }
         
@@ -683,17 +683,17 @@ namespace ImageSearch
             if (e.Error != null)
             {
                 MessageBox.Show("入库后台错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                addLabel.Text = "入库后台错误";
+                progressLabel.Text = "入库后台错误";
                 return;
             }
             if (e.Cancelled)
             {
                 MessageBox.Show("入库已取消", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                addLabel.Text = "入库已取消";
+                progressLabel.Text = "入库已取消";
                 return;
             }
-            addBar.Value = 100;
-            addLabel.Text = "完成入库";
+            progressBar.Value = 100;
+            progressLabel.Text = "完成入库";
         }
         #endregion 入库
         
@@ -711,49 +711,49 @@ namespace ImageSearch
             }
         }
 
-        private void subCheckbox_Click(object sender, EventArgs e)
+        private void subCheckBox_Click(object sender, EventArgs e)
         {
             if (addBack.IsBusy)
             {
                 MessageBox.Show("后台正在入库，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subCheckbox.Checked) subCheckbox.Checked = false;
-                else subCheckbox.Checked = true;
+                if (subCheckBox.Checked) subCheckBox.Checked = false;
+                else subCheckBox.Checked = true;
                 return;
             }
 
             if (scanBack.IsBusy)
             {
                 MessageBox.Show("后台正在扫描文件，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subCheckbox.Checked) subCheckbox.Checked = false;
-                else subCheckbox.Checked = true;
+                if (subCheckBox.Checked) subCheckBox.Checked = false;
+                else subCheckBox.Checked = true;
                 return;
             }
 
-            if (!subCheckbox.Checked) return;// 未勾选
+            if (!subCheckBox.Checked) return;// 未勾选
 
             if (subList.Count > 0) subList.Clear();// 清空子目录选项列表
 
-            if (subCheckbox.Checked && depotListCombobox.Text == "")
+            if (subCheckBox.Checked && depotListCombobox.Text == "")
             {
                 MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 if (subList.Count > 0) subList.Clear();
-                subCheckbox.Checked = false;
+                subCheckBox.Checked = false;
                 return;
             }
 
-            if (subCheckbox.Checked && addPathTextbox.Text == "")
+            if (subCheckBox.Checked && addPathTextBox.Text == "")
             {
                 MessageBox.Show("未选择图片目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 if (subList.Count > 0) subList.Clear();
-                subCheckbox.Checked = false;
+                subCheckBox.Checked = false;
                 return;
             }
 
-            if (subCheckbox.Checked && !Directory.Exists(addPathTextbox.Text))
+            if (subCheckBox.Checked && !Directory.Exists(addPathTextBox.Text))
             {
                 MessageBox.Show("图片目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (subList.Count > 0) subList.Clear();
-                subCheckbox.Checked = false;
+                subCheckBox.Checked = false;
                 return;
             }
 
@@ -764,7 +764,7 @@ namespace ImageSearch
             {
                 if (subform.List.Count < 1)// 返回无选中项
                 {
-                    subCheckbox.Checked = false;
+                    subCheckBox.Checked = false;
                     if (subList.Count > 0) subList.Clear();
                     return;
                 }
@@ -773,7 +773,7 @@ namespace ImageSearch
             }
             else//返回取消
             {
-                subCheckbox.Checked = false;
+                subCheckBox.Checked = false;
                 if (subList.Count > 0) subList.Clear();
                 return;
             }

@@ -41,72 +41,72 @@ namespace ImageSearch
             }
         }
 
-        private void delete_path_button_Click(object sender, EventArgs e)
+        private void deletePathButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openfiledialog = new OpenFileDialog();
             if (openfiledialog.ShowDialog() != DialogResult.OK) return;
-            if (ApiFunction.AcceptFormat2(openfiledialog.FileName))
+            if (ApiFunction.AcceptFormatByExtension(openfiledialog.FileName))
             {
-                delete_path_textbox.Text = openfiledialog.FileName;
-                delete_picturebox.ImageLocation = openfiledialog.FileName;
-                delete_bar.Value = 0;
-                delete_label.Text = "已选择图片";
+                deletePathTextBox.Text = openfiledialog.FileName;
+                pictureBox.ImageLocation = openfiledialog.FileName;
+                progressBar.Value = 0;
+                progressLabel.Text = "已选择图片";
             }
             else MessageBox.Show(ApiFunction.GetError("216201"), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);// 扩展名不受支持，获取错误提示
         }
 
-        private void delete_image_checkbox_CheckedChanged(object sender, EventArgs e)// 复选框
+        private void deleteImageCheckBox_CheckedChanged(object sender, EventArgs e)// 复选框
         {
-            if (delete_image_checkbox.Checked)
+            if (deleteImageCheckBox.Checked)
             {
-                delete_sign_checkbox.Checked = false;
-                delete_sign_textbox.ReadOnly = true;
-                delete_path_textbox.ReadOnly = false;
-                delete_path_button.Visible = true;
-                delete_sign_textbox.Text = "";
+                deleteSignCheckBox.Checked = false;
+                deleteSignTextBox.ReadOnly = true;
+                deletePathTextBox.ReadOnly = false;
+                deletePathButton.Visible = true;
+                deleteSignTextBox.Text = "";
             }
             else
             {
-                delete_sign_checkbox.Checked = true;
-                delete_sign_textbox.ReadOnly = false;
-                delete_picturebox.Image = null;
-                delete_path_textbox.Text = "";
+                deleteSignCheckBox.Checked = true;
+                deleteSignTextBox.ReadOnly = false;
+                pictureBox.Image = null;
+                deletePathTextBox.Text = "";
             }
         }
 
-        private void delete_sign_checkbox_CheckedChanged(object sender, EventArgs e)// 复选框
+        private void deleteSignCheckBox_CheckedChanged(object sender, EventArgs e)// 复选框
         {
-            if (delete_sign_checkbox.Checked)
+            if (deleteSignCheckBox.Checked)
             {
-                delete_path_textbox.ReadOnly = true;
-                delete_path_button.Visible = false;
-                delete_sign_textbox.ReadOnly = false;
-                delete_image_checkbox.Checked = false;
-                delete_picturebox.Image = null;
-                delete_path_textbox.Text = "";
+                deletePathTextBox.ReadOnly = true;
+                deletePathButton.Visible = false;
+                deleteSignTextBox.ReadOnly = false;
+                deleteImageCheckBox.Checked = false;
+                pictureBox.Image = null;
+                deletePathTextBox.Text = "";
             }
             else
             {
-                delete_sign_textbox.ReadOnly = true;
-                delete_image_checkbox.Checked = true;
-                delete_path_textbox.ReadOnly = false;
-                delete_path_button.Visible = true;
-                delete_sign_textbox.Text = "";
+                deleteSignTextBox.ReadOnly = true;
+                deleteImageCheckBox.Checked = true;
+                deletePathTextBox.ReadOnly = false;
+                deletePathButton.Visible = true;
+                deleteSignTextBox.Text = "";
             }
         }
 
-        private void delete_button_Click(object sender, EventArgs e)// 删除按钮
+        private void deleteButton_Click(object sender, EventArgs e)// 删除按钮
         {
-            if (File.Exists(delete_path_textbox.Text) || delete_sign_textbox.Text != "")
+            if (File.Exists(deletePathTextBox.Text) || deleteSignTextBox.Text != "")
             {
                 var back = new object[4];// 装箱
                 back[0] = depotListCombobox.Text;
-                back[1] = delete_image_checkbox.Checked;
-                back[2] = delete_path_textbox.Text;
-                back[3] = delete_sign_textbox.Text;
-                delete_background.RunWorkerAsync(back);
-                delete_bar.Value = 50;
-                delete_label.Text = "删除中...";
+                back[1] = deleteImageCheckBox.Checked;
+                back[2] = deletePathTextBox.Text;
+                back[3] = deleteSignTextBox.Text;
+                deleteBack.RunWorkerAsync(back);
+                progressBar.Value = 50;
+                progressLabel.Text = "删除中...";
             }
             else
             {
@@ -115,7 +115,7 @@ namespace ImageSearch
             }
         }
 
-        private void delete_background_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void deleteBack_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             var back = e.Argument as object[];// 拆箱
             string depot = (string)back[0];
@@ -143,7 +143,7 @@ namespace ImageSearch
             }
         }
 
-        private void delete_background_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)// 后台完成
+        private void deleteBack_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)// 后台完成
         {
             if (e.Error != null)// 错误
             {
@@ -161,26 +161,26 @@ namespace ImageSearch
             if (json.Property("error_code") != null && json.Property("error_code").ToString() != "")// 返回Json包含错误信息
             {
                 MessageBox.Show(ApiFunction.GetError(json["error_code"].ToString()), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                delete_bar.Value = 100;
-                delete_label.Text = "删除失败";
+                progressBar.Value = 100;
+                progressLabel.Text = "删除失败";
                 return;
             }
             
             if (json.Property("log_id") != null && json.Property("log_id").ToString() != "")// 返回Json正确
             {
                 MessageBox.Show("成功提交申请删除日志号为“" + json["log_id"].ToString() + "”的图片，日前百度API图片删除延时生效，每天数据库定时更新进行物理删除，刚删除时仍然可以在图库中检索到（但图库管理后台是同步清除），请过一段时间再验证，一般最多延时4小时左右", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                delete_bar.Value = 100;
-                delete_label.Text = "成功提交申请";
+                progressBar.Value = 100;
+                progressLabel.Text = "成功提交申请";
                 return;
             }
 
         }
 
-        private void delete_cancel_button_Click(object sender, EventArgs e)// 取消按钮
+        private void cancelButton_Click(object sender, EventArgs e)// 取消按钮
         {
-            if (delete_background.IsBusy)
+            if (deleteBack.IsBusy)
             {
-                //delete_background.CancelAsync();// 暂不支持取消
+                //deleteBack.CancelAsync();// 暂不支持取消
                 MessageBox.Show("请等待后台操作完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -189,7 +189,7 @@ namespace ImageSearch
 
         private void ImageDeleteForm_FormClosing(object sender, FormClosingEventArgs e)// 窗口关闭检测
         {
-            if (delete_background.IsBusy)
+            if (deleteBack.IsBusy)
             {
                 e.Cancel = true;
                 MessageBox.Show("后台正在删除图片，请勿关闭窗口", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -30,24 +30,24 @@
         {
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.timeoutTextbox = new System.Windows.Forms.TextBox();
-            this.appidTextbox = new System.Windows.Forms.TextBox();
+            this.timeoutTextBox = new System.Windows.Forms.TextBox();
+            this.appidTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.apikeyTextbox = new System.Windows.Forms.TextBox();
-            this.secreykeyTextbox = new System.Windows.Forms.TextBox();
+            this.apikeyTextBox = new System.Windows.Forms.TextBox();
+            this.secreykeyTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.depotListCombobox = new System.Windows.Forms.ComboBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.tag1Textbox = new System.Windows.Forms.TextBox();
+            this.tag1TextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tag2Textbox = new System.Windows.Forms.TextBox();
+            this.tag2TextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.depotPathTextbox = new System.Windows.Forms.TextBox();
-            this.apiPathButton = new System.Windows.Forms.Button();
+            this.depotPathTextBox = new System.Windows.Forms.TextBox();
+            this.depotPathButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.quantityTextbox = new System.Windows.Forms.TextBox();
+            this.quantityTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -57,18 +57,18 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.sqlTableTextbox = new System.Windows.Forms.TextBox();
-            this.sqlPasswordTextbox = new System.Windows.Forms.TextBox();
-            this.sqlUserTextbox = new System.Windows.Forms.TextBox();
-            this.sqlDataTextbox = new System.Windows.Forms.TextBox();
-            this.sqlIPTextbox = new System.Windows.Forms.TextBox();
+            this.sqlTableTextBox = new System.Windows.Forms.TextBox();
+            this.sqlPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.sqlUserTextBox = new System.Windows.Forms.TextBox();
+            this.sqlDataTextBox = new System.Windows.Forms.TextBox();
+            this.sqlIPTextBox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.addButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
-            this.sortTextbox = new System.Windows.Forms.TextBox();
-            this.apiSortButton = new System.Windows.Forms.Button();
+            this.sortPathTextBox = new System.Windows.Forms.TextBox();
+            this.sortPathButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -93,21 +93,21 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "查询超时（秒）";
             // 
-            // timeoutTextbox
+            // timeoutTextBox
             // 
-            this.timeoutTextbox.Location = new System.Drawing.Point(5, 121);
-            this.timeoutTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.timeoutTextbox.Name = "timeoutTextbox";
-            this.timeoutTextbox.Size = new System.Drawing.Size(120, 23);
-            this.timeoutTextbox.TabIndex = 7;
+            this.timeoutTextBox.Location = new System.Drawing.Point(5, 121);
+            this.timeoutTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.timeoutTextBox.Name = "timeoutTextBox";
+            this.timeoutTextBox.Size = new System.Drawing.Size(120, 23);
+            this.timeoutTextBox.TabIndex = 7;
             // 
-            // appidTextbox
+            // appidTextBox
             // 
-            this.appidTextbox.Location = new System.Drawing.Point(5, 25);
-            this.appidTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.appidTextbox.Name = "appidTextbox";
-            this.appidTextbox.Size = new System.Drawing.Size(120, 23);
-            this.appidTextbox.TabIndex = 2;
+            this.appidTextBox.Location = new System.Drawing.Point(5, 25);
+            this.appidTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.appidTextBox.Name = "appidTextBox";
+            this.appidTextBox.Size = new System.Drawing.Size(120, 23);
+            this.appidTextBox.TabIndex = 2;
             // 
             // label6
             // 
@@ -118,25 +118,25 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "服务密钥";
             // 
-            // apikeyTextbox
+            // apikeyTextBox
             // 
-            this.apikeyTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.apikeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.apikeyTextbox.Location = new System.Drawing.Point(131, 25);
-            this.apikeyTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.apikeyTextbox.Name = "apikeyTextbox";
-            this.apikeyTextbox.Size = new System.Drawing.Size(250, 23);
-            this.apikeyTextbox.TabIndex = 3;
+            this.apikeyTextBox.Location = new System.Drawing.Point(131, 25);
+            this.apikeyTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.apikeyTextBox.Name = "apikeyTextBox";
+            this.apikeyTextBox.Size = new System.Drawing.Size(250, 23);
+            this.apikeyTextBox.TabIndex = 3;
             // 
-            // secreykeyTextbox
+            // secreykeyTextBox
             // 
-            this.secreykeyTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.secreykeyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.secreykeyTextbox.Location = new System.Drawing.Point(5, 73);
-            this.secreykeyTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.secreykeyTextbox.Name = "secreykeyTextbox";
-            this.secreykeyTextbox.Size = new System.Drawing.Size(376, 23);
-            this.secreykeyTextbox.TabIndex = 5;
+            this.secreykeyTextBox.Location = new System.Drawing.Point(5, 73);
+            this.secreykeyTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.secreykeyTextBox.Name = "secreykeyTextBox";
+            this.secreykeyTextBox.Size = new System.Drawing.Size(376, 23);
+            this.secreykeyTextBox.TabIndex = 5;
             // 
             // label5
             // 
@@ -188,13 +188,13 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "标签一";
             // 
-            // tag1Textbox
+            // tag1TextBox
             // 
-            this.tag1Textbox.Location = new System.Drawing.Point(5, 169);
-            this.tag1Textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tag1Textbox.Name = "tag1Textbox";
-            this.tag1Textbox.Size = new System.Drawing.Size(60, 23);
-            this.tag1Textbox.TabIndex = 11;
+            this.tag1TextBox.Location = new System.Drawing.Point(5, 169);
+            this.tag1TextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tag1TextBox.Name = "tag1TextBox";
+            this.tag1TextBox.Size = new System.Drawing.Size(60, 23);
+            this.tag1TextBox.TabIndex = 11;
             // 
             // label2
             // 
@@ -205,13 +205,13 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "标签二";
             // 
-            // tag2Textbox
+            // tag2TextBox
             // 
-            this.tag2Textbox.Location = new System.Drawing.Point(71, 169);
-            this.tag2Textbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tag2Textbox.Name = "tag2Textbox";
-            this.tag2Textbox.Size = new System.Drawing.Size(60, 23);
-            this.tag2Textbox.TabIndex = 13;
+            this.tag2TextBox.Location = new System.Drawing.Point(71, 169);
+            this.tag2TextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tag2TextBox.Name = "tag2TextBox";
+            this.tag2TextBox.Size = new System.Drawing.Size(60, 23);
+            this.tag2TextBox.TabIndex = 13;
             // 
             // label3
             // 
@@ -222,26 +222,26 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "图库目录";
             // 
-            // depotPathTextbox
+            // depotPathTextBox
             // 
-            this.depotPathTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.depotPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.depotPathTextbox.Location = new System.Drawing.Point(9, 33);
-            this.depotPathTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.depotPathTextbox.Name = "depotPathTextbox";
-            this.depotPathTextbox.Size = new System.Drawing.Size(290, 23);
-            this.depotPathTextbox.TabIndex = 1;
+            this.depotPathTextBox.Location = new System.Drawing.Point(9, 33);
+            this.depotPathTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.depotPathTextBox.Name = "depotPathTextBox";
+            this.depotPathTextBox.Size = new System.Drawing.Size(290, 23);
+            this.depotPathTextBox.TabIndex = 1;
             // 
-            // apiPathButton
+            // depotPathButton
             // 
-            this.apiPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.apiPathButton.Location = new System.Drawing.Point(305, 33);
-            this.apiPathButton.Name = "apiPathButton";
-            this.apiPathButton.Size = new System.Drawing.Size(75, 23);
-            this.apiPathButton.TabIndex = 2;
-            this.apiPathButton.Text = "浏览";
-            this.apiPathButton.UseVisualStyleBackColor = true;
-            this.apiPathButton.Click += new System.EventHandler(this.apiPathButton_Click);
+            this.depotPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.depotPathButton.Location = new System.Drawing.Point(305, 33);
+            this.depotPathButton.Name = "depotPathButton";
+            this.depotPathButton.Size = new System.Drawing.Size(75, 23);
+            this.depotPathButton.TabIndex = 2;
+            this.depotPathButton.Text = "浏览";
+            this.depotPathButton.UseVisualStyleBackColor = true;
+            this.depotPathButton.Click += new System.EventHandler(this.depotPathButton_Click);
             // 
             // label8
             // 
@@ -252,13 +252,13 @@
             this.label8.TabIndex = 8;
             this.label8.Text = "结果数";
             // 
-            // quantityTextbox
+            // quantityTextBox
             // 
-            this.quantityTextbox.Location = new System.Drawing.Point(131, 121);
-            this.quantityTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.quantityTextbox.Name = "quantityTextbox";
-            this.quantityTextbox.Size = new System.Drawing.Size(60, 23);
-            this.quantityTextbox.TabIndex = 9;
+            this.quantityTextBox.Location = new System.Drawing.Point(131, 121);
+            this.quantityTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.quantityTextBox.Name = "quantityTextBox";
+            this.quantityTextBox.Size = new System.Drawing.Size(60, 23);
+            this.quantityTextBox.TabIndex = 9;
             // 
             // label11
             // 
@@ -288,17 +288,17 @@
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.secreykeyTextbox);
-            this.tabPage1.Controls.Add(this.quantityTextbox);
-            this.tabPage1.Controls.Add(this.apikeyTextbox);
+            this.tabPage1.Controls.Add(this.secreykeyTextBox);
+            this.tabPage1.Controls.Add(this.quantityTextBox);
+            this.tabPage1.Controls.Add(this.apikeyTextBox);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.appidTextbox);
-            this.tabPage1.Controls.Add(this.timeoutTextbox);
+            this.tabPage1.Controls.Add(this.appidTextBox);
+            this.tabPage1.Controls.Add(this.timeoutTextBox);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.tag2Textbox);
+            this.tabPage1.Controls.Add(this.tag2TextBox);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.tag1Textbox);
+            this.tabPage1.Controls.Add(this.tag1TextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -314,11 +314,11 @@
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.sqlTableTextbox);
-            this.tabPage2.Controls.Add(this.sqlPasswordTextbox);
-            this.tabPage2.Controls.Add(this.sqlUserTextbox);
-            this.tabPage2.Controls.Add(this.sqlDataTextbox);
-            this.tabPage2.Controls.Add(this.sqlIPTextbox);
+            this.tabPage2.Controls.Add(this.sqlTableTextBox);
+            this.tabPage2.Controls.Add(this.sqlPasswordTextBox);
+            this.tabPage2.Controls.Add(this.sqlUserTextBox);
+            this.tabPage2.Controls.Add(this.sqlDataTextBox);
+            this.tabPage2.Controls.Add(this.sqlIPTextBox);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -372,51 +372,51 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "服务器";
             // 
-            // sqlTableTextbox
+            // sqlTableTextBox
             // 
-            this.sqlTableTextbox.Location = new System.Drawing.Point(111, 73);
-            this.sqlTableTextbox.Name = "sqlTableTextbox";
-            this.sqlTableTextbox.Size = new System.Drawing.Size(150, 23);
-            this.sqlTableTextbox.TabIndex = 5;
+            this.sqlTableTextBox.Location = new System.Drawing.Point(111, 73);
+            this.sqlTableTextBox.Name = "sqlTableTextBox";
+            this.sqlTableTextBox.Size = new System.Drawing.Size(150, 23);
+            this.sqlTableTextBox.TabIndex = 5;
             // 
-            // sqlPasswordTextbox
+            // sqlPasswordTextBox
             // 
-            this.sqlPasswordTextbox.Location = new System.Drawing.Point(111, 121);
-            this.sqlPasswordTextbox.Name = "sqlPasswordTextbox";
-            this.sqlPasswordTextbox.Size = new System.Drawing.Size(100, 23);
-            this.sqlPasswordTextbox.TabIndex = 9;
-            this.sqlPasswordTextbox.UseSystemPasswordChar = true;
+            this.sqlPasswordTextBox.Location = new System.Drawing.Point(111, 121);
+            this.sqlPasswordTextBox.Name = "sqlPasswordTextBox";
+            this.sqlPasswordTextBox.Size = new System.Drawing.Size(100, 23);
+            this.sqlPasswordTextBox.TabIndex = 9;
+            this.sqlPasswordTextBox.UseSystemPasswordChar = true;
             // 
-            // sqlUserTextbox
+            // sqlUserTextBox
             // 
-            this.sqlUserTextbox.Location = new System.Drawing.Point(5, 121);
-            this.sqlUserTextbox.Name = "sqlUserTextbox";
-            this.sqlUserTextbox.Size = new System.Drawing.Size(100, 23);
-            this.sqlUserTextbox.TabIndex = 7;
+            this.sqlUserTextBox.Location = new System.Drawing.Point(5, 121);
+            this.sqlUserTextBox.Name = "sqlUserTextBox";
+            this.sqlUserTextBox.Size = new System.Drawing.Size(100, 23);
+            this.sqlUserTextBox.TabIndex = 7;
             // 
-            // sqlDataTextbox
+            // sqlDataTextBox
             // 
-            this.sqlDataTextbox.Location = new System.Drawing.Point(5, 73);
-            this.sqlDataTextbox.Name = "sqlDataTextbox";
-            this.sqlDataTextbox.Size = new System.Drawing.Size(100, 23);
-            this.sqlDataTextbox.TabIndex = 3;
+            this.sqlDataTextBox.Location = new System.Drawing.Point(5, 73);
+            this.sqlDataTextBox.Name = "sqlDataTextBox";
+            this.sqlDataTextBox.Size = new System.Drawing.Size(100, 23);
+            this.sqlDataTextBox.TabIndex = 3;
             // 
-            // sqlIPTextbox
+            // sqlIPTextBox
             // 
-            this.sqlIPTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.sqlIPTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlIPTextbox.Location = new System.Drawing.Point(5, 25);
-            this.sqlIPTextbox.Name = "sqlIPTextbox";
-            this.sqlIPTextbox.Size = new System.Drawing.Size(375, 23);
-            this.sqlIPTextbox.TabIndex = 1;
+            this.sqlIPTextBox.Location = new System.Drawing.Point(5, 25);
+            this.sqlIPTextBox.Name = "sqlIPTextBox";
+            this.sqlIPTextBox.Size = new System.Drawing.Size(375, 23);
+            this.sqlIPTextBox.TabIndex = 1;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.sortTextbox);
-            this.tabPage3.Controls.Add(this.apiSortButton);
-            this.tabPage3.Controls.Add(this.depotPathTextbox);
-            this.tabPage3.Controls.Add(this.apiPathButton);
+            this.tabPage3.Controls.Add(this.sortPathTextBox);
+            this.tabPage3.Controls.Add(this.sortPathButton);
+            this.tabPage3.Controls.Add(this.depotPathTextBox);
+            this.tabPage3.Controls.Add(this.depotPathButton);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
@@ -467,26 +467,26 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "归类目录";
             // 
-            // sortTextbox
+            // sortPathTextBox
             // 
-            this.sortTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.sortPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sortTextbox.Location = new System.Drawing.Point(9, 83);
-            this.sortTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.sortTextbox.Name = "sortTextbox";
-            this.sortTextbox.Size = new System.Drawing.Size(290, 23);
-            this.sortTextbox.TabIndex = 7;
+            this.sortPathTextBox.Location = new System.Drawing.Point(9, 83);
+            this.sortPathTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.sortPathTextBox.Name = "sortPathTextBox";
+            this.sortPathTextBox.Size = new System.Drawing.Size(290, 23);
+            this.sortPathTextBox.TabIndex = 7;
             // 
-            // apiSortButton
+            // sortPathButton
             // 
-            this.apiSortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.apiSortButton.Location = new System.Drawing.Point(305, 83);
-            this.apiSortButton.Name = "apiSortButton";
-            this.apiSortButton.Size = new System.Drawing.Size(75, 23);
-            this.apiSortButton.TabIndex = 8;
-            this.apiSortButton.Text = "浏览";
-            this.apiSortButton.UseVisualStyleBackColor = true;
-            this.apiSortButton.Click += new System.EventHandler(this.apiSortButton_Click);
+            this.sortPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortPathButton.Location = new System.Drawing.Point(305, 83);
+            this.sortPathButton.Name = "sortPathButton";
+            this.sortPathButton.Size = new System.Drawing.Size(75, 23);
+            this.sortPathButton.TabIndex = 8;
+            this.sortPathButton.Text = "浏览";
+            this.sortPathButton.UseVisualStyleBackColor = true;
+            this.sortPathButton.Click += new System.EventHandler(this.sortPathButton_Click);
             // 
             // ApiSettingsForm
             // 
@@ -525,33 +525,33 @@
 
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox timeoutTextbox;
-        private System.Windows.Forms.TextBox appidTextbox;
+        private System.Windows.Forms.TextBox timeoutTextBox;
+        private System.Windows.Forms.TextBox appidTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox apikeyTextbox;
-        private System.Windows.Forms.TextBox secreykeyTextbox;
+        private System.Windows.Forms.TextBox apikeyTextBox;
+        private System.Windows.Forms.TextBox secreykeyTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox depotListCombobox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tag1Textbox;
+        private System.Windows.Forms.TextBox tag1TextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tag2Textbox;
+        private System.Windows.Forms.TextBox tag2TextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox depotPathTextbox;
-        private System.Windows.Forms.Button apiPathButton;
+        private System.Windows.Forms.TextBox depotPathTextBox;
+        private System.Windows.Forms.Button depotPathButton;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox quantityTextbox;
+        private System.Windows.Forms.TextBox quantityTextBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox sqlTableTextbox;
-        private System.Windows.Forms.TextBox sqlPasswordTextbox;
-        private System.Windows.Forms.TextBox sqlUserTextbox;
-        private System.Windows.Forms.TextBox sqlDataTextbox;
-        private System.Windows.Forms.TextBox sqlIPTextbox;
+        private System.Windows.Forms.TextBox sqlTableTextBox;
+        private System.Windows.Forms.TextBox sqlPasswordTextBox;
+        private System.Windows.Forms.TextBox sqlUserTextBox;
+        private System.Windows.Forms.TextBox sqlDataTextBox;
+        private System.Windows.Forms.TextBox sqlIPTextBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label13;
@@ -562,7 +562,7 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox sortTextbox;
-        private System.Windows.Forms.Button apiSortButton;
+        private System.Windows.Forms.TextBox sortPathTextBox;
+        private System.Windows.Forms.Button sortPathButton;
     }
 }

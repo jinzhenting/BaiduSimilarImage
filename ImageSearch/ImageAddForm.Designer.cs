@@ -28,49 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.scanListview = new System.Windows.Forms.ListView();
+            this.scanListView = new System.Windows.Forms.ListView();
             this.depotListCombobox = new System.Windows.Forms.ComboBox();
             this.addStartButton = new System.Windows.Forms.Button();
-            this.addStatusstrip = new System.Windows.Forms.StatusStrip();
-            this.addBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.addLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.addPathTextbox = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.addPathTextBox = new System.Windows.Forms.TextBox();
             this.addScanButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.subCheckbox = new System.Windows.Forms.CheckBox();
+            this.subCheckBox = new System.Windows.Forms.CheckBox();
             this.addBack = new System.ComponentModel.BackgroundWorker();
             this.resetAddImageListButton = new System.Windows.Forms.Button();
-            this.addLogListview = new System.Windows.Forms.ListView();
+            this.addLogListView = new System.Windows.Forms.ListView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.sqlCheckbox = new System.Windows.Forms.CheckBox();
+            this.sqlCheckBox = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.formatCombobox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.resetLogButton = new System.Windows.Forms.Button();
             this.scanBack = new System.ComponentModel.BackgroundWorker();
-            this.addStatusstrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // scanListview
+            // scanListView
             // 
-            this.scanListview.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.scanListview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.scanListView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.scanListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.scanListview.FullRowSelect = true;
-            this.scanListview.GridLines = true;
-            this.scanListview.Location = new System.Drawing.Point(-1, 73);
-            this.scanListview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.scanListview.Name = "scanListview";
-            this.scanListview.Size = new System.Drawing.Size(786, 226);
-            this.scanListview.TabIndex = 8;
-            this.scanListview.UseCompatibleStateImageBehavior = false;
-            this.scanListview.View = System.Windows.Forms.View.Details;
+            this.scanListView.FullRowSelect = true;
+            this.scanListView.GridLines = true;
+            this.scanListView.Location = new System.Drawing.Point(-1, 73);
+            this.scanListView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.scanListView.Name = "scanListView";
+            this.scanListView.Size = new System.Drawing.Size(786, 226);
+            this.scanListView.TabIndex = 8;
+            this.scanListView.UseCompatibleStateImageBehavior = false;
+            this.scanListView.View = System.Windows.Forms.View.Details;
             // 
             // depotListCombobox
             // 
@@ -94,37 +94,37 @@
             this.addStartButton.UseVisualStyleBackColor = true;
             this.addStartButton.Click += new System.EventHandler(this.addStartButton_Click);
             // 
-            // addStatusstrip
+            // statusStrip1
             // 
-            this.addStatusstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addBar,
-            this.addLabel});
-            this.addStatusstrip.Location = new System.Drawing.Point(0, 539);
-            this.addStatusstrip.Name = "addStatusstrip";
-            this.addStatusstrip.Size = new System.Drawing.Size(784, 22);
-            this.addStatusstrip.TabIndex = 1;
-            this.addStatusstrip.Text = "addStatusstrip";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.progressBar,
+            this.progressLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // addBar
+            // progressBar
             // 
-            this.addBar.Name = "addBar";
-            this.addBar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
             // 
-            // addLabel
+            // progressLabel
             // 
-            this.addLabel.Name = "addLabel";
-            this.addLabel.Size = new System.Drawing.Size(80, 17);
-            this.addLabel.Text = "等待用户操作";
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(80, 17);
+            this.progressLabel.Text = "等待用户操作";
             // 
-            // addPathTextbox
+            // addPathTextBox
             // 
-            this.addPathTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.addPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addPathTextbox.Location = new System.Drawing.Point(49, 42);
-            this.addPathTextbox.Name = "addPathTextbox";
-            this.addPathTextbox.ReadOnly = true;
-            this.addPathTextbox.Size = new System.Drawing.Size(509, 23);
-            this.addPathTextbox.TabIndex = 5;
+            this.addPathTextBox.Location = new System.Drawing.Point(49, 42);
+            this.addPathTextBox.Name = "addPathTextBox";
+            this.addPathTextBox.ReadOnly = true;
+            this.addPathTextBox.Size = new System.Drawing.Size(509, 23);
+            this.addPathTextBox.TabIndex = 5;
             // 
             // addScanButton
             // 
@@ -147,17 +147,17 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "格式";
             // 
-            // subCheckbox
+            // subCheckBox
             // 
-            this.subCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.subCheckbox.AutoSize = true;
-            this.subCheckbox.Location = new System.Drawing.Point(566, 43);
-            this.subCheckbox.Name = "subCheckbox";
-            this.subCheckbox.Size = new System.Drawing.Size(87, 21);
-            this.subCheckbox.TabIndex = 6;
-            this.subCheckbox.Text = "包含子目录";
-            this.subCheckbox.UseVisualStyleBackColor = true;
-            this.subCheckbox.Click += new System.EventHandler(this.subCheckbox_Click);
+            this.subCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.subCheckBox.AutoSize = true;
+            this.subCheckBox.Location = new System.Drawing.Point(566, 43);
+            this.subCheckBox.Name = "subCheckBox";
+            this.subCheckBox.Size = new System.Drawing.Size(87, 21);
+            this.subCheckBox.TabIndex = 6;
+            this.subCheckBox.Text = "包含子目录";
+            this.subCheckBox.UseVisualStyleBackColor = true;
+            this.subCheckBox.Click += new System.EventHandler(this.subCheckBox_Click);
             // 
             // addBack
             // 
@@ -179,21 +179,21 @@
             this.resetAddImageListButton.UseVisualStyleBackColor = true;
             this.resetAddImageListButton.Click += new System.EventHandler(this.resetAddImageListButton_Click);
             // 
-            // addLogListview
+            // addLogListView
             // 
-            this.addLogListview.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.addLogListview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.addLogListView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.addLogListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addLogListview.FullRowSelect = true;
-            this.addLogListview.GridLines = true;
-            this.addLogListview.Location = new System.Drawing.Point(-1, 0);
-            this.addLogListview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.addLogListview.Name = "addLogListview";
-            this.addLogListview.Size = new System.Drawing.Size(786, 159);
-            this.addLogListview.TabIndex = 0;
-            this.addLogListview.UseCompatibleStateImageBehavior = false;
-            this.addLogListview.View = System.Windows.Forms.View.Details;
+            this.addLogListView.FullRowSelect = true;
+            this.addLogListView.GridLines = true;
+            this.addLogListView.Location = new System.Drawing.Point(-1, 0);
+            this.addLogListView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.addLogListView.Name = "addLogListView";
+            this.addLogListView.Size = new System.Drawing.Size(786, 159);
+            this.addLogListView.TabIndex = 0;
+            this.addLogListView.UseCompatibleStateImageBehavior = false;
+            this.addLogListView.View = System.Windows.Forms.View.Details;
             // 
             // splitContainer1
             // 
@@ -204,39 +204,39 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.sqlCheckbox);
+            this.splitContainer1.Panel1.Controls.Add(this.sqlCheckBox);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.formatCombobox);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.subCheckbox);
+            this.splitContainer1.Panel1.Controls.Add(this.subCheckBox);
             this.splitContainer1.Panel1.Controls.Add(this.resetAddImageListButton);
             this.splitContainer1.Panel1.Controls.Add(this.addScanButton);
-            this.splitContainer1.Panel1.Controls.Add(this.scanListview);
-            this.splitContainer1.Panel1.Controls.Add(this.addPathTextbox);
+            this.splitContainer1.Panel1.Controls.Add(this.scanListView);
+            this.splitContainer1.Panel1.Controls.Add(this.addPathTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.depotListCombobox);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.resetLogButton);
-            this.splitContainer1.Panel2.Controls.Add(this.addLogListview);
+            this.splitContainer1.Panel2.Controls.Add(this.addLogListView);
             this.splitContainer1.Panel2.Controls.Add(this.addStartButton);
             this.splitContainer1.Size = new System.Drawing.Size(784, 539);
             this.splitContainer1.SplitterDistance = 338;
             this.splitContainer1.TabIndex = 0;
             // 
-            // sqlCheckbox
+            // sqlCheckBox
             // 
-            this.sqlCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlCheckbox.AutoSize = true;
-            this.sqlCheckbox.Location = new System.Drawing.Point(657, 43);
-            this.sqlCheckbox.Name = "sqlCheckbox";
-            this.sqlCheckbox.Size = new System.Drawing.Size(123, 21);
-            this.sqlCheckbox.TabIndex = 7;
-            this.sqlCheckbox.Text = "忽略数据库已有项";
-            this.sqlCheckbox.UseVisualStyleBackColor = true;
-            this.sqlCheckbox.CheckedChanged += new System.EventHandler(this.sqlCheckbox_CheckedChanged);
+            this.sqlCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sqlCheckBox.AutoSize = true;
+            this.sqlCheckBox.Location = new System.Drawing.Point(657, 43);
+            this.sqlCheckBox.Name = "sqlCheckBox";
+            this.sqlCheckBox.Size = new System.Drawing.Size(123, 21);
+            this.sqlCheckBox.TabIndex = 7;
+            this.sqlCheckBox.Text = "忽略数据库已有项";
+            this.sqlCheckBox.UseVisualStyleBackColor = true;
+            this.sqlCheckBox.CheckedChanged += new System.EventHandler(this.sqlCheckBox_CheckedChanged);
             // 
             // label3
             // 
@@ -302,7 +302,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.addStatusstrip);
+            this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -311,8 +311,8 @@
             this.Text = "入库";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageAddForm_FormClosing);
             this.Load += new System.EventHandler(this.ImageAddForm_Load);
-            this.addStatusstrip.ResumeLayout(false);
-            this.addStatusstrip.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -325,19 +325,19 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView scanListview;
+        private System.Windows.Forms.ListView scanListView;
         private System.Windows.Forms.ComboBox depotListCombobox;
         private System.Windows.Forms.Button addStartButton;
-        private System.Windows.Forms.StatusStrip addStatusstrip;
-        private System.Windows.Forms.ToolStripStatusLabel addLabel;
-        private System.Windows.Forms.ToolStripProgressBar addBar;
-        private System.Windows.Forms.TextBox addPathTextbox;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel progressLabel;
+        private System.Windows.Forms.ToolStripProgressBar progressBar;
+        private System.Windows.Forms.TextBox addPathTextBox;
         private System.Windows.Forms.Button addScanButton;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox subCheckbox;
+        private System.Windows.Forms.CheckBox subCheckBox;
         private System.ComponentModel.BackgroundWorker addBack;
         private System.Windows.Forms.Button resetAddImageListButton;
-        private System.Windows.Forms.ListView addLogListview;
+        private System.Windows.Forms.ListView addLogListView;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox formatCombobox;
@@ -345,6 +345,6 @@
         private System.Windows.Forms.Button resetLogButton;
         private System.Windows.Forms.Label label3;
         private System.ComponentModel.BackgroundWorker scanBack;
-        private System.Windows.Forms.CheckBox sqlCheckbox;
+        private System.Windows.Forms.CheckBox sqlCheckBox;
     }
 }

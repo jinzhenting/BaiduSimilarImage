@@ -22,7 +22,7 @@ namespace ImageSearch
 
         private void SettingsForm_Load(object sender, System.EventArgs e)
         {
-            appup_textbox.Text = appuppath;
+            upTextBox.Text = appuppath;
 
 
             try
@@ -49,14 +49,14 @@ namespace ImageSearch
             }
         }
 
-        private void app_settings_save_button_Click(object sender, System.EventArgs e)// 保存按钮
+        private void saveButton_Click(object sender, System.EventArgs e)// 保存按钮
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\Settings.xml");
                 XmlNode rootNode = xml.DocumentElement;// 获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == "Up") xmlnode.Attributes["path"].Value = appup_textbox.Text;// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
+                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == "Up") xmlnode.Attributes["path"].Value = upTextBox.Text;// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
                 xml.Save(@"Documents\Settings.xml");
                 MessageBox.Show("保存成功，将在程序重启后生效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
@@ -75,7 +75,7 @@ namespace ImageSearch
         }
 
         //取消按钮
-        private void app_settings_cancel_button_Click(object sender, EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }

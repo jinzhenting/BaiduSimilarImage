@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.onlineImagePathTextbox = new System.Windows.Forms.TextBox();
-            this.openPath = new System.Windows.Forms.Button();
+            this.onlinePathTextBox = new System.Windows.Forms.TextBox();
+            this.onlineOpenPath = new System.Windows.Forms.Button();
             this.onlineSearchButton = new System.Windows.Forms.Button();
             this.onlinePicturebox = new System.Windows.Forms.PictureBox();
             this.imageBoxMenustrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -66,19 +66,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.localTabpage = new System.Windows.Forms.TabPage();
             this.localSearch2Button = new System.Windows.Forms.Button();
-            this.localListview = new System.Windows.Forms.ListView();
+            this.localListView = new System.Windows.Forms.ListView();
             this.label4 = new System.Windows.Forms.Label();
-            this.localImageCombobox = new System.Windows.Forms.ComboBox();
+            this.localDepotCombobox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.localOpenButton = new System.Windows.Forms.Button();
-            this.localTypeTextbox = new System.Windows.Forms.TextBox();
+            this.localOpenPathButton = new System.Windows.Forms.Button();
+            this.localTypeTextBox = new System.Windows.Forms.TextBox();
             this.localSearchButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.imageSortButton = new System.Windows.Forms.Button();
             this.imageAddButton = new System.Windows.Forms.Button();
             this.searchBack = new System.ComponentModel.BackgroundWorker();
-            this.searchStatusstrip = new System.Windows.Forms.StatusStrip();
-            this.searchBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.imageUpButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -105,32 +105,32 @@
             this.onlineTabpage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.localTabpage.SuspendLayout();
-            this.searchStatusstrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // onlineImagePathTextbox
+            // onlinePathTextBox
             // 
-            this.onlineImagePathTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.onlinePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.onlineImagePathTextbox.Location = new System.Drawing.Point(41, 379);
-            this.onlineImagePathTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.onlineImagePathTextbox.Name = "onlineImagePathTextbox";
-            this.onlineImagePathTextbox.Size = new System.Drawing.Size(387, 23);
-            this.onlineImagePathTextbox.TabIndex = 8;
-            this.onlineImagePathTextbox.TextChanged += new System.EventHandler(this.onlineImagePathTextbox_TextChanged);
+            this.onlinePathTextBox.Location = new System.Drawing.Point(41, 379);
+            this.onlinePathTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.onlinePathTextBox.Name = "onlinePathTextBox";
+            this.onlinePathTextBox.Size = new System.Drawing.Size(387, 23);
+            this.onlinePathTextBox.TabIndex = 8;
+            this.onlinePathTextBox.TextChanged += new System.EventHandler(this.onlinePathTextBox_TextChanged);
             // 
             // openPath
             // 
-            this.openPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.openPath.Location = new System.Drawing.Point(434, 379);
-            this.openPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.openPath.Name = "openPath";
-            this.openPath.Size = new System.Drawing.Size(75, 23);
-            this.openPath.TabIndex = 9;
-            this.openPath.Text = "打开";
-            this.openPath.UseVisualStyleBackColor = true;
-            this.openPath.Click += new System.EventHandler(this.openPath_Click);
+            this.onlineOpenPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.onlineOpenPath.Location = new System.Drawing.Point(434, 379);
+            this.onlineOpenPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.onlineOpenPath.Name = "openPath";
+            this.onlineOpenPath.Size = new System.Drawing.Size(75, 23);
+            this.onlineOpenPath.TabIndex = 9;
+            this.onlineOpenPath.Text = "打开";
+            this.onlineOpenPath.UseVisualStyleBackColor = true;
+            this.onlineOpenPath.Click += new System.EventHandler(this.onlineOpenPath_Click);
             // 
             // onlineSearchButton
             // 
@@ -347,9 +347,9 @@
             this.onlineTabpage.Controls.Add(this.label2);
             this.onlineTabpage.Controls.Add(this.onlineQuantityCombobox);
             this.onlineTabpage.Controls.Add(this.label13);
-            this.onlineTabpage.Controls.Add(this.onlineImagePathTextbox);
+            this.onlineTabpage.Controls.Add(this.onlinePathTextBox);
             this.onlineTabpage.Controls.Add(this.onlineSearchButton);
-            this.onlineTabpage.Controls.Add(this.openPath);
+            this.onlineTabpage.Controls.Add(this.onlineOpenPath);
             this.onlineTabpage.Controls.Add(this.groupBox1);
             this.onlineTabpage.Location = new System.Drawing.Point(4, 26);
             this.onlineTabpage.Name = "onlineTabpage";
@@ -458,12 +458,12 @@
             // localTabpage
             // 
             this.localTabpage.Controls.Add(this.localSearch2Button);
-            this.localTabpage.Controls.Add(this.localListview);
+            this.localTabpage.Controls.Add(this.localListView);
             this.localTabpage.Controls.Add(this.label4);
-            this.localTabpage.Controls.Add(this.localImageCombobox);
+            this.localTabpage.Controls.Add(this.localDepotCombobox);
             this.localTabpage.Controls.Add(this.label1);
-            this.localTabpage.Controls.Add(this.localOpenButton);
-            this.localTabpage.Controls.Add(this.localTypeTextbox);
+            this.localTabpage.Controls.Add(this.localOpenPathButton);
+            this.localTabpage.Controls.Add(this.localTypeTextBox);
             this.localTabpage.Controls.Add(this.localSearchButton);
             this.localTabpage.Controls.Add(this.label3);
             this.localTabpage.Location = new System.Drawing.Point(4, 26);
@@ -486,20 +486,20 @@
             this.localSearch2Button.UseVisualStyleBackColor = true;
             this.localSearch2Button.Click += new System.EventHandler(this.localSearch2Button_Click);
             // 
-            // localListview
+            // localListView
             // 
-            this.localListview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.localListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.localListview.FullRowSelect = true;
-            this.localListview.GridLines = true;
-            this.localListview.Location = new System.Drawing.Point(41, 41);
-            this.localListview.Name = "localListview";
-            this.localListview.Size = new System.Drawing.Size(629, 332);
-            this.localListview.TabIndex = 7;
-            this.localListview.UseCompatibleStateImageBehavior = false;
-            this.localListview.View = System.Windows.Forms.View.Details;
-            this.localListview.DoubleClick += new System.EventHandler(this.localListview_DoubleClick);
+            this.localListView.FullRowSelect = true;
+            this.localListView.GridLines = true;
+            this.localListView.Location = new System.Drawing.Point(41, 41);
+            this.localListView.Name = "localListView";
+            this.localListView.Size = new System.Drawing.Size(629, 332);
+            this.localListView.TabIndex = 7;
+            this.localListView.UseCompatibleStateImageBehavior = false;
+            this.localListView.View = System.Windows.Forms.View.Details;
+            this.localListView.DoubleClick += new System.EventHandler(this.localListView_DoubleClick);
             // 
             // label4
             // 
@@ -510,16 +510,16 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "文件名";
             // 
-            // localImageCombobox
+            // localDepotCombobox
             // 
-            this.localImageCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.localImageCombobox.FormattingEnabled = true;
-            this.localImageCombobox.Location = new System.Drawing.Point(41, 7);
-            this.localImageCombobox.Name = "localImageCombobox";
-            this.localImageCombobox.Size = new System.Drawing.Size(100, 25);
-            this.localImageCombobox.TabIndex = 1;
-            this.onlineDepotComboboxTooltip.SetToolTip(this.localImageCombobox, "在图库配置中增加、删除和修改多个图库");
-            this.localImageCombobox.SelectedIndexChanged += new System.EventHandler(this.localImageCombobox_SelectedIndexChanged);
+            this.localDepotCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.localDepotCombobox.FormattingEnabled = true;
+            this.localDepotCombobox.Location = new System.Drawing.Point(41, 7);
+            this.localDepotCombobox.Name = "localDepotCombobox";
+            this.localDepotCombobox.Size = new System.Drawing.Size(100, 25);
+            this.localDepotCombobox.TabIndex = 1;
+            this.onlineDepotComboboxTooltip.SetToolTip(this.localDepotCombobox, "在图库配置中增加、删除和修改多个图库");
+            this.localDepotCombobox.SelectedIndexChanged += new System.EventHandler(this.localDepotCombobox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -530,27 +530,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "图库";
             // 
-            // localOpenButton
+            // localOpenPathButton
             // 
-            this.localOpenButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.localOpenButton.Location = new System.Drawing.Point(591, 380);
-            this.localOpenButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.localOpenButton.Name = "localOpenButton";
-            this.localOpenButton.Size = new System.Drawing.Size(80, 23);
-            this.localOpenButton.TabIndex = 0;
-            this.localOpenButton.Text = "打开文件夹";
-            this.localOpenButton.UseVisualStyleBackColor = true;
-            this.localOpenButton.Click += new System.EventHandler(this.localOpenButton_Click);
+            this.localOpenPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.localOpenPathButton.Location = new System.Drawing.Point(591, 380);
+            this.localOpenPathButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.localOpenPathButton.Name = "localOpenPathButton";
+            this.localOpenPathButton.Size = new System.Drawing.Size(80, 23);
+            this.localOpenPathButton.TabIndex = 0;
+            this.localOpenPathButton.Text = "打开文件夹";
+            this.localOpenPathButton.UseVisualStyleBackColor = true;
+            this.localOpenPathButton.Click += new System.EventHandler(this.localOpenPathButton_Click);
             // 
-            // localTypeTextbox
+            // localTypeTextBox
             // 
-            this.localTypeTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.localTypeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.localTypeTextbox.Location = new System.Drawing.Point(196, 8);
-            this.localTypeTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.localTypeTextbox.Name = "localTypeTextbox";
-            this.localTypeTextbox.Size = new System.Drawing.Size(259, 23);
-            this.localTypeTextbox.TabIndex = 3;
+            this.localTypeTextBox.Location = new System.Drawing.Point(196, 8);
+            this.localTypeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.localTypeTextBox.Name = "localTypeTextBox";
+            this.localTypeTextBox.Size = new System.Drawing.Size(259, 23);
+            this.localTypeTextBox.TabIndex = 3;
             // 
             // localSearchButton
             // 
@@ -610,21 +610,21 @@
             this.searchBack.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.searchBack_ProgressChanged);
             this.searchBack.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.searchBack_RunWorkerCompleted);
             // 
-            // searchStatusstrip
+            // statusStrip1
             // 
-            this.searchStatusstrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.searchBar,
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.progressBar,
             this.progressLabel});
-            this.searchStatusstrip.Location = new System.Drawing.Point(0, 539);
-            this.searchStatusstrip.Name = "searchStatusstrip";
-            this.searchStatusstrip.Size = new System.Drawing.Size(684, 22);
-            this.searchStatusstrip.TabIndex = 0;
-            this.searchStatusstrip.Text = "searchStatusstrip";
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(684, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // searchBar
+            // progressBar
             // 
-            this.searchBar.Name = "searchBar";
-            this.searchBar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // progressLabel
             // 
@@ -753,7 +753,7 @@
             this.Controls.Add(this.searchTtabontrol);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.searchMenustrip);
-            this.Controls.Add(this.searchStatusstrip);
+            this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MainMenuStrip = this.searchMenustrip;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -772,8 +772,8 @@
             this.groupBox1.ResumeLayout(false);
             this.localTabpage.ResumeLayout(false);
             this.localTabpage.PerformLayout();
-            this.searchStatusstrip.ResumeLayout(false);
-            this.searchStatusstrip.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -781,8 +781,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox onlineImagePathTextbox;
-        private System.Windows.Forms.Button openPath;
+        private System.Windows.Forms.TextBox onlinePathTextBox;
+        private System.Windows.Forms.Button onlineOpenPath;
         private System.Windows.Forms.Button onlineSearchButton;
         private System.Windows.Forms.PictureBox onlinePicturebox;
         private System.Windows.Forms.ToolStripMenuItem appStripmenu;
@@ -796,9 +796,9 @@
         private System.Windows.Forms.Button imageAddButton;
         private System.ComponentModel.BackgroundWorker searchBack;
         private System.Windows.Forms.Button imageSortButton;
-        private System.Windows.Forms.StatusStrip searchStatusstrip;
+        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel progressLabel;
-        private System.Windows.Forms.ToolStripProgressBar searchBar;
+        private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.Button imageUpButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button apiSettingsButton;
@@ -815,12 +815,12 @@
         private System.Windows.Forms.ComboBox onlineDepotCombobox;
         private System.Windows.Forms.Button onlineClearButton;
         private System.Windows.Forms.TabPage localTabpage;
-        private System.Windows.Forms.ListView localListview;
+        private System.Windows.Forms.ListView localListView;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox localImageCombobox;
+        private System.Windows.Forms.ComboBox localDepotCombobox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button localOpenButton;
-        private System.Windows.Forms.TextBox localTypeTextbox;
+        private System.Windows.Forms.Button localOpenPathButton;
+        private System.Windows.Forms.TextBox localTypeTextBox;
         private System.Windows.Forms.Button localSearchButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem imageSortMenuItem;

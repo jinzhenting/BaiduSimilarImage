@@ -51,8 +51,8 @@ namespace ImageSearch
         /// </summary>
         private void EmptyListSettings()
         {
-            emptyListview.Columns.Add("空白目录列表");// 添加列标题
-            emptyListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+            listView.Columns.Add("空白目录列表");// 添加列标题
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace ImageSearch
         private void openButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) pathTextbox.Text = folderBrowserDialog.SelectedPath;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK) pathTextBox.Text = folderBrowserDialog.SelectedPath;
         }
 
         /// <summary>
@@ -69,30 +69,30 @@ namespace ImageSearch
         /// </summary>
         private void scanButton_Click(object sender, EventArgs e)
         {
-            if (pathTextbox.Text == "")// 主目录
+            if (pathTextBox.Text == "")// 主目录
             {
                 MessageBox.Show("未选择主目录", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!Directory.Exists(pathTextbox.Text))
+            if (!Directory.Exists(pathTextBox.Text))
             {
                 MessageBox.Show("主目录不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (emptyListview.Items.Count > 0)
+            if (listView.Items.Count > 0)
             {
-                emptyListview.Clear();
+                listView.Clear();
                 EmptyListSettings();
             }
 
             if (scanButton.Text == "扫描")
             {
                 scanButton.Text = "停止";
-                if (!emptyBack.IsBusy) emptyBack.RunWorkerAsync(pathTextbox.Text);
-                emptyBar.Value = 1;
-                emptyLabel.Text = "% 开始扫描...";
+                if (!emptyBack.IsBusy) emptyBack.RunWorkerAsync(pathTextBox.Text);
+                progressBar.Value = 1;
+                progressLabel.Text = "% 开始扫描...";
             }
             else
             {
@@ -119,22 +119,22 @@ namespace ImageSearch
         /// </summary>
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            if (emptyListview.CheckedItems.Count < 1)
+            if (listView.CheckedItems.Count < 1)
             {
                 MessageBox.Show("没有选中项目", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            foreach (ListViewItem item in emptyListview.CheckedItems)
+            foreach (ListViewItem item in listView.CheckedItems)
             {
                 try
                 {
-                    emptyBar.Value = 50;
-                    emptyLabel.Text = "正在删除";
+                    progressBar.Value = 50;
+                    progressLabel.Text = "正在删除";
                     Directory.Delete(item.Text, true);
-                    emptyListview.Items.Remove(item);
-                    emptyBar.Value = 100;
-                    emptyLabel.Text = "删除完成";
+                    listView.Items.Remove(item);
+                    progressBar.Value = 100;
+                    progressLabel.Text = "删除完成";
                 }
                 catch (UnauthorizedAccessException)
                 {
@@ -213,8 +213,8 @@ namespace ImageSearch
         /// </summary>
         private void emptyBack_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            emptyBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : emptyBar.Value;
-            emptyLabel.Text = emptyBar.Value.ToString() + "% 正在扫描：" + e.UserState as string;
+            progressBar.Value = (e.ProgressPercentage < 101) ? e.ProgressPercentage : progressBar.Value;
+            progressLabel.Text = progressBar.Value.ToString() + "% 正在扫描：" + e.UserState as string;
         }
 
         /// <summary>
@@ -225,25 +225,25 @@ namespace ImageSearch
             if (e.Error != null)
             {
                 MessageBox.Show("扫描文件错误如下\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                emptyLabel.Text = "扫描文件后台错误";
+                progressLabel.Text = "扫描文件后台错误";
                 return;
             }
             
             if (e.Cancelled)
             {
                 MessageBox.Show("扫描已取消", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                emptyLabel.Text = "扫描已取消";
+                progressLabel.Text = "扫描已取消";
                 return;
             }
             
             scanButton.Text = "扫描";
-            emptyLabel.Text = "扫描已完成";
-            emptyBar.Value = 100;
+            progressLabel.Text = "扫描已完成";
+            progressBar.Value = 100;
             
             List<string> list = e.Result as List<string>;// 接收传出
             if (list == null)
             {
-                emptyLabel.Text = "扫描错误";
+                progressLabel.Text = "扫描错误";
                 return;
             }
             if (list.Count < 1)
@@ -254,9 +254,9 @@ namespace ImageSearch
             
             foreach (string str in list)
             {
-                ListViewItem item = emptyListview.Items.Add(str);
-                emptyListview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
-                emptyListview.Items[emptyListview.Items.Count - 1].EnsureVisible();
+                ListViewItem iistViewItem = listView.Items.Add(str);
+                listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);// 自动列宽
+                listView.Items[listView.Items.Count - 1].EnsureVisible();
             }
         }
         
