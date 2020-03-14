@@ -91,13 +91,13 @@
             this.imageUpTootip = new System.Windows.Forms.ToolTip(this.components);
             this.imageDeleteTootip = new System.Windows.Forms.ToolTip(this.components);
             this.imageSortTootip = new System.Windows.Forms.ToolTip(this.components);
-            this.apiSettingsTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.appHelpTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.onlinePicturebox_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.onlineQuantityCombobox_tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.onlineDepotComboboxTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.apiSettingsToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.appHelpToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.onlinePictureboxToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.onlineQuantityComboboxToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.onlineDepotComboboxToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.outlineBack = new System.ComponentModel.BackgroundWorker();
-            this.emptyFolderTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.emptyFolderToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.onlinePicturebox)).BeginInit();
             this.imageBoxMenustrip.SuspendLayout();
             this.searchMenustrip.SuspendLayout();
@@ -120,12 +120,12 @@
             this.onlinePathTextBox.TabIndex = 8;
             this.onlinePathTextBox.TextChanged += new System.EventHandler(this.onlinePathTextBox_TextChanged);
             // 
-            // openPath
+            // onlineOpenPath
             // 
             this.onlineOpenPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.onlineOpenPath.Location = new System.Drawing.Point(434, 379);
             this.onlineOpenPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.onlineOpenPath.Name = "openPath";
+            this.onlineOpenPath.Name = "onlineOpenPath";
             this.onlineOpenPath.Size = new System.Drawing.Size(75, 23);
             this.onlineOpenPath.TabIndex = 9;
             this.onlineOpenPath.Text = "打开";
@@ -158,7 +158,7 @@
             this.onlinePicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.onlinePicturebox.TabIndex = 7;
             this.onlinePicturebox.TabStop = false;
-            this.onlinePicturebox_tooltip.SetToolTip(this.onlinePicturebox, "将图片拖放或右击粘贴到此处，也可以浏览或输入图片位置进行搜索");
+            this.onlinePictureboxToolTip.SetToolTip(this.onlinePicturebox, "将图片拖放或右击粘贴到此处，也可以浏览或输入图片位置进行搜索");
             this.onlinePicturebox.DragDrop += new System.Windows.Forms.DragEventHandler(this.onlinePicturebox_DragDrop);
             this.onlinePicturebox.DragEnter += new System.Windows.Forms.DragEventHandler(this.onlinePicturebox_DragEnter);
             // 
@@ -378,7 +378,7 @@
             this.onlineDepotCombobox.Name = "onlineDepotCombobox";
             this.onlineDepotCombobox.Size = new System.Drawing.Size(100, 25);
             this.onlineDepotCombobox.TabIndex = 1;
-            this.onlineDepotComboboxTooltip.SetToolTip(this.onlineDepotCombobox, "在图库配置中增加、删除和修改多个图库");
+            this.onlineDepotComboboxToolTip.SetToolTip(this.onlineDepotCombobox, "图库列表（可在图库配置中增加、删除和修改）");
             this.onlineDepotCombobox.SelectedIndexChanged += new System.EventHandler(this.onlineDepotCombobox_SelectedIndexChanged);
             // 
             // label14
@@ -431,7 +431,7 @@
             this.onlineQuantityCombobox.Name = "onlineQuantityCombobox";
             this.onlineQuantityCombobox.Size = new System.Drawing.Size(60, 25);
             this.onlineQuantityCombobox.TabIndex = 3;
-            this.onlineQuantityCombobox_tooltip.SetToolTip(this.onlineQuantityCombobox, "在图库配置中设定默认数量，最多支持返回1000条");
+            this.onlineQuantityComboboxToolTip.SetToolTip(this.onlineQuantityCombobox, "在图库配置中设定默认数量，最多支持返回1000条");
             // 
             // label13
             // 
@@ -518,7 +518,7 @@
             this.localDepotCombobox.Name = "localDepotCombobox";
             this.localDepotCombobox.Size = new System.Drawing.Size(100, 25);
             this.localDepotCombobox.TabIndex = 1;
-            this.onlineDepotComboboxTooltip.SetToolTip(this.localDepotCombobox, "在图库配置中增加、删除和修改多个图库");
+            this.onlineDepotComboboxToolTip.SetToolTip(this.localDepotCombobox, "图库列表（可在图库配置中增加、删除和修改）");
             this.localDepotCombobox.SelectedIndexChanged += new System.EventHandler(this.localDepotCombobox_SelectedIndexChanged);
             // 
             // label1
@@ -676,7 +676,7 @@
             this.emptyFolderButton.TabIndex = 7;
             this.emptyFolderButton.Text = "清除空目录";
             this.emptyFolderButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.emptyFolderTooltip.SetToolTip(this.emptyFolderButton, "查找并删除空白的文件夹");
+            this.emptyFolderToolTip.SetToolTip(this.emptyFolderButton, "查找并删除空白的文件夹");
             this.emptyFolderButton.UseVisualStyleBackColor = false;
             this.emptyFolderButton.Click += new System.EventHandler(this.emptyFolderButton_Click);
             // 
@@ -691,7 +691,7 @@
             this.helpButton.TabIndex = 6;
             this.helpButton.Text = "帮助";
             this.helpButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.appHelpTooltip.SetToolTip(this.helpButton, "系统使用帮助");
+            this.appHelpToolTip.SetToolTip(this.helpButton, "系统使用帮助");
             this.helpButton.UseVisualStyleBackColor = false;
             this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
             // 
@@ -731,7 +731,7 @@
             this.apiSettingsButton.TabIndex = 5;
             this.apiSettingsButton.Text = "图库配置";
             this.apiSettingsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.apiSettingsTooltip.SetToolTip(this.apiSettingsButton, "图库接口、数据库、目录等设定");
+            this.apiSettingsToolTip.SetToolTip(this.apiSettingsButton, "图库接口、数据库、目录等设定");
             this.apiSettingsButton.UseVisualStyleBackColor = false;
             this.apiSettingsButton.Click += new System.EventHandler(this.apiSettingsButton_Click);
             // 
@@ -840,15 +840,15 @@
         private System.Windows.Forms.ToolTip imageUpTootip;
         private System.Windows.Forms.ToolTip imageDeleteTootip;
         private System.Windows.Forms.ToolTip imageSortTootip;
-        private System.Windows.Forms.ToolTip apiSettingsTooltip;
-        private System.Windows.Forms.ToolTip appHelpTooltip;
-        private System.Windows.Forms.ToolTip onlinePicturebox_tooltip;
-        private System.Windows.Forms.ToolTip onlineQuantityCombobox_tooltip;
-        private System.Windows.Forms.ToolTip onlineDepotComboboxTooltip;
+        private System.Windows.Forms.ToolTip apiSettingsToolTip;
+        private System.Windows.Forms.ToolTip appHelpToolTip;
+        private System.Windows.Forms.ToolTip onlinePictureboxToolTip;
+        private System.Windows.Forms.ToolTip onlineQuantityComboboxToolTip;
+        private System.Windows.Forms.ToolTip onlineDepotComboboxToolTip;
         private System.Windows.Forms.Button localSearch2Button;
         private System.ComponentModel.BackgroundWorker outlineBack;
         private System.Windows.Forms.Button emptyFolderButton;
-        private System.Windows.Forms.ToolTip emptyFolderTooltip;
+        private System.Windows.Forms.ToolTip emptyFolderToolTip;
         private System.Windows.Forms.ToolStripMenuItem apiSettingsMenuItem;
     }
 }

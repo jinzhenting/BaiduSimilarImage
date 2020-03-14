@@ -38,7 +38,7 @@ namespace BaiduSimilarImage
 
             try
             {
-                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Up.ico"));
+                Icon = new Icon(Path.Combine(Application.StartupPath, @"Skin\Add.ico"));
             }
             catch (UnauthorizedAccessException)
             {
