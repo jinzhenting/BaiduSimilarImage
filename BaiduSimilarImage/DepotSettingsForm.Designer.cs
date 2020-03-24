@@ -1,6 +1,6 @@
 ﻿namespace BaiduSimilarImage
 {
-    partial class DepotSettingsForm
+    partial class DepotAppSettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -488,7 +488,7 @@
             this.sortPathButton.UseVisualStyleBackColor = true;
             this.sortPathButton.Click += new System.EventHandler(this.sortPathButton_Click);
             // 
-            // ApiSettingsForm
+            // ApiAppSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -505,10 +505,10 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(410, 345);
-            this.Name = "ApiSettingsForm";
+            this.Name = "ApiAppSettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "图库配置";
-            this.Load += new System.EventHandler(this.ApiSettingsForm_Load);
+            this.Load += new System.EventHandler(this.ApiAppSettingsForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

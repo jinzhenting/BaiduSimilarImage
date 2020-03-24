@@ -1,6 +1,6 @@
 ﻿namespace BaiduSimilarImage
 {
-    partial class HelpForm
+    partial class AppHelpForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "功能开发中";
             // 
-            // HelpForm
+            // AppHelpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -49,10 +49,10 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(400, 400);
-            this.Name = "HelpForm";
+            this.Name = "AppHelpForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "系统使用帮助";
-            this.Load += new System.EventHandler(this.HelpForm_Load);
+            this.Load += new System.EventHandler(this.AppHelpForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

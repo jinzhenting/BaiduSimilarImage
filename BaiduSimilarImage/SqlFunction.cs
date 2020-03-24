@@ -10,7 +10,7 @@ namespace BaiduSimilarImage
     /// <summary>
     /// SQL数据库操作
     /// </summary>
-    public static class Sql
+    public static class SqlFunction
     {
         /// <summary>
         /// 读取SQL链接配置

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace BaiduSimilarImage
 {
     /// <summary>
-    /// 文件归类器，
+    /// C#Reflections(反射)，即时编译器
     /// </summary>
     public class Reflections
     {

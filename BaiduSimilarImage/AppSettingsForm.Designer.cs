@@ -1,6 +1,6 @@
 ﻿namespace BaiduSimilarImage
 {
-    partial class SettingsForm
+    partial class AppSettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -74,7 +74,7 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // SettingsForm
+            // AppSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,10 +88,10 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximumSize = new System.Drawing.Size(400, 300);
             this.MinimumSize = new System.Drawing.Size(400, 300);
-            this.Name = "SettingsForm";
+            this.Name = "AppSettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "选项";
-            this.Load += new System.EventHandler(this.SettingsForm_Load);
+            this.Load += new System.EventHandler(this.AppSettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

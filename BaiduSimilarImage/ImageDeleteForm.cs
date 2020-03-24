@@ -150,7 +150,7 @@ namespace BaiduSimilarImage
                 if (mode)// 上传图片进行删除
                 {
                     ImageSearch client = ApiFunction.GetClient(api.Appid, api.Apikey, api.Secreykey, api.Timeout);
-                    bool delete = Sql.Delete(depot, "DELETE FROM " + api.Table + " WHERE Path = '" + path.Replace(api.Path, "").Replace("'", "''") + "'");// 删除数据记录
+                    bool delete = SqlFunction.Delete(depot, "DELETE FROM " + api.Table + " WHERE Path = '" + path.Replace(api.Path, "").Replace("'", "''") + "'");// 删除数据记录
                     if (client != null && delete) e.Result = ApiFunction.DeleteByImage(path, client);// 申请删除
                     else return;
                 }
@@ -158,7 +158,7 @@ namespace BaiduSimilarImage
                 else//输入图片签名进行删除
                 {
                     ImageSearch client = ApiFunction.GetClient(api.Appid, api.Apikey, api.Secreykey, api.Timeout);
-                    bool delete = Sql.Delete(depot, "DELETE FROM " + api.Table + " WHERE ContSign = '" + sign + "'");// 删除数据记录
+                    bool delete = SqlFunction.Delete(depot, "DELETE FROM " + api.Table + " WHERE ContSign = '" + sign + "'");// 删除数据记录
                     if (client != null && delete) e.Result = ApiFunction.DeleteBySian(sign, client);// 申请删除
                     else return;
                 }

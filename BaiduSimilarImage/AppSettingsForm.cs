@@ -9,9 +9,9 @@ namespace BaiduSimilarImage
     /// <summary>
     /// 程序设置窗口
     /// </summary>
-    public partial class SettingsForm : Form
+    public partial class AppSettingsForm : Form
     {
-        public SettingsForm()
+        public AppSettingsForm()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace BaiduSimilarImage
         /// <summary>
         /// 窗口载入时
         /// </summary>
-        private void SettingsForm_Load(object sender, System.EventArgs e)
+        private void AppSettingsForm_Load(object sender, System.EventArgs e)
         {
             upTextBox.Text = appuppath;
             

@@ -23,7 +23,7 @@ namespace BaiduSimilarImage
                 if (MessageBox.Show("程序更新地址 " + upURL + " 无效，是否重新设置？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;// 新版本更新选择窗口
                 else
                 {
-                    SettingsForm settingsForm = new SettingsForm();
+                    AppSettingsForm settingsForm = new AppSettingsForm();
                     settingsForm.ShowDialog();
                     Environment.Exit(0);
                 }

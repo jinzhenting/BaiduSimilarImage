@@ -8,9 +8,9 @@ namespace BaiduSimilarImage
     /// <summary>
     /// 程序使用帮助窗口
     /// </summary>
-    public partial class HelpForm : Form
+    public partial class AppHelpForm : Form
     {
-        public HelpForm()
+        public AppHelpForm()
         {
             InitializeComponent();
         }
@@ -18,7 +18,7 @@ namespace BaiduSimilarImage
         /// <summary>
         /// 窗口载入时
         /// </summary>
-        private void HelpForm_Load(object sender, EventArgs e)
+        private void AppHelpForm_Load(object sender, EventArgs e)
         {
             try
             {

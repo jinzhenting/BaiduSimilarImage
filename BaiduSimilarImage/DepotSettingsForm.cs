@@ -9,9 +9,9 @@ namespace BaiduSimilarImage
     /// <summary>
     /// API配置窗口
     /// </summary>
-    public partial class DepotSettingsForm : Form
+    public partial class DepotAppSettingsForm : Form
     {
-        public DepotSettingsForm()
+        public DepotAppSettingsForm()
         {
             InitializeComponent();
         }
@@ -19,7 +19,7 @@ namespace BaiduSimilarImage
         /// <summary>
         /// 窗口载入时；图库下拉列表
         /// </summary>
-        private void ApiSettingsForm_Load(object sender, EventArgs e)
+        private void ApiAppSettingsForm_Load(object sender, EventArgs e)
         {
             if (ApiFunction.GetDepotList() != null) depotListCombobox.DataSource = ApiFunction.GetDepotList();
             try
@@ -204,7 +204,7 @@ namespace BaiduSimilarImage
                     return;
                 }
 
-                bool dropTable = Sql.Dropable(depotListCombobox.Text, "DROP TABLE " + api.Table);// 清除数据库
+                bool dropTable = SqlFunction.Dropable(depotListCombobox.Text, "DROP TABLE " + api.Table);// 清除数据库
                 if (!dropTable)
                 {
                     MessageBox.Show("成功删除配置文件，删除数据表失败，请手动删除", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);

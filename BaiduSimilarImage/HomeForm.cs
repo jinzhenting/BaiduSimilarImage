@@ -198,6 +198,10 @@ namespace BaiduSimilarImage
             searchBack.RunWorkerAsync(back);// 传入
             progressBar.Value = 1;
             progressLabel.Text = "准备搜索...";
+
+            searchTtabontrol.Enabled = false;
+            toolPanel.Enabled = false;
+            searchMenuStrip.Enabled = false;
         }
 
         /// <summary>
@@ -237,6 +241,10 @@ namespace BaiduSimilarImage
         /// </summary>
         private void searchBack_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            searchTtabontrol.Enabled = true;
+            toolPanel.Enabled = true;
+            searchMenuStrip.Enabled = true;
+
             if (e.Error != null)// 错误
             {
                 MessageBox.Show("搜索后台错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -266,7 +274,7 @@ namespace BaiduSimilarImage
                 for (int i = 0; i < num; i++) list.Add(result[i]["brief"].ToString());
                 progressBar.Value = 100;
                 progressLabel.Text = "搜索完成";
-                SearchResultForm SearchBEForm = new SearchResultForm(list, onlineDepotCombobox.Text, onlineApi.Path);
+                ApiSearchResultForm SearchBEForm = new ApiSearchResultForm(list, onlineDepotCombobox.Text, onlineApi.Path);
                 SearchBEForm.ShowDialog();
             }
         }
@@ -551,7 +559,7 @@ namespace BaiduSimilarImage
             string depot = (string)back[1];
             string type = (string)back[2];
             string select = "SELECT Names, Path FROM " + api.Table + " WHERE Names LIKE '%" + type.Replace("'", "''") + "%'";
-            DataTable datatable = Sql.Select(depot, select);
+            DataTable datatable = SqlFunction.Select(depot, select);
             if (datatable == null)
             {
                 MessageBox.Show("数据库操作错误，结束搜索", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -758,7 +766,7 @@ namespace BaiduSimilarImage
         /// </summary>
         private void ApiSettings()
         {
-            DepotSettingsForm apiform = new DepotSettingsForm();
+            DepotAppSettingsForm apiform = new DepotAppSettingsForm();
             apiform.ShowDialog();
         }
 
@@ -850,7 +858,7 @@ namespace BaiduSimilarImage
         /// </summary>
         private void Help()
         {
-            HelpForm helpform = new HelpForm();
+            AppHelpForm helpform = new AppHelpForm();
             helpform.ShowDialog();
         }
 
@@ -859,31 +867,31 @@ namespace BaiduSimilarImage
         /// </summary>
         private void settingsStripmenu_Click(object sender, EventArgs e)
         {
-            SettingsForm SettingsForm = new SettingsForm();
-            SettingsForm.AppUpPath = appUpURL;
-            SettingsForm.ShowDialog();
+            AppSettingsForm AppSettingsForm = new AppSettingsForm();
+            AppSettingsForm.AppUpPath = appUpURL;
+            AppSettingsForm.ShowDialog();
         }
 
         /// <summary>
         /// 图片右键菜单定义
         /// </summary>
-        private void imageBoxMenustrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void imageBoxMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (onlinePicturebox.Image == null) imageBoxCopyMenustrip.Enabled = false;// 复制
-            else imageBoxCopyMenustrip.Enabled = true;
+            if (onlinePicturebox.Image == null) imageBoxCopyMenuStrip.Enabled = false;// 复制
+            else imageBoxCopyMenuStrip.Enabled = true;
 
             Image img = Clipboard.GetImage();// 粘贴
-            if (img == null) imageBoxPasteMenustrip.Enabled = false;
-            else imageBoxPasteMenustrip.Enabled = true;
+            if (img == null) imageBoxPasteMenuStrip.Enabled = false;
+            else imageBoxPasteMenuStrip.Enabled = true;
 
-            if (onlinePicturebox.Image == null) imageBoxDeleteMenustrip.Enabled = false;// 删除
-            else imageBoxDeleteMenustrip.Enabled = true;
+            if (onlinePicturebox.Image == null) imageBoxDeleteMenuStrip.Enabled = false;// 删除
+            else imageBoxDeleteMenuStrip.Enabled = true;
         }
 
         /// <summary>
         /// 图片右键菜单复制
         /// </summary>
-        private void imageBoxCopyMenustrip_Click(object sender, EventArgs e)
+        private void imageBoxCopyMenuStrip_Click(object sender, EventArgs e)
         {
             Clipboard.SetImage(onlinePicturebox.Image);
         }
@@ -891,7 +899,7 @@ namespace BaiduSimilarImage
         /// <summary>
         /// 图片右键菜单粘贴
         /// </summary>
-        private void imageBoxPasteMenustrip_Click(object sender, EventArgs e)
+        private void imageBoxPasteMenuStrip_Click(object sender, EventArgs e)
         {
             Image img = Clipboard.GetImage();
             if (img != null)
@@ -907,7 +915,7 @@ namespace BaiduSimilarImage
         /// <summary>
         /// 图片右键菜单删除
         /// </summary>
-        private void imageBoxDeleteMenustrip_Click(object sender, EventArgs e)
+        private void imageBoxDeleteMenuStrip_Click(object sender, EventArgs e)
         {
             onlinePicturebox.Image = null;
             progressBar.Value = 0;

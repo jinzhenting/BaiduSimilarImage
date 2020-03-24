@@ -33,10 +33,10 @@
             this.onlineOpenPath = new System.Windows.Forms.Button();
             this.onlineSearchButton = new System.Windows.Forms.Button();
             this.onlinePicturebox = new System.Windows.Forms.PictureBox();
-            this.imageBoxMenustrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.imageBoxPasteMenustrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageBoxDeleteMenustrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageBoxCopyMenustrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageBoxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.imageBoxPasteMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageBoxDeleteMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageBoxCopyMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.appStripmenu = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAppMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.imageStripMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +48,7 @@
             this.aboutAppMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.updataAppMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpStripmenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchMenustrip = new System.Windows.Forms.MenuStrip();
+            this.searchMenuStrip = new System.Windows.Forms.MenuStrip();
             this.toolsStripmenu = new System.Windows.Forms.ToolStripMenuItem();
             this.imageSortMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteEmptyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,16 +81,16 @@
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.progressLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.imageUpButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolPanel = new System.Windows.Forms.Panel();
             this.emptyFolderButton = new System.Windows.Forms.Button();
             this.helpButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.imageDeleteButton = new System.Windows.Forms.Button();
             this.apiSettingsButton = new System.Windows.Forms.Button();
-            this.imageAddTootip = new System.Windows.Forms.ToolTip(this.components);
-            this.imageUpTootip = new System.Windows.Forms.ToolTip(this.components);
-            this.imageDeleteTootip = new System.Windows.Forms.ToolTip(this.components);
-            this.imageSortTootip = new System.Windows.Forms.ToolTip(this.components);
+            this.imageAddToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.imageUpToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.imageDeleteToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.imageSortToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.apiSettingsToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.appHelpToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.onlinePictureboxToolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -99,14 +99,14 @@
             this.outlineBack = new System.ComponentModel.BackgroundWorker();
             this.emptyFolderToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.onlinePicturebox)).BeginInit();
-            this.imageBoxMenustrip.SuspendLayout();
-            this.searchMenustrip.SuspendLayout();
+            this.imageBoxMenuStrip.SuspendLayout();
+            this.searchMenuStrip.SuspendLayout();
             this.searchTtabontrol.SuspendLayout();
             this.onlineTabpage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.localTabpage.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.toolPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // onlinePathTextBox
@@ -150,7 +150,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.onlinePicturebox.BackColor = System.Drawing.SystemColors.Window;
-            this.onlinePicturebox.ContextMenuStrip = this.imageBoxMenustrip;
+            this.onlinePicturebox.ContextMenuStrip = this.imageBoxMenuStrip;
             this.onlinePicturebox.Location = new System.Drawing.Point(10, 18);
             this.onlinePicturebox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.onlinePicturebox.Name = "onlinePicturebox";
@@ -162,36 +162,36 @@
             this.onlinePicturebox.DragDrop += new System.Windows.Forms.DragEventHandler(this.onlinePicturebox_DragDrop);
             this.onlinePicturebox.DragEnter += new System.Windows.Forms.DragEventHandler(this.onlinePicturebox_DragEnter);
             // 
-            // imageBoxMenustrip
+            // imageBoxMenuStrip
             // 
-            this.imageBoxMenustrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.imageBoxPasteMenustrip,
-            this.imageBoxDeleteMenustrip,
-            this.imageBoxCopyMenustrip});
-            this.imageBoxMenustrip.Name = "imageBoxMenustrip";
-            this.imageBoxMenustrip.Size = new System.Drawing.Size(101, 70);
-            this.imageBoxMenustrip.Opening += new System.ComponentModel.CancelEventHandler(this.imageBoxMenustrip_Opening);
+            this.imageBoxMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.imageBoxPasteMenuStrip,
+            this.imageBoxDeleteMenuStrip,
+            this.imageBoxCopyMenuStrip});
+            this.imageBoxMenuStrip.Name = "imageBoxMenuStrip";
+            this.imageBoxMenuStrip.Size = new System.Drawing.Size(101, 70);
+            this.imageBoxMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.imageBoxMenuStrip_Opening);
             // 
-            // imageBoxPasteMenustrip
+            // imageBoxPasteMenuStrip
             // 
-            this.imageBoxPasteMenustrip.Name = "imageBoxPasteMenustrip";
-            this.imageBoxPasteMenustrip.Size = new System.Drawing.Size(100, 22);
-            this.imageBoxPasteMenustrip.Text = "粘贴";
-            this.imageBoxPasteMenustrip.Click += new System.EventHandler(this.imageBoxPasteMenustrip_Click);
+            this.imageBoxPasteMenuStrip.Name = "imageBoxPasteMenuStrip";
+            this.imageBoxPasteMenuStrip.Size = new System.Drawing.Size(100, 22);
+            this.imageBoxPasteMenuStrip.Text = "粘贴";
+            this.imageBoxPasteMenuStrip.Click += new System.EventHandler(this.imageBoxPasteMenuStrip_Click);
             // 
-            // imageBoxDeleteMenustrip
+            // imageBoxDeleteMenuStrip
             // 
-            this.imageBoxDeleteMenustrip.Name = "imageBoxDeleteMenustrip";
-            this.imageBoxDeleteMenustrip.Size = new System.Drawing.Size(100, 22);
-            this.imageBoxDeleteMenustrip.Text = "删除";
-            this.imageBoxDeleteMenustrip.Click += new System.EventHandler(this.imageBoxDeleteMenustrip_Click);
+            this.imageBoxDeleteMenuStrip.Name = "imageBoxDeleteMenuStrip";
+            this.imageBoxDeleteMenuStrip.Size = new System.Drawing.Size(100, 22);
+            this.imageBoxDeleteMenuStrip.Text = "删除";
+            this.imageBoxDeleteMenuStrip.Click += new System.EventHandler(this.imageBoxDeleteMenuStrip_Click);
             // 
-            // imageBoxCopyMenustrip
+            // imageBoxCopyMenuStrip
             // 
-            this.imageBoxCopyMenustrip.Name = "imageBoxCopyMenustrip";
-            this.imageBoxCopyMenustrip.Size = new System.Drawing.Size(100, 22);
-            this.imageBoxCopyMenustrip.Text = "复制";
-            this.imageBoxCopyMenustrip.Click += new System.EventHandler(this.imageBoxCopyMenustrip_Click);
+            this.imageBoxCopyMenuStrip.Name = "imageBoxCopyMenuStrip";
+            this.imageBoxCopyMenuStrip.Size = new System.Drawing.Size(100, 22);
+            this.imageBoxCopyMenuStrip.Text = "复制";
+            this.imageBoxCopyMenuStrip.Click += new System.EventHandler(this.imageBoxCopyMenuStrip_Click);
             // 
             // appStripmenu
             // 
@@ -278,20 +278,20 @@
             this.helpStripmenu.Text = "帮助";
             this.helpStripmenu.Click += new System.EventHandler(this.helpStripmenu_Click);
             // 
-            // searchMenustrip
+            // searchMenuStrip
             // 
-            this.searchMenustrip.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.searchMenustrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
-            this.searchMenustrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchMenuStrip.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.searchMenuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.searchMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.appStripmenu,
             this.imageStripMenu,
             this.toolsStripmenu,
             this.otherStripmenu});
-            this.searchMenustrip.Location = new System.Drawing.Point(0, 0);
-            this.searchMenustrip.Name = "searchMenustrip";
-            this.searchMenustrip.Size = new System.Drawing.Size(684, 25);
-            this.searchMenustrip.TabIndex = 0;
-            this.searchMenustrip.Text = "searchMenustrip";
+            this.searchMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.searchMenuStrip.Name = "searchMenuStrip";
+            this.searchMenuStrip.Size = new System.Drawing.Size(684, 25);
+            this.searchMenuStrip.TabIndex = 0;
+            this.searchMenuStrip.Text = "searchMenuStrip";
             // 
             // toolsStripmenu
             // 
@@ -583,7 +583,7 @@
             this.imageSortButton.TabIndex = 4;
             this.imageSortButton.Text = "图片整理";
             this.imageSortButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.imageSortTootip.SetToolTip(this.imageSortButton, "整理归类磁盘中的文件");
+            this.imageSortToolTip.SetToolTip(this.imageSortButton, "整理归类磁盘中的文件");
             this.imageSortButton.UseVisualStyleBackColor = true;
             this.imageSortButton.Click += new System.EventHandler(this.imageSortButton_Click);
             // 
@@ -598,7 +598,7 @@
             this.imageAddButton.TabIndex = 1;
             this.imageAddButton.Text = "图片入库";
             this.imageAddButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.imageAddTootip.SetToolTip(this.imageAddButton, "上传图片到百度图库");
+            this.imageAddToolTip.SetToolTip(this.imageAddButton, "上传图片到百度图库");
             this.imageAddButton.UseVisualStyleBackColor = false;
             this.imageAddButton.Click += new System.EventHandler(this.imageAddButton_Click);
             // 
@@ -643,27 +643,27 @@
             this.imageUpButton.TabIndex = 2;
             this.imageUpButton.Text = "更新图片";
             this.imageUpButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.imageUpTootip.SetToolTip(this.imageUpButton, "上传新的图片替换图库中的图片");
+            this.imageUpToolTip.SetToolTip(this.imageUpButton, "上传新的图片替换图库中的图片");
             this.imageUpButton.UseVisualStyleBackColor = false;
             this.imageUpButton.Click += new System.EventHandler(this.imageUpButton_Click);
             // 
-            // panel1
+            // toolPanel
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.toolPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.emptyFolderButton);
-            this.panel1.Controls.Add(this.helpButton);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.imageDeleteButton);
-            this.panel1.Controls.Add(this.apiSettingsButton);
-            this.panel1.Controls.Add(this.imageAddButton);
-            this.panel1.Controls.Add(this.imageUpButton);
-            this.panel1.Controls.Add(this.imageSortButton);
-            this.panel1.Location = new System.Drawing.Point(-2, 26);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(688, 75);
-            this.panel1.TabIndex = 1;
+            this.toolPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.toolPanel.Controls.Add(this.emptyFolderButton);
+            this.toolPanel.Controls.Add(this.helpButton);
+            this.toolPanel.Controls.Add(this.panel2);
+            this.toolPanel.Controls.Add(this.imageDeleteButton);
+            this.toolPanel.Controls.Add(this.apiSettingsButton);
+            this.toolPanel.Controls.Add(this.imageAddButton);
+            this.toolPanel.Controls.Add(this.imageUpButton);
+            this.toolPanel.Controls.Add(this.imageSortButton);
+            this.toolPanel.Location = new System.Drawing.Point(-2, 26);
+            this.toolPanel.Name = "toolPanel";
+            this.toolPanel.Size = new System.Drawing.Size(688, 75);
+            this.toolPanel.TabIndex = 1;
             // 
             // emptyFolderButton
             // 
@@ -716,7 +716,7 @@
             this.imageDeleteButton.TabIndex = 3;
             this.imageDeleteButton.Text = "删除图片";
             this.imageDeleteButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.imageDeleteTootip.SetToolTip(this.imageDeleteButton, "删除图库中指定的图片");
+            this.imageDeleteToolTip.SetToolTip(this.imageDeleteButton, "删除图库中指定的图片");
             this.imageDeleteButton.UseVisualStyleBackColor = false;
             this.imageDeleteButton.Click += new System.EventHandler(this.imageDeleteButton_Click);
             // 
@@ -751,11 +751,11 @@
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.searchTtabontrol);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.searchMenustrip);
+            this.Controls.Add(this.toolPanel);
+            this.Controls.Add(this.searchMenuStrip);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.MainMenuStrip = this.searchMenustrip;
+            this.MainMenuStrip = this.searchMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(700, 600);
             this.Name = "HomeForm";
@@ -763,9 +763,9 @@
             this.Text = "图库搜索系统";
             this.Load += new System.EventHandler(this.HomeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.onlinePicturebox)).EndInit();
-            this.imageBoxMenustrip.ResumeLayout(false);
-            this.searchMenustrip.ResumeLayout(false);
-            this.searchMenustrip.PerformLayout();
+            this.imageBoxMenuStrip.ResumeLayout(false);
+            this.searchMenuStrip.ResumeLayout(false);
+            this.searchMenuStrip.PerformLayout();
             this.searchTtabontrol.ResumeLayout(false);
             this.onlineTabpage.ResumeLayout(false);
             this.onlineTabpage.PerformLayout();
@@ -774,7 +774,7 @@
             this.localTabpage.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.toolPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -790,7 +790,7 @@
         private System.Windows.Forms.ToolStripMenuItem imageStripMenu;
         private System.Windows.Forms.ToolStripMenuItem otherStripmenu;
         private System.Windows.Forms.ToolStripMenuItem aboutAppMenu;
-        private System.Windows.Forms.MenuStrip searchMenustrip;
+        private System.Windows.Forms.MenuStrip searchMenuStrip;
         private System.Windows.Forms.TabControl searchTtabontrol;
         private System.Windows.Forms.TabPage onlineTabpage;
         private System.Windows.Forms.Button imageAddButton;
@@ -800,7 +800,7 @@
         private System.Windows.Forms.ToolStripStatusLabel progressLabel;
         private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.Button imageUpButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel toolPanel;
         private System.Windows.Forms.Button apiSettingsButton;
         private System.Windows.Forms.Button imageDeleteButton;
         private System.Windows.Forms.ToolStripMenuItem toolsStripmenu;
@@ -832,14 +832,14 @@
         private System.Windows.Forms.ToolStripMenuItem imageDeleteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteEmptyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsStripmenu;
-        private System.Windows.Forms.ContextMenuStrip imageBoxMenustrip;
-        private System.Windows.Forms.ToolStripMenuItem imageBoxPasteMenustrip;
-        private System.Windows.Forms.ToolStripMenuItem imageBoxDeleteMenustrip;
-        private System.Windows.Forms.ToolStripMenuItem imageBoxCopyMenustrip;
-        private System.Windows.Forms.ToolTip imageAddTootip;
-        private System.Windows.Forms.ToolTip imageUpTootip;
-        private System.Windows.Forms.ToolTip imageDeleteTootip;
-        private System.Windows.Forms.ToolTip imageSortTootip;
+        private System.Windows.Forms.ContextMenuStrip imageBoxMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem imageBoxPasteMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem imageBoxDeleteMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem imageBoxCopyMenuStrip;
+        private System.Windows.Forms.ToolTip imageAddToolTip;
+        private System.Windows.Forms.ToolTip imageUpToolTip;
+        private System.Windows.Forms.ToolTip imageDeleteToolTip;
+        private System.Windows.Forms.ToolTip imageSortToolTip;
         private System.Windows.Forms.ToolTip apiSettingsToolTip;
         private System.Windows.Forms.ToolTip appHelpToolTip;
         private System.Windows.Forms.ToolTip onlinePictureboxToolTip;

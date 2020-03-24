@@ -120,7 +120,7 @@ namespace BaiduSimilarImage
             api.Path = depotPathTextBox.Text;
             api.SortPath = sortPathTextBox.Text;
 
-            bool sql = Sql.CreateTable(api, @"CREATE TABLE " + sqlTableTextBox.Text + "(ID INT PRIMARY KEY IDENTITY(1, 1), Names VARCHAR(256) not null, Path VARCHAR(256) not null, LogID VARCHAR(256), ContSign VARCHAR(256), Tsgs1 INT, Tsgs2 INT, Result VARCHAR(256) not null, Message  VARCHAR(256) not null, Times DATETIME not null)");// 新建表
+            bool sql = SqlFunction.CreateTable(api, @"CREATE TABLE " + sqlTableTextBox.Text + "(ID INT PRIMARY KEY IDENTITY(1, 1), Names VARCHAR(256) not null, Path VARCHAR(256) not null, LogID VARCHAR(256), ContSign VARCHAR(256), Tsgs1 INT, Tsgs2 INT, Result VARCHAR(256) not null, Message  VARCHAR(256) not null, Times DATETIME not null)");// 新建表
             if (!sql)
             {
                 MessageBox.Show("建立数据表失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);

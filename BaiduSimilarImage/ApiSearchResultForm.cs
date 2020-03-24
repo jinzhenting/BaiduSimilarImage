@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace BaiduSimilarImage
 {
-    public partial class SearchResultForm : Form
+    public partial class ApiSearchResultForm : Form
     {
         /// <summary>
         /// 结果列表
@@ -32,7 +32,7 @@ namespace BaiduSimilarImage
         /// <param name="inBriefList">API结果列表Json["brief"]</param>
         /// <param name="inDepot">图库</param>
         /// <param name="inPath">图库位置</param>
-        public SearchResultForm(List<string> inBriefList, string inDepot, string inPath)
+        public ApiSearchResultForm(List<string> inBriefList, string inDepot, string inPath)
         {
             InitializeComponent();
             briefList = inBriefList;
@@ -163,6 +163,14 @@ namespace BaiduSimilarImage
         /// </summary>
         private void iconBack_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            openToolStripMenuItem.Enabled = true;
+            copyToolStripMenuItem.Enabled = true;
+            saveToolStripMenuItem.Enabled = true;
+            stopToolStripMenuItem.Visible = false;
+            stopLoadButton.Visible = false;
+            openPictrueButton.Enabled = true;
+            openPathButton.Enabled = true;
+
             if (e.Error != null)
             {
                 MessageBox.Show("缩略图载入错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -172,7 +180,7 @@ namespace BaiduSimilarImage
 
             if (e.Cancelled)
             {
-                MessageBox.Show("已取消载入缩略图", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                progressLabel.Text = "已取消载入缩略图";
                 progressBar.Value = 0;
                 return;
             }
@@ -189,7 +197,7 @@ namespace BaiduSimilarImage
                 listView.Items.Add(ListViewitem);
             }
             listView.LargeImageList = imagelist;
-            clearLoadButton.Enabled = false;
+
         }
 
         /// <summary>
@@ -198,7 +206,6 @@ namespace BaiduSimilarImage
         private void clearLoadButton_Click(object sender, EventArgs e)
         {
             if (iconBack.IsBusy) iconBack.CancelAsync();
-            else MessageBox.Show("载入已完成", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         /// <summary>
@@ -211,14 +218,7 @@ namespace BaiduSimilarImage
                 MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
-
-            if (File.Exists(listView.SelectedItems[0].Text))
-            {
-                ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe");
-                psi.Arguments = "/e,/select," + listView.SelectedItems[0].Text;
-                Process.Start(psi);
-            }
-            else MessageBox.Show("图片" + listView.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            OpenPath();
         }
 
         /// <summary>
@@ -320,5 +320,113 @@ namespace BaiduSimilarImage
             }
         }
 
+        /// <summary>
+        /// 打开原图菜单
+        /// </summary>
+        private void openImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (listView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            OpenFile();
+        }
+
+        /// <summary>
+        /// 打开原图位置菜单
+        /// </summary>
+        private void openPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            OpenPath();
+        }
+
+        /// <summary>
+        /// 打开文件位置
+        /// </summary>
+        private void OpenPath()
+        {
+            if (File.Exists(listView.SelectedItems[0].Text))
+            {
+                ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe");
+                psi.Arguments = "/e,/select," + listView.SelectedItems[0].Text;
+                Process.Start(psi);
+            }
+            else MessageBox.Show("图片" + listView.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// 复制原图到剪贴版菜单
+        /// </summary>
+        private void copyImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            if (File.Exists(listView.SelectedItems[0].Text)) Clipboard.SetImage(Image.FromFile(listView.SelectedItems[0].Text));
+            else MessageBox.Show("图片" + listView.SelectedItems[0].Text + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// 复制图片本地位置菜单
+        /// </summary>
+        private void copyPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            Clipboard.SetDataObject(listView.SelectedItems[0].Text);
+        }
+
+        /// <summary>
+        /// 复制图片文件名菜单
+        /// </summary>
+        private void copyNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            Clipboard.SetDataObject(Path.GetFileNameWithoutExtension(listView.SelectedItems[0].Text));
+        }
+
+        /// <summary>
+        /// 停止载入菜单
+        /// </summary>
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (iconBack.IsBusy) iconBack.CancelAsync();
+        }
+
+        /// <summary>
+        /// 另存为菜单
+        /// </summary>
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.Filter = "图形文件(*.jpg)|*.jpg";// 文件类型
+            saveFileDialog.FileName = Path.GetFileNameWithoutExtension(listView.SelectedItems[0].Text);// 默认文件名
+            saveFileDialog.DefaultExt = Path.GetExtension(listView.SelectedItems[0].Text);// 默认格式
+            saveFileDialog.AddExtension = true;// 自动添加扩展名
+            if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
+            ///
+            File.Copy(listView.SelectedItems[0].Text, saveFileDialog.FileName);
+        }
     }
 }

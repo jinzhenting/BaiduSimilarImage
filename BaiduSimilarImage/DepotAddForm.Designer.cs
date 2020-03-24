@@ -59,7 +59,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.depotTextBox = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolPanel = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.sortPathTextBox = new System.Windows.Forms.TextBox();
@@ -70,7 +70,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.toolPanel.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -355,20 +355,20 @@
             this.depotTextBox.Size = new System.Drawing.Size(197, 23);
             this.depotTextBox.TabIndex = 1;
             // 
-            // panel1
+            // toolPanel
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.toolPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Location = new System.Drawing.Point(-2, 40);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(489, 483);
-            this.panel1.TabIndex = 2;
+            this.toolPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.toolPanel.Controls.Add(this.groupBox3);
+            this.toolPanel.Controls.Add(this.groupBox2);
+            this.toolPanel.Controls.Add(this.groupBox1);
+            this.toolPanel.Controls.Add(this.panel3);
+            this.toolPanel.Location = new System.Drawing.Point(-2, 40);
+            this.toolPanel.Name = "toolPanel";
+            this.toolPanel.Size = new System.Drawing.Size(489, 483);
+            this.toolPanel.TabIndex = 2;
             // 
             // groupBox3
             // 
@@ -510,7 +510,7 @@
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(484, 561);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.toolPanel);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.depotTextBox);
             this.Controls.Add(this.cancelButton);
@@ -522,7 +522,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "新建图库";
             this.Load += new System.EventHandler(this.DepotAddForm_Load);
-            this.panel1.ResumeLayout(false);
+            this.toolPanel.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -567,7 +567,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox depotTextBox;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel toolPanel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox2;

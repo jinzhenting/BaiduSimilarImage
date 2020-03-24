@@ -97,11 +97,6 @@ namespace BaiduSimilarImage
         /// <param name="e"></param>
         private void resetLogButton_Click(object sender, EventArgs e)
         {
-            if (addBack.IsBusy)
-            {
-                MessageBox.Show("请先停止入库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             addLogListView.Clear();
             LogListSettings();
         }
@@ -132,11 +127,6 @@ namespace BaiduSimilarImage
         /// </summary>
         private void resetAddImageListButton_Click(object sender, EventArgs e)
         {
-            if (addBack.IsBusy)
-            {
-                MessageBox.Show("请先停止入库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             scanListView.Clear();
             ScanListSettings();
         }
@@ -152,22 +142,6 @@ namespace BaiduSimilarImage
         /// </summary>
         private void subCheckBox_Click(object sender, EventArgs e)
         {
-            if (addBack.IsBusy)
-            {
-                MessageBox.Show("后台正在入库，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subCheckBox.Checked) subCheckBox.Checked = false;
-                else subCheckBox.Checked = true;
-                return;
-            }
-
-            if (scanBack.IsBusy)
-            {
-                MessageBox.Show("后台正在扫描文件，请勿操作", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                if (subCheckBox.Checked) subCheckBox.Checked = false;
-                else subCheckBox.Checked = true;
-                return;
-            }
-
             if (!subCheckBox.Checked) return;// 未勾选
 
             if (subList.Count > 0) subList.Clear();// 清空子目录选项列表
@@ -244,19 +218,6 @@ namespace BaiduSimilarImage
         {
             if (addScanButton.Text == "扫描图片")
             {
-                if (scanBack.IsBusy)
-                {
-                    MessageBox.Show("请先停止扫描", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (addBack.IsBusy)
-                {
-                    MessageBox.Show("请先停止入库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
                 if (depotListCombobox.Text == "")
                 {
                     MessageBox.Show("未选择图库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -296,6 +257,14 @@ namespace BaiduSimilarImage
                 addScanButton.Text = "停止扫描";
                 progressBar.Value = 1;
                 progressLabel.Text = "% 开始扫描...";
+                
+                depotListCombobox.Enabled = false;//停用功能
+                subCheckBox.Enabled = false;
+                sqlCheckBox.Enabled = false;
+                formatCombobox.Enabled = false;
+                resetAddImageListButton.Enabled = false;
+                addStartButton.Enabled = false;
+                resetLogButton.Enabled = false;
             }
             else
             {
@@ -338,7 +307,7 @@ namespace BaiduSimilarImage
 
                 if (sqlCheck)// 是否匹配数据库
                 {
-                    DataTable datatable1 = Sql.Select(depot, "SELECT Names, Path, Result, Message FROM " + api.Table + " WHERE Names='" + file.Name.Replace("'", "''") + "' AND Path='" + file.FullName.Replace(api.Path, "").Replace("'", "''") + "'");// 数据库查询
+                    DataTable datatable1 = SqlFunction.Select(depot, "SELECT Names, Path, Result, Message FROM " + api.Table + " WHERE Names='" + file.Name.Replace("'", "''") + "' AND Path='" + file.FullName.Replace(api.Path, "").Replace("'", "''") + "'");// 数据库查询
                     if (datatable1 == null)
                     {
                         MessageBox.Show("数据库操作错误，结束扫描", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -384,7 +353,7 @@ namespace BaiduSimilarImage
 
                             if (sqlCheck)// 是否匹配数据库
                             {
-                                DataTable datatable2 = Sql.Select(depot, "SELECT Names, Path, Result, Message FROM " + api.Table + " WHERE Names='" + allfiles.Name.Replace("'", "''") + "' AND Path='" + Regex.Replace(allfiles.FullName.Replace(api.Path, "").Replace("'", "''"), @"^[\\]", "") + "'");// 获取数据库配置
+                                DataTable datatable2 = SqlFunction.Select(depot, "SELECT Names, Path, Result, Message FROM " + api.Table + " WHERE Names='" + allfiles.Name.Replace("'", "''") + "' AND Path='" + Regex.Replace(allfiles.FullName.Replace(api.Path, "").Replace("'", "''"), @"^[\\]", "") + "'");// 获取数据库配置
                                 if (datatable2 == null)
                                 {
                                     MessageBox.Show("数据库操作错误，结束扫描", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -454,6 +423,13 @@ namespace BaiduSimilarImage
         private void scanBack_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             addScanButton.Text = "扫描图片";
+            depotListCombobox.Enabled = true;
+            subCheckBox.Enabled = true;
+            sqlCheckBox.Enabled = true;
+            formatCombobox.Enabled = true;
+            resetAddImageListButton.Enabled = true;
+            addStartButton.Enabled = true;
+            resetLogButton.Enabled = true;
 
             if (e.Error != null)
             {
@@ -548,6 +524,14 @@ namespace BaiduSimilarImage
                 addStartButton.Text = "停止入库";
                 progressBar.Value = 1;
                 progressLabel.Text = "% 开始入库...";
+                
+                depotListCombobox.Enabled = false;
+                subCheckBox.Enabled = false;
+                sqlCheckBox.Enabled = false;
+                formatCombobox.Enabled = false;
+                addScanButton.Enabled = false;
+                resetAddImageListButton.Enabled = false;
+                resetLogButton.Enabled = false;
             }
             else
             {
@@ -583,7 +567,7 @@ namespace BaiduSimilarImage
                 log.Time = DateTime.Now.ToString();
                 #endregion 定义元素
 
-                DataTable selectDataTable = Sql.Select(depot, @"SELECT Names, Path, Result, Message, Times FROM " + api.Table + " WHERE Names='" + name.Replace("'", "''") + "' AND Path='" + upPath.Replace(api.Path, "").Replace("'", "''") + "'");// 数据库查询
+                DataTable selectDataTable = SqlFunction.Select(depot, @"SELECT Names, Path, Result, Message, Times FROM " + api.Table + " WHERE Names='" + name.Replace("'", "''") + "' AND Path='" + upPath.Replace(api.Path, "").Replace("'", "''") + "'");// 数据库查询
                 if (selectDataTable == null)
                 {
                     MessageBox.Show("数据库操作错误，结束入库", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -645,7 +629,7 @@ namespace BaiduSimilarImage
 
                         if (localJson.Property("error_code") == null)// 入库成功
                         {
-                            bool up = Sql.Up(depot, @"UPDATE " + api.Table + " SET LogID = '" + localJson["log_id"].ToString() + "', ContSign = '" + localJson["cont_sign"].ToString() + "', Tsgs1 = '" + api.Tags1 + "', Tsgs2 = '" + api.Tags2 + "', Result = 'End', Message = 'End', Times = '" + DateTime.Now.ToString() + "' WHERE Names = '" + selectDataTable.Rows[0]["Names"].ToString().Replace("'", "''") + "'");
+                            bool up = SqlFunction.Up(depot, @"UPDATE " + api.Table + " SET LogID = '" + localJson["log_id"].ToString() + "', ContSign = '" + localJson["cont_sign"].ToString() + "', Tsgs1 = '" + api.Tags1 + "', Tsgs2 = '" + api.Tags2 + "', Result = 'End', Message = 'End', Times = '" + DateTime.Now.ToString() + "' WHERE Names = '" + selectDataTable.Rows[0]["Names"].ToString().Replace("'", "''") + "'");
                             if (up)
                             {
                                 log.Result = "完成";// 日志
@@ -665,7 +649,7 @@ namespace BaiduSimilarImage
                             string errorCode = localJson["error_code"].ToString();// 错误代码
                             if (localJson.Property("cont_sign") != null && localJson.Property("cont_sign").ToString() != "")// 错误含cont_sign即已入过库，此错误是本地扫描后没有入库，但之前已经入过库但未记录，现在进行重复入库造成，更新记录为End状态即可
                             {
-                                bool up = Sql.Up(depot, @"UPDATE " + api.Table + " SET LogID = '" + localJson["log_id"].ToString() + "', ContSign = '" + localJson["cont_sign"].ToString() + "', Tsgs1 = '" + api.Tags1 + "', Tsgs2 = '" + api.Tags2 + "', Result = 'End', Message = 'End', Times = '" + DateTime.Now.ToString() + "' WHERE Names = '" + selectDataTable.Rows[0]["Names"].ToString().Replace("'", "''") + "'");
+                                bool up = SqlFunction.Up(depot, @"UPDATE " + api.Table + " SET LogID = '" + localJson["log_id"].ToString() + "', ContSign = '" + localJson["cont_sign"].ToString() + "', Tsgs1 = '" + api.Tags1 + "', Tsgs2 = '" + api.Tags2 + "', Result = 'End', Message = 'End', Times = '" + DateTime.Now.ToString() + "' WHERE Names = '" + selectDataTable.Rows[0]["Names"].ToString().Replace("'", "''") + "'");
                                 if (up)
                                 {
                                     log.Result = "错误";// 日志
@@ -682,7 +666,7 @@ namespace BaiduSimilarImage
                             else//错误里没有log_id，但有数据记录，此情况是本地扫描后没有入库，现在入库返回了其他错误造成的，把记录更新为Error状态即可
                             {
                                 string ignore = (ApiFunction.UpIgnore(errorCode) == "Yes") ? "Ignore" : "Local";// 以后是否忽略入库
-                                bool up = Sql.Up(depot, @"UPDATE " + api.Table + " SET Result = '" + ignore + "', Message = 'Error" + errorCode + "', Times = '" + DateTime.Now.ToString() + "' WHERE Names = '" + selectDataTable.Rows[0]["Names"].ToString().Replace("'", "''") + "'");
+                                bool up = SqlFunction.Up(depot, @"UPDATE " + api.Table + " SET Result = '" + ignore + "', Message = 'Error" + errorCode + "', Times = '" + DateTime.Now.ToString() + "' WHERE Names = '" + selectDataTable.Rows[0]["Names"].ToString().Replace("'", "''") + "'");
                                 if (up)
                                 {
                                     log.Result = "错误";// 日志
@@ -731,7 +715,7 @@ namespace BaiduSimilarImage
 
                     if (json.Property("error_code") == null)// 入库成功
                     {
-                        bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + " (Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");// 记录数据库
+                        bool insert = SqlFunction.Insert(depot, @"INSERT INTO " + api.Table + " (Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");// 记录数据库
                         if (insert)
                         {
                             log.Result = "完成";// 日志
@@ -750,7 +734,7 @@ namespace BaiduSimilarImage
                         string errorCode = json["error_code"].ToString();// 错误代码
                         if (json.Property("cont_sign") != null && json.Property("cont_sign").ToString() != "")// 错误里包含cont_sign，即已入过库，此错误是重复入库造成
                         {
-                            bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");
+                            bool insert = SqlFunction.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, LogID, ContSign, Tsgs1, Tsgs2, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + json["log_id"].ToString() + "', '" + json["cont_sign"].ToString() + "', '" + api.Tags1 + "', '" + api.Tags2 + "', 'End', 'End','" + DateTime.Now.ToString() + "')");
                             if (insert)
                             {
                                 log.Result = "错误";// 日志
@@ -767,7 +751,7 @@ namespace BaiduSimilarImage
                         else//错误里没有log_id，且无数据记录，即其他错误执行错误结果记录
                         {
                             string ignore = (ApiFunction.UpIgnore(errorCode) == "Yes") ? "Ignore" : "Local";// 以后是否忽略入库
-                            bool insert = Sql.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + ignore + "', 'Error" + errorCode + "', '" + DateTime.Now.ToString() + "')");
+                            bool insert = SqlFunction.Insert(depot, @"INSERT INTO " + api.Table + "(Names, Path, Result, Message, Times) VALUES('" + name.Replace("'", "''") + "', '" + upPath.Replace("'", "''") + "', '" + ignore + "', 'Error" + errorCode + "', '" + DateTime.Now.ToString() + "')");
                             if (insert)
                             {
                                 log.Result = "错误";// 日志
@@ -803,7 +787,14 @@ namespace BaiduSimilarImage
         /// </summary>
         private void addBack_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            addStartButton.Text = "开始入库";
+            addStartButton.Text = "开始入库"; depotListCombobox.Enabled = true;
+            subCheckBox.Enabled = true;
+            sqlCheckBox.Enabled = true;
+            formatCombobox.Enabled = true;
+            addScanButton.Enabled = true;
+            resetAddImageListButton.Enabled = true;
+            resetLogButton.Enabled = true;
+            
             if (e.Error != null)
             {
                 MessageBox.Show("入库后台错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
