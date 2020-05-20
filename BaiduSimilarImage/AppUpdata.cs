@@ -33,14 +33,14 @@ namespace BaiduSimilarImage
             try
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(upURL);
-                FileInfo[] files = directoryInfo.GetFiles(@"ImageSearch*.exe", SearchOption.TopDirectoryOnly);// 扫描ImageSearch开头命名的exe文件
-                if (files.Length == 0)// 没有发现ImageSearch开头命名的exe文件
+                FileInfo[] files = directoryInfo.GetFiles(@"Baidu Similar Image*.exe", SearchOption.TopDirectoryOnly);// 扫描BaiduSimilarImage开头命名的exe文件
+                if (files.Length == 0)// 没有发现BaiduSimilarImage开头命名的exe文件
                 {
                     if (showWindows) MessageBox.Show("没有发现新版本", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
                 }
 
-                foreach (FileInfo file in files)// 遍历1或多个ImageSearch程序文件
+                foreach (FileInfo file in files)// 遍历1或多个BaiduSimilarImage程序文件
                 {
                     string version = Regex.Match(file.Name, @"[1-9]+[.][0-9]+[.][0-9]+[.][0-9]+").Groups[0].Value;// 获取版本号
                     if (version == "" || version == null) continue;// 在exe文件名中没有找到版本号

@@ -7,8 +7,8 @@
     <ProjectGuid>{44A64B53-CAD6-44F1-AD71-13844CA506F5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ImageSearch</RootNamespace>
-    <AssemblyName>ImageSearch</AssemblyName>
+    <RootNamespace>BaiduSimilarImage</RootNamespace>
+    <AssemblyName>BaiduSimilarImage</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

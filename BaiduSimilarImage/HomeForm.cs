@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using Baidu.Aip.ImageSearch;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.Diagnostics;
 
 
 /*
@@ -54,7 +57,7 @@ namespace BaiduSimilarImage
                 {
                     if (xmlNode.Name == "Text")
                     {
-                        this.Text = xmlNode.Attributes["name"].Value + " " + Application.ProductVersion;// 程序标题
+                        this.Text = xmlNode.Attributes["name"].Value + " - " + Application.ProductVersion;// 程序标题
                         aboutAppMenu.Text = "关于 " + xmlNode.Attributes["name"].Value;// 关于菜单
                         continue;
                     }
@@ -125,7 +128,7 @@ namespace BaiduSimilarImage
             // Control.CheckForIllegalCrossThreadCalls = false;// 关闭back访问限制
             Settings();// 程序配置
             AppUpdata.Updata(appUpURL, false);// 程序升级
-            if (ApiFunction.GetDepotList() != null) onlineDepotCombobox.DataSource = localDepotCombobox.DataSource = ApiFunction.GetDepotList();// 所有图库下拉列表数据源
+            if (ApiFunction.GetDepotList() != null) onlineDepotCombobox.DataSource = localDepotCombobox.DataSource = viewComboBox.DataSource = ApiFunction.GetDepotList();// 所有图库下拉列表数据源
             LocalListViewSettings();// 本地搜索列表配置
             onlinePicturebox.AllowDrop = true;// 重写AllowDrop使其接受拖放
         }
@@ -924,6 +927,231 @@ namespace BaiduSimilarImage
         }
 
         #endregion 工具菜单
+
+
+        #region 本地图片浏览
+        
+        private List<string> viewList = new List<string>();
+
+        /// <summary>
+        /// 异步加载图片
+        /// </summary>
+        private void viewBack_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            ImageList imageList = new ImageList();// 定义项目列表
+            imageList.ImageSize = new Size(256, 256);
+            imageList.ColorDepth = ColorDepth.Depth32Bit;
+            Api viewlineApi = ApiFunction.GetApi(localDepotCombobox.Text);
+            try
+            {
+                if (viewlineApi != null && Directory.Exists(viewlineApi.Path))
+                {
+                    DirectoryInfo directoryinfo = new DirectoryInfo(viewlineApi.Path);// 在 viewlineApi.Path 中查找图片
+                    DirectoryInfo[] directoryinfos = directoryinfo.GetDirectories();
+                    for (int i = 0; i < directoryinfos.Length; i++)// 获取子文件夹列表
+                    {
+                        if (viewBack.CancellationPending)// 检测后台取消
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+
+                        viewBack.ReportProgress(Percents.Get(i + 1, directoryinfos.Length), directoryinfos[i].FullName);//进度
+                    
+                        DirectoryInfo[] directoryInfo2= directoryinfos[i].GetDirectories();// 获取每个子文件夹的子文件夹列表
+                        FileInfo[] fileInfos = new DirectoryInfo(directoryInfo2[0].FullName).GetFiles(directoryinfos[i].Name + "*.bmp");// 在2层子文件夹的第一个文件夹中搜索Jpg
+                        if (fileInfos.Length > 0)
+                        {
+                            imageList.Images.Add(ZoomImage(Image.FromFile(fileInfos[0].FullName), 256, 256));// 等比缩放图片// 加载第一张Jpg到缩略图容器
+                            viewList.Add(fileInfos[0].FullName);// 加载图片名到集
+                        }
+                        else MessageBox.Show("文件夹 " + directoryinfos[i].FullName + " 中没有查找到Jpg", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("文件夹 " + viewlineApi.Path + " 访问失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    viewBack.ReportProgress(1, "文件夹 " + viewlineApi.Path + " 访问失败");
+                    e.Cancel = true;
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("缩略图载入错误，描述如下\r\n\r\n" + ex, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            e.Result = imageList;
+        }
+
+        /// <summary>
+        /// 等比缩放
+        /// </summary>
+        /// <param name="inImage">输入图片</param>
+        /// <param name="OutHeight">输出高</param>
+        /// <param name="OutWidth">输出宽</param>
+        /// <returns>输出图片</returns>
+        private Image ZoomImage(Image inImage, int OutHeight, int OutWidth)
+        {
+            try
+            {
+                int width = 0, height = 0;
+                // 按比例缩放
+                int inWidth = inImage.Width;
+                int inHeight = inImage.Height;
+                if (inHeight > OutHeight || inWidth > OutWidth)
+                {
+                    if ((inWidth * OutHeight) > (inHeight * OutWidth))
+                    {
+                        width = OutWidth;
+                        height = (OutWidth * inHeight) / inWidth;
+                    }
+                    else
+                    {
+                        height = OutHeight;
+                        width = (inWidth * OutHeight) / inHeight;
+                    }
+                }
+                else
+                {
+                    width = inWidth;
+                    height = inHeight;
+                }
+                Bitmap outBitmap = new Bitmap(OutWidth, OutHeight);
+                Graphics graphics = Graphics.FromImage(outBitmap);
+                graphics.Clear(Color.Transparent);
+                // 设置画布的描绘质量           
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(inImage, new Rectangle((OutWidth - width) / 2, (OutHeight - height) / 2, width, height), 0, 0, inImage.Width, inImage.Height, GraphicsUnit.Pixel);
+                graphics.Dispose();
+                // 设置压缩质量       
+                EncoderParameters encoderParams = new EncoderParameters();
+                long[] quality = new long[1];
+                quality[0] = 100;
+                EncoderParameter encoderParam = new EncoderParameter(Encoder.Quality, quality);
+                encoderParams.Param[0] = encoderParam;
+                inImage.Dispose();
+                return outBitmap;
+            }
+            catch
+            {
+                return inImage;
+            }
+        }
+
+        /// <summary>
+        /// 异步加载图片进度
+        /// </summary>
+        private void viewBack_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            progressBar.Value = e.ProgressPercentage;
+            progressLabel.Text = progressBar.Value + "% 载入缩略图" + e.UserState as string;
+        }
+
+        /// <summary>
+        /// 异步加载图片完成
+        /// </summary>
+        private void viewBack_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                MessageBox.Show("缩略图载入错误如下\r\n\r\n" + e.Error.ToString(), "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                progressBar.Value = 0;
+                return;
+            }
+
+            if (e.Cancelled)
+            {
+                progressLabel.Text = "已取消载入缩略图";
+                progressBar.Value = 0;
+                return;
+            }
+
+            progressLabel.Text = "列表载入完成";
+            progressBar.Value = 100;
+
+            ImageList imagelist = (ImageList)e.Result;
+            for (int i = 0; i < viewList.Count; i++)// 把项目名遍历到ListView
+            {
+                ListViewItem ListViewitem = new ListViewItem();// 定义单个项目
+                ListViewitem.ImageIndex = i;
+                ListViewitem.Text = Path.GetFileNameWithoutExtension(viewList[i]);
+                viewListView.Items.Add(ListViewitem);
+            }
+            viewListView.LargeImageList = imagelist;
+        }
+
+        /// <summary>
+        /// 载入或刷新本地图片预览图
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void viewReButton_Click(object sender, EventArgs e)
+        {
+            if (viewComboBox.Text == "背景墙" && !viewBack.IsBusy)
+            {
+                if (viewListView == null || viewListView.Items.Count > 0) viewListView.Items.Clear();
+                viewBack.RunWorkerAsync();
+            }
+            else MessageBox.Show("此图库暂不支持本地浏览", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// 本地图片浏览打开文件夹
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void viewOpenFolderButton_Click(object sender, EventArgs e)
+        {
+            if (viewListView.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("没有选中图片", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            string imagePath = viewList[viewListView.SelectedItems[0].Index];
+            if (File.Exists(imagePath))
+            {
+                ProcessStartInfo psi = new ProcessStartInfo("Explorer.exe");
+                psi.Arguments = "/e,/select," + imagePath;
+                Process.Start(psi);
+            }
+            else MessageBox.Show("图片" + imagePath + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// 双击打开本地图片浏览列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void viewListView_DoubleClick(object sender, EventArgs e)
+        {
+            OpenView();
+        }
+
+        /// <summary>
+        /// 打开本地图片浏览列表按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void viewOpenFileButton_Click(object sender, EventArgs e)
+        {
+            OpenView();
+        }
+
+        /// <summary>
+        /// 打开本地图片浏览列表图片
+        /// </summary>
+        private void OpenView()
+        {
+            if (viewListView.SelectedItems.Count < 1) return;
+            string imagePath = viewList[viewListView.SelectedItems[0].Index].Replace(".bmp", ".jpg");
+            if (File.Exists(imagePath)) Process.Start(imagePath);
+            else MessageBox.Show("图片" + imagePath + "不存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        #endregion 本地图片浏览
 
         //
     }

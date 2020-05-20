@@ -204,7 +204,7 @@ namespace BaiduSimilarImage
             #endregion 获取文件列表
 
             #region 元素声明
-            string otherPath = api.Path + @"Other\";// 目标其他文件目录
+            string otherPath = Path.Combine(api.Path, "Other");// 目标其他文件目录
             string oldName;// 源文件名含扩展名，不含路径
             string newName;// 编译器传回的临时文件名
             string newFullname;// 目标文件名含路径

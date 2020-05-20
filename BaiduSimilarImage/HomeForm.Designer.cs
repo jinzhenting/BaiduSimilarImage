@@ -74,6 +74,13 @@
             this.localTypeTextBox = new System.Windows.Forms.TextBox();
             this.localSearchButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.viewReButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.viewOpenFolderButton = new System.Windows.Forms.Button();
+            this.viewListView = new System.Windows.Forms.ListView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.viewComboBox = new System.Windows.Forms.ComboBox();
             this.imageSortButton = new System.Windows.Forms.Button();
             this.imageAddButton = new System.Windows.Forms.Button();
             this.searchBack = new System.ComponentModel.BackgroundWorker();
@@ -98,6 +105,8 @@
             this.onlineDepotComboboxToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.outlineBack = new System.ComponentModel.BackgroundWorker();
             this.emptyFolderToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.viewBack = new System.ComponentModel.BackgroundWorker();
+            this.viewOpenFileButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.onlinePicturebox)).BeginInit();
             this.imageBoxMenuStrip.SuspendLayout();
             this.searchMenuStrip.SuspendLayout();
@@ -105,6 +114,7 @@
             this.onlineTabpage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.localTabpage.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -113,21 +123,21 @@
             // 
             this.onlinePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.onlinePathTextBox.Location = new System.Drawing.Point(41, 379);
+            this.onlinePathTextBox.Location = new System.Drawing.Point(41, 382);
             this.onlinePathTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.onlinePathTextBox.Name = "onlinePathTextBox";
-            this.onlinePathTextBox.Size = new System.Drawing.Size(387, 23);
+            this.onlinePathTextBox.Size = new System.Drawing.Size(386, 23);
             this.onlinePathTextBox.TabIndex = 8;
             this.onlinePathTextBox.TextChanged += new System.EventHandler(this.onlinePathTextBox_TextChanged);
             // 
             // onlineOpenPath
             // 
             this.onlineOpenPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.onlineOpenPath.Location = new System.Drawing.Point(434, 379);
+            this.onlineOpenPath.Location = new System.Drawing.Point(433, 382);
             this.onlineOpenPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.onlineOpenPath.Name = "onlineOpenPath";
             this.onlineOpenPath.Size = new System.Drawing.Size(75, 23);
-            this.onlineOpenPath.TabIndex = 9;
+            this.onlineOpenPath.TabIndex = 1;
             this.onlineOpenPath.Text = "打开";
             this.onlineOpenPath.UseVisualStyleBackColor = true;
             this.onlineOpenPath.Click += new System.EventHandler(this.onlineOpenPath_Click);
@@ -135,11 +145,11 @@
             // onlineSearchButton
             // 
             this.onlineSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.onlineSearchButton.Location = new System.Drawing.Point(596, 379);
+            this.onlineSearchButton.Location = new System.Drawing.Point(595, 382);
             this.onlineSearchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.onlineSearchButton.Name = "onlineSearchButton";
             this.onlineSearchButton.Size = new System.Drawing.Size(75, 23);
-            this.onlineSearchButton.TabIndex = 11;
+            this.onlineSearchButton.TabIndex = 3;
             this.onlineSearchButton.Text = "开始";
             this.onlineSearchButton.UseVisualStyleBackColor = true;
             this.onlineSearchButton.Click += new System.EventHandler(this.onlineSearchButton_Click);
@@ -154,7 +164,7 @@
             this.onlinePicturebox.Location = new System.Drawing.Point(10, 18);
             this.onlinePicturebox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.onlinePicturebox.Name = "onlinePicturebox";
-            this.onlinePicturebox.Size = new System.Drawing.Size(611, 312);
+            this.onlinePicturebox.Size = new System.Drawing.Size(611, 316);
             this.onlinePicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.onlinePicturebox.TabIndex = 7;
             this.onlinePicturebox.TabStop = false;
@@ -331,6 +341,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchTtabontrol.Controls.Add(this.onlineTabpage);
             this.searchTtabontrol.Controls.Add(this.localTabpage);
+            this.searchTtabontrol.Controls.Add(this.tabPage1);
             this.searchTtabontrol.Location = new System.Drawing.Point(0, 99);
             this.searchTtabontrol.Name = "searchTtabontrol";
             this.searchTtabontrol.SelectedIndex = 0;
@@ -362,10 +373,10 @@
             // onlineClearButton
             // 
             this.onlineClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.onlineClearButton.Location = new System.Drawing.Point(515, 379);
+            this.onlineClearButton.Location = new System.Drawing.Point(514, 382);
             this.onlineClearButton.Name = "onlineClearButton";
             this.onlineClearButton.Size = new System.Drawing.Size(75, 23);
-            this.onlineClearButton.TabIndex = 10;
+            this.onlineClearButton.TabIndex = 2;
             this.onlineClearButton.Text = "清除";
             this.onlineClearButton.UseVisualStyleBackColor = true;
             this.onlineClearButton.Click += new System.EventHandler(this.onlineClearButton_Click);
@@ -437,7 +448,7 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(5, 382);
+            this.label13.Location = new System.Drawing.Point(5, 385);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(32, 17);
             this.label13.TabIndex = 7;
@@ -451,7 +462,7 @@
             this.groupBox1.Controls.Add(this.onlinePicturebox);
             this.groupBox1.Location = new System.Drawing.Point(41, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(630, 340);
+            this.groupBox1.Size = new System.Drawing.Size(630, 344);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -495,7 +506,7 @@
             this.localListView.GridLines = true;
             this.localListView.Location = new System.Drawing.Point(41, 41);
             this.localListView.Name = "localListView";
-            this.localListView.Size = new System.Drawing.Size(629, 332);
+            this.localListView.Size = new System.Drawing.Size(629, 334);
             this.localListView.TabIndex = 7;
             this.localListView.UseCompatibleStateImageBehavior = false;
             this.localListView.View = System.Windows.Forms.View.Details;
@@ -533,7 +544,7 @@
             // localOpenPathButton
             // 
             this.localOpenPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.localOpenPathButton.Location = new System.Drawing.Point(591, 380);
+            this.localOpenPathButton.Location = new System.Drawing.Point(590, 382);
             this.localOpenPathButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.localOpenPathButton.Name = "localOpenPathButton";
             this.localOpenPathButton.Size = new System.Drawing.Size(80, 23);
@@ -572,6 +583,88 @@
             this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "结果";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.viewOpenFileButton);
+            this.tabPage1.Controls.Add(this.viewReButton);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.viewOpenFolderButton);
+            this.tabPage1.Controls.Add(this.viewListView);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.viewComboBox);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(678, 411);
+            this.tabPage1.TabIndex = 7;
+            this.tabPage1.Text = " 本地图片浏览 ";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // viewReButton
+            // 
+            this.viewReButton.Location = new System.Drawing.Point(147, 8);
+            this.viewReButton.Name = "viewReButton";
+            this.viewReButton.Size = new System.Drawing.Size(75, 23);
+            this.viewReButton.TabIndex = 8;
+            this.viewReButton.Text = "刷新";
+            this.viewReButton.UseVisualStyleBackColor = true;
+            this.viewReButton.Click += new System.EventHandler(this.viewReButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(5, 42);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 17);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "列表";
+            // 
+            // viewOpenFolderButton
+            // 
+            this.viewOpenFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewOpenFolderButton.Location = new System.Drawing.Point(590, 382);
+            this.viewOpenFolderButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.viewOpenFolderButton.Name = "viewOpenFolderButton";
+            this.viewOpenFolderButton.Size = new System.Drawing.Size(80, 23);
+            this.viewOpenFolderButton.TabIndex = 5;
+            this.viewOpenFolderButton.Text = "打开文件夹";
+            this.viewOpenFolderButton.UseVisualStyleBackColor = true;
+            this.viewOpenFolderButton.Click += new System.EventHandler(this.viewOpenFolderButton_Click);
+            // 
+            // viewListView
+            // 
+            this.viewListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewListView.FullRowSelect = true;
+            this.viewListView.GridLines = true;
+            this.viewListView.Location = new System.Drawing.Point(41, 41);
+            this.viewListView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.viewListView.Name = "viewListView";
+            this.viewListView.Size = new System.Drawing.Size(629, 334);
+            this.viewListView.TabIndex = 4;
+            this.viewListView.UseCompatibleStateImageBehavior = false;
+            this.viewListView.DoubleClick += new System.EventHandler(this.viewListView_DoubleClick);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(5, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 17);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "图库";
+            // 
+            // viewComboBox
+            // 
+            this.viewComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.viewComboBox.FormattingEnabled = true;
+            this.viewComboBox.Location = new System.Drawing.Point(41, 7);
+            this.viewComboBox.Name = "viewComboBox";
+            this.viewComboBox.Size = new System.Drawing.Size(100, 25);
+            this.viewComboBox.TabIndex = 2;
+            this.onlineDepotComboboxToolTip.SetToolTip(this.viewComboBox, "图库列表（可在图库配置中增加、删除和修改）");
             // 
             // imageSortButton
             // 
@@ -743,6 +836,26 @@
             this.outlineBack.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.outlineBack_ProgressChanged);
             this.outlineBack.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.outlineBack_RunWorkerCompleted);
             // 
+            // viewBack
+            // 
+            this.viewBack.WorkerReportsProgress = true;
+            this.viewBack.WorkerSupportsCancellation = true;
+            this.viewBack.DoWork += new System.ComponentModel.DoWorkEventHandler(this.viewBack_DoWork);
+            this.viewBack.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.viewBack_ProgressChanged);
+            this.viewBack.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.viewBack_RunWorkerCompleted);
+            // 
+            // viewOpenFileButton
+            // 
+            this.viewOpenFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewOpenFileButton.Location = new System.Drawing.Point(504, 382);
+            this.viewOpenFileButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.viewOpenFileButton.Name = "viewOpenFileButton";
+            this.viewOpenFileButton.Size = new System.Drawing.Size(80, 23);
+            this.viewOpenFileButton.TabIndex = 9;
+            this.viewOpenFileButton.Text = "打开图片";
+            this.viewOpenFileButton.UseVisualStyleBackColor = true;
+            this.viewOpenFileButton.Click += new System.EventHandler(this.viewOpenFileButton_Click);
+            // 
             // HomeForm
             // 
             this.AllowDrop = true;
@@ -772,6 +885,8 @@
             this.groupBox1.ResumeLayout(false);
             this.localTabpage.ResumeLayout(false);
             this.localTabpage.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolPanel.ResumeLayout(false);
@@ -850,6 +965,15 @@
         private System.Windows.Forms.Button emptyFolderButton;
         private System.Windows.Forms.ToolTip emptyFolderToolTip;
         private System.Windows.Forms.ToolStripMenuItem apiSettingsMenuItem;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox viewComboBox;
+        private System.Windows.Forms.ListView viewListView;
+        private System.Windows.Forms.Button viewOpenFolderButton;
+        private System.Windows.Forms.Label label6;
+        private System.ComponentModel.BackgroundWorker viewBack;
+        private System.Windows.Forms.Button viewReButton;
+        private System.Windows.Forms.Button viewOpenFileButton;
     }
 }
 
