@@ -70,7 +70,11 @@ namespace BaiduSimilarImage
                 XmlDocument xml = new XmlDocument();
                 xml.Load(@"Documents\Settings.xml");
                 XmlNode rootNode = xml.DocumentElement;// 获得根节点
-                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == "Up") xmlnode.Attributes["path"].Value = upTextBox.Text;// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
+                foreach (XmlNode xmlnode in rootNode.ChildNodes) if (xmlnode.Name == "Up")// 在根节点中寻找节点//找到对应的节点//获取对应节点的值
+                    {
+                        xmlnode.Attributes["path"].Value = upTextBox.Text;
+                        break;
+                    }
                 xml.Save(@"Documents\Settings.xml");
                 MessageBox.Show("保存成功，将在程序重启后生效", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
